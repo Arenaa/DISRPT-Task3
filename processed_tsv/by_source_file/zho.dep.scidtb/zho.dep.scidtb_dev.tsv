@@ -1,0 +1,282 @@
+unit1_txt	unit2_txt	dir	rel_type	orig_label	label
+该文 研究 中 文 新闻 标题 的 领域 分类 方法 ( domain- oriented headline classification , DHC ) 。	现 有 研究 将 DHC 限定 为 一 种 短文 本 分类 问题 ,	1<2	unknown	bg-general	frame
+现 有 研究 将 DHC 限定 为 一 种 短文 本 分类 问题 ,	并 将 传统 分类 模型 和 基 于 卷积 神经 网络 的 分类 模型 应用 于 这 一 问题 的 求解 。	1<2	unknown	elab-addition	elaboration
+现 有 研究 将 DHC 限定 为 一 种 短文 本 分类 问题 ,	然而 , 这 类 方法 忽视 了 新闻 标题 的 内在 特点 ,	1<2	unknown	elab-addition	elaboration
+然而 , 这 类 方法 忽视 了 新闻 标题 的 内在 特点 ,	即 为 “ 标题 是 建立 在 凝练 全文 且 弱 相关 的 词语 之上 的 一 种 强迫 性 的 语义 表述 ” 。	1<2	unknown	elab-addition	elaboration
+目前 , 融合 了 序列 化 记忆 的 循环 神经 网络 在 语义 理解 方面 取得 了 重要 成果 。	该文 将 长短 时 记忆 网络 模型 ( long-short term memory , LSTM ) 及 其 变型 —— 门 控循 环 单元 ( gated recurrent unit , GRU ) 也 应 用 于 标题 的 语义 理解 与 领域 分类 ,	1>2	unknown	bg-general	frame
+借助 这 一 特点 ,	该文 将 长短 时 记忆 网络 模型 ( long-short term memory , LSTM ) 及 其 变型 —— 门 控循 环 单元 ( gated recurrent unit , GRU ) 也 应 用 于 标题 的 语义 理解 与 领域 分类 ,	1>2	unknown	manner-means	mode
+该文 研究 中 文 新闻 标题 的 领域 分类 方法 ( domain- oriented headline classification , DHC ) 。	该文 将 长短 时 记忆 网络 模型 ( long-short term memory , LSTM ) 及 其 变型 —— 门 控循 环 单元 ( gated recurrent unit , GRU ) 也 应 用 于 标题 的 语义 理解 与 领域 分类 ,	1<2	unknown	elab-addition	elaboration
+实 验 验证	其 性能 可 达 81% 的 F1 值 。	1>2	unknown	attribution	attribution
+该文 将 长短 时 记忆 网络 模型 ( long-short term memory , LSTM ) 及 其 变型 —— 门 控循 环 单元 ( gated recurrent unit , GRU ) 也 应 用 于 标题 的 语义 理解 与 领域 分类 ,	其 性能 可 达 81% 的 F1 值 。	1<2	unknown	evaluation	comment
+该文 研究 中 文 新闻 标题 的 领域 分类 方法 ( domain- oriented headline classification , DHC ) 。	此外 , 该文 对 目前 前沿 的 神经 网络 分类 模型 进行 综合 分析 ,	1<2	unknown	elab-addition	elaboration
+此外 , 该文 对 目前 前沿 的 神经 网络 分类 模型 进行 综合 分析 ,	尝试 寻找 各类 模型 在 DHC 任务 上 共 有 的 优势 和 劣势 。	1<2	unknown	enablement	purpose
+通过 对比 “ 全类型 多 元 分类 ” 与 “ 单 类型 二 元 分类 ” ,	发现 在 领域 性 特征 较弱 和 领域 歧义 性 较强 的 样本 上 , 现有 方法 难 以 取得 更为 理想 的 结果 ( F1 值 < 81% ) 。	1>2	unknown	manner-means	mode
+此外 , 该文 对 目前 前沿 的 神经 网络 分类 模型 进行 综合 分析 ,	发现 在 领域 性 特征 较弱 和 领域 歧义 性 较强 的 样本 上 , 现有 方法 难 以 取得 更为 理想 的 结果 ( F1 值 < 81% ) 。	1<2	unknown	elab-addition	elaboration
+借助 上述 分析 ,	该 文旨 在 推动 DHC 研究 在 标题 语言 特性 上 投入 更为 充分 的 关注 。	1>2	unknown	manner-means	mode
+该文 研究 中 文 新闻 标题 的 领域 分类 方法 ( domain- oriented headline classification , DHC ) 。	该 文旨 在 推动 DHC 研究 在 标题 语言 特性 上 投入 更为 充分 的 关注 。	1<2	unknown	elab-addition	elaboration
+﻿信息 抽取 研究 旨 在 为 人们 提供 更 有力 的 信息 获取 工具 ,	以 应 对 信息 爆炸 带来 的 严重 挑战 。	1<2	unknown	enablement	purpose
+﻿信息 抽取 研究 旨 在 为 人们 提供 更 有力 的 信息 获取 工具 ,	与 信息 检索 不同 , 信息 抽取 直接 从 自然 语言 文本 中 抽取 事实 信息 。	1<2	unknown	elab-aspect	elaboration
+﻿信息 抽取 研究 旨 在 为 人们 提供 更 有力 的 信息 获取 工具 ,	过去 十多 年 来 , 信息 抽取 逐步 发展 成 为 自然 语言 处理 领域 的 一 个 重要 分支 ,	1<2	unknown	elab-aspect	elaboration
+过去 十多 年 来 , 信息 抽取 逐步 发展 成 为 自然 语言 处理 领域 的 一 个 重要 分支 ,	其 独特 的 发展 轨迹 ——— 通过 系统 化 、 大 规模 的 定量 评测 推动 研究 向 前 发展 , 以及 某些 成功 启示 , 如 部分 分析 技术 的 有效 性 、 快速 NLP 系统 开发 的 必要 性 , 都 极大 地 推动 了 自然 语言 处理 研究 的 发展 ,	1<2	unknown	elab-addition	elaboration
+其 独特 的 发展 轨迹 ——— 通过 系统 化 、 大 规模 的 定量 评测 推动 研究 向 前 发展 , 以及 某些 成功 启示 , 如 部分 分析 技术 的 有效 性 、 快速 NLP 系统 开发 的 必要 性 , 都 极大 地 推动 了 自然 语言 处理 研究 的 发展 ,	促进 了 NLP 研究 与 应用 的 紧密 结合 。	1<2	unknown	joint	conjunction
+﻿信息 抽取 研究 旨 在 为 人们 提供 更 有力 的 信息 获取 工具 ,	回顾 信息 抽取 研究 的 历史 , 总结 信息 抽取 研究 的 现状 , 将 有助 于 这 方面 研究 工作 向 前 发展 。	1<2	unknown	evaluation	comment
+内容 分发 网络 ( CDN ) 以 推 ( Push ) 和 拉 ( Pull ) 作 为 两 种 主要 的 内容分发 策略 。	目前 针对 网络 小说 服务 器 的 内容 分 发策 略 的 研究 较少 ,	1>2	unknown	bg-general	frame
+内容 分发 网络 ( CDN ) 以 推 ( Push ) 和 拉 ( Pull ) 作 为 两 种 主要 的 内容分发 策略 。	拉 是 服务 器 对 用户 请求 给予 回应 的 方式 ,	1<2	unknown	elab-addition	elaboration
+在 面对 高并 发 请求 时 ,	以 推方 式 预 分发 到 服务 器 上 的 内容 将 有 效 辅助 改善 服务 器 过载 的 情况 ,	1>2	unknown	temporal	temporal
+内容 分发 网络 ( CDN ) 以 推 ( Push ) 和 拉 ( Pull ) 作 为 两 种 主要 的 内容分发 策略 。	以 推方 式 预 分发 到 服务 器 上 的 内容 将 有 效 辅助 改善 服务 器 过载 的 情况 ,	1<2	unknown	elab-addition	elaboration
+以 推方 式 预 分发 到 服务 器 上 的 内容 将 有 效 辅助 改善 服务 器 过载 的 情况 ,	并 实现 热度 内容 的 主动 推送 。	1<2	unknown	joint	conjunction
+以 推方 式 预 分发 到 服务 器 上 的 内容 将 有 效 辅助 改善 服务 器 过载 的 情况 ,	预 分发 内容 的 热度 高低 直接 决定 了 内容 的 边缘 命中 率 和 用户 的 启动 延迟 ,	1<2	unknown	elab-addition	elaboration
+预 分发 内容 的 热度 高低 直接 决定 了 内容 的 边缘 命中 率 和 用户 的 启动 延迟 ,	有效 减少 预 分发 内容 替换 的 频率 和 对源 服务 器 访问 时 的 网络 堵塞 ,	1<2	unknown	elab-addition	elaboration
+有效 减少 预 分发 内容 替换 的 频率 和 对源 服务 器 访问 时 的 网络 堵塞 ,	因 此 在 网络 小说 服务 器 中 依据 网络 小说 热度 对内 容分 发策 略 的 部署 就 显得 更为 重要 。	1<2	unknown	result	causal
+目前 针对 网络 小说 服务 器 的 内容 分 发策 略 的 研究 较少 ,	该文 通过 定义 网络 小说 热度 概念 ,	1>2	unknown	bg-goal	frame
+目前 针对 网络 小说 服务 器 的 内容 分 发策 略 的 研究 较少 ,	缺乏 对 网络 小说 热度 科学 有效 的 评价 标准 。	1<2	unknown	elab-addition	elaboration
+目前 针对 网络 小说 服务 器 的 内容 分 发策 略 的 研究 较少 ,	以 服务 器 管理 人员 的 主观 经验 判断 和 低 命中 的 预 分发 内容 的 不断 替换	1<2	unknown	elab-addition	elaboration
+以 服务 器 管理 人员 的 主观 经验 判断 和 低 命中 的 预 分发 内容 的 不断 替换	来 实现 内容 推送 的 策略 ,	1<2	unknown	enablement	purpose
+以 服务 器 管理 人员 的 主观 经验 判断 和 低 命中 的 预 分发 内容 的 不断 替换	不仅 主观 性 强 ,	1<2	unknown	elab-addition	elaboration
+不仅 主观 性 强 ,	同时 内容 的 不断 替换 更 极大 地 增加 了 服务 器 负担 。	1<2	unknown	progression	organization
+针对 这 一 问题 ,	该文 通过 定义 网络 小说 热度 概念 ,	1>2	unknown	bg-general	frame
+该文 通过 定义 网络 小说 热度 概念 ,	对 在 起点 中 文网 爬取 到 的 数据 进行 预 处理 ,	1<2	unknown	enablement	purpose
+对 在 起点 中 文网 爬取 到 的 数据 进行 预 处理 ,	数据 拟合 显示 数据 符合 幂律 分布 规律 ,	1<2	unknown	elab-addition	elaboration
+对 在 起点 中 文网 爬取 到 的 数据 进行 预 处理 ,	并 建立 热度 等级 评价 标准 ,	1<2	unknown	joint	conjunction
+并 建立 热度 等级 评价 标准 ,	分别 采用 贝叶斯 网络 、 随机 森林 算法 与 Logistic 回归 建立 预测 模型 ,	1<2	unknown	elab-addition	elaboration
+分别 采用 贝叶斯 网络 、 随机 森林 算法 与 Logistic 回归 建立 预测 模型 ,	对 网络 小说 热度 预测 进行 对比 研究 。	1<2	unknown	enablement	purpose
+结果 显示 ,	随机 森林 算法 的 预测 正确 率 达到 97.097% ,	1>2	unknown	attribution	attribution
+分别 采用 贝叶斯 网络 、 随机 森林 算法 与 Logistic 回归 建立 预测 模型 ,	随机 森林 算法 的 预测 正确 率 达到 97.097% ,	1<2	unknown	evaluation	comment
+随机 森林 算法 的 预测 正确 率 达到 97.097% ,	均方 误差 为 0.112 8 ,	1<2	unknown	joint	conjunction
+随机 森林 算法 的 预测 正确 率 达到 97.097% ,	分类 预测 效果 更优 ,	1<2	unknown	elab-addition	elaboration
+分类 预测 效果 更优 ,	且 误差 率 更低 。	1<2	unknown	joint	conjunction
+分类 预测 效果 更优 ,	因 此 选用 随机 森林 算法 ,	1<2	unknown	result	causal
+依据 网络 小说 热度 评价 标准 ,	能够 有效 解决 网络 小说 CDN 系统 内容 部署 不 准确 而 导致 低 命中 内容 的 不断 替换 和 用户 访问 延迟 的 问题 ,	1>2	unknown	bg-general	frame
+因 此 选用 随机 森林 算法 ,	能够 有效 解决 网络 小说 CDN 系统 内容 部署 不 准确 而 导致 低 命中 内容 的 不断 替换 和 用户 访问 延迟 的 问题 ,	1<2	unknown	elab-addition	elaboration
+能够 有效 解决 网络 小说 CDN 系统 内容 部署 不 准确 而 导致 低 命中 内容 的 不断 替换 和 用户 访问 延迟 的 问题 ,	为 内 容分 发策 略 提供 有效 指导 ,	1<2	unknown	elab-addition	elaboration
+为 内 容分 发策 略 提供 有效 指导 ,	从而 提高 内容 命中 率 ,	1<2	unknown	enablement	purpose
+从而 提高 内容 命中 率 ,	提升 网络 小说 CDN 系统 运作 效率 。	1<2	unknown	elab-addition	elaboration
+社交 媒体 快速 发展 ,	该文 提出 了 一 种 企业 行为 识别 及 演化 分析 的 方法 。	1>2	unknown	bg-general	frame
+社交 媒体 快速 发展 ,	越来越多 的 企业 利用 它 发布 信息 ,	1<2	unknown	elab-addition	elaboration
+越来越多 的 企业 利用 它 发布 信息 ,	这些 信息 具有 重要 的 商业 和 研究 价值 。	1<2	unknown	elab-addition	elaboration
+这些 信息 具有 重要 的 商业 和 研究 价值 。	但是 社交 媒体 数据 具有 强 噪音 、 多 类型 、 多 主题 等 特点 ,	1<2	unknown	contrast	contrast
+但是 社交 媒体 数据 具有 强 噪音 、 多 类型 、 多 主题 等 特点 ,	这 导致 企业 行为 演化 分析 面临 巨大 挑战 。	1<2	unknown	result	causal
+为 此 ,	该文 提出 了 一 种 企业 行为 识别 及 演化 分析 的 方法 。	1>2	unknown	bg-general	frame
+该文 提出 了 一 种 企业 行为 识别 及 演化 分析 的 方法 。	首先 利用 识别 方法 对 企业 信息 进行 行为 识别 ,	1<2	unknown	elab-process_step	elaboration
+该文 提出 了 一 种 企业 行为 识别 及 演化 分析 的 方法 。	然后 再 运用 已 识别 企业 行 为 数据	1<2	unknown	elab-process_step	elaboration
+然后 再 运用 已 识别 企业 行 为 数据	进行 企业 行为 演化 分析 ,	1<2	unknown	enablement	purpose
+该文 提出 了 一 种 企业 行为 识别 及 演化 分析 的 方法 。	最后 根据 演化 分析 结果 ,	1<2	unknown	elab-process_step	elaboration
+最后 根据 演化 分析 结果 ,	为 竞争 性 企业 提供 营销 建议 。	1<2	unknown	elab-addition	elaboration
+实验 结果 表明 ,	该文 提出 的 企业 行为 识别 及 演化 分析 的 方法 具有 重要 的 应用 价值 。	1>2	unknown	attribution	attribution
+该文 提出 了 一 种 企业 行为 识别 及 演化 分析 的 方法 。	该文 提出 的 企业 行为 识别 及 演化 分析 的 方法 具有 重要 的 应用 价值 。	1<2	unknown	evaluation	comment
+广告 语 是 广告 传播 中 不可 或 缺 的 一 部分 ,	提出 谐音 广告 语群 的 生成 及 评估 模型 。	1>2	unknown	bg-general	frame
+广告 语 是 广告 传播 中 不可 或 缺 的 一 部分 ,	凝练 着 品牌 的 核心 价值 。	1<2	unknown	elab-addition	elaboration
+该文 以 古代 诗词 为 基础 ,	提出 谐音 广告 语群 的 生成 及 评估 模型 。	1>2	unknown	bg-general	frame
+通过 多 特征 融合 的 方式 ,	提出 谐音 广告 语群 的 生成 及 评估 模型 。	1>2	unknown	manner-means	mode
+提出 谐音 广告 语群 的 生成 及 评估 模型 。	在 生成 模型 中 , 首先 利用 语音 模板 ,	1<2	unknown	elab-process_step	elaboration
+在 生成 模型 中 , 首先 利用 语音 模板 ,	获取 候选 广告 语群 。	1<2	unknown	enablement	purpose
+提出 谐音 广告 语群 的 生成 及 评估 模型 。	同 时分 别 通过 语音 、 形状 、 语义 和 情境 四 个 维度 ,	1<2	unknown	elab-process_step	elaboration
+同 时分 别 通过 语音 、 形状 、 语义 和 情境 四 个 维度 ,	计算 广告 语 的 九 大 特征 ,	1<2	unknown	enablement	purpose
+计算 广告 语 的 九 大 特征 ,	得到 候选 广告 语群 的 特征 矩阵 。	1<2	unknown	enablement	purpose
+提出 谐音 广告 语群 的 生成 及 评估 模型 。	最后 采用 基 于 主 成分 分析 和 权重 的 双 序 评 估算法 ,	1<2	unknown	elab-process_step	elaboration
+最后 采用 基 于 主 成分 分析 和 权重 的 双 序 评 估算法 ,	筛选 出 高分 广告 语群 。	1<2	unknown	enablement	purpose
+实验 结果 表明 ,	四 个 维度 的 特征 细致 地 刻画 了 广告 语 ,	1>2	unknown	attribution	attribution
+提出 谐音 广告 语群 的 生成 及 评估 模型 。	四 个 维度 的 特征 细致 地 刻画 了 广告 语 ,	1<2	unknown	evaluation	comment
+在 生成 的 特征 矩阵 基础 上 ,	双 序 评估 算法 能够 准确 地 评估 广告 语 的 质量 ,	1>2	unknown	bg-general	frame
+四 个 维度 的 特征 细致 地 刻画 了 广告 语 ,	双 序 评估 算法 能够 准确 地 评估 广告 语 的 质量 ,	1<2	unknown	joint	conjunction
+双 序 评估 算法 能够 准确 地 评估 广告 语 的 质量 ,	与 人工 评估 结果 基本 接近 ,	1<2	unknown	elab-addition	elaboration
+双 序 评估 算法 能够 准确 地 评估 广告 语 的 质量 ,	有 一定 的 实用 价值 。	1<2	unknown	elab-addition	elaboration
+机器 阅读 理解 是 自然 语言 处理 和 人工 智能 领域 的 前沿 课题 ,	“ 2018 机器 阅读 理解 技术 竞赛 ” 旨 在 推动 相关 技术 研究 和 应用 的 发展 。	1>2	unknown	bg-general	frame
+“ 2018 机器 阅读 理解 技术 竞赛 ” 旨 在 推动 相关 技术 研究 和 应用 的 发展 。	该文 详细 介绍 技术 竞赛 的 总体 情况 、 竞赛 设置 、 组织 流程 、 评价 结果 ,	1>2	unknown	bg-general	frame
+“ 2018 机器 阅读 理解 技术 竞赛 ” 旨 在 推动 相关 技术 研究 和 应用 的 发展 。	竞赛 发布 了 最大 规模 的 中 文 阅读 理解 数据 集 ,	1<2	unknown	elab-addition	elaboration
+竞赛 发布 了 最大 规模 的 中 文 阅读 理解 数据 集 ,	提供 了 先进 的 开源 基线 系统 ,	1<2	unknown	joint	conjunction
+竞赛 发布 了 最大 规模 的 中 文 阅读 理解 数据 集 ,	采用 改进 的 自动 评价 指标 ,	1<2	unknown	joint	conjunction
+竞赛 发布 了 最大 规模 的 中 文 阅读 理解 数据 集 ,	吸引 了 国 内外 千余 支队 伍 参与 ,	1<2	unknown	joint	conjunction
+竞赛 发布 了 最大 规模 的 中 文 阅读 理解 数据 集 ,	参赛 系统 效果 提升 显著 。	1<2	unknown	joint	conjunction
+该文 详细 介绍 技术 竞赛 的 总体 情况 、 竞赛 设置 、 组织 流程 、 评价 结果 ,	并 对 参赛 系统 结果 进行 了 分析 。	1<2	unknown	elab-addition	elaboration
+甲骨 文 是 流行 于 我国 古代 商朝 的 成熟 文字 系统 ,	该文 分析 了 甲骨 文 字 形 的 分形 性质 ,	1>2	unknown	bg-general	frame
+甲骨 文 是 流行 于 我国 古代 商朝 的 成熟 文字 系统 ,	本质 上 是 一 种 平面 图形 ,	1<2	unknown	elab-addition	elaboration
+本质 上 是 一 种 平面 图形 ,	笔画 和 结构 不是 非常 稳定 。	1<2	unknown	elab-addition	elaboration
+笔画 和 结构 不是 非常 稳定 。	很多 字形 具有 图画 性质 ,	1<2	unknown	elab-addition	elaboration
+很多 字形 具有 图画 性质 ,	难 以 区分 明显 的 结构 ,	1<2	unknown	elab-addition	elaboration
+难 以 区分 明显 的 结构 ,	难写 难记 。	1<2	unknown	elab-addition	elaboration
+笔画 和 结构 不是 非常 稳定 。	已有 的 编码 输入 方法 受 众面小 ,	1<2	unknown	result	causal
+已有 的 编码 输入 方法 受 众面小 ,	效率 很低 ,	1<2	unknown	joint	conjunction
+已有 的 编码 输入 方法 受 众面小 ,	使用 受限 。	1<2	unknown	joint	conjunction
+在 此 基础 上 ,	通过 字形 的 重心 建立 二 维 平面 直角 坐标 系 ,	1>2	unknown	bg-general	frame
+该文 分析 了 甲骨 文 字 形 的 分形 性质 ,	通过 字形 的 重心 建立 二 维 平面 直角 坐标 系 ,	1<2	unknown	elab-addition	elaboration
+通过 字形 的 重心 建立 二 维 平面 直角 坐标 系 ,	将 甲骨 文字 形 的 平面 图形 划分 为 四 个 象限 。	1<2	unknown	enablement	purpose
+利用 分形 几何 的 原理 ,	将 甲骨 文字 形形式 化 为 一 组 分形 描述 码 。	1>2	unknown	manner-means	mode
+利用 分形 几何 的 原理 ,	通过 计算 字形 以及 各个 象限 的 分形 维数 ,	1<2	unknown	elab-addition	elaboration
+该文 分析 了 甲骨 文 字 形 的 分形 性质 ,	将 甲骨 文字 形形式 化 为 一 组 分形 描述 码 。	1<2	unknown	elab-process_step	elaboration
+该文 分析 了 甲骨 文 字 形 的 分形 性质 ,	再 通过 与 甲骨 文 字形 的 分形 特征 库 进行 配准 ,	1<2	unknown	elab-process_step	elaboration
+再 通过 与 甲骨 文 字形 的 分形 特征 库 进行 配准 ,	从而 识别 甲骨 文 字形 。	1<2	unknown	enablement	purpose
+实验 结果 显示 ,	利用 分形 几何 可以 较好 地 识别 甲骨 文 字 形 。	1>2	unknown	attribution	attribution
+该文 分析 了 甲骨 文 字 形 的 分形 性质 ,	利用 分形 几何 可以 较好 地 识别 甲骨 文 字 形 。	1<2	unknown	evaluation	comment
+机器 翻译 自动 评价 发展 至 今 , 各种 自动 评价 方法 不断 涌现 。	该文 提出 了 基 于 融合 策略 的 自动 评价 方法 ,	1>2	unknown	bg-general	frame
+机器 翻译 自动 评价 发展 至 今 , 各种 自动 评价 方法 不断 涌现 。	不同 的 自动 评价 方法 从 不同 的 角度 评价 机器 译文 的 质量 。	1<2	unknown	elab-addition	elaboration
+该文 提出 了 基 于 融合 策略 的 自动 评价 方法 ,	该 方法 可以 融合 多 个 自动 评价 方法 ,	1<2	unknown	elab-addition	elaboration
+该 方法 可以 融合 多 个 自动 评价 方法 ,	多 角度 地 综合 评价 机器 译文 质量 。	1<2	unknown	elab-addition	elaboration
+该文 提出 了 基 于 融合 策略 的 自动 评价 方法 ,	该 文 主要 在 以下 几 个 方面 探索 进行 :	1<2	unknown	elab-addition	elaboration
+该 文 主要 在 以下 几 个 方面 探索 进行 :	( 1 ) 对比 分别 使用 相对 排序 ( RR ) 和 直接 评估 ( DA ) 两 种 人工 评价 方法 指导 训练 融合 自动 评价 方法 ,	1<2	unknown	elab-enumember	elaboration
+实验 表明	使用 可靠 性 高 的 DA 形成 的 融合 自动 评价 方法 ( Blend ) 性能 更好 ;	1>2	unknown	attribution	attribution
+( 1 ) 对比 分别 使用 相对 排序 ( RR ) 和 直接 评估 ( DA ) 两 种 人工 评价 方法 指导 训练 融合 自动 评价 方法 ,	使用 可靠 性 高 的 DA 形成 的 融合 自动 评价 方法 ( Blend ) 性能 更好 ;	1<2	unknown	evaluation	comment
+该 文 主要 在 以下 几 个 方面 探索 进行 :	( 2 ) 对比 Blend 分别 使用 支持 向量 机 ( SVM ) 和 全 连接 神经 网络 ( FFNN ) 机器 学 习算 法 ,	1<2	unknown	elab-enumember	elaboration
+实验 表明	在 当前 数据 集上 , 使用 SVM 效果 更好 ;	1>2	unknown	attribution	attribution
+( 2 ) 对比 Blend 分别 使用 支持 向量 机 ( SVM ) 和 全 连接 神经 网络 ( FFNN ) 机器 学 习算 法 ,	在 当前 数据 集上 , 使用 SVM 效果 更好 ;	1<2	unknown	evaluation	comment
+( 3 ) 进而 在 SVM 基础 上 ,	探索 使用 不同 的 评价 方法 对 Blend 的 影响 ,	1>2	unknown	bg-general	frame
+该 文 主要 在 以下 几 个 方面 探索 进行 :	探索 使用 不同 的 评价 方法 对 Blend 的 影响 ,	1<2	unknown	elab-enumember	elaboration
+探索 使用 不同 的 评价 方法 对 Blend 的 影响 ,	为 Blend 寻找 在 性能 和 效率 上 的 平衡 ;	1<2	unknown	elab-addition	elaboration
+该 文 主要 在 以下 几 个 方面 探索 进行 :	( 4 ) 把 Blend 推广 应 用 到 其他 语言 对上 ,	1<2	unknown	elab-enumember	elaboration
+( 4 ) 把 Blend 推广 应 用 到 其他 语言 对上 ,	说明 它 的 稳定 性 及 通用 性 。	1<2	unknown	enablement	purpose
+在 WMT16 评测 数据 上 的 实验 , 以及 参加 WMT17 评测 的 结果 均 表明 ,	Blend 与 人工 评价 的 一致 性 达到 领先 水平 。	1>2	unknown	attribution	attribution
+( 4 ) 把 Blend 推广 应 用 到 其他 语言 对上 ,	Blend 与 人工 评价 的 一致 性 达到 领先 水平 。	1<2	unknown	evaluation	comment
+为 提升 维汉 机器 翻译 模型 的 翻译 能力 ,	该文 提出 使用 多 编码 器 多 解码 器 的 结构 ,	1>2	unknown	result	causal
+该文 提出 使用 多 编码 器 多 解码 器 的 结构 ,	搭建 大 规模 的 维汉 神经 网络 机器 翻译 模型 。	1<2	unknown	enablement	purpose
+相比 于 单 编码 器 单 解码 器 的 浅层 的 小 模型 ,	多 编码 器 多 解码 器 模型 具有 多 个 编码 器 ,	1>2	unknown	comparison	concession
+该文 提出 使用 多 编码 器 多 解码 器 的 结构 ,	多 编码 器 多 解码 器 模型 具有 多 个 编码 器 ,	1<2	unknown	elab-addition	elaboration
+多 编码 器 多 解码 器 模型 具有 多 个 编码 器 ,	可以 对源 语言 进行 多 层次 、 多 视角 的 压缩 表示 ;	1<2	unknown	elab-addition	elaboration
+可以 对源 语言 进行 多 层次 、 多 视角 的 压缩 表示 ;	同时 具有 多 个 解码 器 , 可以 增强 目标 语言 的 生成 能力 。	1<2	unknown	joint	conjunction
+实验 证明 ,	在 大 规模 的 训练 数据 上 , 使用 该 方法 搭建 的 大 规模 维汉 神经 网络 机器 翻译 模型 , 译文 质量 可以 大 幅度 地 超过 基 于 短语 的 统计 机器 翻译 模型 和 基本 的 神经 网络 翻译 模型 。	1>2	unknown	attribution	attribution
+该文 提出 使用 多 编码 器 多 解码 器 的 结构 ,	在 大 规模 的 训练 数据 上 , 使用 该 方法 搭建 的 大 规模 维汉 神经 网络 机器 翻译 模型 , 译文 质量 可以 大 幅度 地 超过 基 于 短语 的 统计 机器 翻译 模型 和 基本 的 神经 网络 翻译 模型 。	1<2	unknown	evaluation	comment
+该文 提出 使用 多 编码 器 多 解码 器 的 结构 ,	该文 还 针对 维汉 翻译 源端 语言 和 目标 端 语言 的 翻译 单元 粒度 进行 了 实验 ,	1<2	unknown	elab-addition	elaboration
+该文 还 针对 维汉 翻译 源端 语言 和 目标 端 语言 的 翻译 单元 粒度 进行 了 实验 ,	发现 维吾尔 语端 使用 字节 对 编码 单元 、 汉 语 端 使用 字 单元 , 可以 消除 对 汉 语 分 词 器 的 依赖 ,	1<2	unknown	elab-addition	elaboration
+发现 维吾尔 语端 使用 字节 对 编码 单元 、 汉 语 端 使用 字 单元 , 可以 消除 对 汉 语 分 词 器 的 依赖 ,	做到 和 双 端 都 使用 字节 对 编码 单元 可比 的 效果 。	1<2	unknown	elab-addition	elaboration
+﻿话题 检测 与 跟踪 是 一 项 面向 新闻 媒体 信息 流 进行 未知 话题 识别 和 已知 话题 跟踪 的 信息 处理 技术 。	自 从 1996 年 前瞻 性 的 探索 以来 , 该 领域 进行 的 多 次 大 规模 评测 为 信息 识别 、 采集 和 组织 等 相关 技术 提供 了 新 的 测试 平台 。	1<2	unknown	elab-addition	elaboration
+由于 话题 检测 与 跟踪 相对 于 信息 检索 、 信息 挖掘 和 信息 抽取 等 自然 语言 处理 技术 具备 很多 共性 ,	因 此 逐渐 成 为 当前 信息 处理 领域 的 研究 热点 。	1>2	unknown	cause	causal
+由于 话题 检测 与 跟踪 相对 于 信息 检索 、 信息 挖掘 和 信息 抽取 等 自然 语言 处理 技术 具备 很多 共性 ,	并 面向 具备 突发 性 和 延续 性 规律 的 新闻 语料 ,	1<2	unknown	joint	conjunction
+自 从 1996 年 前瞻 性 的 探索 以来 , 该 领域 进行 的 多 次 大 规模 评测 为 信息 识别 、 采集 和 组织 等 相关 技术 提供 了 新 的 测试 平台 。	因 此 逐渐 成 为 当前 信息 处理 领域 的 研究 热点 。	1<2	unknown	elab-addition	elaboration
+﻿话题 检测 与 跟踪 是 一 项 面向 新闻 媒体 信息 流 进行 未知 话题 识别 和 已知 话题 跟踪 的 信息 处理 技术 。	本文 简要 介绍 了 话题 检测 与 跟踪 的 研究 背景 、 任务 定义 、 评测 方法 以及 相关 技术 ,	1<2	unknown	elab-addition	elaboration
+本文 简要 介绍 了 话题 检测 与 跟踪 的 研究 背景 、 任务 定义 、 评测 方法 以及 相关 技术 ,	并 通过 分析 目前 TDT 领域 的 研究 现状 展望 未来 的 发展 趋势 。	1<2	unknown	joint	conjunction
+乌孜别克 语名 词 词干 识别 是 自然 语言 处理 领域 的 基础 研究 ,	主要 方法 是 从 句子 中 提取 名词 词干 ,	1<2	unknown	elab-addition	elaboration
+主要 方法 是 从 句子 中 提取 名词 词干 ,	提高 名词 标注 效率 和 准确 性 。	1<2	unknown	enablement	purpose
+乌孜别克 语名 词 词干 识别 是 自然 语言 处理 领域 的 基础 研究 ,	该文 首先 陈述 形态 分析 、 形态 特征 对 识别 其 词性 的 作用 ,	1<2	unknown	elab-aspect	elaboration
+乌孜别克 语名 词 词干 识别 是 自然 语言 处理 领域 的 基础 研究 ,	然后 讨论 乌孜别克 语 的 词类 划分 标准 、 名词 的 形态 特征 , 乌孜别克 语 西尔里 文 转换 拉丁 文 , 乌孜别克 语 词汇 翻译 、 标注 技术 ,	1<2	unknown	elab-aspect	elaboration
+然后 讨论 乌孜别克 语 的 词类 划分 标准 、 名词 的 形态 特征 , 乌孜别克 语 西尔里 文 转换 拉丁 文 , 乌孜别克 语 词汇 翻译 、 标注 技术 ,	总结 词缀 歧义 及 消解 规则 。	1<2	unknown	joint	conjunction
+乌孜别克 语名 词 词干 识别 是 自然 语言 处理 领域 的 基础 研究 ,	该文 提出 利用 形态 规则 、 词典 、 最大 熵 融合 策略 ,	1<2	unknown	elab-aspect	elaboration
+该文 提出 利用 形态 规则 、 词典 、 最大 熵 融合 策略 ,	设计 现代 乌孜别克 语 新词 中 名词 词 干识 别算 法 ,	1<2	unknown	enablement	purpose
+设计 现代 乌孜别克 语 新词 中 名词 词 干识 别算 法 ,	其中 包括 特征 选择 及 参数 估计 、 词内 部 特征 、 前后 依 存词 特征 等 。	1<2	unknown	elab-addition	elaboration
+乌孜别克 语名 词 词干 识别 是 自然 语言 处理 领域 的 基础 研究 ,	最后 以 乌孜别克 语 网站 文本 作 为 验证 对象 ,	1<2	unknown	elab-aspect	elaboration
+最后 以 乌孜别克 语 网站 文本 作 为 验证 对象 ,	对 名词 词干 进行 统计 与 分析 。	1<2	unknown	enablement	purpose
+短语 作 为 语言 分析 的 一 个 层次 , 占有 十 分 重要 的 位置 。	对 短语 进行 分类 ,	1>2	unknown	bg-general	frame
+短语 作 为 语言 分析 的 一 个 层次 , 占有 十 分 重要 的 位置 。	有效 的 短语 分析 对 降低 其后 句法 分析 的 难度 , 缩小 句法 分析 器 的 搜索 空间 , 提高 机器 翻译 的 翻译 正确 率 是 很 有 帮助 的 。	1<2	unknown	elab-addition	elaboration
+短语 作 为 语言 分析 的 一 个 层次 , 占有 十 分 重要 的 位置 。	而 目前 面向 信息 处理 的 藏 语 短语 的 研究 刚刚 起步 ,	1<2	unknown	elab-addition	elaboration
+而 目前 面向 信息 处理 的 藏 语 短语 的 研究 刚刚 起步 ,	有 待 于 进 一 步 发展 。	1<2	unknown	elab-addition	elaboration
+该文 在 藏 语 短语 与 藏 语 句子 的 界线 研究 的 基础 上 ,	对 短语 进行 分类 ,	1>2	unknown	bg-general	frame
+根据 藏 语 信息 处理 的 特点 和 要求 ,	对 短语 进行 分类 ,	1>2	unknown	bg-general	frame
+按照 语法 功能 和 便 于 计算 机 自动 分析 和 处理 的 原则	对 短语 进行 分类 ,	1>2	unknown	bg-general	frame
+对 短语 进行 分类 ,	并 规定 了 信息 处理 中 藏 语 短语 类别 单位 的 标记 代码 。	1<2	unknown	joint	conjunction
+自动 拼写 检查 是 自然 语言 处理 领域 一 项 极 具 挑战 性 的 研究 课题 ,	利用 藏 文 字 向量 模型	1>2	unknown	bg-general	frame
+自动 拼写 检查 是 自然 语言 处理 领域 一 项 极 具 挑战 性 的 研究 课题 ,	在 语料 库 建设 、 文本 编辑 、 语音 和 文字 识别 等 诸多 方 面具 有 广阔 的 应用 前景 。	1<2	unknown	elab-addition	elaboration
+自动 拼写 检查 是 自然 语言 处理 领域 一 项 极 具 挑战 性 的 研究 课题 ,	藏 文 字 是 一 种 表音 拼音 文字 ,	1<2	unknown	elab-addition	elaboration
+藏 文 字 是 一 种 表音 拼音 文字 ,	由 1 ～ 7 个 基本 构件 横向 和 纵向 拼接 而 成 。	1<2	unknown	elab-addition	elaboration
+藏 文 字 是 一 种 表音 拼音 文字 ,	藏 文 文本 中 非 真字 出现 的 频率 很高 ,	1<2	unknown	elab-addition	elaboration
+藏 文 文本 中 非 真字 出现 的 频率 很高 ,	是 藏 文 字 拼写 检查 的 基础 和 重点 。	1<2	unknown	elab-addition	elaboration
+该文 通过 分析 藏 文 文法 中 的 构字 规则 ,	利用 藏 文 字 向量 模型	1>2	unknown	manner-means	mode
+利用 藏 文 字 向量 模型	将 藏 文 字用 计算 机 易 于 操作 的 数字 ( 向量 ) 表示 ,	1<2	unknown	enablement	purpose
+利用 藏 文 字 向量 模型	建立 基 于 规则 约束 的 藏 文字 向量 模型 ,	1<2	unknown	elab-addition	elaboration
+利用 藏 文 字 向量 模型	进而 设计 该 模型 下 的 藏 文 字 拼写 检查 模型 及 算法 。	1<2	unknown	progression	organization
+进而 设计 该 模型 下 的 藏 文 字 拼写 检查 模型 及 算法 。	算法 简单 易 实现 ,	1<2	unknown	evaluation	comment
+算法 简单 易 实现 ,	经 测 试算法 拼写 检查 的 平均 准确 率 达 99.995% ,	1<2	unknown	elab-addition	elaboration
+经 测 试算法 拼写 检查 的 平均 准确 率 达 99.995% ,	平均 每秒 检查 1060 个 字 。	1<2	unknown	joint	conjunction
+非 结构 化 数据 的 结构 化 任务 是 大 数据 环境 下 管理 信息 系统 面临 的 新 课题 。	该文 从 文体 的 角度 研究 自由 文本 的 特性 ,	1>2	unknown	bg-general	frame
+该文 从 文体 的 角度 研究 自由 文本 的 特性 ,	提出 了 从 Web 新闻 中 抽取 突发 事件 属性 的 方法 ,	1<2	unknown	progression	organization
+提出 了 从 Web 新闻 中 抽取 突发 事件 属性 的 方法 ,	该 方法 首先 分析 研究 了 Web 文本 和 新闻 文体 的 特征 ,	1<2	unknown	elab-addition	elaboration
+该 方法 首先 分析 研究 了 Web 文本 和 新闻 文体 的 特征 ,	利用 Google Word2 Vec	1<2	unknown	joint	conjunction
+利用 Google Word2 Vec	对 领域 专家 构建 的 词表 进行 扩展 ,	1<2	unknown	enablement	purpose
+针对 突发 事件 的 不同 属性	制定 了 不同 的 抽取 方法 :	1>2	unknown	bg-general	frame
+利用 Google Word2 Vec	制定 了 不同 的 抽取 方法 :	1<2	unknown	elab-addition	elaboration
+制定 了 不同 的 抽取 方法 :	采用 词表	1<2	unknown	elab-addition	elaboration
+采用 词表	实现 事件 分类 ,	1<2	unknown	enablement	purpose
+采用 词表	采用 文体 特征	1<2	unknown	joint	conjunction
+采用 文体 特征	进行 时间 、 事件 摘要 的 抽取 ,	1<2	unknown	enablement	purpose
+采用 词表	采用 文体 和 词表	1<2	unknown	joint	conjunction
+采用 文体 和 词表	进行 地点 、 伤亡 情况 和 经济 损失 属性 的 抽取 。	1<2	unknown	enablement	purpose
+实验 表明 ,	平均 准确 率 分别 为 87.89% 、 91.29% ,	1>2	unknown	attribution	attribution
+采用 基 于 文体 和 词表 方法 在 爬取 的 Web 新闻 语料 库 和 公开 语料 库 进行 突发 事件 的 属性 进行 抽取 时 ,	平均 准确 率 分别 为 87.89% 、 91.29% ,	1>2	unknown	temporal	temporal
+该文 从 文体 的 角度 研究 自由 文本 的 特性 ,	平均 准确 率 分别 为 87.89% 、 91.29% ,	1<2	unknown	evaluation	comment
+平均 准确 率 分别 为 87.89% 、 91.29% ,	平均 召回 率 分别 为 81.76% 、 87.91% ,	1<2	unknown	joint	conjunction
+平均 准确 率 分别 为 87.89% 、 91.29% ,	能 满足 应急 管理 需求 。	1<2	unknown	elab-addition	elaboration
+作 为 知识 图谱 构建 过程 中 的 关键 步骤 ,	关系 抽取 这 一 从 海量 自然 语言 文本 中 抽取 实体 间 关系 的 任务 近年 来 得到 了 越来越 广泛 的 关注 。	1>2	unknown	bg-general	frame
+关系 抽取 这 一 从 海量 自然 语言 文本 中 抽取 实体 间 关系 的 任务 近年 来 得到 了 越来越 广泛 的 关注 。	该 文针 对 上述 问题 进行 了 改进 。	1>2	unknown	bg-general	frame
+关系 抽取 这 一 从 海量 自然 语言 文本 中 抽取 实体 间 关系 的 任务 近年 来 得到 了 越来越 广泛 的 关注 。	如今 , 远程 监督 ( distant supervision ) 方法 通过 与 已有 知识 库 ( knowledge base ) 中 的 实体 和 关系 进行 对齐 ,	1<2	unknown	elab-addition	elaboration
+如今 , 远程 监督 ( distant supervision ) 方法 通过 与 已有 知识 库 ( knowledge base ) 中 的 实体 和 关系 进行 对齐 ,	可以 直接 使用 源 文本 进行 训练	1<2	unknown	elab-addition	elaboration
+可以 直接 使用 源 文本 进行 训练	从而 省去 了 人工 标记 数据 的 过程 。	1<2	unknown	progression	organization
+如今 , 远程 监督 ( distant supervision ) 方法 通过 与 已有 知识 库 ( knowledge base ) 中 的 实体 和 关系 进行 对齐 ,	其中 , 使用 了 多 实例 多 标签 ( multi-in stance multi-label ) 模型 的 MultiR 算法 取得 了 很好 的 抽取 效果 。	1<2	unknown	elab-addition	elaboration
+其中 , 使用 了 多 实例 多 标签 ( multi-in stance multi-label ) 模型 的 MultiR 算法 取得 了 很好 的 抽取 效果 。	但 该 算法 存在 两 个 问题 :	1<2	unknown	elab-addition	elaboration
+但 该 算法 存在 两 个 问题 :	抽取 过程 中 未 考虑 实体 对 之间 可能 已 存在 的 关系 ,	1<2	unknown	elab-addition	elaboration
+抽取 过程 中 未 考虑 实体 对 之间 可能 已 存在 的 关系 ,	以及 概率 图 匹 配 计算 中 使用 的 贪心 算法 无法 获得 最 优解 。	1<2	unknown	joint	conjunction
+首先 , 在 关系 抽取 的 打分 过程 中 , 考虑 到 同 一 实体 对 可能 存在 的 多 个 关系 之间 具有 一定 关联 性 ,	该文 引入 了 关系 权重 矩阵 ,	1>2	unknown	cause	causal
+该 文针 对 上述 问题 进行 了 改进 。	该文 引入 了 关系 权重 矩阵 ,	1<2	unknown	elab-addition	elaboration
+该文 引入 了 关系 权重 矩阵 ,	使 其 在 抽取 过程 中 将 实体 对 已知 的 关系 转换 为 权重 向量 对 打分 进行 干预 ,	1<2	unknown	enablement	purpose
+使 其 在 抽取 过程 中 将 实体 对 已知 的 关系 转换 为 权重 向量 对 打分 进行 干预 ,	以 此 减少 个别 文本 特征 的 干扰 ,	1<2	unknown	enablement	purpose
+以 此 减少 个别 文本 特征 的 干扰 ,	提高 抽取 准确 率 。	1<2	unknown	enablement	purpose
+其次 , 在 概率 图 匹配 过程 中 , 为了 将 图 的 匹配 从 局部 最优 值 提升 为 全局 最优 值 ,	该文 将 原有 的 贪心 算法 替换 为 基 于 状态 压缩 的 动态 规划 算法 。	1>2	unknown	enablement	purpose
+该文 引入 了 关系 权重 矩阵 ,	该文 将 原有 的 贪心 算法 替换 为 基 于 状态 压缩 的 动态 规划 算法 。	1<2	unknown	joint	conjunction
+实验 结果 证明 ,	优化 后 的 MultiR 模型 , 称 之 为 Opt MultiR , 其 关系 抽取 性 能 得到 了 显著 提升 。	1>2	unknown	attribution	attribution
+该 文针 对 上述 问题 进行 了 改进 。	优化 后 的 MultiR 模型 , 称 之 为 Opt MultiR , 其 关系 抽取 性 能 得到 了 显著 提升 。	1<2	unknown	evaluation	comment
+带有 时间 标志 的 演化 式 摘要 是 近年 来 提出 的 自然 语言 处理 任务 ,	该文 提出 了 一 种 基 于 局部 — 全局 主题 关系 的 演化 式 摘要 方法 ,	1>2	unknown	bg-general	frame
+带有 时间 标志 的 演化 式 摘要 是 近年 来 提出 的 自然 语言 处理 任务 ,	其 本质 是 多 文档 自动 文摘 ,	1<2	unknown	elab-addition	elaboration
+其 本质 是 多 文档 自动 文摘 ,	它 的 研究 对象 是 互联 网上 连续 报道 的 热点 新闻 文档 。	1<2	unknown	elab-addition	elaboration
+针 对 互联 网 新闻 事件 报道 的 动态 演化 、 动态 关联 和 信息 重复 等 特点 ,	该文 提出 了 一 种 基 于 局部 — 全局 主题 关系 的 演化 式 摘要 方法 ,	1>2	unknown	bg-general	frame
+该文 提出 了 一 种 基 于 局部 — 全局 主题 关系 的 演化 式 摘要 方法 ,	该 方法 将 新闻 事件 划分 为 多 个 不同 的 子 主题 ,	1<2	unknown	elab-addition	elaboration
+在 考虑 时间 演化 的 基础 上	最后 将 新闻 标题 作 为 摘要 输出 。	1>2	unknown	bg-general	frame
+在 考虑 时间 演化 的 基础 上	同时 考虑 子 主题 之间 的 主题 演化 ,	1<2	unknown	joint	conjunction
+该 方法 将 新闻 事件 划分 为 多 个 不同 的 子 主题 ,	最后 将 新闻 标题 作 为 摘要 输出 。	1<2	unknown	elab-addition	elaboration
+实验 结果 表明 ,	该 方法 是 有效 的 ,	1>2	unknown	attribution	attribution
+该文 提出 了 一 种 基 于 局部 — 全局 主题 关系 的 演化 式 摘要 方法 ,	该 方法 是 有效 的 ,	1<2	unknown	evaluation	comment
+并且 在 以 新闻 标题 作 为 输入 输出 时 ,	在 Rouge 评价 指标 上 有 显著 提高 。	1>2	unknown	temporal	temporal
+和 当前 主流 的 多 文档 摘要 和 演化 摘要 方法 相比 ,	在 Rouge 评价 指标 上 有 显著 提高 。	1>2	unknown	comparison	concession
+该 方法 是 有效 的 ,	在 Rouge 评价 指标 上 有 显著 提高 。	1<2	unknown	elab-addition	elaboration
+中文 产科 电子 病历 中 蕴含 着 大量 的 医疗 知识 和 健康 信息 ,	因 此 , 该文 将 辅助 诊断 问题 转化 为 多 标 记 分类 任务 。	1>2	unknown	bg-goal	frame
+中文 产科 电子 病历 中 蕴含 着 大量 的 医疗 知识 和 健康 信息 ,	电子 病历 的 信息 抽取 及 辅助 诊断 对 提高 人口 的 生育 健康 水平 具有 重要 意义 。	1<2	unknown	elab-addition	elaboration
+电子 病历 的 信息 抽取 及 辅助 诊断 对 提高 人口 的 生育 健康 水平 具有 重要 意义 。	电子 病历 中 , 首次 病程 记录 的 入院 诊断 是 根据 主诉 、 辅助 检查 、 查体 等 信息 得出 的 。	1<2	unknown	elab-addition	elaboration
+电子 病历 中 , 首次 病程 记录 的 入院 诊断 是 根据 主诉 、 辅助 检查 、 查体 等 信息 得出 的 。	通常 情况 下 诊断 中 包含 正常 诊断 、 病理 诊断 及 并发 症 而 非 单 一 结果 。	1<2	unknown	elab-addition	elaboration
+因 此 , 该文 将 辅助 诊断 问题 转化 为 多 标 记 分类 任务 。	在 对 产科 电子 病历 的 首次 病程 记录 进行 数据 清洗 和 结构 化 后 ,	1<2	unknown	elab-process_step	elaboration
+在 对 产科 电子 病历 的 首次 病程 记录 进行 数据 清洗 和 结构 化 后 ,	规范 化 诊断 结论 ,	1<2	unknown	joint	conjunction
+规范 化 诊断 结论 ,	将 LDA 所 抽取 的 文本 特征 与 病历 中 的 数字 特征 采用 向量 拼接 的 方法 融合 为 新 的 特征 ,	1<2	unknown	joint	conjunction
+将 LDA 所 抽取 的 文本 特征 与 病历 中 的 数字 特征 采用 向量 拼接 的 方法 融合 为 新 的 特征 ,	再 按 诊断 结果 出现 的 频次 不同 形成 不同 的 多 标 记集 ,	1<2	unknown	joint	conjunction
+再 按 诊断 结果 出现 的 频次 不同 形成 不同 的 多 标 记集 ,	根据 首次 病程 中 部分 信息	1<2	unknown	elab-addition	elaboration
+根据 首次 病程 中 部分 信息	进行 辅助 诊断 ,	1<2	unknown	enablement	purpose
+再 按 诊断 结果 出现 的 频次 不同 形成 不同 的 多 标 记集 ,	采用 RAkEL 、 MLkNN 、 CC 和 BP-MLL 方法 进行 多 标记 分类 。	1<2	unknown	elab-addition	elaboration
+实验 结果 表明 ,	能够 提升 中文 产科 电子 病历 辅助 诊断 的 效果 。	1>2	unknown	attribution	attribution
+采用 融合 特征 的 多 标 记分类 方法 ,	能够 提升 中文 产科 电子 病历 辅助 诊断 的 效果 。	1>2	unknown	manner-means	mode
+因 此 , 该文 将 辅助 诊断 问题 转化 为 多 标 记 分类 任务 。	能够 提升 中文 产科 电子 病历 辅助 诊断 的 效果 。	1<2	unknown	evaluation	comment
+社交 媒体 的 发展 为 抑郁 用户 的 检测 提供 了 一 条 新 的 途径 。	该 文 主 要 讨论 利用 准 私密 社交 网络 文本 数据	1>2	unknown	bg-general	frame
+社交 媒体 的 发展 为 抑郁 用户 的 检测 提供 了 一 条 新 的 途径 。	已有 的 相关 研究 通常 是 利用 用户 在 Twitter 、 微博 等 社交 网络 平台 上 的 用户 行为 数据 或 公开 发表 的 文本 内容 ,	1<2	unknown	elab-addition	elaboration
+已有 的 相关 研究 通常 是 利用 用户 在 Twitter 、 微博 等 社交 网络 平台 上 的 用户 行为 数据 或 公开 发表 的 文本 内容 ,	较少 有 利用 微信朋友圈 、 QQ 空间 这 种 相对 比较 私密 的 社交 网络 数据 。	1<2	unknown	elab-addition	elaboration
+较少 有 利用 微信朋友圈 、 QQ 空间 这 种 相对 比较 私密 的 社交 网络 数据 。	直观 地 , 这 类 准 私密 社交 网络 数据 更 能 反映 用户 的 心理 健康 状况 。	1<2	unknown	elab-addition	elaboration
+该 文 主 要 讨论 利用 准 私密 社交 网络 文本 数据	检测 抑郁 用户 的 可行 性 ,	1>2	unknown	manner-means	mode
+检测 抑郁 用户 的 可行 性 ,	包括 训练 样本 的 选择 、 特征 量化 方法 、 检测 模型 选择 和 不同 文本 特征 下 的 模型 分类 效果 等 。	1<2	unknown	elab-enumember	elaboration
+实验 表明 ,	采用 平衡 高低 分组 的 方法 选择 样本 比 非 平衡 高低 分组 样本 和 离散 化 的 高低 分组 样本 训练 的 分类 器 要 好 ;	1>2	unknown	attribution	attribution
+检测 抑郁 用户 的 可行 性 ,	采用 平衡 高低 分组 的 方法 选择 样本 比 非 平衡 高低 分组 样本 和 离散 化 的 高低 分组 样本 训练 的 分类 器 要 好 ;	1<2	unknown	elab-addition	elaboration
+采用 平衡 高低 分组 的 方法 选择 样本 比 非 平衡 高低 分组 样本 和 离散 化 的 高低 分组 样本 训练 的 分类 器 要 好 ;	利用 Z-score 标准 化 的 特征 量化 方法 比 直接 使用 频次 或 归一 化 频率 要 好 ;	1<2	unknown	joint	conjunction
+采用 平衡 高低 分组 的 方法 选择 样本 比 非 平衡 高低 分组 样本 和 离散 化 的 高低 分组 样本 训练 的 分类 器 要 好 ;	随机 梯度 下降 模型 SGD 较 支持 向量 机 SVM 等 其他 用 于 对比 的 分类 模型 要 好 。	1<2	unknown	joint	conjunction
+实验 还 发现 ,	相对 于 词袋 、 词 向量 等 文本 特征 , 主题 特征 有 较好 的 效果 ,	1>2	unknown	attribution	attribution
+采用 平衡 高低 分组 的 方法 选择 样本 比 非 平衡 高低 分组 样本 和 离散 化 的 高低 分组 样本 训练 的 分类 器 要 好 ;	相对 于 词袋 、 词 向量 等 文本 特征 , 主题 特征 有 较好 的 效果 ,	1<2	unknown	joint	conjunction
+相对 于 词袋 、 词 向量 等 文本 特征 , 主题 特征 有 较好 的 效果 ,	可以 使 社交 网络 用户 抑郁 检测 模型 的 F值 达到 0.753,	1<2	unknown	elab-addition	elaboration
+可以 使 社交 网络 用户 抑郁 检测 模型 的 F值 达到 0.753,	而 对 抑郁 用户 的 检测 精度 达到 0.813 。	1<2	unknown	joint	conjunction
+在 使用 基 于 子 词 的 方法 来 缓解 未 登录 词 和 稀疏 词汇 问题 的 基础 上 ,	提出 使用 数据 泛化 的 方法	1>2	unknown	bg-general	frame
+该文 对 神经 机器 翻译 中 的 数据 泛化 方法 和 短语 生成 方法 进行 研究 。	提出 使用 数据 泛化 的 方法	1<2	unknown	elab-aspect	elaboration
+提出 使用 数据 泛化 的 方法	来 进 一 步 优化 未 登录 词 和 稀疏 词汇 的 翻译 ,	1<2	unknown	enablement	purpose
+来 进 一 步 优化 未 登录 词 和 稀疏 词汇 的 翻译 ,	缓解 了 子 词 方法 中 出现 的 错译 问题 。	1<2	unknown	joint	conjunction
+提出 使用 数据 泛化 的 方法	文中 对 基 于 子词 的 方法 和 基 于 数据 泛化 的 方法 进行 了 详细 的 实验 对比 ,	1<2	unknown	elab-addition	elaboration
+文中 对 基 于 子词 的 方法 和 基 于 数据 泛化 的 方法 进行 了 详细 的 实验 对比 ,	对 两 种 方法 的 优缺 点 进行 了 讨论 和 说明 。	1<2	unknown	elab-addition	elaboration
+针对 数据 泛化 的 处理 方法 ,	提出 了 一致 性 检测 方法 和 解码 优化 方法 。	1>2	unknown	bg-general	frame
+该文 对 神经 机器 翻译 中 的 数据 泛化 方法 和 短语 生成 方法 进行 研究 。	提出 了 一致 性 检测 方法 和 解码 优化 方法 。	1<2	unknown	elab-aspect	elaboration
+由于 标准 的 神经 机器 翻译 模型 以 词汇 为 基础 进行 翻译 建模 ,	因 此 该文 提出 了 一 种 规模 可控 的 短语 生成 方法 ,	1>2	unknown	exp-reason	explanation
+该文 对 神经 机器 翻译 中 的 数据 泛化 方法 和 短语 生成 方法 进行 研究 。	因 此 该文 提出 了 一 种 规模 可控 的 短语 生成 方法 ,	1<2	unknown	elab-aspect	elaboration
+因 此 该文 提出 了 一 种 规模 可控 的 短语 生成 方法 ,	通过 使用 该 文方 法 生成 的 源 语言 短语 , 神经 机器 翻译 的 翻译 性 能 进 一 步 提高 。	1<2	unknown	elab-addition	elaboration
+该文 对 神经 机器 翻译 中 的 数据 泛化 方法 和 短语 生成 方法 进行 研究 。	最终 , 在 汉 英 和 英 汉 翻译 任务 上 , 翻译 性能 与 基线 翻译 系统 相比 分 别提 高 了 1.3 和 1.2 个 BLEU 值 。	1<2	unknown	evaluation	comment
+现有 的 维吾尔 文 文本 情感 分类 方法 以 从 空格 分词 中 得到 的 unigram 特征 作 为 文本 表示 ,	该文 从 维吾尔 文 词汇 之间 的 顺序 依赖 关系 入手 ,	1>2	unknown	bg-goal	frame
+现有 的 维吾尔 文 文本 情感 分类 方法 以 从 空格 分词 中 得到 的 unigram 特征 作 为 文本 表示 ,	因而 无法 挖掘 与 情感 表达 相关 的 深层 语言 现象 。	1<2	unknown	result	causal
+该文 从 维吾尔 文 词汇 之间 的 顺序 依赖 关系 入手 ,	总结 若干 个 词 性 组合 规则 ,	1<2	unknown	elab-addition	elaboration
+总结 若干 个 词 性 组合 规则 ,	提取 能够 表达 丰富 情感 信息 的 Bi-tagged 特征 ,	1<2	unknown	joint	conjunction
+总结 若干 个 词 性 组合 规则 ,	并 基 于 支持 向量 机 ( SVM ) 分类 器	1<2	unknown	joint	conjunction
+并 基 于 支持 向量 机 ( SVM ) 分类 器	对 维吾尔 文 情感 语料 库 进行 了 正负 情感 分类 。	1<2	unknown	enablement	purpose
+实验 结果 表明 ,	在 维吾尔 文文 本 情感 分类 中 :	1>2	unknown	attribution	attribution
+该文 从 维吾尔 文 词汇 之间 的 顺序 依赖 关系 入手 ,	在 维吾尔 文文 本 情感 分类 中 :	1<2	unknown	evaluation	comment
+( 1 ) 当 包含 该文 提出 的 各项 词性 规则 时 ,	Bi-tagged 特征 的 性能 最优 ;	1>2	unknown	temporal	temporal
+在 维吾尔 文文 本 情感 分类 中 :	Bi-tagged 特征 的 性能 最优 ;	1<2	unknown	elab-enumember	elaboration
+Bi-tagged 特征 的 性能 最优 ;	( 2 ) Bi-tagged 特征 不仅 能够 提取 情感 丰富 的 信息 ,	1<2	unknown	joint	conjunction
+( 2 ) Bi-tagged 特征 不仅 能够 提取 情感 丰富 的 信息 ,	而且 可以 提取 否定 信息 ;	1<2	unknown	joint	conjunction
+( 3 ) 与 常 用 的 unigram 、 bigram 特征 以及 unigram 和 bigram 的 组合 特征 在 该 文 数据 集上 的 分类 效果 相比 ,	该文 所 提取 的 Bi-tagged 与 unigram 的 组合 特征 分类 效果 更佳 ,	1>2	unknown	comparison	concession
+Bi-tagged 特征 的 性能 最优 ;	该文 所 提取 的 Bi-tagged 与 unigram 的 组合 特征 分类 效果 更佳 ,	1<2	unknown	joint	conjunction
+该文 所 提取 的 Bi-tagged 与 unigram 的 组合 特征 分类 效果 更佳 ,	比 该文 的 Baseline 的 分类 准确 率 提高 了 4.225% 。	1<2	unknown	elab-addition	elaboration
+该文 从 维吾尔 文 词汇 之间 的 顺序 依赖 关系 入手 ,	该 研究 成果 不但 可以 进 一 步 提高 维吾尔 文文 本情感 分类 效率 ,	1<2	unknown	elab-addition	elaboration
+该 研究 成果 不但 可以 进 一 步 提高 维吾尔 文文 本情感 分类 效率 ,	也 可 为 哈萨克 语 、 柯尔克孜 语 等 亲属 语言 的 情感 分类 提供 借鉴 。	1<2	unknown	joint	conjunction

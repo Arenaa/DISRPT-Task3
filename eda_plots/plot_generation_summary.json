@@ -1,0 +1,34 @@
+{
+  "input_dir": "data_subset",
+  "output_dir": "eda_plots",
+  "num_unique_labels": 17,
+  "label_set": [
+    "elaboration",
+    "conjunction",
+    "query",
+    "temporal",
+    "causal",
+    "comment",
+    "contrast",
+    "explanation",
+    "frame",
+    "attribution",
+    "purpose",
+    "organization",
+    "concession",
+    "condition",
+    "mode",
+    "reformulation",
+    "alternation"
+  ],
+  "label_normalization_applied": {
+    "contingency.cause": "causal"
+  },
+  "num_rows_used_for_plots": 80835,
+  "totals": {
+    "num_files": 27,
+    "num_rows_before_cleaning": 81192,
+    "num_rows_after_cleaning": 80835,
+    "num_duplicate_rows_removed": 357
+  }
+}
