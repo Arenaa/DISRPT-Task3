@@ -88,6 +88,7 @@ class PairTextDataset(Dataset):
         self.label2id = label2id
 
     def __len__(self) -> int:
+
         return len(self.data.labels)
 
     def __getitem__(self, idx: int) -> tuple[str, str, int]:
