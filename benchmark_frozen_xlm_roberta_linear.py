@@ -228,6 +228,187 @@ def evaluate_head(head: nn.Module, ds: TensorDataset, *, device: torch.device) -
     return {"accuracy": acc, "macro_f1": macro_f1}
 
 
+CORPUS_FRAMEWORK_OVERRIDES = {
+    # eRST is grouped with RST for reporting.
+    "eng.erst.gum": "rst",
+}
+
+
+def corpus_framework(corpus: str) -> str:
+    if corpus in CORPUS_FRAMEWORK_OVERRIDES:
+        return CORPUS_FRAMEWORK_OVERRIDES[corpus]
+    parts = corpus.split(".")
+    return parts[1] if len(parts) >= 2 else "unknown"
+
+
+def corpus_language(corpus: str) -> str:
+    parts = corpus.split(".")
+    return parts[0] if parts else "unknown"
+
+
+def predict_per_corpus(
+    *,
+    by_source_dir: Path,
+    encoder: AutoModel,
+    tokenizer: AutoTokenizer,
+    head: nn.Module,
+    label2id: dict[str, int],
+    device: torch.device,
+    max_length: int,
+    emb_batch_size: int,
+    emb_num_workers: int,
+    split: str = "test",
+) -> dict[str, dict[str, np.ndarray]]:
+    """Run the frozen-encoder + linear-head on each `<corpus>_{split}.tsv`
+    and return raw prediction arrays keyed by corpus name."""
+    head.eval()
+    preds: dict[str, dict[str, np.ndarray]] = {}
+    for corpus_dir in sorted(p for p in by_source_dir.iterdir() if p.is_dir()):
+        corpus = corpus_dir.name
+        tsv_path = corpus_dir / f"{corpus}_{split}.tsv"
+        if not tsv_path.exists():
+            continue
+        split_data = load_split(tsv_path, None)
+        if not split_data.labels:
+            continue
+
+        unknown = sorted({lab for lab in split_data.labels if lab not in label2id})
+        if unknown:
+            print(f"[warn] {corpus}: {len(unknown)} label(s) outside training vocab — rows dropped: {unknown}")
+            keep = [i for i, lab in enumerate(split_data.labels) if lab in label2id]
+            split_data = SplitData(
+                unit1=[split_data.unit1[i] for i in keep],
+                unit2=[split_data.unit2[i] for i in keep],
+                labels=[split_data.labels[i] for i in keep],
+            )
+            if not split_data.labels:
+                continue
+
+        dataset = PairTextDataset(split_data, label2id=label2id)
+        X, y = compute_cls_pooled_embeddings(
+            encoder=encoder,
+            tokenizer=tokenizer,
+            dataset=dataset,
+            device=device,
+            batch_size=emb_batch_size,
+            max_length=max_length,
+            num_workers=emb_num_workers,
+        )
+        with torch.no_grad():
+            logits = head(X.to(device)).cpu().numpy()
+        preds[corpus] = {
+            "y_true": y.cpu().numpy().astype(np.int64),
+            "y_pred": logits.argmax(axis=1).astype(np.int64),
+        }
+    return preds
+
+
+def _slice_report(y_true: np.ndarray, y_pred: np.ndarray, id2label: dict[int, str]) -> dict[str, object]:
+    """Build an accuracy / macro-F1 / weighted-F1 / per-label report for a slice."""
+    if len(y_true) == 0:
+        return {"support": 0, "accuracy": 0.0, "macro_f1": 0.0, "weighted_f1": 0.0, "per_label": {}}
+    present_ids = sorted(set(int(v) for v in y_true.tolist()) | set(int(v) for v in y_pred.tolist()))
+    present_names = [id2label[i] for i in present_ids]
+    acc = float(accuracy_score(y_true, y_pred))
+    report = classification_report(
+        y_true,
+        y_pred,
+        labels=present_ids,
+        target_names=present_names,
+        output_dict=True,
+        zero_division=0,
+    )
+    per_label: dict[str, dict[str, float]] = {}
+    for name in present_names:
+        r = report.get(name, {})
+        per_label[name] = {
+            "precision": float(r.get("precision", 0.0)),
+            "recall": float(r.get("recall", 0.0)),
+            "f1": float(r.get("f1-score", 0.0)),
+            "support": int(r.get("support", 0)),
+        }
+    return {
+        "support": int(len(y_true)),
+        "num_gold_labels": int(len(set(int(v) for v in y_true.tolist()))),
+        "accuracy": acc,
+        "macro_f1": float(report["macro avg"]["f1-score"]),
+        "weighted_f1": float(report["weighted avg"]["f1-score"]),
+        "per_label": per_label,
+    }
+
+
+def aggregate_predictions(
+    preds_by_corpus: dict[str, dict[str, np.ndarray]],
+    id2label: dict[int, str],
+) -> dict[str, object]:
+    """Aggregate raw per-corpus predictions into per-corpus, per-framework,
+    per-language, and pooled-global metrics."""
+    per_corpus: dict[str, dict[str, object]] = {}
+    by_framework: dict[str, list[tuple[np.ndarray, np.ndarray]]] = {}
+    by_language: dict[str, list[tuple[np.ndarray, np.ndarray]]] = {}
+    all_true: list[np.ndarray] = []
+    all_pred: list[np.ndarray] = []
+
+    for corpus, arrs in preds_by_corpus.items():
+        yt, yp = arrs["y_true"], arrs["y_pred"]
+        per_corpus[corpus] = {
+            "framework": corpus_framework(corpus),
+            "language": corpus_language(corpus),
+            **_slice_report(yt, yp, id2label),
+        }
+        by_framework.setdefault(corpus_framework(corpus), []).append((yt, yp))
+        by_language.setdefault(corpus_language(corpus), []).append((yt, yp))
+        all_true.append(yt)
+        all_pred.append(yp)
+
+    per_framework: dict[str, dict[str, object]] = {}
+    for fw, items in sorted(by_framework.items()):
+        yt = np.concatenate([a for a, _ in items])
+        yp = np.concatenate([b for _, b in items])
+        per_framework[fw] = {
+            "corpora": sorted(c for c in preds_by_corpus if corpus_framework(c) == fw),
+            **_slice_report(yt, yp, id2label),
+        }
+
+    per_language: dict[str, dict[str, object]] = {}
+    for lg, items in sorted(by_language.items()):
+        yt = np.concatenate([a for a, _ in items])
+        yp = np.concatenate([b for _, b in items])
+        per_language[lg] = {
+            "corpora": sorted(c for c in preds_by_corpus if corpus_language(c) == lg),
+            **_slice_report(yt, yp, id2label),
+        }
+
+    global_yt = np.concatenate(all_true) if all_true else np.array([], dtype=np.int64)
+    global_yp = np.concatenate(all_pred) if all_pred else np.array([], dtype=np.int64)
+    pooled = _slice_report(global_yt, global_yp, id2label)
+
+    return {
+        "pooled": pooled,
+        "per_corpus": per_corpus,
+        "per_framework": per_framework,
+        "per_language": per_language,
+        "per_label_global": pooled["per_label"],
+    }
+
+
+def print_aggregate_summary(agg: dict[str, object]) -> None:
+    def _row(name: str, r: dict[str, object]) -> str:
+        return f"  {name:24s} n={r['support']:>6d}  acc={r['accuracy']:.4f}  macroF1={r['macro_f1']:.4f}  weightedF1={r['weighted_f1']:.4f}"
+
+    print("\n-- Per corpus --")
+    for c, r in sorted(agg["per_corpus"].items()):
+        print(_row(c, r))
+    print("\n-- Per framework --")
+    for f, r in sorted(agg["per_framework"].items()):
+        print(_row(f, r))
+    print("\n-- Per language --")
+    for l, r in sorted(agg["per_language"].items()):
+        print(_row(l, r))
+    print("\n-- Pooled global --")
+    print(_row("ALL", agg["pooled"]))
+
+
 def full_report(
     head: nn.Module,
     *,
@@ -294,6 +475,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-test-examples", type=int, default=None)
 
     parser.add_argument("--output-dir", default="xlmr_frozen_linear_results")
+    parser.add_argument(
+        "--by-source-dir",
+        default="processed_tsv/by_source_file",
+        help="Root dir with per-corpus `<corpus>/<corpus>_{train,dev,test}.tsv` used for per-dataset evaluation.",
+    )
+    parser.add_argument(
+        "--skip-per-dataset",
+        action="store_true",
+        help="Skip per-corpus test evaluation (pooled metrics only).",
+    )
     return parser.parse_args()
 
 
@@ -442,6 +633,52 @@ def main() -> None:
 
     metrics_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Saved metrics to {metrics_path}")
+
+    head_state_path = out_dir / "linear_head.pt"
+    torch.save(
+        {
+            "state_dict": {k: v.detach().cpu() for k, v in head.state_dict().items()},
+            "label_set": label_set,
+            "label2id": label2id,
+            "model_name": args.model_name,
+            "max_length": args.max_length,
+            "pooling": pooling,
+        },
+        head_state_path,
+    )
+    print(f"Saved linear head to {head_state_path}")
+
+    if not args.skip_per_dataset:
+        by_source_dir = Path(args.by_source_dir)
+        if not by_source_dir.exists():
+            print(f"[warn] by-source dir not found: {by_source_dir} — skipping per-dataset eval.")
+        else:
+            print(f"\nRunning per-dataset test evaluation from {by_source_dir}...")
+            preds_by_corpus = predict_per_corpus(
+                by_source_dir=by_source_dir,
+                encoder=encoder,
+                tokenizer=tokenizer,
+                head=head,
+                label2id=label2id,
+                device=device,
+                max_length=args.max_length,
+                emb_batch_size=args.emb_batch_size,
+                emb_num_workers=args.emb_num_workers,
+                split="test",
+            )
+            agg = aggregate_predictions(preds_by_corpus, id2label)
+            print_aggregate_summary(agg)
+
+            per_dataset_path = out_dir / "per_dataset_test_metrics.json"
+            per_dataset_payload = {
+                "model": payload["baseline"],
+                "model_name": args.model_name,
+                "max_length": args.max_length,
+                "label_set": label_set,
+                **agg,
+            }
+            per_dataset_path.write_text(json.dumps(per_dataset_payload, indent=2, ensure_ascii=False), encoding="utf-8")
+            print(f"\nSaved per-dataset metrics to {per_dataset_path}")
 
 
 if __name__ == "__main__":
