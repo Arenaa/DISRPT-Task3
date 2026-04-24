@@ -59,6 +59,7 @@ from finetune_xlm_roberta import (
     aggregate_predictions as ft_aggregate,
     predict_per_corpus as ft_predict_per_corpus,
 )
+from finetune_xlm_roberta_tsv_features import load_split_tsv_features
 from finetune_xlm_roberta_framework_conditioned import (
     build_logit_masks as fw_build_logit_masks,
     predict_per_corpus as fw_predict_per_corpus,
@@ -68,11 +69,20 @@ from finetune_xlm_roberta_framework_conditioned import (
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--mode",
-                   choices=["frozen", "finetune", "framework_cond", "both", "all"],
+                   choices=[
+                       "frozen", "finetune", "finetune_tsv", "framework_cond",
+                       "both", "all", "all_four",
+                   ],
                    required=True,
-                   help="'both' = frozen + finetune; 'all' = all three.")
+                   help="'both' = frozen+finetune; 'all' = frozen+finetune+framework; "
+                        "'all_four' = + finetune_tsv (TSV feature prefix at inference).")
     p.add_argument("--frozen-dir", default="results/xlmr_frozen_linear_results")
     p.add_argument("--finetune-dir", default="results/xlmr_finetune_results/best_model")
+    p.add_argument(
+        "--finetune-tsv-dir",
+        default="results/xlmr_finetune_tsv_features_results/best_model",
+        help="HF save dir for finetune_xlm_roberta_tsv_features.py (used with --mode finetune_tsv or all_four).",
+    )
     p.add_argument("--framework-cond-dir", default="results/xlmr_framework_results/best_model")
     p.add_argument("--fc-no-mask", action="store_true",
                    help="Disable output masking for the framework-conditioned model.")
@@ -88,6 +98,8 @@ def parse_args() -> argparse.Namespace:
 def _expand_modes(mode: str) -> list[str]:
     if mode == "all":
         return ["frozen", "finetune", "framework_cond"]
+    if mode == "all_four":
+        return ["frozen", "finetune", "finetune_tsv", "framework_cond"]
     if mode == "both":
         return ["frozen", "finetune"]
     return [mode]
@@ -181,6 +193,44 @@ def eval_finetune(args) -> dict:
     }
 
 
+def eval_finetune_tsv(args) -> dict:
+    model_dir = Path(args.finetune_tsv_dir)
+    if not model_dir.exists():
+        raise FileNotFoundError(
+            f"No TSV-feature fine-tuned model at {model_dir}. Re-run finetune_xlm_roberta_tsv_features.py first."
+        )
+    device = torch.device(args.device)
+    tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=True)
+    model = AutoModelForSequenceClassification.from_pretrained(model_dir)
+    model.to(device)
+    label2id = {str(k): int(v) for k, v in model.config.label2id.items()}
+    id2label = {int(v): k for k, v in label2id.items()}
+    max_length = args.max_length
+
+    print(f"\n[finetune_tsv] evaluating per-corpus {args.split} from {args.by_source_dir} (with TSV feature prefix on unit1)")
+    preds = ft_predict_per_corpus(
+        by_source_dir=Path(args.by_source_dir),
+        model=model,
+        tokenizer=tokenizer,
+        label2id=label2id,
+        device=device,
+        max_length=max_length,
+        eval_batch_size=args.batch_size,
+        split=args.split,
+        load_split_fn=load_split_tsv_features,
+    )
+    agg = ft_aggregate(preds, id2label)
+    print_aggregate_summary(agg)
+    return {
+        "model": "Fine-tuned XLM-RoBERTa + TSV features (dir, rel_type, orig_label)",
+        "model_name": str(model_dir),
+        "max_length": max_length,
+        "input": "dir/rel_type/orig_label prefix + unit1_txt; unit2_txt",
+        "label_set": sorted(label2id, key=lambda k: label2id[k]),
+        **agg,
+    }
+
+
 def eval_framework_cond(args) -> dict:
     model_dir = Path(args.framework_cond_dir)
     if not model_dir.exists():
@@ -253,6 +303,13 @@ def main() -> None:
             json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8"
         )
         print(f"\n[finetune] saved → {out_dir / f'finetune_{args.split}.json'}")
+
+    if "finetune_tsv" in modes:
+        res = eval_finetune_tsv(args)
+        (out_dir / f"finetune_tsv_{args.split}.json").write_text(
+            json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
+        print(f"\n[finetune_tsv] saved → {out_dir / f'finetune_tsv_{args.split}.json'}")
 
     if "framework_cond" in modes:
         res = eval_framework_cond(args)

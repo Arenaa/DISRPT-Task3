@@ -9,6 +9,11 @@ finetune,language,fas,592,14,0.5743243243243243,0.47603832160065707,0.5602154211
 finetune,language,fra,621,12,0.5410628019323671,0.39306483641960344,0.5265813307029567,fra.sdrt.annodis
 finetune,language,ita,374,11,0.6336898395721925,0.4610104826710171,0.6262365365261415,ita.pdtb.luna
 finetune,language,zho,215,14,0.7162790697674418,0.6387435981257491,0.7081666755361609,zho.dep.scidtb
+finetune_tsv,language,eng,7945,23,0.9991189427312775,0.7082738944365192,0.9990560998447781,"eng.dep.scidtb,eng.erst.gum,eng.pdtb.gum,eng.rst.sts,eng.sdrt.stac"
+finetune_tsv,language,fas,592,14,1.0,1.0,1.0,fas.rst.prstc
+finetune_tsv,language,fra,621,12,1.0,1.0,1.0,fra.sdrt.annodis
+finetune_tsv,language,ita,374,11,1.0,1.0,1.0,ita.pdtb.luna
+finetune_tsv,language,zho,215,14,1.0,1.0,1.0,zho.dep.scidtb
 framework_cond,language,eng,7945,23,0.6490874764002518,0.45850294439429573,0.6449264860710148,"eng.dep.scidtb,eng.erst.gum,eng.pdtb.gum,eng.rst.sts,eng.sdrt.stac"
 framework_cond,language,fas,592,14,0.543918918918919,0.4053235212089124,0.5325151593734948,fas.rst.prstc
 framework_cond,language,fra,621,12,0.5410628019323671,0.46419539849228136,0.5246770684600158,fra.sdrt.annodis

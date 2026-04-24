@@ -21,8 +21,12 @@ Outputs (under --out-dir, default `results/per_dataset_plots`):
     language_metrics.png
     per_label_global_f1.png         (horizontal bar)
 
-Up to three models are plotted side-by-side via --frozen-json / --finetune-json /
+Up to four models: --frozen-json / --finetune-json / --finetune-tsv-json /
 --framework-cond-json. Any JSON that is missing is quietly skipped.
+
+If `--finetune-tsv-json` does not exist, the same directory is searched for
+`per_dataset_test_metrics.json` when its `model` field indicates the TSV-feature run
+(see `tsv_feature_eval_path` in `export_model_comparison_tables.py`).
 """
 
 from __future__ import annotations
@@ -34,15 +38,19 @@ from pathlib import Path
 
 import numpy as np
 
+from export_model_comparison_tables import tsv_feature_eval_path
+
 
 MODEL_COLORS = {
     "frozen":         "#4C72B0",
     "finetune":       "#DD8452",
+    "finetune_tsv":   "#9467BD",
     "framework_cond": "#55A868",
 }
 MODEL_LABELS = {
     "frozen":         "Frozen + linear",
     "finetune":       "Fine-tuned",
+    "finetune_tsv":   "Fine-tuned + TSV",
     "framework_cond": "Framework-cond.",
 }
 
@@ -139,7 +147,9 @@ def plot_group(out_path: Path, blocks: dict[str, dict | None], group_key: str) -
             return None
         return [float(block.get(n, {}).get(key, 0.0)) for n in names]
 
-    fig, axes = plt.subplots(1, 3, figsize=(max(12, len(names) * 1.1), 5.0))
+    n_mod = len([1 for b in blocks.values() if b is not None])
+    wscale = 1.0 + 0.12 * max(0, n_mod - 3)
+    fig, axes = plt.subplots(1, 3, figsize=(max(12, len(names) * 1.1) * wscale, 5.2))
     for ax, metric, pretty in zip(
         axes,
         ("accuracy", "macro_f1", "weighted_f1"),
@@ -174,6 +184,7 @@ def plot_per_label_global(out_path: Path, blocks: dict[str, dict | None]) -> Non
         f1s = {m: get(b, lab, "f1") for m, b in blocks.items()}
         sort_key = (
             f1s.get("finetune", 0.0),
+            f1s.get("finetune_tsv", 0.0),
             f1s.get("frozen", 0.0),
             f1s.get("framework_cond", 0.0),
         )
@@ -213,6 +224,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--frozen-json", default="results/per_dataset_eval/frozen_test.json")
     ap.add_argument("--finetune-json", default="results/per_dataset_eval/finetune_test.json")
+    ap.add_argument(
+        "--finetune-tsv-json",
+        default="results/per_dataset_eval/finetune_tsv_test.json",
+        help="TSV-feature eval JSON; if missing, per_dataset_eval/per_dataset_test_metrics.json is used when model mentions TSV.",
+    )
     ap.add_argument("--framework-cond-json", default="results/per_dataset_eval/framework_cond_test.json")
     ap.add_argument("--out-dir", default="results/per_dataset_plots")
     args = ap.parse_args()
@@ -220,15 +236,30 @@ def main() -> None:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    tsv_path: Path | None = Path(args.finetune_tsv_json) if args.finetune_tsv_json else None
+    if tsv_path is not None and not tsv_path.is_file():
+        alt = tsv_feature_eval_path(tsv_path.parent)
+        if alt is not None:
+            tsv_path = alt
     reports: dict[str, dict | None] = {
         "frozen":         load_report(Path(args.frozen_json)),
         "finetune":       load_report(Path(args.finetune_json)),
+        "finetune_tsv":   load_report(tsv_path) if tsv_path else None,
         "framework_cond": load_report(Path(args.framework_cond_json)),
     }
     if all(v is None for v in reports.values()):
         raise SystemExit(
             "None of the JSONs were found. Run the training scripts or evaluate_per_dataset.py first."
         )
+
+    active = [k for k, v in reports.items() if v is not None]
+    print(
+        "Plotting models:",
+        ", ".join(MODEL_LABELS[m] for m in active),
+        f"({len(active)} / 4)",
+    )
+    if tsv_path is not None and reports.get("finetune_tsv"):
+        print(f"  TSV eval file: {tsv_path}")
 
     summary_header = [
         "model", "group_key", "name", "support", "num_gold_labels",

@@ -1,6 +1,6 @@
 {
   "input_dir": "data_subset",
-  "output_dir": "eda_plots",
+  "output_dir": "results/eda_plots",
   "num_unique_labels": 17,
   "label_set": [
     "elaboration",
