@@ -189,7 +189,7 @@ def build_pipeline(input_dir: Path, output_dir: Path) -> dict[str, object]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Convert DISRPT .rels files into cleaned TSV files.")
     parser.add_argument("--input-dir", default="data_subset", help="Directory containing DISRPT .rels files.")
-    parser.add_argument("--output-dir", default="processed_tsv", help="Directory for cleaned TSV outputs.")
+    parser.add_argument("--output-dir", default="results/processed_tsv", help="Directory for cleaned TSV outputs.")
     return parser.parse_args()
 
 

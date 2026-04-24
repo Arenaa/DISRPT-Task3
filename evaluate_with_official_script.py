@@ -4,31 +4,32 @@ Pipeline per corpus:
 
     data_subset/<corpus>/<corpus>_<split>.rels  (gold, 15 cols, ~353-label space)
               │
-              ▼  (1) iterate row-by-row, tokenize unit1_txt + unit2_txt,
-              │      predict with the saved model
+              ▼  (1) iterate row-by-row, tokenize unit1_txt + unit2_txt, predict with
+              │      the saved model (use --finetune-use-tsv-features if the run was
+              │      finetune_xlm_roberta_tsv_features.py)
               │  (2) map both gold.label and pred to the DISRPT-25 17-label space
               │      using disrpt_official/mapping_disrpt25.json
               ▼
-    official_eval/<model>/<corpus>/gold_mapped.rels   (same 15 cols, label∈VALID17)
-    official_eval/<model>/<corpus>/system.rels        (same 15 cols, label∈VALID17)
+    results/official_eval/<model>/<corpus>/gold_mapped.rels   (same 15 cols, label∈VALID17)
+    results/official_eval/<model>/<corpus>/system.rels
               │
               ▼  (3) invoke disrpt_official/disrpt_eval_2024.py -g gold -p system -t R
               ▼
-    official_eval/<model>/<corpus>/eval.json          (official scorer output)
+    results/official_eval/<model>/<corpus>/eval.json
 
 Then the script aggregates the predictions itself into per-framework,
 per-language, and pooled-global metrics (all in the 17-label space) and writes
-`official_eval/<model>/summary.json` + `.csv` summaries so you get the full
+`results/official_eval/<model>/summary.json` + `.csv` summaries so you get the full
 4-way breakdown under the official label space too.
 
 Usage
 -----
 
     python evaluate_with_official_script.py --mode frozen \
-        --frozen-dir xlmr_frozen_linear_results
+        --frozen-dir results/xlmr_frozen_linear_results
 
     python evaluate_with_official_script.py --mode finetune \
-        --finetune-dir xlmr_finetune_results/best_model
+        --finetune-dir results/xlmr_finetune_results/best_model
 
     python evaluate_with_official_script.py --mode both
 """
@@ -58,7 +59,11 @@ from benchmark_frozen_xlm_roberta_linear import (
     corpus_language,
     print_aggregate_summary,
 )
-from finetune_xlm_roberta import PairDataset, _predict as ft_predict
+from disrpt_tsv_features import disrpt_feature_prefix_from_rels_row
+from finetune_xlm_roberta import (
+    PairDataset,
+    _predict as ft_predict,
+)
 from finetune_xlm_roberta_framework_conditioned import (
     FRAMEWORK_TOKENS,
     FrameworkPairDataset,
@@ -161,8 +166,16 @@ def _predict_rows_finetune(
     device: torch.device,
     max_length: int,
     batch_size: int,
+    use_tsv_features: bool = False,
 ) -> list[str]:
-    unit1 = [r[3] for r in rows]
+    if use_tsv_features:
+        unit1 = []
+        for r in rows:
+            fp = disrpt_feature_prefix_from_rels_row(r)
+            u1 = f"{fp}{r[3]}" if fp else r[3]
+            unit1.append(u1)
+    else:
+        unit1 = [r[3] for r in rows]
     unit2 = [r[4] for r in rows]
     default_label = next(iter(label2id))
     labels = [r[14] if r[14] in label2id else default_label for r in rows]
@@ -496,9 +509,9 @@ def parse_args() -> argparse.Namespace:
                    choices=["frozen", "finetune", "framework_cond", "both", "all"],
                    required=True,
                    help="'both' = frozen + finetune; 'all' = all three.")
-    p.add_argument("--frozen-dir", default="xlmr_frozen_linear_results")
-    p.add_argument("--finetune-dir", default="xlmr_finetune_results/best_model")
-    p.add_argument("--framework-cond-dir", default="xlmr_framework_results/best_model",
+    p.add_argument("--frozen-dir", default="results/xlmr_frozen_linear_results")
+    p.add_argument("--finetune-dir", default="results/xlmr_finetune_results/best_model")
+    p.add_argument("--framework-cond-dir", default="results/xlmr_framework_results/best_model",
                    help="Directory saved by finetune_xlm_roberta_framework_conditioned.py "
                         "(must contain the HF model + framework_conditioning.json).")
     p.add_argument("--fc-no-mask", action="store_true",
@@ -509,10 +522,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--split", default="test", choices=["train", "dev", "test"])
     p.add_argument("--mapping", default="disrpt_official/mapping_disrpt25.json")
     p.add_argument("--official-script", default="disrpt_official/disrpt_eval_2024.py")
-    p.add_argument("--out-root", default="official_eval")
+    p.add_argument("--out-root", default="results/official_eval")
     p.add_argument("--batch-size", type=int, default=16)
     p.add_argument("--max-length", type=int, default=256,
                    help="Overrides the checkpoint-saved max_length when needed.")
+    p.add_argument("--finetune-use-tsv-features", action="store_true",
+                   help="Match training from finetune_xlm_roberta_tsv_features.py: prepend "
+                        "dir / rel_type / orig_label to unit1 (plain finetune = omit this).")
     p.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     return p.parse_args()
 
@@ -557,10 +573,12 @@ def main() -> None:
                 rows, model=model, tokenizer=tokenizer,
                 label2id=label2id, id2label=id2label, device=device,
                 max_length=args.max_length, batch_size=args.batch_size,
+                use_tsv_features=args.finetune_use_tsv_features,
             )
 
         evaluate_model_officially(
-            model_tag="Fine-tuned XLM-R",
+            model_tag="Fine-tuned XLM-R"
+            + (" + TSV features" if args.finetune_use_tsv_features else ""),
             predict_rows=predict_rows,
             mapping=mapping,
             data_dir=data_dir,

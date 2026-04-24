@@ -8,7 +8,7 @@ import random
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Callable, Dict, List
 
 import numpy as np
 import torch
@@ -180,14 +180,17 @@ def predict_per_corpus(
     max_length: int,
     eval_batch_size: int,
     split: str = "test",
-) -> Dict[str, Dict[str, np.ndarray]]:
-    preds: Dict[str, Dict[str, np.ndarray]] = {}
+    load_split_fn: Callable[[Path, int | None], SplitData] | None = None,
+) -> Dict[str, Dict[str, Any]]:
+    _load = load_split_fn or load_split
+    id2label_local = {i: lab for lab, i in label2id.items()}
+    preds: Dict[str, Dict[str, Any]] = {}
     for corpus_dir in sorted(p for p in by_source_dir.iterdir() if p.is_dir()):
         corpus = corpus_dir.name
         tsv_path = corpus_dir / f"{corpus}_{split}.tsv"
         if not tsv_path.exists():
             continue
-        split_data = load_split(tsv_path, None)
+        split_data = _load(tsv_path, None)
         if not split_data.labels:
             continue
         unknown = sorted({lab for lab in split_data.labels if lab not in label2id})
@@ -204,7 +207,16 @@ def predict_per_corpus(
         ds = PairDataset(split_data, label2id=label2id, tokenizer=tokenizer, max_length=max_length)
         loader = DataLoader(ds, batch_size=eval_batch_size, shuffle=False)
         yt, yp = _predict(model, loader, device=device)
-        preds[corpus] = {"y_true": yt.astype(np.int64), "y_pred": yp.astype(np.int64)}
+        yti = yt.astype(np.int64)
+        ypi = yp.astype(np.int64)
+        gold_labs = list(split_data.labels)
+        pred_labs = [id2label_local[int(p)] for p in ypi]
+        preds[corpus] = {
+            "y_true": yti,
+            "y_pred": ypi,
+            "gold_label": gold_labs,
+            "pred_label": pred_labs,
+        }
     return preds
 
 
@@ -238,8 +250,48 @@ def _slice_report(y_true: np.ndarray, y_pred: np.ndarray, id2label: Dict[int, st
     }
 
 
+def write_test_prediction_artifacts(
+    out_dir: Path,
+    split: str,
+    preds_by_corpus: Dict[str, Dict[str, Any]],
+    id2label: Dict[int, str],
+) -> None:
+    """Save each example's gold and predicted class name (and ids) for the given split."""
+    pred_dir = out_dir / "test_predictions"
+    pred_dir.mkdir(parents=True, exist_ok=True)
+    corpora_payload: Dict[str, Any] = {}
+    tsv_path = pred_dir / f"{split}_gold_vs_pred.tsv"
+    with tsv_path.open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f, delimiter="\t", lineterminator="\n")
+        w.writerow(["corpus", "row_in_corpus", "gold_label", "pred_label"])
+        for corpus, arrs in sorted(preds_by_corpus.items()):
+            yt, yp = arrs["y_true"], arrs["y_pred"]
+            gold_str = arrs.get("gold_label")
+            pred_str = arrs.get("pred_label")
+            if gold_str is None:
+                gold_str = [id2label[int(t)] for t in yt]
+            if pred_str is None:
+                pred_str = [id2label[int(p)] for p in yp]
+            corpora_payload[corpus] = {
+                "gold_label": gold_str,
+                "pred_label": pred_str,
+                "y_true": [int(t) for t in yt.tolist()],
+                "y_pred": [int(p) for p in yp.tolist()],
+            }
+            for i, (g, p) in enumerate(zip(gold_str, pred_str)):
+                w.writerow([corpus, str(i), g, p])
+    summary = {
+        "split": split,
+        "id2label": {str(k): v for k, v in id2label.items()},
+        "corpora": corpora_payload,
+    }
+    json_path = pred_dir / f"{split}_per_corpus_labels.json"
+    json_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Saved per-example labels → {json_path} and {tsv_path}")
+
+
 def aggregate_predictions(
-    preds_by_corpus: Dict[str, Dict[str, np.ndarray]],
+    preds_by_corpus: Dict[str, Dict[str, Any]],
     id2label: Dict[int, str],
 ) -> Dict[str, Any]:
     per_corpus: Dict[str, Dict[str, Any]] = {}
@@ -299,10 +351,10 @@ def print_aggregate_summary(agg: Dict[str, Any]) -> None:
     print(_row("ALL", agg["pooled"]))
 
 
-def parse_args() -> argparse.Namespace:
+def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Fine-tune xlm-roberta-base on DISRPT pair classification.")
 
-    parser.add_argument("--data-dir", default="processed_tsv/by_split")
+    parser.add_argument("--data-dir", default="results/processed_tsv/by_split")
     parser.add_argument("--train-file", default="train.tsv")
     parser.add_argument("--dev-file", default="dev.tsv")
     parser.add_argument("--test-file", default="test.tsv")
@@ -324,7 +376,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-dev-examples", type=int, default=None)
     parser.add_argument("--max-test-examples", type=int, default=None)
 
-    parser.add_argument("--output-dir", default="xlmr_finetune_results")
+    parser.add_argument("--output-dir", default="results/xlmr_finetune_results")
     parser.add_argument(
         "--save-best",
         dest="save_best",
@@ -340,7 +392,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--by-source-dir",
-        default="processed_tsv/by_source_file",
+        default="results/processed_tsv/by_source_file",
         help="Root dir with per-corpus `<corpus>/<corpus>_{train,dev,test}.tsv` for per-dataset eval.",
     )
     parser.add_argument(
@@ -348,12 +400,26 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skip per-corpus test evaluation (pooled metrics only).",
     )
+    parser.add_argument(
+        "--no-save-test-predictions",
+        action="store_true",
+        help="If set, do not write test_predictions/ with gold vs pred label per example.",
+    )
 
-    return parser.parse_args()
+    return parser
 
 
-def main() -> None:
-    args = parse_args()
+def parse_args() -> argparse.Namespace:
+    return build_arg_parser().parse_args()
+
+
+def run_finetune(
+    args: argparse.Namespace,
+    *,
+    load_split_fn: Callable[[Path, int | None], SplitData] = load_split,
+    setup_extras: Dict[str, Any] | None = None,
+    per_dataset_model_label: str = "Fine-tuned XLM-RoBERTa (xlm-roberta-base)",
+) -> None:
     set_seed(args.seed)
 
     data_dir = Path(args.data_dir)
@@ -366,9 +432,9 @@ def main() -> None:
 
     device = torch.device(args.device)
 
-    train_data = load_split(train_path, args.max_train_examples)
-    dev_data = load_split(dev_path, args.max_dev_examples)
-    test_data = load_split(test_path, args.max_test_examples)
+    train_data = load_split_fn(train_path, args.max_train_examples)
+    dev_data = load_split_fn(dev_path, args.max_dev_examples)
+    test_data = load_split_fn(test_path, args.max_test_examples)
 
     # Use label union so that dev/test labels are always covered.
     label_set = sorted(set(train_data.labels) | set(dev_data.labels) | set(test_data.labels))
@@ -463,20 +529,24 @@ def main() -> None:
     dev_full = evaluate(model, dev_loader, device=device, num_labels=num_labels)
     test_full = evaluate(model, test_loader, device=device, num_labels=num_labels)
 
+    setup_payload: Dict[str, Any] = {
+        "model_name": args.model_name,
+        "max_length": args.max_length,
+        "num_labels": num_labels,
+        "label_set": label_set,
+        "train_batch_size": args.train_batch_size,
+        "eval_batch_size": args.eval_batch_size,
+        "epochs": args.epochs,
+        "lr": args.lr,
+        "weight_decay": args.weight_decay,
+        "warmup_ratio": args.warmup_ratio,
+        "seed": args.seed,
+    }
+    if setup_extras:
+        setup_payload.update(setup_extras)
+
     payload = {
-        "setup": {
-            "model_name": args.model_name,
-            "max_length": args.max_length,
-            "num_labels": num_labels,
-            "label_set": label_set,
-            "train_batch_size": args.train_batch_size,
-            "eval_batch_size": args.eval_batch_size,
-            "epochs": args.epochs,
-            "lr": args.lr,
-            "weight_decay": args.weight_decay,
-            "warmup_ratio": args.warmup_ratio,
-            "seed": args.seed,
-        },
+        "setup": setup_payload,
         "dev_metrics": dev_full,
         "test_metrics": test_full,
         "training_history": history,
@@ -506,13 +576,16 @@ def main() -> None:
                 max_length=args.max_length,
                 eval_batch_size=args.eval_batch_size,
                 split="test",
+                load_split_fn=load_split_fn,
             )
             agg = aggregate_predictions(preds_by_corpus, id2label)
             print_aggregate_summary(agg)
+            if not getattr(args, "no_save_test_predictions", False):
+                write_test_prediction_artifacts(out_dir, "test", preds_by_corpus, id2label)
 
             per_dataset_path = out_dir / "per_dataset_test_metrics.json"
             per_dataset_payload = {
-                "model": "Fine-tuned XLM-RoBERTa (xlm-roberta-base)",
+                "model": per_dataset_model_label,
                 "model_name": args.model_name,
                 "max_length": args.max_length,
                 "label_set": label_set,
@@ -520,6 +593,10 @@ def main() -> None:
             }
             per_dataset_path.write_text(json.dumps(per_dataset_payload, indent=2, ensure_ascii=False), encoding="utf-8")
             print(f"\nSaved per-dataset metrics to {per_dataset_path}")
+
+
+def main() -> None:
+    run_finetune(parse_args())
 
 
 if __name__ == "__main__":

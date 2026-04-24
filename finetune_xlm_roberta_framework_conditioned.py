@@ -5,7 +5,7 @@ Fine-tune XLM-RoBERTa-base on DISRPT Task 3 with framework conditioning.
 Design is deliberately aligned with the plain fine-tune and frozen baselines
 (`finetune_xlm_roberta.py`, `benchmark_frozen_xlm_roberta_linear.py`):
 
-    * data is loaded **per corpus** from `processed_tsv/by_source_file/` so every
+    * data is loaded **per corpus** from `results/processed_tsv/by_source_file/` so every
       row is tagged with (corpus, framework, language) without needing a
       `dataset` column in the pooled TSV (which doesn't exist there);
     * framework names are the canonical lowercase ones used elsewhere — `rst`,
@@ -59,6 +59,7 @@ from benchmark_frozen_xlm_roberta_linear import (
     corpus_language,
     print_aggregate_summary,
 )
+from finetune_xlm_roberta import write_test_prediction_artifacts
 
 FRAMEWORK_TOKENS: List[str] = ["[RST]", "[PDTB]", "[SDRT]", "[DEP]"]
 
@@ -274,14 +275,15 @@ def predict_per_corpus(
     by_source_dir: Path,
     split: str = "test",
     apply_mask: bool = True,
-) -> Dict[str, Dict[str, np.ndarray]]:
+) -> Dict[str, Dict[str, Any]]:
     """Run the fine-tuned framework-conditioned model on each corpus's
     `<corpus>_{split}.tsv` separately, returning raw prediction arrays.
 
     Output shape mirrors `predict_per_corpus` in the sibling scripts so
     `aggregate_predictions` from the frozen script can consume it directly.
     """
-    preds: Dict[str, Dict[str, np.ndarray]] = {}
+    id2label_local = {i: lab for lab, i in label2id.items()}
+    preds: Dict[str, Dict[str, Any]] = {}
     for corpus_dir in sorted(p for p in by_source_dir.iterdir() if p.is_dir()):
         corpus = corpus_dir.name
         tsv_path = corpus_dir / f"{corpus}_{split}.tsv"
@@ -320,14 +322,23 @@ def predict_per_corpus(
         ds = FrameworkPairDataset(split_data, label2id, tokenizer, max_length)
         loader = DataLoader(ds, batch_size=eval_batch_size, shuffle=False, collate_fn=collate_fn)
         yt, yp, _ = _predict(model, loader, device, logit_masks, apply_mask=apply_mask)
-        preds[corpus] = {"y_true": yt.astype(np.int64), "y_pred": yp.astype(np.int64)}
+        yti = yt.astype(np.int64)
+        ypi = yp.astype(np.int64)
+        gold_labs = list(labels)
+        pred_labs = [id2label_local[int(p)] for p in ypi]
+        preds[corpus] = {
+            "y_true": yti,
+            "y_pred": ypi,
+            "gold_label": gold_labs,
+            "pred_label": pred_labs,
+        }
     return preds
 
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 
-    p.add_argument("--by-source-dir", default="processed_tsv/by_source_file",
+    p.add_argument("--by-source-dir", default="results/processed_tsv/by_source_file",
                    help="Root dir with `<corpus>/<corpus>_{train,dev,test}.tsv`.")
     p.add_argument("--model-name", default="FacebookAI/xlm-roberta-base")
     p.add_argument("--max-length", type=int, default=256)
@@ -346,7 +357,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max-dev-examples", type=int, default=None)
     p.add_argument("--max-test-examples", type=int, default=None)
 
-    p.add_argument("--output-dir", default="xlmr_framework_results")
+    p.add_argument("--output-dir", default="results/xlmr_framework_results")
     p.add_argument(
         "--save-best",
         dest="save_best",
@@ -364,6 +375,8 @@ def parse_args() -> argparse.Namespace:
                    help="Disable output masking (token conditioning only — ablation).")
     p.add_argument("--skip-per-dataset", action="store_true",
                    help="Skip per-corpus test evaluation.")
+    p.add_argument("--no-save-test-predictions", action="store_true",
+                   help="If set, do not write test_predictions/ with gold vs pred class per test example.")
     return p.parse_args()
 
 def main() -> None:
@@ -537,6 +550,8 @@ def main() -> None:
         )
         agg = aggregate_predictions(preds_by_corpus, id2label)
         print_aggregate_summary(agg)
+        if not args.no_save_test_predictions:
+            write_test_prediction_artifacts(out_dir, "test", preds_by_corpus, id2label)
 
         per_dataset_path = out_dir / "per_dataset_test_metrics.json"
         per_dataset_payload = {

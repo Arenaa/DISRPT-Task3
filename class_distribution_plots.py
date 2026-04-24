@@ -187,7 +187,7 @@ def build_plots(input_dir: Path, output_dir: Path) -> dict[str, object]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate plot-based class distribution EDA for DISRPT labels.")
     parser.add_argument("--input-dir", default="data_subset", help="Directory containing DISRPT .rels files.")
-    parser.add_argument("--output-dir", default="eda_plots", help="Directory for EDA figure outputs.")
+    parser.add_argument("--output-dir", default="results/eda_plots", help="Directory for EDA figure outputs.")
     return parser.parse_args()
 
 

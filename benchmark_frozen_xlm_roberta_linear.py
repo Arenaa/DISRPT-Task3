@@ -7,6 +7,7 @@ import random
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import torch
@@ -14,6 +15,8 @@ import torch.nn as nn
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from torch.utils.data import DataLoader, Dataset, TensorDataset
 from transformers import AutoModel, AutoTokenizer
+
+from finetune_xlm_roberta import write_test_prediction_artifacts
 
 
 def set_seed(seed: int) -> None:
@@ -258,11 +261,12 @@ def predict_per_corpus(
     emb_batch_size: int,
     emb_num_workers: int,
     split: str = "test",
-) -> dict[str, dict[str, np.ndarray]]:
+) -> dict[str, dict[str, object]]:
     """Run the frozen-encoder + linear-head on each `<corpus>_{split}.tsv`
-    and return raw prediction arrays keyed by corpus name."""
+    and return raw prediction arrays (plus string labels) keyed by corpus name."""
     head.eval()
-    preds: dict[str, dict[str, np.ndarray]] = {}
+    id2label_local = {i: lab for lab, i in label2id.items()}
+    preds: dict[str, dict[str, object]] = {}
     for corpus_dir in sorted(p for p in by_source_dir.iterdir() if p.is_dir()):
         corpus = corpus_dir.name
         tsv_path = corpus_dir / f"{corpus}_{split}.tsv"
@@ -296,9 +300,15 @@ def predict_per_corpus(
         )
         with torch.no_grad():
             logits = head(X.to(device)).cpu().numpy()
+        yti = y.cpu().numpy().astype(np.int64)
+        ypi = logits.argmax(axis=1).astype(np.int64)
+        gold_labs = list(split_data.labels)
+        pred_labs = [id2label_local[int(p)] for p in ypi]
         preds[corpus] = {
-            "y_true": y.cpu().numpy().astype(np.int64),
-            "y_pred": logits.argmax(axis=1).astype(np.int64),
+            "y_true": yti,
+            "y_pred": ypi,
+            "gold_label": gold_labs,
+            "pred_label": pred_labs,
         }
     return preds
 
@@ -338,7 +348,7 @@ def _slice_report(y_true: np.ndarray, y_pred: np.ndarray, id2label: dict[int, st
 
 
 def aggregate_predictions(
-    preds_by_corpus: dict[str, dict[str, np.ndarray]],
+    preds_by_corpus: dict[str, dict[str, Any]],
     id2label: dict[int, str],
 ) -> dict[str, object]:
     """Aggregate raw per-corpus predictions into per-corpus, per-framework,
@@ -449,7 +459,7 @@ def full_report(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Benchmark frozen XLM-RoBERTa (xlm-roberta-base) + linear head.")
-    parser.add_argument("--data-dir", default="processed_tsv/by_split", help="Directory with train/dev/test TSVs.")
+    parser.add_argument("--data-dir", default="results/processed_tsv/by_split", help="Directory with train/dev/test TSVs.")
     parser.add_argument("--train-file", default="train.tsv")
     parser.add_argument("--dev-file", default="dev.tsv")
     parser.add_argument("--test-file", default="test.tsv")
@@ -467,23 +477,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
 
-    parser.add_argument("--cache-dir", default="xlmr_frozen_linear_cache")
+    parser.add_argument("--cache-dir", default="results/xlmr_frozen_linear_cache")
     parser.add_argument("--no-cache", action="store_true")
 
     parser.add_argument("--max-train-examples", type=int, default=None)
     parser.add_argument("--max-dev-examples", type=int, default=None)
     parser.add_argument("--max-test-examples", type=int, default=None)
 
-    parser.add_argument("--output-dir", default="xlmr_frozen_linear_results")
+    parser.add_argument("--output-dir", default="results/xlmr_frozen_linear_results")
     parser.add_argument(
         "--by-source-dir",
-        default="processed_tsv/by_source_file",
+        default="results/processed_tsv/by_source_file",
         help="Root dir with per-corpus `<corpus>/<corpus>_{train,dev,test}.tsv` used for per-dataset evaluation.",
     )
     parser.add_argument(
         "--skip-per-dataset",
         action="store_true",
         help="Skip per-corpus test evaluation (pooled metrics only).",
+    )
+    parser.add_argument(
+        "--no-save-test-predictions",
+        action="store_true",
+        help="If set, do not write test_predictions/ with gold vs pred class per test example.",
     )
     return parser.parse_args()
 
@@ -668,6 +683,8 @@ def main() -> None:
             )
             agg = aggregate_predictions(preds_by_corpus, id2label)
             print_aggregate_summary(agg)
+            if not args.no_save_test_predictions:
+                write_test_prediction_artifacts(out_dir, "test", preds_by_corpus, id2label)
 
             per_dataset_path = out_dir / "per_dataset_test_metrics.json"
             per_dataset_payload = {

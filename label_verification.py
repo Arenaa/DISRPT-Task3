@@ -158,7 +158,7 @@ def build_verification_report(input_dir: Path, output_dir: Path) -> dict[str, ob
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Verify label quality and consistency in DISRPT .rels files.")
     parser.add_argument("--input-dir", default="data_subset", help="Directory containing DISRPT .rels files.")
-    parser.add_argument("--output-dir", default="verification", help="Directory for verification reports.")
+    parser.add_argument("--output-dir", default="results/verification", help="Directory for verification reports.")
     return parser.parse_args()
 
 

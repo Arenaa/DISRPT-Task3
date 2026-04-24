@@ -24,9 +24,9 @@ def load_metrics(path: Path) -> dict:
 
 def main() -> None:
     root = Path(__file__).resolve().parent
-    frozen_path = root / "xlmr_frozen_linear_results" / "metrics.json"
-    finetune_path = root / "xlmr_finetune_results" / "metrics.json"
-    out_dir = root / "xlmr_comparison_plots"
+    frozen_path = root / "results" / "xlmr_frozen_linear_results" / "metrics.json"
+    finetune_path = root / "results" / "xlmr_finetune_results" / "metrics.json"
+    out_dir = root / "results" / "xlmr_comparison_plots"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     frozen = load_metrics(frozen_path)

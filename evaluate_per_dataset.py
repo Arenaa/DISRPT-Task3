@@ -12,22 +12,20 @@ Output: a single JSON with all four views, plus pretty-printed summary to stdout
 This script does **not** retrain; it reuses existing artifacts.
 
 Artifacts expected:
-    --mode frozen    : `<frozen_dir>/linear_head.pt` (contains state_dict,
-                        label_set, model_name, max_length, pooling)
-    --mode finetune  : `<finetune_dir>/best_model/` (standard HF save_pretrained
-                        directory with tokenizer + model)
+    --mode frozen    : default `results/xlmr_frozen_linear_results/linear_head.pt`
+    --mode finetune  : default `results/xlmr_finetune_results/best_model/`
 
 Examples:
 
     python evaluate_per_dataset.py --mode frozen \
-        --frozen-dir xlmr_frozen_linear_results
+        --frozen-dir results/xlmr_frozen_linear_results
 
     python evaluate_per_dataset.py --mode finetune \
-        --finetune-dir xlmr_finetune_results/best_model
+        --finetune-dir results/xlmr_finetune_results/best_model
 
     python evaluate_per_dataset.py --mode both \
-        --frozen-dir xlmr_frozen_linear_results \
-        --finetune-dir xlmr_finetune_results/best_model
+        --frozen-dir results/xlmr_frozen_linear_results \
+        --finetune-dir results/xlmr_finetune_results/best_model
 """
 
 from __future__ import annotations
@@ -73,17 +71,17 @@ def parse_args() -> argparse.Namespace:
                    choices=["frozen", "finetune", "framework_cond", "both", "all"],
                    required=True,
                    help="'both' = frozen + finetune; 'all' = all three.")
-    p.add_argument("--frozen-dir", default="xlmr_frozen_linear_results")
-    p.add_argument("--finetune-dir", default="xlmr_finetune_results/best_model")
-    p.add_argument("--framework-cond-dir", default="xlmr_framework_results/best_model")
+    p.add_argument("--frozen-dir", default="results/xlmr_frozen_linear_results")
+    p.add_argument("--finetune-dir", default="results/xlmr_finetune_results/best_model")
+    p.add_argument("--framework-cond-dir", default="results/xlmr_framework_results/best_model")
     p.add_argument("--fc-no-mask", action="store_true",
                    help="Disable output masking for the framework-conditioned model.")
-    p.add_argument("--by-source-dir", default="processed_tsv/by_source_file")
+    p.add_argument("--by-source-dir", default="results/processed_tsv/by_source_file")
     p.add_argument("--split", default="test", choices=["train", "dev", "test"])
     p.add_argument("--max-length", type=int, default=256)
     p.add_argument("--batch-size", type=int, default=16)
     p.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
-    p.add_argument("--out-dir", default="per_dataset_eval")
+    p.add_argument("--out-dir", default="results/per_dataset_eval")
     return p.parse_args()
 
 

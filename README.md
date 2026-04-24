@@ -2,6 +2,7 @@
 
 This repository provides:
 
+- a `results/` directory as the default root for pipeline outputs, model checkpoints, metrics, and plots (overridable via each script’s CLI)
 - a data pipeline for converting DISRPT `.rels` files into cleaned TSV files
 - a label verification script for checking train coverage, label mapping consistency, and rare labels
 - a plot-based class distribution EDA script for generating label distribution figures
@@ -20,10 +21,10 @@ Input:
 data_subset/
 ```
 
-Output:
+Output (default):
 
 ```text
-processed_tsv/
+results/processed_tsv/
 ```
 
 Generated files:
@@ -49,10 +50,10 @@ Run:
 python label_verification.py
 ```
 
-Output:
+Output (default):
 
 ```text
-verification/
+results/verification/
 ```
 
 Important files:
@@ -67,10 +68,10 @@ Run:
 python class_distribution_plots.py
 ```
 
-Output:
+Output (default):
 
 ```text
-eda_plots/
+results/eda_plots/
 ```
 
 Generated figures:

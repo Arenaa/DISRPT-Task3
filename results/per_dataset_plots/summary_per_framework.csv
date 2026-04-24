@@ -1,0 +1,13 @@
+model,group_key,name,support,num_gold_labels,accuracy,macro_f1,weighted_f1,corpora
+frozen,framework,dep,2117,14,0.4170996693434105,0.07753604616537636,0.2715402460938558,"eng.dep.scidtb,zho.dep.scidtb"
+frozen,framework,pdtb,1468,14,0.26430517711171664,0.10662986222802859,0.22036373817931595,"eng.pdtb.gum,ita.pdtb.luna"
+frozen,framework,rst,4427,22,0.26180257510729615,0.08290819378445079,0.19372210461245587,"eng.erst.gum,eng.rst.sts,fas.rst.prstc"
+frozen,framework,sdrt,1735,13,0.4438040345821326,0.13850959855277692,0.3699204420527494,"eng.sdrt.stac,fra.sdrt.annodis"
+finetune,framework,dep,2117,14,0.781294284364667,0.5603661534813753,0.7752589054001975,"eng.dep.scidtb,zho.dep.scidtb"
+finetune,framework,pdtb,1468,14,0.6566757493188011,0.49014885431186966,0.6623755048759867,"eng.pdtb.gum,ita.pdtb.luna"
+finetune,framework,rst,4427,22,0.5714931104585498,0.4285459083075223,0.5627732941369789,"eng.erst.gum,eng.rst.sts,fas.rst.prstc"
+finetune,framework,sdrt,1735,13,0.6311239193083573,0.4384978480040254,0.6217569985714932,"eng.sdrt.stac,fra.sdrt.annodis"
+framework_cond,framework,dep,2117,14,0.7746811525743977,0.6231477735834832,0.7673249860930366,"eng.dep.scidtb,zho.dep.scidtb"
+framework_cond,framework,pdtb,1468,14,0.6519073569482289,0.5457587105635917,0.6543703983096194,"eng.pdtb.gum,ita.pdtb.luna"
+framework_cond,framework,rst,4427,22,0.5669753783600633,0.4238907918649892,0.5585710927651748,"eng.erst.gum,eng.rst.sts,fas.rst.prstc"
+framework_cond,framework,sdrt,1735,13,0.6299711815561959,0.5737398717522779,0.6218074674825199,"eng.sdrt.stac,fra.sdrt.annodis"
