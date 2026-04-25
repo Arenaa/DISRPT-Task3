@@ -23,8 +23,8 @@ This script does **not** fine-tune the model; it uses prompting only.
 Examples:
     1. zero-shot
     python qwen_prompt_baseline.py --split test
-    or
-    python qwen_prompt_baseline.py --split test --max-examples 100
+    or (Small-scale debugging)
+    python qwen_prompt_baseline.py --split test --max-examples 100 --log-freq 50
     2. few-shot (3-shot)
     python qwen_prompt_baseline.py --split test --few-shot-k 3
     3. few-shot (3-shot) + metadata
@@ -40,7 +40,7 @@ import random
 import re
 import sys
 import time
-from collections import defaultdict
+from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any
 
@@ -78,8 +78,9 @@ DEFAULT_MODEL_NAME = "Qwen/Qwen3-4B"
 DEFAULT_OUTPUT_DIR = Path("results/qwen_prompt_results")
 DEFAULT_SEED = 42
 DEFAULT_DTYPE = "auto"
-DEFAULT_LOG_FREQ = 50
-DEFAULT_TOP_P = 0.9
+THINK_BLOCK_RE = re.compile(r"<think>.*?</think>", re.IGNORECASE | re.DOTALL)
+THINK_TAG_RE = re.compile(r"</?think>", re.IGNORECASE)
+ROW_KEY_COLUMNS = ["unit1_txt", "unit2_txt", "dir", "rel_type", "orig_label", "label"]
 
 
 def set_seed(seed: int) -> None:
@@ -121,6 +122,38 @@ def corpus_framework(corpus: str) -> str:
 def corpus_language(corpus: str) -> str:
     parts = corpus.split(".")
     return parts[0] if parts else "unknown"
+
+
+def row_key(row: dict[str, str]) -> tuple[str, ...]:
+    return tuple((row.get(column) or "").strip() for column in ROW_KEY_COLUMNS)
+
+
+def build_corpus_lookup(split: str) -> dict[tuple[str, ...], deque[str]]:
+    lookup: dict[tuple[str, ...], deque[str]] = defaultdict(deque)
+    if not DEFAULT_BY_SOURCE_DIR.exists():
+        return lookup
+
+    for corpus_dir in sorted(path for path in DEFAULT_BY_SOURCE_DIR.iterdir() if path.is_dir()):
+        corpus = corpus_dir.name
+        split_path = corpus_dir / f"{corpus}_{split}.tsv"
+        if not split_path.exists():
+            continue
+        for row in load_rows(split_path):
+            lookup[row_key(row)].append(corpus)
+    return lookup
+
+
+def attach_corpus_labels(rows: list[dict[str, str]], split: str) -> int:
+    lookup = build_corpus_lookup(split)
+    missing = 0
+    for row in rows:
+        queue = lookup.get(row_key(row))
+        if queue:
+            row["corpus"] = queue.popleft()
+        else:
+            row["corpus"] = "unknown"
+            missing += 1
+    return missing
 
 
 def sample_few_shot_rows(
@@ -223,16 +256,33 @@ def normalize_prediction(text: str) -> str:
     if not cleaned:
         return INVALID_LABEL
 
-    first_line = cleaned.splitlines()[0].strip()
-    first_line = first_line.strip("`*_\"'.,:;()[]{} ")
-    lower = first_line.lower()
+    cleaned = THINK_BLOCK_RE.sub(" ", cleaned).strip()
+    cleaned = THINK_TAG_RE.sub(" ", cleaned).strip()
+    if not cleaned:
+        return INVALID_LABEL
 
-    if lower in LABEL_SET:
-        return lower
+    lines = [line.strip() for line in cleaned.splitlines() if line.strip()]
+    candidates: list[str] = []
+    if lines:
+        candidates.extend(reversed(lines))
+    candidates.append(cleaned)
 
-    matches = [label for label in LABEL_SET if re.search(rf"\b{re.escape(label)}\b", lower)]
-    if len(matches) == 1:
-        return matches[0]
+    for candidate in candidates:
+        stripped = candidate.strip("`*_\"'.,:;()[]{} ")
+        lower = stripped.lower()
+
+        if lower in LABEL_SET:
+            return lower
+
+        label_after_colon = re.search(r"(?:answer|label)\s*:\s*([a-zA-Z\-]+)", lower)
+        if label_after_colon:
+            possible = label_after_colon.group(1).strip()
+            if possible in LABEL_SET:
+                return possible
+
+        matches = [label for label in LABEL_SET if re.search(rf"\b{re.escape(label)}\b", lower)]
+        if len(matches) == 1:
+            return matches[0]
 
     all_matches = [label for label in LABEL_SET if label in cleaned.lower()]
     if len(set(all_matches)) == 1:
@@ -275,8 +325,6 @@ def generate_label(
         model_device: torch.device,
         prompt: str,
         max_new_tokens: int,
-        temperature: float,
-        top_p: float,
 ) -> str:
     inputs = tokenizer(prompt, return_tensors="pt")
     inputs = {k: v.to(model_device) for k, v in inputs.items()}
@@ -284,13 +332,8 @@ def generate_label(
     gen_kwargs: dict[str, Any] = {
         "max_new_tokens": max_new_tokens,
         "pad_token_id": tokenizer.pad_token_id,
+        "do_sample": False,
     }
-    if temperature > 0:
-        gen_kwargs["do_sample"] = True
-        gen_kwargs["temperature"] = temperature
-        gen_kwargs["top_p"] = top_p
-    else:
-        gen_kwargs["do_sample"] = False
 
     with torch.no_grad():
         outputs = model.generate(**inputs, **gen_kwargs)
@@ -419,6 +462,7 @@ def write_predictions(
     path.parent.mkdir(parents=True, exist_ok=True)
     columns = [
         "index",
+        "corpus",
         "gold_label",
         "pred_label",
         "is_valid_prediction",
@@ -446,7 +490,6 @@ def predict_rows(
     include_dir: bool,
     include_rel_type: bool,
     max_new_tokens: int,
-    temperature: float,
     log_every: int,
 ) -> tuple[list[dict[str, Any]], list[str], list[str]]:
     predictions: list[dict[str, Any]] = []
@@ -468,8 +511,6 @@ def predict_rows(
             model_device=model_device,
             prompt=prompt,
             max_new_tokens=max_new_tokens,
-            temperature=temperature,
-            top_p=DEFAULT_TOP_P,
         )
         pred_label = normalize_prediction(raw_generation)
 
@@ -478,6 +519,7 @@ def predict_rows(
         predictions.append(
             {
                 "index": idx,
+                "corpus": row.get("corpus", ""),
                 "gold_label": row["label"],
                 "pred_label": pred_label,
                 "is_valid_prediction": pred_label != INVALID_LABEL,
@@ -503,8 +545,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--few-shot-k", type=int, default=0, help="Number of few-shot examples to prepend.")
     parser.add_argument("--include-dir", action="store_true", help="Include dir in the prompt.")
     parser.add_argument("--include-rel-type", action="store_true", help="Include rel_type in the prompt.")
-    parser.add_argument("--max-new-tokens", type=int, default=8)
-    parser.add_argument("--temperature", type=float, default=0.0, help="Use 0.0 for greedy decoding.")
+    parser.add_argument("--max-new-tokens", type=int, default=64)
+    parser.add_argument("--log-freq", dest="log_every", type=int, default=200, help="Print progress every N examples.")
     return parser.parse_args()
 
 
@@ -522,6 +564,7 @@ def main() -> None:
         raise FileNotFoundError(f"Missing few-shot TSV: {few_shot_path}")
 
     eval_rows = load_rows(eval_path, max_examples=args.max_examples)
+    unmatched_corpus_rows = attach_corpus_labels(eval_rows, args.split)
     few_shot_source = load_rows(few_shot_path) if args.few_shot_k > 0 else []
     few_shot_rows = sample_few_shot_rows(few_shot_source, args.few_shot_k, DEFAULT_SEED)
 
@@ -535,8 +578,7 @@ def main() -> None:
         include_dir=args.include_dir,
         include_rel_type=args.include_rel_type,
         max_new_tokens=args.max_new_tokens,
-        temperature=args.temperature,
-        log_every=DEFAULT_LOG_FREQ,
+        log_every=args.log_every,
     )
 
     metrics = evaluate_predictions(y_true, y_pred)
@@ -551,11 +593,11 @@ def main() -> None:
         "include_rel_type": args.include_rel_type,
         "input": "prompt(unit1_txt, unit2_txt, optional dir/rel_type)",
         "max_new_tokens": args.max_new_tokens,
-        "temperature": args.temperature,
-        "top_p": DEFAULT_TOP_P,
+        "decoding": "greedy",
         "seed": DEFAULT_SEED,
         "dtype": DEFAULT_DTYPE,
         "data_dir": str(data_dir),
+        "num_unmatched_corpus_rows": unmatched_corpus_rows,
         **metrics,
     }
 
@@ -564,32 +606,11 @@ def main() -> None:
     (output_dir / "metrics.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     write_predictions(output_dir / f"{args.split}_predictions.tsv", predictions)
 
-    preds_by_corpus: dict[str, dict[str, list[str]]] = {}
-    by_source_dir = DEFAULT_BY_SOURCE_DIR
-    for corpus_dir in sorted(path for path in by_source_dir.iterdir() if path.is_dir()):
-        corpus = corpus_dir.name
-        split_path = corpus_dir / f"{corpus}_{args.split}.tsv"
-        if not split_path.exists():
-            continue
-        corpus_rows = load_rows(split_path, max_examples=None)
-        if not corpus_rows:
-            continue
-        _, corpus_gold, corpus_pred = predict_rows(
-            corpus_rows,
-            model=model,
-            tokenizer=tokenizer,
-            model_device=model_device,
-            few_shot_rows=few_shot_rows,
-            include_dir=args.include_dir,
-            include_rel_type=args.include_rel_type,
-            max_new_tokens=args.max_new_tokens,
-            temperature=args.temperature,
-            log_every=max(DEFAULT_LOG_FREQ, len(corpus_rows) + 1),
-        )
-        preds_by_corpus[corpus] = {
-            "gold_label": corpus_gold,
-            "pred_label": corpus_pred,
-        }
+    preds_by_corpus: dict[str, dict[str, list[str]]] = defaultdict(lambda: {"gold_label": [], "pred_label": []})
+    for prediction in predictions:
+        corpus = prediction.get("corpus") or "unknown"
+        preds_by_corpus[corpus]["gold_label"].append(prediction["gold_label"])
+        preds_by_corpus[corpus]["pred_label"].append(prediction["pred_label"])
 
     if preds_by_corpus:
         agg = aggregate_predictions_by_corpus(preds_by_corpus)
