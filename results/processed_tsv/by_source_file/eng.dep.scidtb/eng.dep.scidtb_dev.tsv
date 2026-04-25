@@ -36,7 +36,7 @@ We propose a semi-supervised bootstrapping algorithm	We are hopeful that our app
 We are hopeful that our approach can facilitate quantitative political analysis	conducted by social scientists and politicians .	1<2	unknown	elab-addition	elaboration
 In this paper , we propose a joint segmentation and classification framework for sentiment analysis .	Existing sentiment classification algorithms typically split a sentence as a word sequence ,	1<2	unknown	bg-compare	frame
 Existing sentiment classification algorithms typically split a sentence as a word sequence ,	which does not effectively handle the inconsistent sentiment polarity between a phrase and the words	1<2	unknown	elab-addition	elaboration
-which does not effectively handle the inconsistent sentiment polarity between a phrase and the words	it contains , such as " not bad" and " a great deal of " .	1<2	unknown	elab-addition	elaboration
+which does not effectively handle the inconsistent sentiment polarity between a phrase and the words	"it contains , such as "" not bad"" and "" a great deal of "" ."	1<2	unknown	elab-addition	elaboration
 Existing sentiment classification algorithms typically split a sentence as a word sequence ,	We address this issue	1<2	unknown	result	causal
 We address this issue	by developing a joint segmentation and classification framework ( JSC ) ,	1<2	unknown	manner-means	mode
 by developing a joint segmentation and classification framework ( JSC ) ,	which simultaneously conducts sentence segmentation and sentence-level sentiment classification .	1<2	unknown	elab-addition	elaboration
@@ -95,8 +95,8 @@ This paper presents a novel approach	ARIS then maps this information into an equ
 ARIS then maps this information into an equation	that represents the problem ,	1<2	unknown	elab-addition	elaboration
 ARIS then maps this information into an equation	and enables its ( trivial ) solution	1<2	unknown	joint	conjunction
 and enables its ( trivial ) solution	as shown in Figure 1 .	1<2	unknown	elab-addition	elaboration
-This paper presents a novel approach	The paper analyzes the arithmetic-word problems "genre" ,	1<2	unknown	elab-addition	elaboration
-The paper analyzes the arithmetic-word problems "genre" ,	identifying seven categories of verbs	1<2	unknown	elab-addition	elaboration
+This paper presents a novel approach	"The paper analyzes the arithmetic-word problems ""genre"" ,"	1<2	unknown	elab-addition	elaboration
+"The paper analyzes the arithmetic-word problems ""genre"" ,"	identifying seven categories of verbs	1<2	unknown	elab-addition	elaboration
 identifying seven categories of verbs	used in such problems .	1<2	unknown	elab-addition	elaboration
 This paper presents a novel approach	ARIS learns to categorize verbs with 81.2 % accuracy ,	1<2	unknown	evaluation	comment
 ARIS learns to categorize verbs with 81.2 % accuracy ,	and is able to solve 77.7 % of the problems in a corpus of standard primary school test questions .	1<2	unknown	joint	conjunction
@@ -168,9 +168,9 @@ that allow to easily encode an exponential number of variations of each rules .	
 how the representation of the search space has an impact on decoding efficiency ,	and how it is possible to optimize this representation .	1<2	unknown	joint	conjunction
 When documents and queries are presented in different languages ,	the common approach is to translate the query into the document language .	1>2	unknown	temporal	temporal
 the common approach is to translate the query into the document language .	In this paper , we introduce a novel approach	1>2	unknown	bg-compare	frame
-While there are a variety of query translation approaches ,	that combining multiple methods into a single "structured query" is the most effective .	1>2	unknown	contrast	contrast
-recent research suggests	that combining multiple methods into a single "structured query" is the most effective .	1>2	unknown	attribution	attribution
-that combining multiple methods into a single "structured query" is the most effective .	In this paper , we introduce a novel approach	1>2	unknown	bg-goal	frame
+While there are a variety of query translation approaches ,	"that combining multiple methods into a single ""structured query"" is the most effective ."	1>2	unknown	contrast	contrast
+recent research suggests	"that combining multiple methods into a single ""structured query"" is the most effective ."	1>2	unknown	attribution	attribution
+"that combining multiple methods into a single ""structured query"" is the most effective ."	In this paper , we introduce a novel approach	1>2	unknown	bg-goal	frame
 In this paper , we introduce a novel approach	for producing a unique combination recipe for each query ,	1<2	unknown	enablement	purpose
 as it has also been shown	that the optimal combination weights differ substantially across queries and other task specifics .	1>2	unknown	attribution	attribution
 for producing a unique combination recipe for each query ,	that the optimal combination weights differ substantially across queries and other task specifics .	1<2	unknown	exp-reason	explanation
@@ -269,9 +269,9 @@ Finally , we present our recommendations	for creating muchneeded evaluation stan
 We propose a model for Chinese poem generation	based on recurrent neural networks	1<2	unknown	bg-general	frame
 based on recurrent neural networks	which we argue is ideally suited to capturing poetic content and form .	1<2	unknown	elab-addition	elaboration
 We propose a model for Chinese poem generation	Our generator jointly performs content selection	1<2	unknown	elab-addition	elaboration
-Our generator jointly performs content selection	( "what to say" )	1<2	unknown	elab-definition	elaboration
+Our generator jointly performs content selection	"( ""what to say"" )"	1<2	unknown	elab-definition	elaboration
 Our generator jointly performs content selection	and surface realization	1<2	unknown	joint	conjunction
-and surface realization	( "how to say" )	1<2	unknown	elab-definition	elaboration
+and surface realization	"( ""how to say"" )"	1<2	unknown	elab-definition	elaboration
 and surface realization	by learning representations of individual characters , and their combinations into one or more lines as well as how these mutually reinforce and constrain each other .	1<2	unknown	manner-means	mode
 We propose a model for Chinese poem generation	Poem lines are generated incrementally	1<2	unknown	elab-addition	elaboration
 Poem lines are generated incrementally	by taking into account the entire history	1<2	unknown	manner-means	mode
@@ -347,9 +347,9 @@ In the more constrained tasks , co-occurrence vectors are competitive ,	although
 In the more constrained tasks , co-occurrence vectors are competitive ,	on the larger-scale tasks , they are outperformed by neural word embeddings ,	1<2	unknown	joint	conjunction
 on the larger-scale tasks , they are outperformed by neural word embeddings ,	which show robust , stable performance across the tasks .	1<2	unknown	elab-addition	elaboration
 Recurrent neural networks ( RNNs ) are connectionist models of sequential data	that are naturally applicable to the analysis of natural language .	1<2	unknown	elab-addition	elaboration
-Recurrent neural networks ( RNNs ) are connectionist models of sequential data	Recently , "depth in space" — as an orthogonal notion to "depth in time" — in RNNs has been investigated	1<2	unknown	elab-addition	elaboration
-Recently , "depth in space" — as an orthogonal notion to "depth in time" — in RNNs has been investigated	by stacking multiple layers of RNNs	1<2	unknown	elab-addition	elaboration
-Recently , "depth in space" — as an orthogonal notion to "depth in time" — in RNNs has been investigated	and shown empirically to bring a temporal hierarchy to the architecture .	1<2	unknown	joint	conjunction
+Recurrent neural networks ( RNNs ) are connectionist models of sequential data	"Recently , ""depth in space"" — as an orthogonal notion to ""depth in time"" — in RNNs has been investigated"	1<2	unknown	elab-addition	elaboration
+"Recently , ""depth in space"" — as an orthogonal notion to ""depth in time"" — in RNNs has been investigated"	by stacking multiple layers of RNNs	1<2	unknown	elab-addition	elaboration
+"Recently , ""depth in space"" — as an orthogonal notion to ""depth in time"" — in RNNs has been investigated"	and shown empirically to bring a temporal hierarchy to the architecture .	1<2	unknown	joint	conjunction
 In this work we apply these deep RNNs to the task of opinion expression extraction	formulated as a token-level sequence-labeling task .	1<2	unknown	elab-addition	elaboration
 Experimental results show	that deep , narrow RNNs outperform traditional shallow , wide RNNs with the same number of parameters .	1>2	unknown	attribution	attribution
 In this work we apply these deep RNNs to the task of opinion expression extraction	that deep , narrow RNNs outperform traditional shallow , wide RNNs with the same number of parameters .	1<2	unknown	evaluation	comment
@@ -496,7 +496,7 @@ that exploit either stress , or syllable weight , or both ,	and evaluate the uti
 Our results suggest	that syllable weight encodes largely the same information for word segmentation in English	1>2	unknown	attribution	attribution
 We devise Adaptor Grammar word segmentation models	that syllable weight encodes largely the same information for word segmentation in English	1<2	unknown	evaluation	comment
 that syllable weight encodes largely the same information for word segmentation in English	that annotated dictionary stress does .	1<2	unknown	elab-addition	elaboration
-Inspired by the "products of experts" idea ,	our joint model firstly combines two generative models ,	1>2	unknown	elab-addition	elaboration
+"Inspired by the ""products of experts"" idea ,"	our joint model firstly combines two generative models ,	1>2	unknown	elab-addition	elaboration
 In this paper , we propose a joint model for unsupervised Chinese word segmentation ( CWS ) .	our joint model firstly combines two generative models ,	1<2	unknown	elab-process_step	elaboration
 our joint model firstly combines two generative models ,	which are word-based hierarchical Dirichlet process model and character-based hidden Markov model ,	1<2	unknown	elab-enumember	elaboration
 our joint model firstly combines two generative models ,	by simply multiplying their probabilities together .	1<2	unknown	manner-means	mode
@@ -554,8 +554,8 @@ In this paper , we augment a state-of-the-art KWS system with sub-word units	we 
 In this paper we address the problem of multilingual part-of-speech tagging for resource-poor languages .	We use parallel data	1<2	unknown	manner-means	mode
 We use parallel data	to transfer part-of-speech information from resource-rich to resource-poor languages .	1<2	unknown	enablement	purpose
 We use parallel data	Additionally , we use a small amount of annotated data	1<2	unknown	progression	organization
-Additionally , we use a small amount of annotated data	to learn to "correct" errors from projected approach such as tagset mismatch between languages ,	1<2	unknown	enablement	purpose
-to learn to "correct" errors from projected approach such as tagset mismatch between languages ,	achieving state-of-the-art performance ( 91.3 % ) across 8 languages .	1<2	unknown	result	causal
+Additionally , we use a small amount of annotated data	"to learn to ""correct"" errors from projected approach such as tagset mismatch between languages ,"	1<2	unknown	enablement	purpose
+"to learn to ""correct"" errors from projected approach such as tagset mismatch between languages ,"	achieving state-of-the-art performance ( 91.3 % ) across 8 languages .	1<2	unknown	result	causal
 In this paper we address the problem of multilingual part-of-speech tagging for resource-poor languages .	Our approach is based on modest data requirements ,	1<2	unknown	elab-addition	elaboration
 Our approach is based on modest data requirements ,	and uses minimum divergence classification .	1<2	unknown	joint	conjunction
 For situations	we propose an alternate method ,	1>2	unknown	temporal	temporal
@@ -727,7 +727,7 @@ that using NEL for argument identification boosts performance over the tradition
 that using NEL for argument identification boosts performance over the traditional approach	Our best system boosts precision by 44 % and recall by 70 % .	1<2	unknown	exp-evidence	explanation
 We address the problem of automatically inferring the tense of events in Chinese text .	We use a new corpus	1>2	unknown	bg-goal	frame
 We use a new corpus	annotated with Chinese semantic tense information and other implicit Chinese linguistic information	1<2	unknown	elab-addition	elaboration
-We use a new corpus	using a "distant annotation" method .	1<2	unknown	manner-means	mode
+We use a new corpus	"using a ""distant annotation"" method ."	1<2	unknown	manner-means	mode
 We use a new corpus	We propose three improvements over a relatively strong baseline method	1<2	unknown	elab-addition	elaboration
 We propose three improvements over a relatively strong baseline method	- a statistical learning method with extensive feature engineering .	1<2	unknown	elab-definition	elaboration
 We propose three improvements over a relatively strong baseline method	First , we add two sources of implicit linguistic information as features - eventuality type and modality of an event ,	1<2	unknown	elab-aspect	elaboration
@@ -781,11 +781,11 @@ Distant supervision , a paradigm of relation extraction <*> is an attractive app
 where training data is created	by aligning facts in a database with a large unannotated corpus ,	1<2	unknown	manner-means	mode
 Distant supervision , a paradigm of relation extraction <*> is an attractive approach for training relation extractors .	Various models are proposed in recent literature	1<2	unknown	elab-addition	elaboration
 Various models are proposed in recent literature	to align the facts in the database to their mentions in the corpus .	1<2	unknown	enablement	purpose
-In this paper , we discuss and critically analyse a popular alignment strategy	called the "at least one" heuristic .	1<2	unknown	elab-addition	elaboration
+In this paper , we discuss and critically analyse a popular alignment strategy	"called the ""at least one"" heuristic ."	1<2	unknown	elab-addition	elaboration
 In this paper , we discuss and critically analyse a popular alignment strategy	We provide a simple , yet effective relaxation to this strategy .	1<2	unknown	elab-addition	elaboration
 We provide a simple , yet effective relaxation to this strategy .	We formulate the inference procedures in training as integer linear programming ( ILP ) problems	1<2	unknown	elab-addition	elaboration
-We formulate the inference procedures in training as integer linear programming ( ILP ) problems	and implement the relaxation to the "at least one " heuristic	1<2	unknown	progression	organization
-and implement the relaxation to the "at least one " heuristic	via a soft constraint in this formulation .	1<2	unknown	manner-means	mode
+We formulate the inference procedures in training as integer linear programming ( ILP ) problems	"and implement the relaxation to the ""at least one "" heuristic"	1<2	unknown	progression	organization
+"and implement the relaxation to the ""at least one "" heuristic"	via a soft constraint in this formulation .	1<2	unknown	manner-means	mode
 Empirically , we demonstrate	that this simple strategy leads to a better performance under certain settings over the existing approaches .	1>2	unknown	attribution	attribution
 In this paper , we discuss and critically analyse a popular alignment strategy	that this simple strategy leads to a better performance under certain settings over the existing approaches .	1<2	unknown	evaluation	comment
 Parameter tuning is an important problem in statistical machine translation ,	but surprisingly , most existing methods such as MERT , MIRA and PRO are agnostic about search ,	1>2	unknown	contrast	contrast
@@ -817,7 +817,7 @@ drawn from the sociolinguistic literature	pertaining to gender and power :	1<2	u
 we test two specific hypotheses	women managers use face-saving communicative strategies ,	1<2	unknown	elab-enumember	elaboration
 women managers use face-saving communicative strategies ,	and women use language more explicitly than men	1<2	unknown	joint	conjunction
 and women use language more explicitly than men	to create and maintain social relations .	1<2	unknown	enablement	purpose
-we test two specific hypotheses	We introduce the notion of "gender environment" to the computational study of written conversations ;	1<2	unknown	elab-process_step	elaboration
+we test two specific hypotheses	"We introduce the notion of ""gender environment"" to the computational study of written conversations ;"	1<2	unknown	elab-process_step	elaboration
 we test two specific hypotheses	we interpret this notion as the gender makeup of an email thread ,	1<2	unknown	elab-process_step	elaboration
 and show	that some manifestations of power differ significantly between gender environments .	1>2	unknown	attribution	attribution
 we interpret this notion as the gender makeup of an email thread ,	that some manifestations of power differ significantly between gender environments .	1<2	unknown	joint	conjunction
@@ -935,8 +935,8 @@ In this paper , we introduce a neural network model for the coherence task	The p
 The proposed approach learns a syntactico-semantic representation for sentences automatically ,	using either recurrent or recursive neural networks .	1<2	unknown	manner-means	mode
 In this paper , we introduce a neural network model for the coherence task	The architecture obviated the need for feature engineering ,	1<2	unknown	elab-addition	elaboration
 The architecture obviated the need for feature engineering ,	and learns sentence representations ,	1<2	unknown	joint	conjunction
-and learns sentence representations ,	which are to some extent able to capture the "rules"	1<2	unknown	elab-addition	elaboration
-which are to some extent able to capture the "rules"	governing coherent sentence structure .	1<2	unknown	elab-addition	elaboration
+and learns sentence representations ,	"which are to some extent able to capture the ""rules"""	1<2	unknown	elab-addition	elaboration
+"which are to some extent able to capture the ""rules"""	governing coherent sentence structure .	1<2	unknown	elab-addition	elaboration
 In this paper , we introduce a neural network model for the coherence task	The proposed approach outperforms existing baselines	1<2	unknown	evaluation	comment
 The proposed approach outperforms existing baselines	and generates the state-of-art performance in standard coherence evaluation tasks .	1<2	unknown	joint	conjunction
 In this paper , we present a discriminative approach	for reranking discourse trees	1<2	unknown	elab-addition	elaboration

@@ -553,8 +553,8 @@ LSTM-CFA 方法 能够 高效 提取 用户 个性 与 产品 属性 信息 ,	�
 提出 了 标题 与 篇章 要点 相关 性 分析 模型 。	在 全国 近 10 年 高考 真题 和 测试 题 上 进行 实验 ,	1<2	unknown	evaluation	comment
 在 全国 近 10 年 高考 真题 和 测试 题 上 进行 实验 ,	验证 了 该 方法 的 有效 性 。	1<2	unknown	elab-addition	elaboration
 ﻿形容 词 与 名词 、 动词 构成 汉 语 实词 的 主体 组成 部分 ,	该文 主要 叙述 汉 语 形容 词 知识 库 构建 的 相关 工作 。	1>2	unknown	bg-general	frame
-﻿形容 词 与 名词 、 动词 构成 汉 语 实词 的 主体 组成 部分 ,	在 句法 上 表现 出 对 " 名词 " 的 极度 依赖 ,	1<2	unknown	elab-addition	elaboration
-﻿形容 词 与 名词 、 动词 构成 汉 语 实词 的 主体 组成 部分 ,	其 核心 功能 是 在 概念 层面 上 , 在 认知 注意 机制 的 调适 作用 下 对 名词 的 特征 进行 " 评价 " 。	1<2	unknown	elab-addition	elaboration
+﻿形容 词 与 名词 、 动词 构成 汉 语 实词 的 主体 组成 部分 ,	"在 句法 上 表现 出 对 "" 名词 "" 的 极度 依赖 ,"	1<2	unknown	elab-addition	elaboration
+﻿形容 词 与 名词 、 动词 构成 汉 语 实词 的 主体 组成 部分 ,	"其 核心 功能 是 在 概念 层面 上 , 在 认知 注意 机制 的 调适 作用 下 对 名词 的 特征 进行 "" 评价 "" 。"	1<2	unknown	elab-addition	elaboration
 该文 主要 叙述 汉 语 形容 词 知识 库 构建 的 相关 工作 。	首先 是 考察 已有 的 形容 词 的 收词 情况 ,	1<2	unknown	elab-addition	elaboration
 首先 是 考察 已有 的 形容 词 的 收词 情况 ,	并 结合 语言 演变 中 新 产生 的 形容 词 , 构建 了 一 个 较为 全面 的 形容 词 词集 ;	1<2	unknown	joint	conjunction
 并 结合 语言 演变 中 新 产生 的 形容 词 , 构建 了 一 个 较为 全面 的 形容 词 词集 ;	其次 是 详细 阐述 知识 库 的 构建 理念 ;	1<2	unknown	joint	conjunction

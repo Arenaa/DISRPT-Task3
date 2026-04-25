@@ -142,7 +142,7 @@ However , few of the methods pay attention to non-entity words	and clicked websi
 and clicked websites in queries ,	which also help conveying user intent .	1<2	unknown	elab-addition	elaboration
 In this paper , we tackle the problem of intent understanding with	innovatively representing entity words , refiners and clicked urls as intent topics in a unified knowledge graph based framework , in a way	1<2	unknown	manner-means	mode
 innovatively representing entity words , refiners and clicked urls as intent topics in a unified knowledge graph based framework , in a way	to exploit and expand knowledge graph	1<2	unknown	enablement	purpose
-innovatively representing entity words , refiners and clicked urls as intent topics in a unified knowledge graph based framework , in a way	which we call "tailor" .	1<2	unknown	elab-addition	elaboration
+innovatively representing entity words , refiners and clicked urls as intent topics in a unified knowledge graph based framework , in a way	"which we call ""tailor"" ."	1<2	unknown	elab-addition	elaboration
 In this paper , we tackle the problem of intent understanding with	We collaboratively exploit global knowledge in knowledge graphs and local contexts in query log	1<2	unknown	elab-process_step	elaboration
 We collaboratively exploit global knowledge in knowledge graphs and local contexts in query log	to initialize intent representation ,	1<2	unknown	enablement	purpose
 In this paper , we tackle the problem of intent understanding with	then propagate the enriched features in a graph	1<2	unknown	elab-process_step	elaboration
@@ -179,7 +179,7 @@ Much recent work focuses on formal interpretation of natural question utterances
 Much recent work focuses on formal interpretation of natural question utterances ,	with the goal of executing the resulting structured queries on knowledge graphs ( KGs ) such as Freebase .	1<2	unknown	elab-addition	elaboration
 Here we address two limitations of this approach	when applied to open-domain , entity-oriented Web queries .	1<2	unknown	temporal	temporal
 Here we address two limitations of this approach	First , Web queries are rarely well-formed questions .	1<2	unknown	elab-enumember	elaboration
-First , Web queries are rarely well-formed questions .	They are "telegraphic" , with missing verbs , prepositions , clauses , case and phrase clues .	1<2	unknown	elab-addition	elaboration
+First , Web queries are rarely well-formed questions .	"They are ""telegraphic"" , with missing verbs , prepositions , clauses , case and phrase clues ."	1<2	unknown	elab-addition	elaboration
 Here we address two limitations of this approach	Second , the KG is always incomplete ,	1<2	unknown	elab-enumember	elaboration
 Second , the KG is always incomplete ,	unable to directly answer many queries .	1<2	unknown	elab-addition	elaboration
 Here we address two limitations of this approach	We propose a novel technique	1<2	unknown	elab-aspect	elaboration
@@ -235,20 +235,20 @@ We present the new problem of vote prediction on comments ,	we show	1<2	unknown	
 we show	that a vote prediction system <*> can be improved significantly	1<2	unknown	attribution	attribution
 that a vote prediction system <*> can be improved significantly	that exploits only textual information	1<2	unknown	elab-addition	elaboration
 can be improved significantly	when extended with extra-textual information .	1<2	unknown	temporal	temporal
-In this paper we first exploit cash-tags ( " $ "	followed by stocks' ticker symbols )	1<2	unknown	elab-addition	elaboration
-In this paper we first exploit cash-tags ( " $ "	in Twitter	1<2	unknown	elab-addition	elaboration
-In this paper we first exploit cash-tags ( " $ "	to build a stock network ,	1<2	unknown	enablement	purpose
+"In this paper we first exploit cash-tags ( "" $ """	followed by stocks' ticker symbols )	1<2	unknown	elab-addition	elaboration
+"In this paper we first exploit cash-tags ( "" $ """	in Twitter	1<2	unknown	elab-addition	elaboration
+"In this paper we first exploit cash-tags ( "" $ """	to build a stock network ,	1<2	unknown	enablement	purpose
 to build a stock network ,	where nodes are stocks	1<2	unknown	elab-addition	elaboration
 where nodes are stocks	connected by edges	1<2	unknown	elab-addition	elaboration
 connected by edges	when two stocks co-occur frequently in tweets .	1<2	unknown	temporal	temporal
-In this paper we first exploit cash-tags ( " $ "	We then employ a labeled topic model	1<2	unknown	elab-process_step	elaboration
+"In this paper we first exploit cash-tags ( "" $ """	We then employ a labeled topic model	1<2	unknown	elab-process_step	elaboration
 We then employ a labeled topic model	to jointly model both the tweets and the network structure	1<2	unknown	enablement	purpose
 to jointly model both the tweets and the network structure	to assign each node and each edge a topic respectively .	1<2	unknown	enablement	purpose
 We then employ a labeled topic model	This Semantic Stock Network ( SSN ) summarizes discussion topics about stocks and stock relations .	1<2	unknown	elab-addition	elaboration
-In this paper we first exploit cash-tags ( " $ "	We further show	1<2	unknown	evaluation	comment
+"In this paper we first exploit cash-tags ( "" $ """	We further show	1<2	unknown	evaluation	comment
 We further show	that social sentiment about stock ( node ) topics and stock relationship ( edge ) topics are predictive of each stock's market .	1<2	unknown	attribution	attribution
 We further show	For prediction , we propose to regress the topic-sentiment time-series and the stock's price time series .	1<2	unknown	elab-addition	elaboration
-In this paper we first exploit cash-tags ( " $ "	Experimental results demonstrate	1<2	unknown	evaluation	comment
+"In this paper we first exploit cash-tags ( "" $ """	Experimental results demonstrate	1<2	unknown	evaluation	comment
 Experimental results demonstrate	that topic sentiments from close neighbors are able to help improve the prediction of a stock markedly .	1<2	unknown	attribution	attribution
 Demographic lexica have potential for widespread use in social science , economic , and business applications .	We derive predictive lexica	1>2	unknown	bg-goal	frame
 We derive predictive lexica	( words and weights )	1<2	unknown	elab-addition	elaboration
@@ -345,8 +345,8 @@ We show	that the learned set of emotion indicators yields a substantial improve-
 that the learned set of emotion indicators yields a substantial improve-ment in F-scores ,	ranging from + % 5 to + % 18 over baseline classifiers .	1<2	unknown	elab-example	elaboration
 We put forward the hypothesis	that high-accuracy sentiment analysis is only possible	1<2	unknown	elab-addition	elaboration
 that high-accuracy sentiment analysis is only possible	if word senses with different polarity are accurately recognized .	1<2	unknown	condition	condition
-We put forward the hypothesis	We provide evidence for this hypothesis in a case study for the adjective "hard"	1<2	unknown	elab-aspect	elaboration
-We provide evidence for this hypothesis in a case study for the adjective "hard"	and propose contextually enhanced sentiment lexicons	1<2	unknown	joint	conjunction
+We put forward the hypothesis	"We provide evidence for this hypothesis in a case study for the adjective ""hard"""	1<2	unknown	elab-aspect	elaboration
+"We provide evidence for this hypothesis in a case study for the adjective ""hard"""	and propose contextually enhanced sentiment lexicons	1<2	unknown	joint	conjunction
 and propose contextually enhanced sentiment lexicons	that contain the information necessary for sentiment-relevant sense disambiguation .	1<2	unknown	elab-addition	elaboration
 We put forward the hypothesis	An experimental evaluation demonstrates	1<2	unknown	evaluation	comment
 An experimental evaluation demonstrates	that senses with different polarity can be distinguished well	1<2	unknown	attribution	attribution
@@ -482,9 +482,9 @@ We instantiate these ideas for part-of-speech induction	without tag dictionaries
 We instantiate these ideas for part-of-speech induction	improving over contrastive estimation as well as strong benchmarks from the PASCAL 2012 shared task .	1<2	unknown	elab-addition	elaboration
 We introduce a reinforcement learning-based approach to simultaneous machine translation—producing a translation	while receiving input words— between languages with drastically different word orders :	1<2	unknown	temporal	temporal
 while receiving input words— between languages with drastically different word orders :	from verb-final languages ( e.g. , German ) to verb-medial languages ( English ) .	1<2	unknown	elab-enumember	elaboration
-We introduce a reinforcement learning-based approach to simultaneous machine translation—producing a translation	In traditional machine translation , a translator must "wait" for source material to appear	1<2	unknown	bg-compare	frame
-In traditional machine translation , a translator must "wait" for source material to appear	before translation begins .	1<2	unknown	temporal	temporal
-In traditional machine translation , a translator must "wait" for source material to appear	We remove this bottleneck	1<2	unknown	elab-addition	elaboration
+We introduce a reinforcement learning-based approach to simultaneous machine translation—producing a translation	"In traditional machine translation , a translator must ""wait"" for source material to appear"	1<2	unknown	bg-compare	frame
+"In traditional machine translation , a translator must ""wait"" for source material to appear"	before translation begins .	1<2	unknown	temporal	temporal
+"In traditional machine translation , a translator must ""wait"" for source material to appear"	We remove this bottleneck	1<2	unknown	elab-addition	elaboration
 We remove this bottleneck	by predicting the final verb in advance .	1<2	unknown	manner-means	mode
 We introduce a reinforcement learning-based approach to simultaneous machine translation—producing a translation	We use reinforcement learning	1<2	unknown	elab-aspect	elaboration
 We use reinforcement learning	to learn when to trust predictions about unseen , future portions of the sentence .	1<2	unknown	enablement	purpose
@@ -578,7 +578,7 @@ Different to previous character tagging methods ,	we introduce the minimum seman
 We propose a new Chinese abbreviation prediction method	we introduce the minimum semantic unit ,	1<2	unknown	elab-aspect	elaboration
 we introduce the minimum semantic unit ,	which is more fine-grained than character but more coarse-grained than word ,	1<2	unknown	elab-addition	elaboration
 we introduce the minimum semantic unit ,	to capture word level information in the sequence labeling framework .	1<2	unknown	enablement	purpose
-To solve the "character duplication" problem in Chinese abbreviation prediction ,	we also use a substring tagging strategy to generate local substring tagging candidates .	1>2	unknown	enablement	purpose
+"To solve the ""character duplication"" problem in Chinese abbreviation prediction ,"	we also use a substring tagging strategy to generate local substring tagging candidates .	1>2	unknown	enablement	purpose
 we introduce the minimum semantic unit ,	we also use a substring tagging strategy to generate local substring tagging candidates .	1<2	unknown	joint	conjunction
 We propose a new Chinese abbreviation prediction method	We use an integer linear programming ( ILP ) formulation with various constraints	1<2	unknown	elab-aspect	elaboration
 We use an integer linear programming ( ILP ) formulation with various constraints	to globally decode the final abbreviation from the generated candidates .	1<2	unknown	enablement	purpose
@@ -986,9 +986,9 @@ This paper describes a parser	Its results for the empty category prediction task
 We explore the use of restricted dialogue contexts in reinforcement learning ( RL ) of effective dialogue strategies for information seeking spoken dialogue systems ( e.g. COMMUNICATOR ( Walker et al. , 2001 ) ) .	The contexts <*> are richer than previous research in this area , e.g. ( Levin and Pieraccini , 1997 ; Scheffler and Young , 2001 ; Singh et al. , 2002 ; Pietquin , 2004 ) ,	1<2	unknown	elab-addition	elaboration
 The contexts <*> are richer than previous research in this area , e.g. ( Levin and Pieraccini , 1997 ; Scheffler and Young , 2001 ; Singh et al. , 2002 ; Pietquin , 2004 ) ,	we use	1<2	unknown	elab-addition	elaboration
 are richer than previous research in this area , e.g. ( Levin and Pieraccini , 1997 ; Scheffler and Young , 2001 ; Singh et al. , 2002 ; Pietquin , 2004 ) ,	which use only slot-based information ,	1<2	unknown	elab-addition	elaboration
-which use only slot-based information ,	but are much less complex than the full dialogue "Information States"	1<2	unknown	contrast	contrast
-but are much less complex than the full dialogue "Information States"	explored in ( Henderson et al. , 2005 ) ,	1<2	unknown	elab-addition	elaboration
-but are much less complex than the full dialogue "Information States"	for which tractabe learning is an issue .	1<2	unknown	elab-addition	elaboration
+which use only slot-based information ,	"but are much less complex than the full dialogue ""Information States"""	1<2	unknown	contrast	contrast
+"but are much less complex than the full dialogue ""Information States"""	explored in ( Henderson et al. , 2005 ) ,	1<2	unknown	elab-addition	elaboration
+"but are much less complex than the full dialogue ""Information States"""	for which tractabe learning is an issue .	1<2	unknown	elab-addition	elaboration
 We explore	how incrementally adding richer features allows learning of more effective dialogue strategies .	1>2	unknown	attribution	attribution
 We explore the use of restricted dialogue contexts in reinforcement learning ( RL ) of effective dialogue strategies for information seeking spoken dialogue systems ( e.g. COMMUNICATOR ( Walker et al. , 2001 ) ) .	how incrementally adding richer features allows learning of more effective dialogue strategies .	1<2	unknown	elab-addition	elaboration
 We explore the use of restricted dialogue contexts in reinforcement learning ( RL ) of effective dialogue strategies for information seeking spoken dialogue systems ( e.g. COMMUNICATOR ( Walker et al. , 2001 ) ) .	We use 2 user simulations	1<2	unknown	elab-addition	elaboration
@@ -997,8 +997,8 @@ We use 2 user simulations	to explore the effects of different features on learne
 Our results show	that adding the dialogue moves of the last system and user turns increases the average reward of the automatically learned strategies by 65.9 % over the original ( hand-coded ) COMMUNICATOR systems , and by 7.8 % over a baseline RL policy	1>2	unknown	attribution	attribution
 We explore the use of restricted dialogue contexts in reinforcement learning ( RL ) of effective dialogue strategies for information seeking spoken dialogue systems ( e.g. COMMUNICATOR ( Walker et al. , 2001 ) ) .	that adding the dialogue moves of the last system and user turns increases the average reward of the automatically learned strategies by 65.9 % over the original ( hand-coded ) COMMUNICATOR systems , and by 7.8 % over a baseline RL policy	1<2	unknown	evaluation	comment
 that adding the dialogue moves of the last system and user turns increases the average reward of the automatically learned strategies by 65.9 % over the original ( hand-coded ) COMMUNICATOR systems , and by 7.8 % over a baseline RL policy	that uses only slot-status features .	1<2	unknown	elab-addition	elaboration
-We show	that the learned strategies exhibit an emergent "focus switching" strategy and effective use of the "give help" action .	1>2	unknown	attribution	attribution
-We explore the use of restricted dialogue contexts in reinforcement learning ( RL ) of effective dialogue strategies for information seeking spoken dialogue systems ( e.g. COMMUNICATOR ( Walker et al. , 2001 ) ) .	that the learned strategies exhibit an emergent "focus switching" strategy and effective use of the "give help" action .	1<2	unknown	evaluation	comment
+We show	"that the learned strategies exhibit an emergent ""focus switching"" strategy and effective use of the ""give help"" action ."	1>2	unknown	attribution	attribution
+We explore the use of restricted dialogue contexts in reinforcement learning ( RL ) of effective dialogue strategies for information seeking spoken dialogue systems ( e.g. COMMUNICATOR ( Walker et al. , 2001 ) ) .	"that the learned strategies exhibit an emergent ""focus switching"" strategy and effective use of the ""give help"" action ."	1<2	unknown	evaluation	comment
 Speech recognition problems are a reality in current spoken dialogue systems .	we study dependencies between speech recognition problems and several higher level dialogue factors	1>2	unknown	bg-goal	frame
 In order to better understand these phenomena ,	we study dependencies between speech recognition problems and several higher level dialogue factors	1>2	unknown	elab-addition	elaboration
 we study dependencies between speech recognition problems and several higher level dialogue factors	that define our notion of student state :	1<2	unknown	elab-addition	elaboration
@@ -1179,21 +1179,21 @@ We evaluate our algorithm on very large corpora in two languages ,	using both hu
 We present a novel approach	Our fully unsupervised results are superior to previous work	1<2	unknown	evaluation	comment
 Our fully unsupervised results are superior to previous work	that used a POS tagged corpus , and computation time for huge corpora are orders of magnitude faster	1<2	unknown	elab-addition	elaboration
 that used a POS tagged corpus , and computation time for huge corpora are orders of magnitude faster	than previously reported .	1<2	unknown	comparison	concession
-We present BAYESUM ( for "Bayesian summarization" ) , a model for sentence extraction in query-focused summarization .	BAYESUM leverages the common case	1<2	unknown	elab-addition	elaboration
+"We present BAYESUM ( for ""Bayesian summarization"" ) , a model for sentence extraction in query-focused summarization ."	BAYESUM leverages the common case	1<2	unknown	elab-addition	elaboration
 BAYESUM leverages the common case	in which multiple documents are relevant to a single query .	1<2	unknown	elab-addition	elaboration
 Using these documents as reinforcement for query terms ,	BAYESUM is not afflicted by the paucity of information in short queries .	1>2	unknown	manner-means	mode
-We present BAYESUM ( for "Bayesian summarization" ) , a model for sentence extraction in query-focused summarization .	BAYESUM is not afflicted by the paucity of information in short queries .	1<2	unknown	elab-addition	elaboration
+"We present BAYESUM ( for ""Bayesian summarization"" ) , a model for sentence extraction in query-focused summarization ."	BAYESUM is not afflicted by the paucity of information in short queries .	1<2	unknown	elab-addition	elaboration
 We show	that approximate inference in BAYESUM is possible on large data sets	1>2	unknown	attribution	attribution
-We present BAYESUM ( for "Bayesian summarization" ) , a model for sentence extraction in query-focused summarization .	that approximate inference in BAYESUM is possible on large data sets	1<2	unknown	elab-addition	elaboration
+"We present BAYESUM ( for ""Bayesian summarization"" ) , a model for sentence extraction in query-focused summarization ."	that approximate inference in BAYESUM is possible on large data sets	1<2	unknown	elab-addition	elaboration
 that approximate inference in BAYESUM is possible on large data sets	and results in a state-of-the-art summarization system .	1<2	unknown	progression	organization
 Furthermore , we show	how BAYESUM can be understood as a justified query expansion technique in the language modeling for IR framework .	1>2	unknown	attribution	attribution
-We present BAYESUM ( for "Bayesian summarization" ) , a model for sentence extraction in query-focused summarization .	how BAYESUM can be understood as a justified query expansion technique in the language modeling for IR framework .	1<2	unknown	evaluation	comment
+"We present BAYESUM ( for ""Bayesian summarization"" ) , a model for sentence extraction in query-focused summarization ."	how BAYESUM can be understood as a justified query expansion technique in the language modeling for IR framework .	1<2	unknown	evaluation	comment
 We present an unsupervised learning algorithm	that mines large text corpora for patterns	1<2	unknown	elab-addition	elaboration
 that mines large text corpora for patterns	that express implicit semantic relations .	1<2	unknown	elab-addition	elaboration
 We present an unsupervised learning algorithm	For a given input word pair X : Y with some unspecified semantic relations , the corresponding output list of patterns <P1 , ... , Pm> is ranked	1<2	unknown	elab-addition	elaboration
 For a given input word pair X : Y with some unspecified semantic relations , the corresponding output list of patterns <P1 , ... , Pm> is ranked	according to how well each pattern Pi expresses the relations between X and Y .	1<2	unknown	bg-general	frame
-For example , given X = ostrich and Y = bird ,	the two highest ranking output patterns are "X is the largest Y" and "Y such as the X" .	1>2	unknown	condition	condition
-For a given input word pair X : Y with some unspecified semantic relations , the corresponding output list of patterns <P1 , ... , Pm> is ranked	the two highest ranking output patterns are "X is the largest Y" and "Y such as the X" .	1<2	unknown	elab-example	elaboration
+For example , given X = ostrich and Y = bird ,	"the two highest ranking output patterns are ""X is the largest Y"" and ""Y such as the X"" ."	1>2	unknown	condition	condition
+For a given input word pair X : Y with some unspecified semantic relations , the corresponding output list of patterns <P1 , ... , Pm> is ranked	"the two highest ranking output patterns are ""X is the largest Y"" and ""Y such as the X"" ."	1<2	unknown	elab-example	elaboration
 We present an unsupervised learning algorithm	The output patterns are intended to be useful	1<2	unknown	elab-addition	elaboration
 The output patterns are intended to be useful	for finding further pairs with the same relations ,	1<2	unknown	elab-addition	elaboration
 for finding further pairs with the same relations ,	to support the construction of lexicons , ontologies , and semantic networks .	1<2	unknown	enablement	purpose
@@ -1224,7 +1224,7 @@ Much of this improvement , however , is based upon an ever-increasing number of 
 This has led to concern	This paper should allay these fears .	1>2	unknown	bg-goal	frame
 This has led to concern	that such parsers may be too finely tuned to this corpus at the expense of portability to other genres .	1<2	unknown	elab-addition	elaboration
 This has led to concern	Such worries have merit .	1<2	unknown	elab-addition	elaboration
-The standard "Charniak parser" checks in at a labeled precisionrecall f-measure of 89.7 % on the Penn WSJ test set ,	but only 82.9 % on the test set from the Brown treebank corpus .	1>2	unknown	contrast	contrast
+"The standard ""Charniak parser"" checks in at a labeled precisionrecall f-measure of 89.7 % on the Penn WSJ test set ,"	but only 82.9 % on the test set from the Brown treebank corpus .	1>2	unknown	contrast	contrast
 Such worries have merit .	but only 82.9 % on the test set from the Brown treebank corpus .	1<2	unknown	exp-evidence	explanation
 In particular , we show	that the reranking parser <*> improves performance of the parser on Brown to 85.2 % .	1>2	unknown	attribution	attribution
 This paper should allay these fears .	that the reranking parser <*> improves performance of the parser on Brown to 85.2 % .	1<2	unknown	evaluation	comment
@@ -1548,9 +1548,9 @@ how a structural locality bias can improve the accuracy of state-of-the-art depe
 Next , by annealing the free parameter	we achieve further improvements .	1>2	unknown	manner-means	mode
 Next , by annealing the free parameter	that controls this bias ,	1<2	unknown	elab-addition	elaboration
 how a structural locality bias can improve the accuracy of state-of-the-art dependency grammar induction models	we achieve further improvements .	1<2	unknown	elab-process_step	elaboration
-we achieve further improvements .	We then describe an alternative kind of structural bias , toward "broken" hypotheses	1<2	unknown	elab-process_step	elaboration
-We then describe an alternative kind of structural bias , toward "broken" hypotheses	consisting of partial structures over segmented sentences ,	1<2	unknown	elab-addition	elaboration
-We then describe an alternative kind of structural bias , toward "broken" hypotheses	and show a similar pattern of improvement .	1<2	unknown	joint	conjunction
+we achieve further improvements .	"We then describe an alternative kind of structural bias , toward ""broken"" hypotheses"	1<2	unknown	elab-process_step	elaboration
+"We then describe an alternative kind of structural bias , toward ""broken"" hypotheses"	consisting of partial structures over segmented sentences ,	1<2	unknown	elab-addition	elaboration
+"We then describe an alternative kind of structural bias , toward ""broken"" hypotheses"	and show a similar pattern of improvement .	1<2	unknown	joint	conjunction
 how a structural locality bias can improve the accuracy of state-of-the-art dependency grammar induction models	We relate this approach to contrastive estimation ( Smith and Eisner , 2005a ) ,	1<2	unknown	evaluation	comment
 We relate this approach to contrastive estimation ( Smith and Eisner , 2005a ) ,	apply the latter to grammar induction in six languages ,	1<2	unknown	progression	organization
 and show	that our new approach improves accuracy by 1-17 % ( absolute ) over CE ( and 8-30 % over EM ) ,	1>2	unknown	attribution	attribution
@@ -1819,7 +1819,7 @@ The paper discusses novel psycholinguistic experimental data	that tests and veri
 The paper discusses novel psycholinguistic experimental data	The model has been implemented ,	1<2	unknown	evaluation	comment
 The model has been implemented ,	and enables a conversational robot	1<2	unknown	joint	conjunction
 and enables a conversational robot	to identify objects in a scene through topological spatial relations	1<2	unknown	enablement	purpose
-to identify objects in a scene through topological spatial relations	( e.g. "X near Y" ) .	1<2	unknown	elab-example	elaboration
+to identify objects in a scene through topological spatial relations	"( e.g. ""X near Y"" ) ."	1<2	unknown	elab-example	elaboration
 The paper discusses novel psycholinguistic experimental data	The model can help motivate the choice between topological and projective prepositions .	1<2	unknown	evaluation	comment
 To address data sparseness ,	we used temporal reasoning as an oversampling method	1>2	unknown	enablement	purpose
 This paper investigates a machine learning approach for temporally ordering and anchoring events in natural language texts .	we used temporal reasoning as an oversampling method	1<2	unknown	manner-means	mode
@@ -1941,7 +1941,7 @@ In this paper , we present a method	that our method can improve the accuracy of 
 that our method can improve the accuracy of the results	obtained using the existing method .	1<2	unknown	elab-addition	elaboration
 This paper presents a hybrid approach to question answering in the clinical domain	that combines techniques from summarization and information retrieval.	1<2	unknown	elab-addition	elaboration
 This paper presents a hybrid approach to question answering in the clinical domain	We tackle a frequently-occurring class of questions	1<2	unknown	elab-addition	elaboration
-We tackle a frequently-occurring class of questions	that takes the form "What is the best drug treatment for X ? "	1<2	unknown	elab-addition	elaboration
+We tackle a frequently-occurring class of questions	"that takes the form ""What is the best drug treatment for X ? """	1<2	unknown	elab-addition	elaboration
 Starting from an initial set of MEDLINE citations ,	our system first identifies the drugs under study .	1>2	unknown	elab-addition	elaboration
 This paper presents a hybrid approach to question answering in the clinical domain	our system first identifies the drugs under study .	1<2	unknown	elab-process_step	elaboration
 This paper presents a hybrid approach to question answering in the clinical domain	Abstracts are then clustered	1<2	unknown	elab-process_step	elaboration
@@ -2051,8 +2051,8 @@ by finding the most probable semantic parse	using these string classifiers .	1<2
 Our experiments on two realworld data sets show	that this approach compares favorably to other existing systems	1>2	unknown	attribution	attribution
 We present a new approach	that this approach compares favorably to other existing systems	1<2	unknown	evaluation	comment
 that this approach compares favorably to other existing systems	and is particularly robust to noise .	1<2	unknown	joint	conjunction
-We investigate the unsupervised detection of semi-fixed cue phrases	such as "This paper proposes a novel approach ... " from unseen text ,	1<2	unknown	elab-example	elaboration
-such as "This paper proposes a novel approach ... " from unseen text ,	on the basis of only a handful of seed cue phrases with the desired semantics .	1<2	unknown	bg-general	frame
+We investigate the unsupervised detection of semi-fixed cue phrases	"such as ""This paper proposes a novel approach ... "" from unseen text ,"	1<2	unknown	elab-example	elaboration
+"such as ""This paper proposes a novel approach ... "" from unseen text ,"	on the basis of only a handful of seed cue phrases with the desired semantics .	1<2	unknown	bg-general	frame
 We investigate the unsupervised detection of semi-fixed cue phrases	The problem , <*> is that it is hard to find a constraining context for occurrences of semi-fixed cue phrases .	1<2	unknown	elab-addition	elaboration
 The problem , <*> is that it is hard to find a constraining context for occurrences of semi-fixed cue phrases .	in contrast to bootstrapping approaches for Question Answering and Information Extraction ,	1<2	unknown	contrast	contrast
 We investigate the unsupervised detection of semi-fixed cue phrases	Our method uses components of the cue phrase itself , rather than external context ,	1<2	unknown	manner-means	mode
@@ -2077,15 +2077,15 @@ is used	to increase the verb coverage	1<2	unknown	enablement	purpose
 to increase the verb coverage	and also to test the effectiveness of our approach .	1<2	unknown	joint	conjunction
 The results indicate	that our model is an interesting step towards the design of more robust semantic parsers .	1>2	unknown	attribution	attribution
 This article describes a robust semantic parser	that our model is an interesting step towards the design of more robust semantic parsers .	1<2	unknown	evaluation	comment
-This paper presents the particular use of "Jibiki" ( Papillon's web server development platform ) for the LexALP1 project .	LexALP's goal is to harmonise the terminology on spatial planning and sustainable development	1<2	unknown	elab-addition	elaboration
+"This paper presents the particular use of ""Jibiki"" ( Papillon's web server development platform ) for the LexALP1 project ."	LexALP's goal is to harmonise the terminology on spatial planning and sustainable development	1<2	unknown	elab-addition	elaboration
 LexALP's goal is to harmonise the terminology on spatial planning and sustainable development	used within the Alpine Convention2 ,	1<2	unknown	elab-addition	elaboration
 LexALP's goal is to harmonise the terminology on spatial planning and sustainable development	so that the member states are able to cooperate and communicate efficiently in the four official languages	1<2	unknown	result	causal
 so that the member states are able to cooperate and communicate efficiently in the four official languages	( French , German , Italian and Slovene ) .	1<2	unknown	elab-enumember	elaboration
-This paper presents the particular use of "Jibiki" ( Papillon's web server development platform ) for the LexALP1 project .	To this purpose , LexALP uses the Jibiki platform	1<2	unknown	elab-addition	elaboration
+"This paper presents the particular use of ""Jibiki"" ( Papillon's web server development platform ) for the LexALP1 project ."	To this purpose , LexALP uses the Jibiki platform	1<2	unknown	elab-addition	elaboration
 To this purpose , LexALP uses the Jibiki platform	to build a term bank for the contrastive analysis of the specialised terminology	1<2	unknown	enablement	purpose
 to build a term bank for the contrastive analysis of the specialised terminology	used in six different national legal systems and four different languages .	1<2	unknown	elab-addition	elaboration
 In this paper we present	how a generic platform like Jibiki can cope with a new kind of dictionary .	1>2	unknown	attribution	attribution
-This paper presents the particular use of "Jibiki" ( Papillon's web server development platform ) for the LexALP1 project .	how a generic platform like Jibiki can cope with a new kind of dictionary .	1<2	unknown	progression	organization
+"This paper presents the particular use of ""Jibiki"" ( Papillon's web server development platform ) for the LexALP1 project ."	how a generic platform like Jibiki can cope with a new kind of dictionary .	1<2	unknown	progression	organization
 Thesauri and ontologies provide important value	In this paper , we present an efficient process	1>2	unknown	bg-compare	frame
 Thesauri and ontologies provide important value	in facilitating access to digital archives	1<2	unknown	elab-addition	elaboration
 Thesauri and ontologies provide important value	by representing underlying principles of organization .	1<2	unknown	manner-means	mode
@@ -2147,8 +2147,8 @@ This paper describes a study of the patterns of translational equivalence	exhibi
 The study found	that the complexity of these patterns in every bitext was higher	1>2	unknown	attribution	attribution
 This paper describes a study of the patterns of translational equivalence	that the complexity of these patterns in every bitext was higher	1<2	unknown	elab-aspect	elaboration
 that the complexity of these patterns in every bitext was higher	than suggested in the literature .	1<2	unknown	comparison	concession
-This paper describes a study of the patterns of translational equivalence	These findings shed new light on why " syntactic " constraints have not helped to improve statistical translation models ,	1<2	unknown	elab-aspect	elaboration
-These findings shed new light on why " syntactic " constraints have not helped to improve statistical translation models ,	including finitestate phrase-based models , tree-to-string models , and tree-to-tree models .	1<2	unknown	elab-example	elaboration
+This paper describes a study of the patterns of translational equivalence	"These findings shed new light on why "" syntactic "" constraints have not helped to improve statistical translation models ,"	1<2	unknown	elab-aspect	elaboration
+"These findings shed new light on why "" syntactic "" constraints have not helped to improve statistical translation models ,"	including finitestate phrase-based models , tree-to-string models , and tree-to-tree models .	1<2	unknown	elab-example	elaboration
 This paper describes a study of the patterns of translational equivalence	The paper also presents evidence	1<2	unknown	elab-aspect	elaboration
 The paper also presents evidence	that inversion transduction grammars cannot generate some translational equivalence relations ,	1<2	unknown	elab-addition	elaboration
 that inversion transduction grammars cannot generate some translational equivalence relations ,	even in relatively simple real bitexts in syntactically similar languages with rigid word order .	1<2	unknown	contrast	contrast
@@ -2709,8 +2709,8 @@ In this work , we reintroduce sparsity to GPU parsing	Moreover , our approach al
 Moreover , our approach allows us to efficiently implement less GPU-friendly minimum Bayes risk inference ,	improving throughput for this more accurate algorithm from only 32 sentences per second unpruned to over 190 sentences per second	1<2	unknown	elab-addition	elaboration
 improving throughput for this more accurate algorithm from only 32 sentences per second unpruned to over 190 sentences per second	using pruning nearly a 6x speedup .	1<2	unknown	manner-means	mode
 This paper presents the first dependency model for a shift-reduce CCG parser .	Modelling dependencies is desirable for a number of reasons ,	1<2	unknown	bg-goal	frame
-Modelling dependencies is desirable for a number of reasons ,	including handling the " spurious " ambiguity of CCG ;	1<2	unknown	elab-enumember	elaboration
-including handling the " spurious " ambiguity of CCG ;	fitting well with the theory of CCG ;	1<2	unknown	joint	conjunction
+Modelling dependencies is desirable for a number of reasons ,	"including handling the "" spurious "" ambiguity of CCG ;"	1<2	unknown	elab-enumember	elaboration
+"including handling the "" spurious "" ambiguity of CCG ;"	fitting well with the theory of CCG ;	1<2	unknown	joint	conjunction
 fitting well with the theory of CCG ;	and optimizing for structures	1<2	unknown	joint	conjunction
 and optimizing for structures	which are evaluated at test time .	1<2	unknown	elab-addition	elaboration
 This paper presents the first dependency model for a shift-reduce CCG parser .	We develop a novel training technique	1<2	unknown	elab-aspect	elaboration
@@ -2783,10 +2783,10 @@ that the system can correctly answer almost 70 % of the questions in the dataset
 Inspired by experimental psychological findings	we make a simple modification to an Adaptor Grammar based Bayesian word segmentation model	1>2	unknown	bg-general	frame
 suggesting	that function words play a special role in word learning ,	1>2	unknown	attribution	attribution
 Inspired by experimental psychological findings	that function words play a special role in word learning ,	1<2	unknown	elab-addition	elaboration
-we make a simple modification to an Adaptor Grammar based Bayesian word segmentation model	to allow it to learn sequences of monosyllabic "function words" at the beginnings and endings of collocations of ( possibly multi-syllabic ) words .	1<2	unknown	enablement	purpose
+we make a simple modification to an Adaptor Grammar based Bayesian word segmentation model	"to allow it to learn sequences of monosyllabic ""function words"" at the beginnings and endings of collocations of ( possibly multi-syllabic ) words ."	1<2	unknown	enablement	purpose
 we make a simple modification to an Adaptor Grammar based Bayesian word segmentation model	This modification improves unsupervised word segmentation on the standard Bernstein-Ratner ( 1987 ) corpus of child-directed English by more than 4 % token f-score	1<2	unknown	evaluation	comment
 This modification improves unsupervised word segmentation on the standard Bernstein-Ratner ( 1987 ) corpus of child-directed English by more than 4 % token f-score	compared to a model identical	1<2	unknown	comparison	concession
-compared to a model identical	except that it does not special-case "function words" ,	1<2	unknown	elab-addition	elaboration
+compared to a model identical	"except that it does not special-case ""function words"" ,"	1<2	unknown	elab-addition	elaboration
 This modification improves unsupervised word segmentation on the standard Bernstein-Ratner ( 1987 ) corpus of child-directed English by more than 4 % token f-score	setting a new state-of-the-art of 92.4 % token f-score .	1<2	unknown	cause	causal
 Our function word model assumes	that function words appear at the left periphery ,	1>2	unknown	attribution	attribution
 we make a simple modification to an Adaptor Grammar based Bayesian word segmentation model	that function words appear at the left periphery ,	1<2	unknown	elab-aspect	elaboration
@@ -2964,8 +2964,8 @@ Experiments on Automatic Content Extraction ( ACE ) corpora demonstrate	that our
 We present an incremental joint framework	that our joint model significantly outperforms a strong pipelined baseline ,	1<2	unknown	evaluation	comment
 that our joint model significantly outperforms a strong pipelined baseline ,	which attains better performance than the best-reported end-to-end system .	1<2	unknown	elab-addition	elaboration
 We investigate whether parsers can be used for self-monitoring in surface realization	in order to avoid egregious errors	1<2	unknown	manner-means	mode
-in order to avoid egregious errors	involving "vicious" ambiguities ,	1<2	unknown	elab-addition	elaboration
-involving "vicious" ambiguities ,	namely those	1<2	unknown	elab-definition	elaboration
+in order to avoid egregious errors	"involving ""vicious"" ambiguities ,"	1<2	unknown	elab-addition	elaboration
+"involving ""vicious"" ambiguities ,"	namely those	1<2	unknown	elab-definition	elaboration
 namely those	where the intended interpretation fails to be considerably more likely than alternative ones .	1<2	unknown	elab-addition	elaboration
 Using parse accuracy in a simple reranking strategy for selfmonitoring ,	we find	1>2	unknown	manner-means	mode
 we find	BLEU scores cannot be improved	1>2	unknown	attribution	attribution
@@ -3171,8 +3171,8 @@ for increasing retention in adult lexical learning	through reading .	1<2	unknown
 We propose a probabilistic approach	Our model	1<2	unknown	elab-aspect	elaboration
 Our model	that takes as input a bilingual dictionary and an English text ,	1<2	unknown	elab-addition	elaboration
 that takes as input a bilingual dictionary and an English text ,	and generates a code-switched text	1<2	unknown	joint	conjunction
-and generates a code-switched text	that optimizes a defined " learnability " metric	1<2	unknown	elab-addition	elaboration
-that optimizes a defined " learnability " metric	by constructing a factor graph over lexical mentions .	1<2	unknown	manner-means	mode
+and generates a code-switched text	"that optimizes a defined "" learnability "" metric"	1<2	unknown	elab-addition	elaboration
+"that optimizes a defined "" learnability "" metric"	by constructing a factor graph over lexical mentions .	1<2	unknown	manner-means	mode
 Using an artificial language vocabulary ,	we evaluate a set of algorithms	1>2	unknown	manner-means	mode
 We propose a probabilistic approach	we evaluate a set of algorithms	1<2	unknown	evaluation	comment
 we evaluate a set of algorithms	for generating code-switched text automatically	1<2	unknown	elab-addition	elaboration
@@ -3713,7 +3713,7 @@ We also generated a scenario deforestation continues→global warming worsens→
 which is written in no document in our input web corpus	crawled in 2007 .	1<2	unknown	elab-addition	elaboration
 We also generated a scenario deforestation continues→global warming worsens→sea temperatures rise→vibrio parahaemolyticus fouls (water) ,	But the vibrio risk <*> was observed in Baker-Austin et al. ( 2013 ) .	1<2	unknown	evaluation	comment
 But the vibrio risk <*> was observed in Baker-Austin et al. ( 2013 ) .	due to global warming	1<2	unknown	exp-reason	explanation
-But the vibrio risk <*> was observed in Baker-Austin et al. ( 2013 ) .	Thus, we " predicted " the future event sequence in a sense .	1<2	unknown	summary	organization
+But the vibrio risk <*> was observed in Baker-Austin et al. ( 2013 ) .	"Thus, we "" predicted "" the future event sequence in a sense ."	1<2	unknown	summary	organization
 Cross-narrative temporal ordering of medical events is essential to the task	We address the problem of aligning multiple medical event sequences ,	1>2	unknown	bg-goal	frame
 Cross-narrative temporal ordering of medical events is essential to the task	of generating a comprehensive timeline over a patient's history .	1<2	unknown	elab-addition	elaboration
 We address the problem of aligning multiple medical event sequences ,	corresponding to different clinical narratives ,	1<2	unknown	bg-general	frame
@@ -3803,7 +3803,7 @@ Our approach is grammar-less -	we directly learn the bracketing structure of a g
 we directly learn the bracketing structure of a given sentence	without using a grammar model .	1<2	unknown	manner-means	mode
 We propose a spectral approach for unsupervised constituent parsing	The main algorithm is based on lifting the concept of additive tree metrics for structure learning of latent trees in the phylogenetic and machine learning communities to the case	1<2	unknown	elab-aspect	elaboration
 The main algorithm is based on lifting the concept of additive tree metrics for structure learning of latent trees in the phylogenetic and machine learning communities to the case	where the tree structure varies across examples .	1<2	unknown	elab-addition	elaboration
-Although finding the "minimal" latent tree is NP-hard in general ,	that it can be found	1>2	unknown	contrast	contrast
+"Although finding the ""minimal"" latent tree is NP-hard in general ,"	that it can be found	1>2	unknown	contrast	contrast
 for the case of projective trees we find	that it can be found	1>2	unknown	attribution	attribution
 We propose a spectral approach for unsupervised constituent parsing	that it can be found	1<2	unknown	elab-aspect	elaboration
 that it can be found	using bilexical parsing algorithms .	1<2	unknown	manner-means	mode
@@ -5216,9 +5216,9 @@ Second , since GPSG has weak context-free generative power	GPSG parsers would ap
 Second , since GPSG has weak context-free generative power	and context-free languages can be parsed in O(n)	1<2	unknown	joint	conjunction
 and context-free languages can be parsed in O(n)	by a wide range of algorithms ,	1<2	unknown	manner-means	mode
 At first glance , generalized phrase structure grammar ( GPSG ) appears to be a blessing on two counts .	GPSG parsers would appear to run in polynomial time .	1<2	unknown	elab-enumember	elaboration
-At first glance , generalized phrase structure grammar ( GPSG ) appears to be a blessing on two counts .	This widely-assumed GPSG " efficient parsability " result is misleading :	1<2	unknown	elab-addition	elaboration
+At first glance , generalized phrase structure grammar ( GPSG ) appears to be a blessing on two counts .	"This widely-assumed GPSG "" efficient parsability "" result is misleading :"	1<2	unknown	elab-addition	elaboration
 here we prove	that the universal recognition problem for current GPSG theory is exponential-polynomial time hard , and assuredly intractable .	1>2	unknown	attribution	attribution
-This widely-assumed GPSG " efficient parsability " result is misleading :	that the universal recognition problem for current GPSG theory is exponential-polynomial time hard , and assuredly intractable .	1<2	unknown	elab-addition	elaboration
+"This widely-assumed GPSG "" efficient parsability "" result is misleading :"	that the universal recognition problem for current GPSG theory is exponential-polynomial time hard , and assuredly intractable .	1<2	unknown	elab-addition	elaboration
 The paper pinpoints sources of complexity	( e.g. metarules and the theory of syntactic features )	1<2	unknown	elab-example	elaboration
 The paper pinpoints sources of complexity	in the current GPSG theory	1<2	unknown	elab-addition	elaboration
 The paper pinpoints sources of complexity	and concludes with some linguistically and computationally motivated restrictions on GPSG .	1<2	unknown	joint	conjunction
@@ -5230,7 +5230,7 @@ that natural-language problems may have a special structure	it may be possible t
 that natural-language problems may have a special structure	-- not shared with SAT --	1<2	unknown	elab-addition	elaboration
 that natural-language problems may have a special structure	that is not directly captured in the two-level model .	1<2	unknown	elab-addition	elaboration
 that natural-language problems may have a special structure	In particular , the natural problems may generally have a modular and local nature	1<2	unknown	elab-aspect	elaboration
-In particular , the natural problems may generally have a modular and local nature	that distinguishes them from more " global " SAT problems .	1<2	unknown	elab-addition	elaboration
+In particular , the natural problems may generally have a modular and local nature	"that distinguishes them from more "" global "" SAT problems ."	1<2	unknown	elab-addition	elaboration
 By exploiting this structure ,	it may be possible to solve the natural problems by methods	1>2	unknown	manner-means	mode
 it may be possible to solve the natural problems by methods	that do not involve combinatorial search .	1<2	unknown	elab-addition	elaboration
 it may be possible to solve the natural problems by methods	We have explored this possibility in a preliminary way	1<2	unknown	elab-aspect	elaboration
@@ -5240,13 +5240,13 @@ Constraint propagation can succeed	when the solution falls into place step-by-st
 it may be possible to solve the natural problems by methods	but it is insufficiently powerful to solve unnaturally hard SAT problems .	1<2	unknown	elab-aspect	elaboration
 Limited tests indicate	that the constraint-propagation algorithm for Kimmo generation works for English , Turkish , and Warlpiri .	1>2	unknown	attribution	attribution
 it may be possible to solve the natural problems by methods	that the constraint-propagation algorithm for Kimmo generation works for English , Turkish , and Warlpiri .	1<2	unknown	elab-aspect	elaboration
-When applied to a Kimmo system	the algorithm succeeds on " easy " SAT problems	1>2	unknown	result	causal
+When applied to a Kimmo system	"the algorithm succeeds on "" easy "" SAT problems"	1>2	unknown	result	causal
 When applied to a Kimmo system	that encodes SAT problems ,	1<2	unknown	elab-addition	elaboration
-it may be possible to solve the natural problems by methods	the algorithm succeeds on " easy " SAT problems	1<2	unknown	evaluation	comment
-the algorithm succeeds on " easy " SAT problems	but fails ( as desired ) on " hard " problems .	1<2	unknown	contrast	contrast
+it may be possible to solve the natural problems by methods	"the algorithm succeeds on "" easy "" SAT problems"	1<2	unknown	evaluation	comment
+"the algorithm succeeds on "" easy "" SAT problems"	"but fails ( as desired ) on "" hard "" problems ."	1<2	unknown	contrast	contrast
 Morphological analysis must take into account the spelling-change processes of a language as well as its possible configurations of stems , affixes , and inflectional markings .	The computational difficulty of the task can be clarified	1>2	unknown	bg-goal	frame
 The computational difficulty of the task can be clarified	by investigating specific models of morphological processing .	1<2	unknown	manner-means	mode
-The use of finite-state machinery in the " twolevel " model by Kimmo Koskenniemi gives it the appearance of computational efficiency ,	the model does not guarantee efficient processing .	1>2	unknown	contrast	contrast
+"The use of finite-state machinery in the "" twolevel "" model by Kimmo Koskenniemi gives it the appearance of computational efficiency ,"	the model does not guarantee efficient processing .	1>2	unknown	contrast	contrast
 but closer examination shows	the model does not guarantee efficient processing .	1>2	unknown	attribution	attribution
 The computational difficulty of the task can be clarified	the model does not guarantee efficient processing .	1<2	unknown	evaluation	comment
 Reductions of the satisfiability problem show	that finding the proper lexical/surface correspondence in a two-level generation or recognition problem can be computationally difficult .	1>2	unknown	attribution	attribution
@@ -5362,7 +5362,7 @@ We propose a mapping between prosodic phenomena and semantico-pragmatic effects	
 based upon the hypothesis	that intonation conveys information about the intentional as well as the attentional structure of discourse .	1<2	unknown	elab-addition	elaboration
 In particular , we discuss	how variations in pitch range and choice of accent and tune can help to convey such information as :	1>2	unknown	attribution	attribution
 We propose a mapping between prosodic phenomena and semantico-pragmatic effects	how variations in pitch range and choice of accent and tune can help to convey such information as :	1<2	unknown	elab-aspect	elaboration
-how variations in pitch range and choice of accent and tune can help to convey such information as :	discourse segmentation and topic structure , appropriate choice of referent , the distinction between " given " and " new " information , conceptual contrast or parallelism between mentioned items , and subordination relationships between propositions salient in the discourse .	1<2	unknown	elab-enumember	elaboration
+how variations in pitch range and choice of accent and tune can help to convey such information as :	"discourse segmentation and topic structure , appropriate choice of referent , the distinction between "" given "" and "" new "" information , conceptual contrast or parallelism between mentioned items , and subordination relationships between propositions salient in the discourse ."	1<2	unknown	elab-enumember	elaboration
 We propose a mapping between prosodic phenomena and semantico-pragmatic effects	Our goals for this research are practical as well as theoretical.	1<2	unknown	elab-aspect	elaboration
 We propose a mapping between prosodic phenomena and semantico-pragmatic effects	In particular , we are investigating the problem of intonational assignment in synthetic speech .	1<2	unknown	elab-aspect	elaboration
 While various aspects of syntactic structure have been shown to bear on the determination of phraselevel prosody ,	the text-to-speech field has lacked a robust working system	1>2	unknown	temporal	temporal
@@ -5432,9 +5432,9 @@ We describe such a representation ,	built on a standard modal logic ,	1<2	unknow
 and show	how it may be used in conjunction with a knowledge base of background assumptions	1>2	unknown	attribution	attribution
 We describe such a representation ,	how it may be used in conjunction with a knowledge base of background assumptions	1<2	unknown	joint	conjunction
 how it may be used in conjunction with a knowledge base of background assumptions	to license restricted substitution of equals in opaque contexts .	1<2	unknown	enablement	purpose
-A constraint is proposed in the Centering approach to pronoun resolution in discourse .	This " property-sharing " constraint requires that two pronominal expressions <*> share a certain common grammatical property .	1<2	unknown	elab-addition	elaboration
-This " property-sharing " constraint requires that two pronominal expressions <*> share a certain common grammatical property .	that retain the same Cb across adjacent utterances	1<2	unknown	elab-addition	elaboration
-This " property-sharing " constraint requires that two pronominal expressions <*> share a certain common grammatical property .	This property is expressed along the dimension of the grammatical function SUBJECT for both Japanese and English discourses ,	1<2	unknown	elab-aspect	elaboration
+A constraint is proposed in the Centering approach to pronoun resolution in discourse .	"This "" property-sharing "" constraint requires that two pronominal expressions <*> share a certain common grammatical property ."	1<2	unknown	elab-addition	elaboration
+"This "" property-sharing "" constraint requires that two pronominal expressions <*> share a certain common grammatical property ."	that retain the same Cb across adjacent utterances	1<2	unknown	elab-addition	elaboration
+"This "" property-sharing "" constraint requires that two pronominal expressions <*> share a certain common grammatical property ."	This property is expressed along the dimension of the grammatical function SUBJECT for both Japanese and English discourses ,	1<2	unknown	elab-aspect	elaboration
 This property is expressed along the dimension of the grammatical function SUBJECT for both Japanese and English discourses ,	where different pronominal forms are primarily used	1<2	unknown	elab-addition	elaboration
 where different pronominal forms are primarily used	to realize the Cb .	1<2	unknown	enablement	purpose
 This property is expressed along the dimension of the grammatical function SUBJECT for both Japanese and English discourses ,	It is the zero pronominal in Japanese , and the ( unstressed ) overt pronoun in English .	1<2	unknown	elab-addition	elaboration
@@ -5445,7 +5445,7 @@ The resulting constraint complements the original Centering ,	It also provides a
 It also provides an alternative account of anaphora interpretation	that appears to be due to structural parallelism .	1<2	unknown	elab-addition	elaboration
 The resulting constraint complements the original Centering ,	This reconciliation of centering/focusing and parallelism is a major advantage .	1<2	unknown	elab-aspect	elaboration
 A constraint is proposed in the Centering approach to pronoun resolution in discourse .	I will then add another dimension <*> to the constraint	1<2	unknown	elab-aspect	elaboration
-I will then add another dimension <*> to the constraint	called the " speaker identification "	1<2	unknown	elab-addition	elaboration
+I will then add another dimension <*> to the constraint	"called the "" speaker identification """	1<2	unknown	elab-addition	elaboration
 I will then add another dimension <*> to the constraint	to handle a group of special eases in Japanese discourse .	1<2	unknown	enablement	purpose
 I will then add another dimension <*> to the constraint	It indicates a close association between centering and the speaker 's viewpoint ,	1<2	unknown	elab-aspect	elaboration
 It indicates a close association between centering and the speaker 's viewpoint ,	and sheds light on what underlies the effect of perception reports on pronoun resolution in general.	1<2	unknown	joint	conjunction
@@ -5741,8 +5741,8 @@ Its formalization comprises two parts	which are conceptually independent .	1<2	u
 We propose a treatment of coordination	On one hand , we have extended the feature structure unification	1<2	unknown	elab-aspect	elaboration
 On one hand , we have extended the feature structure unification	to disjunctive and set values	1<2	unknown	enablement	purpose
 to disjunctive and set values	in order to check the compatibility and the satisfiability of subcategorization requirements by structured complements .	1<2	unknown	enablement	purpose
-We propose a treatment of coordination	On the other hand , we have considered the conjunction " et " ( and ) as the head of the coordinate structure ,	1<2	unknown	elab-aspect	elaboration
-On the other hand , we have considered the conjunction " et " ( and ) as the head of the coordinate structure ,	so that coordinate structures stem simply from the subcategorization specifications of et and the general schemata of a head saturation .	1<2	unknown	enablement	purpose
+We propose a treatment of coordination	"On the other hand , we have considered the conjunction "" et "" ( and ) as the head of the coordinate structure ,"	1<2	unknown	elab-aspect	elaboration
+"On the other hand , we have considered the conjunction "" et "" ( and ) as the head of the coordinate structure ,"	so that coordinate structures stem simply from the subcategorization specifications of et and the general schemata of a head saturation .	1<2	unknown	enablement	purpose
 We propose a treatment of coordination	Both parts have been encoded within HPSG	1<2	unknown	elab-aspect	elaboration
 Both parts have been encoded within HPSG	using the same resource	1<2	unknown	manner-means	mode
 using the same resource	that is the subcategorization and its principle	1<2	unknown	elab-addition	elaboration
@@ -5786,9 +5786,9 @@ Our preliminary experiment shows	that the alternating procedure not only improve
 We present an iterative procedure	that the alternating procedure not only improves the accuracy of our segmentation ,	1<2	unknown	evaluation	comment
 that the alternating procedure not only improves the accuracy of our segmentation ,	but discovers unseen words surprisingly well .	1<2	unknown	joint	conjunction
 that the alternating procedure not only improves the accuracy of our segmentation ,	The resulting word-based LM has a perplexity of 188 for a general Chinese corpus .	1<2	unknown	exp-evidence	explanation
-This paper proposes the use of " patternbased " context-free grammars as a basis	for building machine translation ( MT ) systems ,	1<2	unknown	enablement	purpose
+"This paper proposes the use of "" patternbased "" context-free grammars as a basis"	for building machine translation ( MT ) systems ,	1<2	unknown	enablement	purpose
 for building machine translation ( MT ) systems ,	which are now being adopted as personal tools by a broad range of users in the cyberspace society .	1<2	unknown	elab-addition	elaboration
-This paper proposes the use of " patternbased " context-free grammars as a basis	We discuss major requirements for such tools ,	1<2	unknown	elab-aspect	elaboration
+"This paper proposes the use of "" patternbased "" context-free grammars as a basis"	We discuss major requirements for such tools ,	1<2	unknown	elab-aspect	elaboration
 We discuss major requirements for such tools ,	including easy customization for diverse domains , the efficiency of the translation algorithm , and scalability ( incremental improvement in translation quality through user interaction ) ,	1<2	unknown	elab-enumember	elaboration
 and describe	how our approach meets these requirements .	1>2	unknown	attribution	attribution
 We discuss major requirements for such tools ,	how our approach meets these requirements .	1<2	unknown	joint	conjunction
@@ -5807,7 +5807,7 @@ We present a language model	consisting of a collection of costed bidirectional f
 consisting of a collection of costed bidirectional finite state automata	associated with the head words of phrases .	1<2	unknown	elab-addition	elaboration
 We present a language model	The model is suitable for incremental application of lexical associations in a dynamic programming search for optimal dependency tree derivations .	1<2	unknown	elab-addition	elaboration
 We present a language model	We also present a model and algorithm for machine translation	1<2	unknown	joint	conjunction
-We also present a model and algorithm for machine translation	involving optimal " tiling " of a dependency tree with entries of a costed bilingual lexicon .	1<2	unknown	elab-addition	elaboration
+We also present a model and algorithm for machine translation	"involving optimal "" tiling "" of a dependency tree with entries of a costed bilingual lexicon ."	1<2	unknown	elab-addition	elaboration
 Experimental results are reported	We conclude with a discussion of the adequacy of annotated linguistic strings as representations for machine translation .	1>2	unknown	result	causal
 Experimental results are reported	comparing methods	1<2	unknown	elab-addition	elaboration
 comparing methods	for assigning cost functions	1<2	unknown	enablement	purpose
@@ -5821,10 +5821,10 @@ However , most parsing algorithms ,	including the Viterbi algorithm ,	1<2	unknow
 <*> However , most parsing algorithms , <*> attempt to optimize the same metric , namely the probability	of getting the correct labelled tree .	1<2	unknown	elab-addition	elaboration
 By choosing a parsing algorithm appropriate for the evaluation metric ,	better performance can be achieved .	1>2	unknown	manner-means	mode
 better performance can be achieved .	We present two new algorithms :	1>2	unknown	exp-reason	explanation
-We present two new algorithms :	the " Labelled Recall Algorithm , "	1<2	unknown	elab-addition	elaboration
-the " Labelled Recall Algorithm , "	which maximizes the expected Labelled Recall Rate ,	1<2	unknown	elab-addition	elaboration
-the " Labelled Recall Algorithm , "	and the " Bracketed Recall Algorithm , "	1<2	unknown	joint	conjunction
-and the " Bracketed Recall Algorithm , "	which maximizes the Bracketed Recall Rate .	1<2	unknown	elab-addition	elaboration
+We present two new algorithms :	"the "" Labelled Recall Algorithm , """	1<2	unknown	elab-addition	elaboration
+"the "" Labelled Recall Algorithm , """	which maximizes the expected Labelled Recall Rate ,	1<2	unknown	elab-addition	elaboration
+"the "" Labelled Recall Algorithm , """	"and the "" Bracketed Recall Algorithm , """	1<2	unknown	joint	conjunction
+"and the "" Bracketed Recall Algorithm , """	which maximizes the Bracketed Recall Rate .	1<2	unknown	elab-addition	elaboration
 We present two new algorithms :	Experimental results are given ,	1<2	unknown	evaluation	comment
 Experimental results are given ,	showing that the two new algorithms have improved performance over the Viterbi algorithm on many criteria , especially the ones	1<2	unknown	elab-addition	elaboration
 showing that the two new algorithms have improved performance over the Viterbi algorithm on many criteria , especially the ones	that they optimize .	1<2	unknown	elab-addition	elaboration

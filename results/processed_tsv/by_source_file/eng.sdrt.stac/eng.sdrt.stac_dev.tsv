@@ -2,19 +2,19 @@ unit1_txt	unit2_txt	dir	rel_type	orig_label	label
 do we start	No	1>2	unknown	Question_answer_pair	query
 do we start	Not yet	1>2	unknown	Question_answer_pair	query
 do we start	do we start playing	1>2	unknown	Elaboration	elaboration
-No	Press "sit down" though	1>2	unknown	Contrast	contrast
+No	"Press ""sit down"" though"	1>2	unknown	Contrast	contrast
 Not yet	Wait for the 4th persion	1>2	unknown	Explanation	explanation
-Press "sit down" though	When everyone has sat down	1<2	unknown	Conditional	condition
+"Press ""sit down"" though"	When everyone has sat down	1<2	unknown	Conditional	condition
 Who have we lost?	kittles	1>2	unknown	Question_answer_pair	query
 Who have we lost?	anyone????	1>2	unknown	Clarification_question	query
 kittles	Are you here Kittles?	1>2	unknown	Clarification_question	query
 kittles	OK,	1>2	unknown	Acknowledgement	query
 OK,	I'll try to send an email.	1>2	unknown	Result	causal
 Are you here Kittles?	anyone????	1>2	unknown	Clarification_question	query
-anyone????	Press the "sit here" button in the lower right of the screen	1>2	unknown	Question_answer_pair	query
+anyone????	"Press the ""sit here"" button in the lower right of the screen"	1>2	unknown	Question_answer_pair	query
 anyone????	?	1>2	unknown	Clarification_question	query
 anyone????	Ah, yes,	1>2	unknown	Question_answer_pair	query
-Press the "sit here" button in the lower right of the screen	OK,	1>2	unknown	Acknowledgement	query
+"Press the ""sit here"" button in the lower right of the screen"	OK,	1>2	unknown	Acknowledgement	query
 Ah, yes,	please sit down!	1>2	unknown	Continuation	conjunction
 OK,	I'm not entirey sure the sequence was right,	1>2	unknown	Continuation	conjunction
 I'm not entirey sure the sequence was right,	but let's try anyway.	1>2	unknown	Contrast	contrast
@@ -69,7 +69,7 @@ hahaha sorry	haha	1>2	unknown	Comment	comment
 hahaha sorry	haha	1>2	unknown	Acknowledgement	query
 Apologies	It's all, good,	1>2	unknown	Acknowledgement	query
 Apologies	Remember that the easiest way to play is to negotiate trades!	1>2	unknown	Continuation	conjunction
-Press "sit down" though	Who have we lost?	1>2	unknown	Clarification_question	query
+"Press ""sit down"" though"	Who have we lost?	1>2	unknown	Clarification_question	query
 Thank you!	You too!	1>2	unknown	Parallel	conjunction
 You too!	Is it stuck?	1>2	unknown	Clarification_question	query
 Is it stuck?	Sorry guys,	1>2	unknown	Explanation	explanation
@@ -465,12 +465,12 @@ damn, didn't mean that...	oh well	1>2	unknown	Comment	comment
 thought you were being kind!	Indeed. :P	1>2	unknown	Acknowledgement	query
 damn, didn't mean that...	thought you were being kind!	1>2	unknown	Comment	comment
 I've just had an e-mail	back from yiin	1>2	unknown	Elaboration	elaboration
-"ehh sry	i lost track of time"	1>2	unknown	Explanation	explanation
+"""ehh sry"	"i lost track of time"""	1>2	unknown	Explanation	explanation
 ...	grrr	1>2	unknown	Continuation	conjunction
-"ehh sry	very helpful	1>2	unknown	Comment	comment
-"ehh sry	...	1>2	unknown	Comment	comment
+"""ehh sry"	very helpful	1>2	unknown	Comment	comment
+"""ehh sry"	...	1>2	unknown	Comment	comment
 I've just had an e-mail	what did he say?	1>2	unknown	Clarification_question	query
-I've just had an e-mail	"ehh sry	1>2	unknown	Elaboration	elaboration
+I've just had an e-mail	"""ehh sry"	1>2	unknown	Elaboration	elaboration
 should we start the real game with yiin?	or is it getting too late for you guys?	1>2	unknown	Alternation	alternation
 or is it getting too late for you guys?	i totally understand	1>2	unknown	Background	frame
 or is it getting too late for you guys?	it is a bit,	1>2	unknown	Question_answer_pair	query

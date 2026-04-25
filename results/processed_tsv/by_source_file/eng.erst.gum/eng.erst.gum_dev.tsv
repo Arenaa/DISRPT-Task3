@@ -187,8 +187,8 @@ Byron received his early formal education at Aberdeen Grammar School ,	and in Au
 Byron received his early formal education at Aberdeen Grammar School ,	[ 17 ]	1<2	implicit	explanation-evidence	explanation
 Placed under the care of a Dr. Bailey ,	he was encouraged to exercise in moderation	1>2	implicit	context-circumstance	temporal
 Byron received his early formal education at Aberdeen Grammar School ,	he was encouraged to exercise in moderation	1<2	implicit	elaboration-additional	elaboration
-he was encouraged to exercise in moderation	but not restrain himself from " violent " bouts in an attempt	1<2	explicit	adversative-contrast	contrast
-but not restrain himself from " violent " bouts in an attempt	to overcompensate for his deformed foot .	1<2	implicit	purpose-attribute	purpose
+he was encouraged to exercise in moderation	"but not restrain himself from "" violent "" bouts in an attempt"	1<2	explicit	adversative-contrast	contrast
+"but not restrain himself from "" violent "" bouts in an attempt"	to overcompensate for his deformed foot .	1<2	implicit	purpose-attribute	purpose
 he was encouraged to exercise in moderation	His mother interfered with his studies ,	1<2	implicit	joint-other	conjunction
 His mother interfered with his studies ,	often withdrawing him from school ,	1<2	implicit	elaboration-additional	elaboration
 often withdrawing him from school ,	with the result	1<2	implicit	causal-result	causal
@@ -207,29 +207,29 @@ whom he met	while at school ,	1<2	explicit	context-circumstance	temporal
 Byron fell in love with Mary Chaworth ,	[ 6 ]	1<2	implicit	explanation-evidence	explanation
 and she was the reason	he refused to return to Harrow in September 1803 .	1>2	implicit	causal-cause	causal
 Byron fell in love with Mary Chaworth ,	he refused to return to Harrow in September 1803 .	1<2	explicit	causal-result	causal
-His mother wrote ,	" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion .	1>2	implicit	attribution-positive	attribution
-Byron fell in love with Mary Chaworth ,	" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion .	1<2	implicit	explanation-evidence	explanation
-" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion .	that I know of	1<2	implicit	adversative-concession	concession
-" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion .	In short , the boy is distractedly in love with Miss Chaworth . "	1<2	explicit	restatement-partial	reformulation
-" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion .	[ 6 ]	1<2	implicit	explanation-evidence	explanation
-" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion .	In Byron 's later memoirs , " Mary Chaworth is portrayed as the first object of his adult sexual feelings . "	1<2	implicit	joint-other	conjunction
-In Byron 's later memoirs , " Mary Chaworth is portrayed as the first object of his adult sexual feelings . "	[ 20 ]	1<2	implicit	explanation-evidence	explanation
+His mother wrote ,	""" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion ."	1>2	implicit	attribution-positive	attribution
+Byron fell in love with Mary Chaworth ,	""" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion ."	1<2	implicit	explanation-evidence	explanation
+""" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion ."	that I know of	1<2	implicit	adversative-concession	concession
+""" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion ."	"In short , the boy is distractedly in love with Miss Chaworth . """	1<2	explicit	restatement-partial	reformulation
+""" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion ."	[ 6 ]	1<2	implicit	explanation-evidence	explanation
+""" He has no indisposition <*> but love , desperate love , the worst of all maladies in my opinion ."	"In Byron 's later memoirs , "" Mary Chaworth is portrayed as the first object of his adult sexual feelings . """	1<2	implicit	joint-other	conjunction
+"In Byron 's later memoirs , "" Mary Chaworth is portrayed as the first object of his adult sexual feelings . """	[ 20 ]	1<2	implicit	explanation-evidence	explanation
 Byron received his early formal education at Aberdeen Grammar School ,	Byron finally returned in January 1804 , <*> to a more settled period	1<2	implicit	joint-sequence	temporal
 Byron finally returned in January 1804 , <*> to a more settled period	[ 6 ]	1<2	implicit	explanation-evidence	explanation
 Byron finally returned in January 1804 , <*> to a more settled period	which saw the formation of a circle of emotional involvements with other Harrow boys ,	1<2	implicit	elaboration-attribute	elaboration
 which saw the formation of a circle of emotional involvements with other Harrow boys ,	which he recalled with great vividness :	1<2	implicit	elaboration-attribute	elaboration
-which he recalled with great vividness :	" My school friendships were with me passions	1<2	implicit	explanation-evidence	explanation
-" My school friendships were with me passions	( for I was always violent ) . "	1<2	explicit	causal-cause	causal
-" My school friendships were with me passions	[ 21 ]	1<2	implicit	explanation-evidence	explanation
+which he recalled with great vividness :	""" My school friendships were with me passions"	1<2	implicit	explanation-evidence	explanation
+""" My school friendships were with me passions"	"( for I was always violent ) . """	1<2	explicit	causal-cause	causal
+""" My school friendships were with me passions"	[ 21 ]	1<2	implicit	explanation-evidence	explanation
 Byron finally returned in January 1804 , <*> to a more settled period	The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	1<2	implicit	elaboration-additional	elaboration
 The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	— four years Byron 's junior —	1<2	implicit	elaboration-attribute	elaboration
 The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	whom he was to meet unexpectedly many years later in Italy	1<2	implicit	elaboration-attribute	elaboration
 whom he was to meet unexpectedly many years later in Italy	( 1821 ) .	1<2	implicit	context-circumstance	temporal
 The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	[ 22 ]	1<2	implicit	explanation-evidence	explanation
-The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient " consciousness of sexual differences	1<2	implicit	joint-list	conjunction
-His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient " consciousness of sexual differences	( 1806 ) ,	1<2	implicit	context-circumstance	temporal
-His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient " consciousness of sexual differences	that may in the end make England untenable to him . "	1<2	implicit	causal-result	causal
-His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient " consciousness of sexual differences	[ 23 ]	1<2	implicit	explanation-evidence	explanation
+The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	"His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient "" consciousness of sexual differences"	1<2	implicit	joint-list	conjunction
+"His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient "" consciousness of sexual differences"	( 1806 ) ,	1<2	implicit	context-circumstance	temporal
+"His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient "" consciousness of sexual differences"	"that may in the end make England untenable to him . """	1<2	implicit	causal-result	causal
+"His nostalgic poems about his Harrow friendships , Childish Recollections <*> express a prescient "" consciousness of sexual differences"	[ 23 ]	1<2	implicit	explanation-evidence	explanation
 The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	Letters to Byron in the John Murray archive contain evidence of a previously unremarked <*> romantic relationship with a younger boy at Harrow , John Thomas Claridge .	1<2	implicit	joint-list	conjunction
 Letters to Byron in the John Murray archive contain evidence of a previously unremarked <*> romantic relationship with a younger boy at Harrow , John Thomas Claridge .	if short - lived	1<2	explicit	adversative-concession	concession
 The most enduring of those was with John FitzGibbon , 2nd Earl of Clare	John FitzGibbon , 2nd Earl of Clare	1<2	implicit	context-background	frame
@@ -242,21 +242,21 @@ Sure some stronger impulse vibrates here ,	who thus for kindred hearts must roam
 The following autumn , he went up to Trinity College , Cambridge ,	where he met and formed a close friendship with the younger John Edleston .	1>2	implicit	context-circumstance	temporal
 The following autumn , he went up to Trinity College , Cambridge ,	[ 24 ]	1<2	implicit	explanation-evidence	explanation
 Byron received his early formal education at Aberdeen Grammar School ,	where he met and formed a close friendship with the younger John Edleston .	1<2	implicit	joint-sequence	temporal
-About his " protégé " he wrote ,	" He has been my almost constant associate since October , 1805 ,	1>2	implicit	attribution-positive	attribution
-where he met and formed a close friendship with the younger John Edleston .	" He has been my almost constant associate since October , 1805 ,	1<2	implicit	elaboration-additional	elaboration
-" He has been my almost constant associate since October , 1805 ,	when I entered Trinity College .	1<2	explicit	context-circumstance	temporal
-" He has been my almost constant associate since October , 1805 ,	His voice first attracted my attention ,	1<2	implicit	joint-list	conjunction
-" He has been my almost constant associate since October , 1805 ,	his countenance fixed it ,	1<2	implicit	joint-list	conjunction
-" He has been my almost constant associate since October , 1805 ,	and his manners attached me to him for ever . "	1<2	explicit	joint-list	conjunction
-" He has been my almost constant associate since October , 1805 ,	In his memory Byron composed Thyrza , a series of elegies .	1<2	implicit	elaboration-additional	elaboration
+"About his "" protégé "" he wrote ,"	""" He has been my almost constant associate since October , 1805 ,"	1>2	implicit	attribution-positive	attribution
+where he met and formed a close friendship with the younger John Edleston .	""" He has been my almost constant associate since October , 1805 ,"	1<2	implicit	elaboration-additional	elaboration
+""" He has been my almost constant associate since October , 1805 ,"	when I entered Trinity College .	1<2	explicit	context-circumstance	temporal
+""" He has been my almost constant associate since October , 1805 ,"	His voice first attracted my attention ,	1<2	implicit	joint-list	conjunction
+""" He has been my almost constant associate since October , 1805 ,"	his countenance fixed it ,	1<2	implicit	joint-list	conjunction
+""" He has been my almost constant associate since October , 1805 ,"	"and his manners attached me to him for ever . """	1<2	explicit	joint-list	conjunction
+""" He has been my almost constant associate since October , 1805 ,"	In his memory Byron composed Thyrza , a series of elegies .	1<2	implicit	elaboration-additional	elaboration
 In his memory Byron composed Thyrza , a series of elegies .	[ 25 ]	1<2	implicit	explanation-evidence	explanation
-In his memory Byron composed Thyrza , a series of elegies .	In later years , he described the affair as " a violent , though pure love and passion " .	1<2	implicit	joint-sequence	temporal
-In later years , he described the affair as " a violent , though pure love and passion " .	This statement , however , needs to be read in the context of hardening public attitudes toward homosexuality in England and the severe sanctions <*> against convicted or even suspected offenders .	1<2	implicit	context-background	frame
+In his memory Byron composed Thyrza , a series of elegies .	"In later years , he described the affair as "" a violent , though pure love and passion "" ."	1<2	implicit	joint-sequence	temporal
+"In later years , he described the affair as "" a violent , though pure love and passion "" ."	This statement , however , needs to be read in the context of hardening public attitudes toward homosexuality in England and the severe sanctions <*> against convicted or even suspected offenders .	1<2	implicit	context-background	frame
 This statement , however , needs to be read in the context of hardening public attitudes toward homosexuality in England and the severe sanctions <*> against convicted or even suspected offenders .	( including public hanging )	1<2	implicit	elaboration-additional	elaboration
 This statement , however , needs to be read in the context of hardening public attitudes toward homosexuality in England and the severe sanctions <*> against convicted or even suspected offenders .	[ 26 ]	1<2	implicit	explanation-evidence	explanation
-In later years , he described the affair as " a violent , though pure love and passion " .	The liaison , on the other hand , may well have been " pure " out of respect for Edleston 's innocence , in contrast to the <*> more sexually overt relations experienced at Harrow School .	1<2	implicit	evaluation-comment	comment
-The liaison , on the other hand , may well have been " pure " out of respect for Edleston 's innocence , in contrast to the <*> more sexually overt relations experienced at Harrow School .	( probably )	1<2	implicit	adversative-concession	concession
-The liaison , on the other hand , may well have been " pure " out of respect for Edleston 's innocence , in contrast to the <*> more sexually overt relations experienced at Harrow School .	[ 27 ]	1<2	implicit	explanation-evidence	explanation
+"In later years , he described the affair as "" a violent , though pure love and passion "" ."	"The liaison , on the other hand , may well have been "" pure "" out of respect for Edleston 's innocence , in contrast to the <*> more sexually overt relations experienced at Harrow School ."	1<2	implicit	evaluation-comment	comment
+"The liaison , on the other hand , may well have been "" pure "" out of respect for Edleston 's innocence , in contrast to the <*> more sexually overt relations experienced at Harrow School ."	( probably )	1<2	implicit	adversative-concession	concession
+"The liaison , on the other hand , may well have been "" pure "" out of respect for Edleston 's innocence , in contrast to the <*> more sexually overt relations experienced at Harrow School ."	[ 27 ]	1<2	implicit	explanation-evidence	explanation
 Byron received his early formal education at Aberdeen Grammar School ,	Byron spent three years at Trinity College ,	1<2	implicit	joint-sequence	temporal
 Byron spent three years at Trinity College ,	engaging in sexual escapades , boxing , horse riding and gambling .	1<2	implicit	elaboration-additional	elaboration
 engaging in sexual escapades , boxing , horse riding and gambling .	[ 28 ]	1<2	implicit	explanation-evidence	explanation
@@ -269,10 +269,10 @@ he formed lifelong friendships with men such as John Cam Hobhouse , <*> and Fran
 Emperor Norton	Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	1>2	implicit	organization-heading	organization
 Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	( c. 1818 – January 8 , 1880 ) ,	1<2	implicit	elaboration-additional	elaboration
 Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	known as Emperor Norton ,	1<2	implicit	elaboration-attribute	elaboration
-Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	who in 1859 proclaimed himself " Norton I , Emperor of the United States " .	1<2	implicit	elaboration-attribute	elaboration
+Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	"who in 1859 proclaimed himself "" Norton I , Emperor of the United States "" ."	1<2	implicit	elaboration-attribute	elaboration
 Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	He later expanded his pretense	1<2	implicit	elaboration-additional	elaboration
-who in 1859 proclaimed himself " Norton I , Emperor of the United States " .	He later expanded his pretense	1<2	explicit	joint-sequence	temporal
-He later expanded his pretense	by claiming to be " Protector of Mexico " as well .	1<2	explicit	mode-means	mode
+"who in 1859 proclaimed himself "" Norton I , Emperor of the United States "" ."	He later expanded his pretense	1<2	explicit	joint-sequence	temporal
+He later expanded his pretense	"by claiming to be "" Protector of Mexico "" as well ."	1<2	explicit	mode-means	mode
 Born in England ,	Norton spent most of his early life in South Africa .	1>2	implicit	context-background	frame
 Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	Norton spent most of his early life in South Africa .	1<2	implicit	elaboration-additional	elaboration
 Norton spent most of his early life in South Africa .	After the death of his mother in 1846 and his father in 1848 , he sailed west ,	1<2	implicit	joint-sequence	temporal
@@ -299,7 +299,7 @@ citizens of San Francisco celebrated his regal presence and his proclamations , 
 calling for a bridge <*> and a corresponding tunnel to be built under San Francisco Bay .	connecting San Francisco to Oakland ,	1<2	implicit	elaboration-attribute	elaboration
 Long after his death , similar structures were built in the form of the San Francisco – Oakland Bay Bridge and the Transbay Tube ,	and there have been campaigns	1>2	implicit	context-background	frame
 citizens of San Francisco celebrated his regal presence and his proclamations , such as his order <*> and his numerous decrees	and there have been campaigns	1<2	implicit	explanation-evidence	explanation
-and there have been campaigns	to rename the bridge " The Emperor Norton Bridge " .	1<2	implicit	purpose-attribute	purpose
+and there have been campaigns	"to rename the bridge "" The Emperor Norton Bridge "" ."	1<2	implicit	purpose-attribute	purpose
 Norton spent most of his early life in South Africa .	On January 8 , 1880 , Norton collapsed at the corner of California and Dupont <*> streets	1<2	implicit	joint-other	conjunction
 On January 8 , 1880 , Norton collapsed at the corner of California and Dupont <*> streets	( now Grant )	1<2	implicit	elaboration-additional	elaboration
 On January 8 , 1880 , Norton collapsed at the corner of California and Dupont <*> streets	and died	1<2	explicit	joint-sequence	temporal
@@ -313,7 +313,7 @@ Emperor Joshua Norton , in full military regalia , circa 1880 or earlier	and dis
 By 1859 , Norton had become completely disgruntled with what he considered the inadequacies of the legal and political structures of the United States .	and distributed letters to the various newspapers in the city ,	1>2	implicit	causal-cause	causal
 On September 17 , 1859 , he took matters into his own hands	and distributed letters to the various newspapers in the city ,	1>2	implicit	context-circumstance	temporal
 Joshua Abraham Norton <*> was a citizen of San Francisco , California ,	and distributed letters to the various newspapers in the city ,	1<2	implicit	elaboration-additional	elaboration
-and distributed letters to the various newspapers in the city ,	proclaiming himself " Emperor of these United States " :	1<2	implicit	elaboration-additional	elaboration
+and distributed letters to the various newspapers in the city ,	"proclaiming himself "" Emperor of these United States "" :"	1<2	implicit	elaboration-additional	elaboration
 and distributed letters to the various newspapers in the city ,	At the peremptory request and desire of a large majority of the citizens of these United States , I , Joshua Norton , formerly of Algoa Bay , Cape of Good Hope , and now for the last 9 years and 10 months past of S. F. , Cal. , declare and proclaim myself Emperor of these U. S. ;	1<2	implicit	elaboration-additional	elaboration
 and in virtue of the authority thereby in me vested , do hereby order and direct the representatives of the different States of the Union to assemble in Musical Hall , of this city , on the 1st day of Feb. next ,	then and there to make such alterations in the existing laws of the Union	1>2	implicit	purpose-goal	purpose
 At the peremptory request and desire of a large majority of the citizens of these United States , I , Joshua Norton , formerly of Algoa Bay , Cape of Good Hope , and now for the last 9 years and 10 months past of S. F. , Cal. , declare and proclaim myself Emperor of these U. S. ;	then and there to make such alterations in the existing laws of the Union	1<2	explicit	joint-list	conjunction
@@ -322,8 +322,8 @@ as may ameliorate the evils	under which the country is laboring ,	1<2	implicit	e
 then and there to make such alterations in the existing laws of the Union	and thereby cause confidence to exist , both at home and abroad , in our stability and integrity .	1<2	explicit	causal-result	causal
 At the peremptory request and desire of a large majority of the citizens of these United States , I , Joshua Norton , formerly of Algoa Bay , Cape of Good Hope , and now for the last 9 years and 10 months past of S. F. , Cal. , declare and proclaim myself Emperor of these U. S. ;	— NORTON I , Emperor of the United States .	1<2	implicit	attribution-positive	attribution
 and distributed letters to the various newspapers in the city ,	The announcement was first reprinted for humorous effect by the editor of the San Francisco Bulletin .	1<2	implicit	elaboration-additional	elaboration
-and distributed letters to the various newspapers in the city ,	Norton would later add " Protector of Mexico " to this title .	1<2	explicit	joint-sequence	temporal
-and distributed letters to the various newspapers in the city ,	Thus commenced his unprecedented and whimsical 21 - year " reign " over America .	1<2	explicit	causal-result	causal
+and distributed letters to the various newspapers in the city ,	"Norton would later add "" Protector of Mexico "" to this title ."	1<2	explicit	joint-sequence	temporal
+and distributed letters to the various newspapers in the city ,	"Thus commenced his unprecedented and whimsical 21 - year "" reign "" over America ."	1<2	explicit	causal-result	causal
 One of Norton 's undated proclamations	In his self - appointed role of emperor , Norton issued numerous decrees on matters of the state .	1>2	implicit	explanation-evidence	explanation
 and distributed letters to the various newspapers in the city ,	In his self - appointed role of emperor , Norton issued numerous decrees on matters of the state .	1<2	implicit	joint-other	conjunction
 After assuming absolute control over the country ,	he saw no further need for a legislature ,	1>2	explicit	context-circumstance	temporal
@@ -337,8 +337,8 @@ that open violation of the laws are constantly occurring ,	caused by mobs , part
 ... fraud and corruption prevent a fair and proper expression of the public voice ;	that the citizen has not that protection of person and property	1<2	implicit	joint-list	conjunction
 that the citizen has not that protection of person and property	which he is entitled .	1<2	implicit	elaboration-attribute	elaboration
 and on October 12 , 1859 , he issued a decree	Norton ordered all interested parties to assemble at Platt 's Music Hall in San Francisco in February 1860	1<2	implicit	joint-sequence	temporal
-Norton ordered all interested parties to assemble at Platt 's Music Hall in San Francisco in February 1860	to " remedy the evil	1<2	implicit	purpose-goal	purpose
-to " remedy the evil	complained of " .	1<2	implicit	elaboration-attribute	elaboration
+Norton ordered all interested parties to assemble at Platt 's Music Hall in San Francisco in February 1860	"to "" remedy the evil"	1<2	implicit	purpose-goal	purpose
+"to "" remedy the evil"	"complained of "" ."	1<2	implicit	elaboration-attribute	elaboration
 In an imperial decree the following month , Norton summoned the Army to depose the elected officials of the U.S. Congress :	NOW , THEREFORE , we do hereby Order and Direct Major - General Scott , the Command - in - Chief of our Armies , immediately upon receipt of this , our Decree , to proceed with a suitable force and clear the Halls of Congress .	1>2	implicit	attribution-positive	attribution
 WHEREAS , a body of men <*> are now in session in Washington City , in violation of our Imperial edict of the 12th of October last ,	NOW , THEREFORE , we do hereby Order and Direct Major - General Scott , the Command - in - Chief of our Armies , immediately upon receipt of this , our Decree , to proceed with a suitable force and clear the Halls of Congress .	1>2	explicit	causal-cause	causal
 WHEREAS , a body of men <*> are now in session in Washington City , in violation of our Imperial edict of the 12th of October last ,	calling themselves the National Congress	1<2	implicit	elaboration-attribute	elaboration
@@ -860,10 +860,10 @@ anything can be read into the fact	because Congress was trying to broadly cover 
 and ensure	that the Secretary had the tools	1>2	implicit	attribution-positive	attribution
 because Congress was trying to broadly cover the field	that the Secretary had the tools	1<2	implicit	purpose-goal	purpose
 that the Secretary had the tools	to respond to the national emergency with whatever relief might be necessitated .	1<2	implicit	purpose-attribute	purpose
-But , in an opinion <*> he talked about what the word " modify " means ,	modified in our view connotes moderate change .	1>2	implicit	context-circumstance	temporal
-But , in an opinion <*> he talked about what the word " modify " means ,	we had a few years ago by Justice Scalia ,	1<2	implicit	elaboration-attribute	elaboration
+"But , in an opinion <*> he talked about what the word "" modify "" means ,"	modified in our view connotes moderate change .	1>2	implicit	context-circumstance	temporal
+"But , in an opinion <*> he talked about what the word "" modify "" means ,"	we had a few years ago by Justice Scalia ,	1<2	implicit	elaboration-attribute	elaboration
 and he said	modified in our view connotes moderate change .	1>2	implicit	attribution-positive	attribution
-modified in our view connotes moderate change .	How does that fit under the normal understanding of " modifying " ?	1>2	implicit	context-background	frame
+modified in our view connotes moderate change .	"How does that fit under the normal understanding of "" modifying "" ?"	1>2	implicit	context-background	frame
 anything can be read into the fact	modified in our view connotes moderate change .	1<2	explicit	adversative-concession	concession
 He said	but only	1>2	implicit	attribution-positive	attribution
 it might be good English to say that the French Revolution modified the status of the French nobility ,	but only	1>2	explicit	adversative-concession	concession
@@ -871,31 +871,31 @@ modified in our view connotes moderate change .	but only	1<2	implicit	elaboratio
 but only	because there 's a figure of speech <*> and a literary device	1<2	explicit	causal-cause	causal
 because there 's a figure of speech <*> and a literary device	called understatement	1<2	implicit	elaboration-attribute	elaboration
 because there 's a figure of speech <*> and a literary device	known as sarcasm .	1<2	implicit	elaboration-attribute	elaboration
-We 're talking about half a trillion dollars and 43 million Americans .	How does that fit under the normal understanding of " modifying " ?	1>2	implicit	context-background	frame
-How does that fit under the normal understanding of " modifying " ?	that " modify " has to mean making a change up to the point of wholesale elimination .	1>2	implicit	topic-question	query
+We 're talking about half a trillion dollars and 43 million Americans .	"How does that fit under the normal understanding of "" modifying "" ?"	1>2	implicit	context-background	frame
+"How does that fit under the normal understanding of "" modifying "" ?"	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1>2	implicit	topic-question	query
 So , of course , I recognize	that in MCI , Justice Scalia 's opinion adopted a narrower understanding of that term ,	1>2	implicit	attribution-positive	attribution
-that in MCI , Justice Scalia 's opinion adopted a narrower understanding of that term ,	but I do n't read that opinion to set forth a universal meaning of " modify , "	1>2	explicit	adversative-concession	concession
-but I do n't read that opinion to set forth a universal meaning of " modify , "	that " modify " has to mean making a change up to the point of wholesale elimination .	1>2	implicit	explanation-evidence	explanation
-but I do n't read that opinion to set forth a universal meaning of " modify , "	no matter the statutory context .	1<2	explicit	adversative-concession	concession
-but I do n't read that opinion to set forth a universal meaning of " modify , "	And , here , of course , we have a broader phrase , " waive or modify . "	1<2	explicit	joint-list	conjunction
-It 's undisputed	that the ordinary meaning of " waive " means to eliminate an obligation in its entirety .	1>2	implicit	attribution-positive	attribution
+that in MCI , Justice Scalia 's opinion adopted a narrower understanding of that term ,	"but I do n't read that opinion to set forth a universal meaning of "" modify , """	1>2	explicit	adversative-concession	concession
+"but I do n't read that opinion to set forth a universal meaning of "" modify , """	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1>2	implicit	explanation-evidence	explanation
+"but I do n't read that opinion to set forth a universal meaning of "" modify , """	no matter the statutory context .	1<2	explicit	adversative-concession	concession
+"but I do n't read that opinion to set forth a universal meaning of "" modify , """	"And , here , of course , we have a broader phrase , "" waive or modify . """	1<2	explicit	joint-list	conjunction
+It 's undisputed	"that the ordinary meaning of "" waive "" means to eliminate an obligation in its entirety ."	1>2	implicit	attribution-positive	attribution
 It 's undisputed	and the states are n't contesting	1<2	explicit	restatement-repetition	reformulation
-And , here , of course , we have a broader phrase , " waive or modify . "	that the ordinary meaning of " waive " means to eliminate an obligation in its entirety .	1<2	implicit	context-background	frame
-that the ordinary meaning of " waive " means to eliminate an obligation in its entirety .	that " modify " has to mean making a change up to the point of wholesale elimination .	1>2	explicit	explanation-justify	explanation
-And I think ,	that " modify " has to mean making a change up to the point of wholesale elimination .	1>2	implicit	attribution-positive	attribution
-if you look at that phrase in the context of the statute ,	that " modify " has to mean making a change up to the point of wholesale elimination .	1>2	explicit	contingency-condition	condition
-that means	that " modify " has to mean making a change up to the point of wholesale elimination .	1>2	implicit	attribution-positive	attribution
-the straightforward way <*> is that he waived elements of those provisions	that " modify " has to mean making a change up to the point of wholesale elimination .	1<2	implicit	explanation-evidence	explanation
+"And , here , of course , we have a broader phrase , "" waive or modify . """	"that the ordinary meaning of "" waive "" means to eliminate an obligation in its entirety ."	1<2	implicit	context-background	frame
+"that the ordinary meaning of "" waive "" means to eliminate an obligation in its entirety ."	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1>2	explicit	explanation-justify	explanation
+And I think ,	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1>2	implicit	attribution-positive	attribution
+if you look at that phrase in the context of the statute ,	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1>2	explicit	contingency-condition	condition
+that means	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1>2	implicit	attribution-positive	attribution
+the straightforward way <*> is that he waived elements of those provisions	"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	1<2	implicit	explanation-evidence	explanation
 It would be really strange for Congress to say	you can eliminate obligations altogether	1>2	implicit	evaluation-comment	comment
-that " modify " has to mean making a change up to the point of wholesale elimination .	you can eliminate obligations altogether	1<2	implicit	explanation-justify	explanation
+"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	you can eliminate obligations altogether	1<2	implicit	explanation-justify	explanation
 you can eliminate obligations altogether	or tweak them just the littlest bit ,	1<2	explicit	joint-disjunction	alternation
 you can eliminate obligations altogether	but you ca n't do anything in between .	1<2	explicit	adversative-contrast	contrast
-Well , but it 's " waive " particular regulatory or statutory provisions .	That to me suggests a much more focused use of the word .	1>2	implicit	explanation-evidence	explanation
-Well , but it 's " waive " particular regulatory or statutory provisions .	That 's right .	1<2	implicit	evaluation-comment	comment
-that " modify " has to mean making a change up to the point of wholesale elimination .	That to me suggests a much more focused use of the word .	1<2	implicit	elaboration-attribute	elaboration
-That to me suggests a much more focused use of the word .	Well , it 's " waive or modify "	1<2	implicit	adversative-contrast	contrast
-Well , it 's " waive or modify "	that that is the –	1>2	explicit	explanation-justify	explanation
-Well , it 's " waive or modify "	paired with the authority to do that with respect to any Title IV provision .	1<2	implicit	joint-list	conjunction
+"Well , but it 's "" waive "" particular regulatory or statutory provisions ."	That to me suggests a much more focused use of the word .	1>2	implicit	explanation-evidence	explanation
+"Well , but it 's "" waive "" particular regulatory or statutory provisions ."	That 's right .	1<2	implicit	evaluation-comment	comment
+"that "" modify "" has to mean making a change up to the point of wholesale elimination ."	That to me suggests a much more focused use of the word .	1<2	implicit	elaboration-attribute	elaboration
+That to me suggests a much more focused use of the word .	"Well , it 's "" waive or modify """	1<2	implicit	adversative-contrast	contrast
+"Well , it 's "" waive or modify """	that that is the –	1>2	explicit	explanation-justify	explanation
+"Well , it 's "" waive or modify """	paired with the authority to do that with respect to any Title IV provision .	1<2	implicit	joint-list	conjunction
 So I think	that that is the –	1>2	implicit	attribution-positive	attribution
 That to me suggests a much more focused use of the word .	It does n't say waive -- modify or waive loan balances .	1<2	implicit	explanation-evidence	explanation
 Good morning to all .	Julie Rosenthal , Mike Eizenga , Sarah Stoddar- Stoddart , <*> Jonathan Bell . [ … ]	1>2	implicit	organization-phatic	organization
@@ -999,20 +999,20 @@ And if I could direct the court 's attention , please , to Tab 4 of our condense
 that careless behavior alone is not wrongful .	And if I could direct the court 's attention , please , to Tab 4 of our condensed book .	1<2	explicit	elaboration-additional	elaboration
 This is the decision in Ratych and Bloomer .	a quote from Lord Diplock and Browning and War Office :	1>2	implicit	explanation-evidence	explanation
 Reading from line E	a quote from Lord Diplock and Browning and War Office :	1>2	implicit	context-circumstance	temporal
-a quote from Lord Diplock and Browning and War Office :	" A person <*> does no wrong in law .	1>2	implicit	attribution-positive	attribution
-that careless behavior alone is not wrongful .	" A person <*> does no wrong in law .	1<2	implicit	explanation-evidence	explanation
-" A person <*> does no wrong in law .	who acts	1<2	implicit	elaboration-attribute	elaboration
+a quote from Lord Diplock and Browning and War Office :	""" A person <*> does no wrong in law ."	1>2	implicit	attribution-positive	attribution
+that careless behavior alone is not wrongful .	""" A person <*> does no wrong in law ."	1<2	implicit	explanation-evidence	explanation
+""" A person <*> does no wrong in law ."	who acts	1<2	implicit	elaboration-attribute	elaboration
 who acts	without reasonable care	1<2	explicit	mode-manner	mode
-" A person <*> does no wrong in law .	He commits no tort .	1<2	implicit	restatement-partial	reformulation
-" A person <*> does no wrong in law .	He only does wrong ,	1<2	implicit	adversative-contrast	contrast
+""" A person <*> does no wrong in law ."	He commits no tort .	1<2	implicit	restatement-partial	reformulation
+""" A person <*> does no wrong in law ."	He only does wrong ,	1<2	implicit	adversative-contrast	contrast
 He only does wrong ,	he only commits a tort ,	1<2	implicit	restatement-repetition	reformulation
-He only does wrong ,	if his lack of care causes damage to the plaintiff . "	1<2	explicit	contingency-condition	condition
-And the same point is made in Clements and Clements over at Tab 8 , please .	" A defendant in an action in negligence is not a wrongdoer at large .	1>2	implicit	attribution-positive	attribution
+He only does wrong ,	"if his lack of care causes damage to the plaintiff . """	1<2	explicit	contingency-condition	condition
+And the same point is made in Clements and Clements over at Tab 8 , please .	""" A defendant in an action in negligence is not a wrongdoer at large ."	1>2	implicit	attribution-positive	attribution
 And the same point is made in Clements and Clements over at Tab 8 , please .	At paragraph 16 .	1<2	implicit	elaboration-additional	elaboration
-" A person <*> does no wrong in law .	" A defendant in an action in negligence is not a wrongdoer at large .	1<2	implicit	restatement-repetition	reformulation
-" A defendant in an action in negligence is not a wrongdoer at large .	He is a wrongdoer only in respect of the damage	1<2	implicit	adversative-contrast	contrast
-He is a wrongdoer only in respect of the damage	which he actually causes to the plaintiff . "	1<2	implicit	elaboration-attribute	elaboration
-" A defendant in an action in negligence is not a wrongdoer at large .	And this point is particularly important	1<2	implicit	evaluation-comment	comment
+""" A person <*> does no wrong in law ."	""" A defendant in an action in negligence is not a wrongdoer at large ."	1<2	implicit	restatement-repetition	reformulation
+""" A defendant in an action in negligence is not a wrongdoer at large ."	He is a wrongdoer only in respect of the damage	1<2	implicit	adversative-contrast	contrast
+He is a wrongdoer only in respect of the damage	"which he actually causes to the plaintiff . """	1<2	implicit	elaboration-attribute	elaboration
+""" A defendant in an action in negligence is not a wrongdoer at large ."	And this point is particularly important	1<2	implicit	evaluation-comment	comment
 And this point is particularly important	because the proposed cause of action is said to be disgorgement	1<2	explicit	explanation-justify	explanation
 because the proposed cause of action is said to be disgorgement	for wrongdoing .	1<2	explicit	causal-cause	causal
 And I say	the court below proceeded on the basis	1>2	implicit	attribution-positive	attribution
@@ -1184,7 +1184,7 @@ If we treated our body the way	responsible dog owners treated their dog ,	1<2	im
 we should live normal ,	we would live a much happier life .	1<2	implicit	restatement-partial	reformulation
 Tools and Tasks	Technology is a projection of those	1>2	implicit	organization-heading	organization
 By Anonymous	Technology is a projection of those	1>2	implicit	attribution-positive	attribution
-" Andrew s clutch job " by Bob n Renee is licensed under CC BY 2.0	Independent repair shops are going out of business all over the country .	1>2	implicit	context-background	frame
+""" Andrew s clutch job "" by Bob n Renee is licensed under CC BY 2.0"	Independent repair shops are going out of business all over the country .	1>2	implicit	context-background	frame
 My town is losing a car repair shop .	Independent repair shops are going out of business all over the country .	1>2	implicit	explanation-evidence	explanation
 The gas station at the end of Main Street will continue to sell gas ,	but the garage <*> is going to close .	1>2	explicit	adversative-concession	concession
 My town is losing a car repair shop .	but the garage <*> is going to close .	1<2	implicit	elaboration-additional	elaboration
@@ -1675,8 +1675,8 @@ But , before hand in middle school , I kept on hearing about this guy	So before 
 But , before hand in middle school , I kept on hearing about this guy	named Mario ,	1<2	implicit	elaboration-attribute	elaboration
 But , before hand in middle school , I kept on hearing about this guy	and he kept on hearing about me , this girl	1<2	explicit	joint-list	conjunction
 and he kept on hearing about me , this girl	named Isabel .	1<2	implicit	elaboration-attribute	elaboration
-And , everyone , all of our friends and all of our acquaintances would say ,	" Hey , you 'd get along with him really well . "	1>2	implicit	attribution-positive	attribution
-But , before hand in middle school , I kept on hearing about this guy	" Hey , you 'd get along with him really well . "	1<2	implicit	evaluation-comment	comment
+And , everyone , all of our friends and all of our acquaintances would say ,	""" Hey , you 'd get along with him really well . """	1>2	implicit	attribution-positive	attribution
+But , before hand in middle school , I kept on hearing about this guy	""" Hey , you 'd get along with him really well . """	1<2	implicit	evaluation-comment	comment
 We met back in high school .	So before hand I kinda knew about him ,	1<2	explicit	adversative-concession	concession
 So before hand I kinda knew about him ,	but I never met him .	1<2	explicit	adversative-contrast	contrast
 We met back in high school .	And one of our friends , our common friends , he introduced us during study hall ,	1<2	explicit	elaboration-additional	elaboration
@@ -1690,7 +1690,7 @@ There 's Jeff [ Drake ] ,	Right now , yeah , he 's helping us right now .	1<2	im
 Right now , yeah , he 's helping us right now .	We 're talking about doing some individual web series , video series .	1<2	implicit	elaboration-additional	elaboration
 There 's Jeff [ Drake ] ,	Josh Kindig , he 's coming on board ,	1<2	implicit	joint-list	conjunction
 Josh Kindig , he 's coming on board ,	he has some ideas for that too ,	1<2	implicit	elaboration-additional	elaboration
-he has some ideas for that too ,	he wants to take over " aywv " and do more gaming news .	1<2	implicit	elaboration-additional	elaboration
+he has some ideas for that too ,	"he wants to take over "" aywv "" and do more gaming news ."	1<2	implicit	elaboration-additional	elaboration
 There 's Jeff [ Drake ] ,	There 's of course Jason ,	1<2	implicit	joint-list	conjunction
 There 's of course Jason ,	who is our editor	1<2	implicit	elaboration-attribute	elaboration
 There 's of course Jason ,	and he 's the one	1<2	explicit	elaboration-additional	elaboration
@@ -1763,7 +1763,7 @@ I thought	that in Mallorca I had at least escaped my duties as Regent ,	1>2	impl
 that in Mallorca I had at least escaped my duties as Regent ,	but Alphonso asked me about bilingual education for Puerto Ricans	1>2	explicit	adversative-concession	concession
 At Vane 's villa I met the Prince of Spain , Alphonso ,	but Alphonso asked me about bilingual education for Puerto Ricans	1<2	implicit	elaboration-additional	elaboration
 but Alphonso asked me about bilingual education for Puerto Ricans	and beraded the Americans	1<2	explicit	joint-list	conjunction
-and beraded the Americans	for suppressing their " fourteen million Latins . "	1<2	explicit	causal-cause	causal
+and beraded the Americans	"for suppressing their "" fourteen million Latins . """	1<2	explicit	causal-cause	causal
 He told me	that Harry Truman denied Spain Marshall Plan aid	1>2	implicit	attribution-positive	attribution
 that Dean Acheson told him	that Harry Truman denied Spain Marshall Plan aid	1>2	implicit	attribution-positive	attribution
 but Alphonso asked me about bilingual education for Puerto Ricans	that Harry Truman denied Spain Marshall Plan aid	1<2	implicit	joint-list	conjunction
@@ -1799,10 +1799,10 @@ Will you go to Israel at the end of your stay ?	What are the dates of Aberdeen ?
 Will you go to Israel at the end of your stay ?	Is there anything you need ?	1<2	implicit	joint-other	conjunction
 I 've seen the doctor twice	I feel quite well now	1>2	implicit	adversative-concession	concession
 I 've seen the doctor twice	since I 've been back ,	1<2	explicit	context-circumstance	temporal
-and he 's convinced	that I just missed an " episode , "	1>2	implicit	attribution-positive	attribution
-I 've seen the doctor twice	that I just missed an " episode , "	1<2	explicit	elaboration-additional	elaboration
-that I just missed an " episode , "	which means that I suffered what is always called , <*> a " coronary insufficiency . "	1<2	implicit	elaboration-additional	elaboration
-which means that I suffered what is always called , <*> a " coronary insufficiency . "	rather badly	1<2	implicit	evaluation-comment	comment
+and he 's convinced	"that I just missed an "" episode , """	1>2	implicit	attribution-positive	attribution
+I 've seen the doctor twice	"that I just missed an "" episode , """	1<2	explicit	elaboration-additional	elaboration
+"that I just missed an "" episode , """	"which means that I suffered what is always called , <*> a "" coronary insufficiency . """	1<2	implicit	elaboration-additional	elaboration
+"which means that I suffered what is always called , <*> a "" coronary insufficiency . """	rather badly	1<2	implicit	evaluation-comment	comment
 rather badly	I think ,	1<2	implicit	attribution-positive	attribution
 We are back from Europe ,	I feel quite well now	1<2	implicit	joint-other	conjunction
 I feel quite well now	and I am watching myself .	1<2	explicit	joint-list	conjunction
@@ -1858,24 +1858,24 @@ In three letters <*> I defend wiki technology as a means	The letters outline fac
 The purpose of this letter is to provide appropriate background	I suggest instituting a pilot program	1>2	implicit	context-background	frame
 The purpose of this letter is to provide appropriate background	to facilitate our 9 - May - 2006 meeting .	1<2	implicit	purpose-goal	purpose
 While University Relations and Student Affairs object to University - sponsored public wikis on the grounds	that the rational lacks merit	1>2	explicit	adversative-concession	concession
-While University Relations and Student Affairs object to University - sponsored public wikis on the grounds	that it creates a " risk of false information going out to too many people	1<2	implicit	elaboration-attribute	elaboration
-that it creates a " risk of false information going out to too many people	before it can be corrected , "	1<2	explicit	context-circumstance	temporal
-that it creates a " risk of false information going out to too many people	in addition to the University having a " certain respect for fact checking and the truth " and " responsibility	1<2	explicit	joint-list	conjunction
-in addition to the University having a " certain respect for fact checking and the truth " and " responsibility	to maintaining accurate information , " 1	1<2	implicit	purpose-attribute	purpose
+While University Relations and Student Affairs object to University - sponsored public wikis on the grounds	"that it creates a "" risk of false information going out to too many people"	1<2	implicit	elaboration-attribute	elaboration
+"that it creates a "" risk of false information going out to too many people"	"before it can be corrected , """	1<2	explicit	context-circumstance	temporal
+"that it creates a "" risk of false information going out to too many people"	"in addition to the University having a "" certain respect for fact checking and the truth "" and "" responsibility"	1<2	explicit	joint-list	conjunction
+"in addition to the University having a "" certain respect for fact checking and the truth "" and "" responsibility"	"to maintaining accurate information , "" 1"	1<2	implicit	purpose-attribute	purpose
 I posit	that the rational lacks merit	1>2	implicit	attribution-positive	attribution
 that the rational lacks merit	I suggest instituting a pilot program	1>2	implicit	explanation-motivation	explanation
 that the rational lacks merit	in light of individuals being able to judge for themselves what information is trustworthy on a wiki .	1<2	implicit	explanation-justify	explanation
 I acknowledge the University 's responsibility	however , the University policy <*> reads	1>2	explicit	adversative-concession	concession
 I acknowledge the University 's responsibility	to maintain accurate information on official Web pages ,	1<2	implicit	purpose-attribute	purpose
 however , the University policy <*> reads	The author of each Web page is responsible for the content of that page	1>2	implicit	attribution-positive	attribution
-however , the University policy <*> reads	entitled " Copyright Information ” 2	1<2	implicit	elaboration-attribute	elaboration
+however , the University policy <*> reads	"entitled "" Copyright Information ” 2"	1<2	implicit	elaboration-attribute	elaboration
 however , the University policy <*> reads	as follows	1<2	explicit	mode-manner	mode
 however , the University policy <*> reads	( emphasis added ) :	1<2	implicit	context-background	frame
-Battle , Catherine .	" Penn State decides against supporting wiki project . "	1>2	implicit	attribution-positive	attribution
-however , the University policy <*> reads	" Penn State decides against supporting wiki project . "	1<2	implicit	explanation-evidence	explanation
-" Penn State decides against supporting wiki project . "	The Daily Collegian , 10 - February - 2006	1<2	implicit	context-circumstance	temporal
+Battle , Catherine .	""" Penn State decides against supporting wiki project . """	1>2	implicit	attribution-positive	attribution
+however , the University policy <*> reads	""" Penn State decides against supporting wiki project . """	1<2	implicit	explanation-evidence	explanation
+""" Penn State decides against supporting wiki project . """	The Daily Collegian , 10 - February - 2006	1<2	implicit	context-circumstance	temporal
 Copyright Information :	http://www.psu.edu/ur/copyright.html	1>2	implicit	organization-preparation	organization
-" Penn State decides against supporting wiki project . "	http://www.psu.edu/ur/copyright.html	1<2	implicit	joint-list	conjunction
+""" Penn State decides against supporting wiki project . """	http://www.psu.edu/ur/copyright.html	1<2	implicit	joint-list	conjunction
 The information presented on Penn State 's Web site comes from a variety of sources ,	and therefore can not assume responsibility for all information .	1>2	implicit	context-background	frame
 The information presented on Penn State 's Web site comes from a variety of sources ,	including not only official Penn State departments and colleges ,	1<2	implicit	elaboration-attribute	elaboration
 including not only official Penn State departments and colleges ,	but also unofficial sources and individuals .	1<2	explicit	joint-list	conjunction
@@ -1903,7 +1903,7 @@ I published video material on the Undergraduate Student Government <*> website 3
 I published video material on the Undergraduate Student Government <*> website 3	addressing benefits of wiki technology ,	1<2	implicit	elaboration-attribute	elaboration
 I published video material on the Undergraduate Student Government <*> website 3	and I recorded individual commentary .	1<2	explicit	joint-list	conjunction
 The following is a partial transcript from one videocast	Student -- based class descriptions benefit Penn State two -- fold .	1>2	implicit	organization-preparation	organization
-The following is a partial transcript from one videocast	entitled " Introduction to the Penn State Wiki " :	1<2	implicit	elaboration-attribute	elaboration
+The following is a partial transcript from one videocast	"entitled "" Introduction to the Penn State Wiki "" :"	1<2	implicit	elaboration-attribute	elaboration
 U.S.G. Wiki Resources :	http://www.clubs.psu.edu/usg/wiki	1>2	implicit	organization-preparation	organization
 The following is a partial transcript from one videocast	http://www.clubs.psu.edu/usg/wiki	1<2	implicit	explanation-evidence	explanation
 George Chriss :	Student -- based class descriptions benefit Penn State two -- fold .	1>2	implicit	attribution-positive	attribution
@@ -1972,19 +1972,19 @@ She died from infection	By the end , Gloria 's eczema was so severe	1<2	implicit
 His daughter 's condition deteriorated , to the point	By the end , Gloria 's eczema was so severe	1<2	explicit	joint-sequence	temporal
 By the end , Gloria 's eczema was so severe	that her skin broke	1<2	implicit	mode-manner	mode
 that her skin broke	every time her parents changed her clothes or nappy ,	1<2	implicit	context-circumstance	temporal
-and in the words of the Crown prosecutor , Mark Tedeschi , QC ,	" Gloria spent a lot of the last five months of her life	1>2	implicit	attribution-positive	attribution
-By the end , Gloria 's eczema was so severe	" Gloria spent a lot of the last five months of her life	1<2	explicit	joint-list	conjunction
-" Gloria spent a lot of the last five months of her life	crying ,	1<2	implicit	mode-manner	mode
+and in the words of the Crown prosecutor , Mark Tedeschi , QC ,	""" Gloria spent a lot of the last five months of her life"	1>2	implicit	attribution-positive	attribution
+By the end , Gloria 's eczema was so severe	""" Gloria spent a lot of the last five months of her life"	1<2	explicit	joint-list	conjunction
+""" Gloria spent a lot of the last five months of her life"	crying ,	1<2	implicit	mode-manner	mode
 crying ,	irritable ,	1<2	implicit	joint-list	conjunction
 crying ,	scratching	1<2	implicit	joint-list	conjunction
-" Gloria spent a lot of the last five months of her life	and the only thing <*> was to suck on her mother 's breast . "	1<2	explicit	joint-list	conjunction
-and the only thing <*> was to suck on her mother 's breast . "	that gave her solace	1<2	implicit	elaboration-attribute	elaboration
+""" Gloria spent a lot of the last five months of her life"	"and the only thing <*> was to suck on her mother 's breast . """	1<2	explicit	joint-list	conjunction
+"and the only thing <*> was to suck on her mother 's breast . """	that gave her solace	1<2	implicit	elaboration-attribute	elaboration
 By the end , Gloria 's eczema was so severe	Gloria also became unable to move her legs .	1<2	explicit	joint-list	conjunction
-Mr. Tedeschi also told the court	that , over the last five months of her life , " Gloria 's eczema played a devastating role in her overall health	1>2	implicit	attribution-positive	attribution
-By the end , Gloria 's eczema was so severe	that , over the last five months of her life , " Gloria 's eczema played a devastating role in her overall health	1<2	explicit	elaboration-additional	elaboration
+Mr. Tedeschi also told the court	"that , over the last five months of her life , "" Gloria 's eczema played a devastating role in her overall health"	1>2	implicit	attribution-positive	attribution
+By the end , Gloria 's eczema was so severe	"that , over the last five months of her life , "" Gloria 's eczema played a devastating role in her overall health"	1<2	explicit	elaboration-additional	elaboration
 and it is asserted by the Crown	that both her parents knew this	1>2	implicit	attribution-positive	attribution
-that , over the last five months of her life , " Gloria 's eczema played a devastating role in her overall health	that both her parents knew this	1<2	explicit	elaboration-additional	elaboration
-that both her parents knew this	and discussed it with each other . "	1<2	explicit	joint-list	conjunction
+"that , over the last five months of her life , "" Gloria 's eczema played a devastating role in her overall health"	that both her parents knew this	1<2	explicit	elaboration-additional	elaboration
+that both her parents knew this	"and discussed it with each other . """	1<2	explicit	joint-list	conjunction
 However , <*> the Sams continued to shun conventional medical treatment ,	instead seeking help from other homeopaths and naturopaths .	1>2	explicit	adversative-antithesis	contrast
 However , <*> the Sams continued to shun conventional medical treatment ,	despite their child 's severe illness , and her lack of improvement ,	1<2	explicit	adversative-concession	concession
 that both her parents knew this	instead seeking help from other homeopaths and naturopaths .	1<2	explicit	adversative-contrast	contrast
@@ -1993,8 +1993,8 @@ Gloria temporarily improved during the rare times	they used conventional treatme
 Gloria temporarily improved during the rare times	but they soon dropped them in favour of homeopathy ,	1<2	explicit	adversative-contrast	contrast
 but they soon dropped them in favour of homeopathy ,	and she consistently worsened .	1<2	explicit	causal-result	causal
 She died from infection	Allegedly , Thomas ' sister pleaded with him to send Gloria to a conventional medical doctor ,	1<2	implicit	joint-other	conjunction
-but he replied	" I am not able to do that " .	1>2	implicit	attribution-positive	attribution
-Allegedly , Thomas ' sister pleaded with him to send Gloria to a conventional medical doctor ,	" I am not able to do that " .	1<2	explicit	adversative-contrast	contrast
+but he replied	""" I am not able to do that "" ."	1>2	implicit	attribution-positive	attribution
+Allegedly , Thomas ' sister pleaded with him to send Gloria to a conventional medical doctor ,	""" I am not able to do that "" ."	1<2	explicit	adversative-contrast	contrast
 She died from infection	The parents are also accused of putting their social life ahead of their child ,	1<2	explicit	joint-other	conjunction
 The parents are also accused of putting their social life ahead of their child ,	taking her on a trip to India	1<2	implicit	explanation-evidence	explanation
 taking her on a trip to India	and leaving her to servants	1<2	explicit	joint-list	conjunction
@@ -2003,9 +2003,9 @@ The parents are also accused of putting their social life ahead of their child ,
 and giving her homeopathic drops	instead of using the prescription creams	1<2	explicit	adversative-antithesis	contrast
 instead of using the prescription creams	they had been given .	1<2	implicit	elaboration-attribute	elaboration
 She died from infection	Gloria was finally taken to the emergency department shortly before her death .	1<2	explicit	joint-other	conjunction
-Gloria was finally taken to the emergency department shortly before her death .	By this time , " her skin was weeping ,	1<2	implicit	elaboration-additional	elaboration
-By this time , " her skin was weeping ,	her body malnourished	1<2	implicit	joint-list	conjunction
-By this time , " her skin was weeping ,	and her corneas melting " ,	1<2	explicit	joint-list	conjunction
+Gloria was finally taken to the emergency department shortly before her death .	"By this time , "" her skin was weeping ,"	1<2	implicit	elaboration-additional	elaboration
+"By this time , "" her skin was weeping ,"	her body malnourished	1<2	implicit	joint-list	conjunction
+"By this time , "" her skin was weeping ,"	"and her corneas melting "" ,"	1<2	explicit	joint-list	conjunction
 Gloria was finally taken to the emergency department shortly before her death .	according to the Sydney Morning Herald .	1<2	implicit	attribution-positive	attribution
 Speaking in the parents ' defense ,	that , <*> they should be declared not guilty due to cultural differences .	1>2	implicit	mode-manner	mode
 Tom Molomby , SC , said	that , <*> they should be declared not guilty due to cultural differences .	1>2	implicit	attribution-positive	attribution
@@ -2029,8 +2029,8 @@ A new study <*> has revealed	many are not getting enough iodine	1>2	implicit	att
 A new study <*> has revealed	documenting iodine nutritional status in Australian school children	1<2	implicit	elaboration-attribute	elaboration
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	many are not getting enough iodine	1<2	implicit	elaboration-additional	elaboration
 many are not getting enough iodine	- which can lead to mental and growth retardation .	1<2	implicit	causal-result	causal
-The report 's authors say	iodine deficiency is " the sleeper health issue in Australia " , and potentially a very serious one .	1>2	implicit	attribution-positive	attribution
-Almost half of all Australian primary school children are mild to moderately iodine deficient ,	iodine deficiency is " the sleeper health issue in Australia " , and potentially a very serious one .	1<2	implicit	evaluation-comment	comment
+The report 's authors say	"iodine deficiency is "" the sleeper health issue in Australia "" , and potentially a very serious one ."	1>2	implicit	attribution-positive	attribution
+Almost half of all Australian primary school children are mild to moderately iodine deficient ,	"iodine deficiency is "" the sleeper health issue in Australia "" , and potentially a very serious one ."	1<2	implicit	evaluation-comment	comment
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	The results of the Australian National Iodine Nutrition Study <*> that children in mainland Australia are borderline iodine deficient .	1<2	implicit	restatement-repetition	reformulation
 The results of the Australian National Iodine Nutrition Study <*> that children in mainland Australia are borderline iodine deficient .	published in the Medical Journal of Australia this week ,	1<2	implicit	elaboration-attribute	elaboration
 The results of the Australian National Iodine Nutrition Study <*> that children in mainland Australia are borderline iodine deficient .	revealed	1<2	implicit	attribution-positive	attribution
@@ -2044,8 +2044,8 @@ A cross-sectional survey of 1709 schoolchildren <*> was carried out in New South
 Tasmania was excluded from the study	- where an voluntary iodine fortification program <*> is ongoing .	1<2	implicit	causal-cause	causal
 - where an voluntary iodine fortification program <*> is ongoing .	using iodised salt in bread ,	1<2	implicit	elaboration-attribute	elaboration
 The authors say	the results confirm the existence of inadequate iodine intake in the Australian population .	1>2	implicit	attribution-positive	attribution
-the results confirm the existence of inadequate iodine intake in the Australian population .	They call for " urgent implementation of mandatory iodisation of all edible salt in Australia . "	1>2	implicit	explanation-justify	explanation
-Almost half of all Australian primary school children are mild to moderately iodine deficient ,	They call for " urgent implementation of mandatory iodisation of all edible salt in Australia . "	1<2	implicit	restatement-partial	reformulation
+the results confirm the existence of inadequate iodine intake in the Australian population .	"They call for "" urgent implementation of mandatory iodisation of all edible salt in Australia . """	1>2	implicit	explanation-justify	explanation
+Almost half of all Australian primary school children are mild to moderately iodine deficient ,	"They call for "" urgent implementation of mandatory iodisation of all edible salt in Australia . """	1<2	implicit	restatement-partial	reformulation
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	Most iodine in food comes from seafood , milk and iodised salt .	1<2	implicit	context-background	frame
 Professor Cres Eastman , Director of the National Iodine Nutrition study , and Chairman of the Australian Centre for Control of Iodine Deficiency Disorders , says	it is crucial that children and pregnant women in particular have an adequate intake of iodine .	1>2	implicit	attribution-positive	attribution
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	it is crucial that children and pregnant women in particular have an adequate intake of iodine .	1<2	implicit	joint-other	conjunction
@@ -2054,12 +2054,12 @@ Iodine deficiency can lead to serious health problems	including brain damage , s
 Professor Eastman says	manufacturers could easily remedy the situation	1>2	implicit	attribution-positive	attribution
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	manufacturers could easily remedy the situation	1<2	implicit	joint-other	conjunction
 manufacturers could easily remedy the situation	by using iodised salt in their products in line with the United States and most European countries .	1<2	explicit	mode-means	mode
-" I suspect	they wo n't do that on a voluntary basis ,	1>2	implicit	attribution-positive	attribution
+""" I suspect"	they wo n't do that on a voluntary basis ,	1>2	implicit	attribution-positive	attribution
 manufacturers could easily remedy the situation	they wo n't do that on a voluntary basis ,	1<2	implicit	adversative-contrast	contrast
 they wo n't do that on a voluntary basis ,	we 've tried so far	1<2	implicit	joint-list	conjunction
 we 've tried so far	and have n't succeeded ,	1<2	explicit	adversative-contrast	contrast
-so we 've convinced the Food Standards of Australia and New Zealand |	that all salt should be iodised , "	1>2	implicit	attribution-positive	attribution
-they wo n't do that on a voluntary basis ,	that all salt should be iodised , "	1<2	explicit	causal-result	causal
+so we 've convinced the Food Standards of Australia and New Zealand |	"that all salt should be iodised , """	1>2	implicit	attribution-positive	attribution
+they wo n't do that on a voluntary basis ,	"that all salt should be iodised , """	1<2	explicit	causal-result	causal
 they wo n't do that on a voluntary basis ,	he said .	1<2	implicit	attribution-positive	attribution
 The report says	the decline in iodine intake appears to be due to changes in the dairy industry ,	1>2	implicit	attribution-positive	attribution
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	the decline in iodine intake appears to be due to changes in the dairy industry ,	1<2	implicit	joint-other	conjunction
@@ -2076,22 +2076,22 @@ iodine is added to only 10 per cent of Australian salt in contravention of a Wor
 iodine is added to only 10 per cent of Australian salt in contravention of a World Health Organisation recommendation	that all salt be iodised .	1<2	implicit	elaboration-attribute	elaboration
 He says	authorities are reacting slowly to his urgent calls for mandatory iodised salt .	1>2	implicit	attribution-positive	attribution
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	authorities are reacting slowly to his urgent calls for mandatory iodised salt .	1<2	implicit	joint-other	conjunction
-" The effects of iodine deficiency are dependent upon how severe it is and when it occurs .	So <*> she wo n't make enough thyroid hormone ,	1>2	implicit	context-background	frame
+""" The effects of iodine deficiency are dependent upon how severe it is and when it occurs ."	So <*> she wo n't make enough thyroid hormone ,	1>2	implicit	context-background	frame
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	So <*> she wo n't make enough thyroid hormone ,	1<2	implicit	joint-other	conjunction
 So <*> she wo n't make enough thyroid hormone ,	if we go to the pregnant woman ,	1<2	explicit	contingency-condition	condition
 So <*> she wo n't make enough thyroid hormone ,	she does n't get enough iodine ,	1<2	implicit	contingency-condition	condition
 So <*> she wo n't make enough thyroid hormone ,	and the foetus wo n't get the amount of thyroid hormone	1<2	explicit	causal-result	causal
 and the foetus wo n't get the amount of thyroid hormone	it needs for adequate and proper development of the brain ,	1<2	implicit	elaboration-attribute	elaboration
-and the foetus wo n't get the amount of thyroid hormone	so you 'll then see consequences being loss of IQ , learning difficulties , hearing difficulties and other neurological problems , "	1<2	explicit	causal-result	causal
+and the foetus wo n't get the amount of thyroid hormone	"so you 'll then see consequences being loss of IQ , learning difficulties , hearing difficulties and other neurological problems , """	1<2	explicit	causal-result	causal
 So <*> she wo n't make enough thyroid hormone ,	Professor Eastman said .	1<2	implicit	attribution-positive	attribution
-" If an infant 's not getting enough iodine ...	brain development wo n't be completed	1>2	explicit	contingency-condition	condition
+""" If an infant 's not getting enough iodine ..."	brain development wo n't be completed	1>2	explicit	contingency-condition	condition
 So <*> she wo n't make enough thyroid hormone ,	brain development wo n't be completed	1<2	implicit	elaboration-additional	elaboration
 brain development wo n't be completed	and they wo n't grow normally ,	1<2	explicit	joint-list	conjunction
 and as you get older	the problem will be that you will develop a goiter	1>2	explicit	context-circumstance	temporal
 brain development wo n't be completed	the problem will be that you will develop a goiter	1<2	explicit	joint-sequence	temporal
 the problem will be that you will develop a goiter	and your thyroid wo n't function as well	1<2	explicit	joint-list	conjunction
 and your thyroid wo n't function as well	as it should ,	1<2	explicit	mode-manner	mode
-brain development wo n't be completed	so that may have all sorts of pernicious effects upon normal function in life . "	1<2	explicit	causal-result	causal
+brain development wo n't be completed	"so that may have all sorts of pernicious effects upon normal function in life . """	1<2	explicit	causal-result	causal
 More than two billion people around the world live in areas prone to iodine deficiency ,	that every country should iodise all edible salt .	1>2	implicit	context-background	frame
 More than two billion people around the world live in areas prone to iodine deficiency ,	and yet the problem is easily fixed .	1<2	explicit	adversative-contrast	contrast
 The World Health Organisation <*> recommends	that every country should iodise all edible salt .	1>2	implicit	attribution-positive	attribution
@@ -2103,39 +2103,39 @@ characterised by severe brain damage	occurring in very early life .	1<2	implicit
 WHO say	Iodine deficiency is the world ’s most prevalent , yet easily preventable , cause of brain damage .	1>2	implicit	attribution-positive	attribution
 The most well known effects of IDD are visible goiter and cretinism , a condition	Iodine deficiency is the world ’s most prevalent , yet easily preventable , cause of brain damage .	1<2	implicit	joint-other	conjunction
 Professor Eastman said	he is alarmed by what they found .	1>2	implicit	attribution-positive	attribution
-he is alarmed by what they found .	" Pregnant women in Australia are getting about half as much	1>2	implicit	evaluation-comment	comment
-Almost half of all Australian primary school children are mild to moderately iodine deficient ,	" Pregnant women in Australia are getting about half as much	1<2	implicit	joint-other	conjunction
-" Pregnant women in Australia are getting about half as much	as what they require on a daily basis .	1<2	implicit	adversative-antithesis	contrast
-" Pregnant women in Australia are getting about half as much	So that alarms me ,	1<2	explicit	evaluation-comment	comment
+he is alarmed by what they found .	""" Pregnant women in Australia are getting about half as much"	1>2	implicit	evaluation-comment	comment
+Almost half of all Australian primary school children are mild to moderately iodine deficient ,	""" Pregnant women in Australia are getting about half as much"	1<2	implicit	joint-other	conjunction
+""" Pregnant women in Australia are getting about half as much"	as what they require on a daily basis .	1<2	implicit	adversative-antithesis	contrast
+""" Pregnant women in Australia are getting about half as much"	So that alarms me ,	1<2	explicit	evaluation-comment	comment
 So that alarms me ,	because there 's quite serious potential for adverse effects and brain damage in the next generation of children	1<2	explicit	causal-result	causal
-because there 's quite serious potential for adverse effects and brain damage in the next generation of children	born in this country , "	1<2	implicit	elaboration-attribute	elaboration
-" Pregnant women in Australia are getting about half as much	he said .	1<2	implicit	attribution-positive	attribution
-" If Iodine deficiency is serious	you lose 15 IQ points , on average .	1>2	explicit	contingency-condition	condition
+because there 's quite serious potential for adverse effects and brain damage in the next generation of children	"born in this country , """	1<2	implicit	elaboration-attribute	elaboration
+""" Pregnant women in Australia are getting about half as much"	he said .	1<2	implicit	attribution-positive	attribution
+""" If Iodine deficiency is serious"	you lose 15 IQ points , on average .	1>2	explicit	contingency-condition	condition
 you lose 15 IQ points , on average .	There should n't be anyone	1>2	implicit	adversative-antithesis	contrast
-" Pregnant women in Australia are getting about half as much	There should n't be anyone	1<2	implicit	elaboration-additional	elaboration
-There should n't be anyone	suffering from iodine deficiency in a developed country like Australia . "	1<2	implicit	elaboration-additional	elaboration
+""" Pregnant women in Australia are getting about half as much"	There should n't be anyone	1<2	implicit	elaboration-additional	elaboration
+There should n't be anyone	"suffering from iodine deficiency in a developed country like Australia . """	1<2	implicit	elaboration-additional	elaboration
 Lydia Buchtmann for Food Standards Australia New Zealand , says	they are looking at mandatory guidelines on iodine by the end of the year .	1>2	implicit	attribution-positive	attribution
 Almost half of all Australian primary school children are mild to moderately iodine deficient ,	they are looking at mandatory guidelines on iodine by the end of the year .	1<2	implicit	joint-other	conjunction
 She says	the issue is complicated	1>2	implicit	attribution-positive	attribution
 they are looking at mandatory guidelines on iodine by the end of the year .	the issue is complicated	1<2	implicit	adversative-concession	concession
 the issue is complicated	and will take time to get right .	1<2	explicit	joint-list	conjunction
-they are looking at mandatory guidelines on iodine by the end of the year .	We need to " make sure there 's sufficient iodine	1<2	implicit	joint-other	conjunction
-We need to " make sure there 's sufficient iodine	added into the food supply ,	1<2	implicit	elaboration-attribute	elaboration
-We need to " make sure there 's sufficient iodine	to help those people with a deficiency .	1<2	implicit	purpose-goal	purpose
-We need to " make sure there 's sufficient iodine	But at the other end of the scale we 've got to make sure the people <*> that those people do n't get too much	1<2	explicit	adversative-contrast	contrast
+they are looking at mandatory guidelines on iodine by the end of the year .	"We need to "" make sure there 's sufficient iodine"	1<2	implicit	joint-other	conjunction
+"We need to "" make sure there 's sufficient iodine"	added into the food supply ,	1<2	implicit	elaboration-attribute	elaboration
+"We need to "" make sure there 's sufficient iodine"	to help those people with a deficiency .	1<2	implicit	purpose-goal	purpose
+"We need to "" make sure there 's sufficient iodine"	But at the other end of the scale we 've got to make sure the people <*> that those people do n't get too much	1<2	explicit	adversative-contrast	contrast
 But at the other end of the scale we 've got to make sure the people <*> that those people do n't get too much	who eat a lot of food	1<2	implicit	elaboration-attribute	elaboration
 But at the other end of the scale we 've got to make sure the people <*> that those people do n't get too much	- we all know the teenage boy	1<2	implicit	explanation-justify	explanation
 - we all know the teenage boy	who comes home from school	1<2	implicit	elaboration-attribute	elaboration
 who comes home from school	and eats a whole loaf of bread -	1<2	explicit	joint-list	conjunction
-But at the other end of the scale we 've got to make sure the people <*> that those people do n't get too much	and get overdose , "	1<2	explicit	causal-result	causal
-We need to " make sure there 's sufficient iodine	Ms Bauchtman said .	1<2	implicit	attribution-positive	attribution
-" One of the reasons <*> is because people are taking that good healthy eating message	and not adding salt during cooking . "	1>2	implicit	causal-cause	causal
-" One of the reasons <*> is because people are taking that good healthy eating message	that iodine is going down	1<2	implicit	elaboration-attribute	elaboration
-We need to " make sure there 's sufficient iodine	and not adding salt during cooking . "	1<2	implicit	elaboration-additional	elaboration
-Senior researcher Mu Li , of the University of NSW 's school of public health , said	" it is reasonable to assume that pregnant women and breastfeeding mothers are also iodine deficient ,	1>2	implicit	attribution-positive	attribution
-Almost half of all Australian primary school children are mild to moderately iodine deficient ,	" it is reasonable to assume that pregnant women and breastfeeding mothers are also iodine deficient ,	1<2	implicit	joint-other	conjunction
-" it is reasonable to assume that pregnant women and breastfeeding mothers are also iodine deficient ,	putting the next generation of children <*> at risk of the neuropsychological consequences of iodine deficiency . "	1<2	implicit	causal-result	causal
-putting the next generation of children <*> at risk of the neuropsychological consequences of iodine deficiency . "	born in this country	1<2	implicit	evaluation-comment	comment
+But at the other end of the scale we 've got to make sure the people <*> that those people do n't get too much	"and get overdose , """	1<2	explicit	causal-result	causal
+"We need to "" make sure there 's sufficient iodine"	Ms Bauchtman said .	1<2	implicit	attribution-positive	attribution
+""" One of the reasons <*> is because people are taking that good healthy eating message"	"and not adding salt during cooking . """	1>2	implicit	causal-cause	causal
+""" One of the reasons <*> is because people are taking that good healthy eating message"	that iodine is going down	1<2	implicit	elaboration-attribute	elaboration
+"We need to "" make sure there 's sufficient iodine"	"and not adding salt during cooking . """	1<2	implicit	elaboration-additional	elaboration
+Senior researcher Mu Li , of the University of NSW 's school of public health , said	""" it is reasonable to assume that pregnant women and breastfeeding mothers are also iodine deficient ,"	1>2	implicit	attribution-positive	attribution
+Almost half of all Australian primary school children are mild to moderately iodine deficient ,	""" it is reasonable to assume that pregnant women and breastfeeding mothers are also iodine deficient ,"	1<2	implicit	joint-other	conjunction
+""" it is reasonable to assume that pregnant women and breastfeeding mothers are also iodine deficient ,"	"putting the next generation of children <*> at risk of the neuropsychological consequences of iodine deficiency . """	1<2	implicit	causal-result	causal
+"putting the next generation of children <*> at risk of the neuropsychological consequences of iodine deficiency . """	born in this country	1<2	implicit	evaluation-comment	comment
 What you 're hearing is Mangal Shobhajatra , an annual procession of thousands of people	Mangal Shobhajatra .	1>2	implicit	context-background	frame
 What you 're hearing is Mangal Shobhajatra , an annual procession of thousands of people	that takes over the streets of Bangladesh 's capital city , Dhaka .	1<2	implicit	elaboration-attribute	elaboration
 What you 're hearing is Mangal Shobhajatra , an annual procession of thousands of people	It marks the start of the Bengali New Year ,	1<2	implicit	elaboration-additional	elaboration
@@ -2668,12 +2668,12 @@ _____ ________ ____ ____ __ __ _____ ____ __ ___ _____	______ ____ ___ ____ ____
 _____ ________ ____ ____ __ __ _____ ____ __ ___ _____	____ __ ____ ____ __________ __ __________ _________	1<2	implicit	elaboration-additional	elaboration
 _____ ____ ___ __ ___ ________ ___ ____ ______	___ __ ___ ____________ ______ ___ __ ____ ________ ____ _	1>2	explicit	causal-cause	causal
 ____ __ ____ ____ __________ __ __________ _________	___ __ ___ ____________ ______ ___ __ ____ ________ ____ _	1<2	implicit	explanation-justify	explanation
-Madam Speaker ,	They are required , <*> to " do impartial justice	1>2	implicit	organization-preparation	organization
-" I solemnly swear	that in all things <*> I will do impartial justice	1>2	implicit	attribution-positive	attribution
+Madam Speaker ,	"They are required , <*> to "" do impartial justice"	1>2	implicit	organization-preparation	organization
+""" I solemnly swear"	that in all things <*> I will do impartial justice	1>2	implicit	attribution-positive	attribution
 that in all things <*> I will do impartial justice	that <*> it calls them away from their role as partisans .	1>2	implicit	context-background	frame
 that in all things <*> I will do impartial justice	appertaining to the trial of the impeachment of Donald John Trump , President of the United States ,	1<2	implicit	elaboration-attribute	elaboration
 appertaining to the trial of the impeachment of Donald John Trump , President of the United States ,	now pending ,	1<2	implicit	elaboration-attribute	elaboration
-that in all things <*> I will do impartial justice	according to the Constitution and laws . "	1<2	implicit	mode-manner	mode
+that in all things <*> I will do impartial justice	"according to the Constitution and laws . """	1<2	implicit	mode-manner	mode
 that in all things <*> I will do impartial justice	That is the oath	1<2	implicit	elaboration-additional	elaboration
 That is the oath	Senators swore on January 16 .	1<2	implicit	elaboration-attribute	elaboration
 That is the oath	It is the oath	1<2	implicit	joint-list	conjunction
@@ -2692,13 +2692,13 @@ made necessary by the fact	that Senators are not , <*> under normal circumstance
 that Senators are not , <*> under normal circumstances , impartial in our work .	as we are not ,	1<2	implicit	restatement-partial	reformulation
 The words <*> recognize	that <*> it calls them away from their role as partisans .	1>2	implicit	attribution-positive	attribution
 The words <*> recognize	chosen for this oath	1<2	implicit	elaboration-attribute	elaboration
-that <*> it calls them away from their role as partisans .	They are required , <*> to " do impartial justice	1>2	implicit	explanation-justify	explanation
+that <*> it calls them away from their role as partisans .	"They are required , <*> to "" do impartial justice"	1>2	implicit	explanation-justify	explanation
 that <*> it calls them away from their role as partisans .	when our Constitution calls Senators to try impeachment ,	1<2	explicit	context-circumstance	temporal
 When that oath is taken ,	Senators are supposed to step back from the affiliation of party or political kinship with or opposition to the President on trial .	1>2	explicit	context-circumstance	temporal
 that <*> it calls them away from their role as partisans .	Senators are supposed to step back from the affiliation of party or political kinship with or opposition to the President on trial .	1<2	implicit	restatement-repetition	reformulation
-They are required , <*> to " do impartial justice	that Republican Senators can not and have not denied the facts ,	1>2	implicit	context-background	frame
-They are required , <*> to " do impartial justice	as the oath plainly states ,	1<2	explicit	explanation-evidence	explanation
-They are required , <*> to " do impartial justice	according to the Constitution and laws . "	1<2	implicit	mode-manner	mode
+"They are required , <*> to "" do impartial justice"	that Republican Senators can not and have not denied the facts ,	1>2	implicit	context-background	frame
+"They are required , <*> to "" do impartial justice"	as the oath plainly states ,	1<2	explicit	explanation-evidence	explanation
+"They are required , <*> to "" do impartial justice"	"according to the Constitution and laws . """	1<2	implicit	mode-manner	mode
 Madam Speaker , this afternoon , Senators will be asked to vote on the two Articles of Impeachment <*> on abuse of power and the obstruction of Congress .	that they will vote against the articles .	1>2	implicit	context-circumstance	temporal
 Madam Speaker , this afternoon , Senators will be asked to vote on the two Articles of Impeachment <*> on abuse of power and the obstruction of Congress .	the House presented	1<2	implicit	elaboration-attribute	elaboration
 After voting to refuse to hear evidence and call witnesses with pertinent information ,	nearly all Republican Senators have already announced	1>2	explicit	context-circumstance	temporal
@@ -2714,16 +2714,16 @@ The evidence of President Trump 's abuse of power and attempt <*> is clear enoug
 The evidence of President Trump 's abuse of power and attempt <*> is clear enough	to solicit foreign interference in the 2020 elections	1<2	implicit	purpose-attribute	purpose
 that Republican Senators can not and have not denied the facts ,	yet they can not bring themselves to confront this President	1<2	explicit	adversative-contrast	contrast
 yet they can not bring themselves to confront this President	and are choosing party over country .	1<2	explicit	joint-list	conjunction
-The Senator from Alaska , <*> tried to deflect responsibility from the consequences of her actions ,	" I have come to the conclusion	1>2	implicit	context-background	frame
+The Senator from Alaska , <*> tried to deflect responsibility from the consequences of her actions ,	""" I have come to the conclusion"	1>2	implicit	context-background	frame
 The Senator from Alaska , <*> tried to deflect responsibility from the consequences of her actions ,	in explaining her decision	1<2	explicit	context-circumstance	temporal
 in explaining her decision	to vote to block witnesses and evidence ,	1<2	implicit	purpose-attribute	purpose
-writing :	" I have come to the conclusion	1>2	implicit	attribution-positive	attribution
-" I have come to the conclusion	Madam Speaker , the Congress has not failed .	1>2	implicit	adversative-antithesis	contrast
-" I have come to the conclusion	that there will be no fair trial in the Senate . "	1<2	implicit	elaboration-attribute	elaboration
-" I have come to the conclusion	I agree with that .	1<2	implicit	evaluation-comment	comment
-She further said :	that , as an institution , the Congress has failed . "	1>2	implicit	attribution-positive	attribution
-" It is sad for me today to admit	that , as an institution , the Congress has failed . "	1>2	implicit	attribution-positive	attribution
-" I have come to the conclusion	that , as an institution , the Congress has failed . "	1<2	implicit	joint-other	conjunction
+writing :	""" I have come to the conclusion"	1>2	implicit	attribution-positive	attribution
+""" I have come to the conclusion"	Madam Speaker , the Congress has not failed .	1>2	implicit	adversative-antithesis	contrast
+""" I have come to the conclusion"	"that there will be no fair trial in the Senate . """	1<2	implicit	elaboration-attribute	elaboration
+""" I have come to the conclusion"	I agree with that .	1<2	implicit	evaluation-comment	comment
+She further said :	"that , as an institution , the Congress has failed . """	1>2	implicit	attribution-positive	attribution
+""" It is sad for me today to admit"	"that , as an institution , the Congress has failed . """	1>2	implicit	attribution-positive	attribution
+""" I have come to the conclusion"	"that , as an institution , the Congress has failed . """	1<2	implicit	joint-other	conjunction
 that Republican Senators can not and have not denied the facts ,	Madam Speaker , the Congress has not failed .	1<2	implicit	evaluation-comment	comment
 Madam Speaker , the Congress has not failed .	The House did its job ,	1<2	implicit	explanation-justify	explanation
 The House did its job ,	whether you agree or not .	1<2	explicit	adversative-concession	concession
@@ -2891,17 +2891,17 @@ who raise our food ,	keep our homes ,	1<2	implicit	joint-list	conjunction
 who raise our food ,	and heal us	1<2	explicit	joint-list	conjunction
 and heal us	when we 're sick —	1<2	explicit	context-circumstance	temporal
 who raise our food ,	professionals , industrialists , shopkeepers , clerks , cabbies , and truck drivers .	1<2	implicit	elaboration-additional	elaboration
-who raise our food ,	They are , in short , " We the people , "	1<2	implicit	elaboration-additional	elaboration
-They are , in short , " We the people , "	this breed	1<2	implicit	restatement-repetition	reformulation
+who raise our food ,	"They are , in short , "" We the people , """	1<2	implicit	elaboration-additional	elaboration
+"They are , in short , "" We the people , """	this breed	1<2	implicit	restatement-repetition	reformulation
 this breed	called Americans .	1<2	implicit	elaboration-attribute	elaboration
 Mr. President , I want our fellow citizens to know how much you did	Well , this administration 's objective will be a healthy , vigorous , growing economy	1<2	implicit	joint-other	conjunction
 Well , this administration 's objective will be a healthy , vigorous , growing economy	that provides equal opportunities for all Americans , with no barriers	1<2	implicit	elaboration-attribute	elaboration
 that provides equal opportunities for all Americans , with no barriers	born of bigotry or discrimination .	1<2	implicit	elaboration-attribute	elaboration
-Putting America back to work means putting all Americans back to work .	All must share in the productive work of this " new beginning , "	1>2	implicit	explanation-justify	explanation
+Putting America back to work means putting all Americans back to work .	"All must share in the productive work of this "" new beginning , """	1>2	implicit	explanation-justify	explanation
 Putting America back to work means putting all Americans back to work .	Ending inflation means freeing all Americans from the terror of runaway living costs .	1<2	implicit	joint-list	conjunction
-Well , this administration 's objective will be a healthy , vigorous , growing economy	All must share in the productive work of this " new beginning , "	1<2	implicit	elaboration-additional	elaboration
-All must share in the productive work of this " new beginning , "	and all must share in the bounty of a revived economy .	1<2	explicit	joint-list	conjunction
-All must share in the productive work of this " new beginning , "	With the idealism and fair play <*> we can have a strong and prosperous America , at peace with itself and the world .	1<2	implicit	explanation-motivation	explanation
+Well , this administration 's objective will be a healthy , vigorous , growing economy	"All must share in the productive work of this "" new beginning , """	1<2	implicit	elaboration-additional	elaboration
+"All must share in the productive work of this "" new beginning , """	and all must share in the bounty of a revived economy .	1<2	explicit	joint-list	conjunction
+"All must share in the productive work of this "" new beginning , """	With the idealism and fair play <*> we can have a strong and prosperous America , at peace with itself and the world .	1<2	implicit	explanation-motivation	explanation
 With the idealism and fair play <*> we can have a strong and prosperous America , at peace with itself and the world .	which are the core of our system and our strength ,	1<2	implicit	elaboration-attribute	elaboration
 1.1 What is Government ?	The government of the United States can best be described as a republic , or representative democracy .	1>2	implicit	organization-heading	organization
 DIFFERENT TYPES OF GOVERNMENT	The government of the United States can best be described as a republic , or representative democracy .	1>2	implicit	organization-heading	organization
@@ -3359,7 +3359,7 @@ This process of synoikismos <*> created the largest and wealthiest state on the 
 This process of synoikismos <*> created the largest and wealthiest state on the Greek mainland ,	but it also created a larger class of people excluded from political life by the nobility .	1<2	explicit	adversative-contrast	contrast
 By the 7th century BC , social unrest had become widespread ,	and the Areopagus appointed Draco	1>2	explicit	causal-cause	causal
 The first pre-historic settlements was constructed in 3000 BC around the hill of Acropolis .	and the Areopagus appointed Draco	1<2	implicit	joint-sequence	temporal
-and the Areopagus appointed Draco	( hence " draconian " ) .	1>2	explicit	causal-cause	causal
+and the Areopagus appointed Draco	"( hence "" draconian "" ) ."	1>2	explicit	causal-cause	causal
 and the Areopagus appointed Draco	to draft a strict new law code	1<2	implicit	purpose-goal	purpose
 When this failed ,	they appointed Solon , with a mandate to create a new constitution	1>2	explicit	context-circumstance	temporal
 they appointed Solon , with a mandate to create a new constitution	This was the great beginning of a new social revolution ,	1>2	implicit	causal-cause	causal
@@ -3596,7 +3596,7 @@ Another option is to dress the joke up as a story about your own life .	[ 6 ]	1<
 Know your material .	Practicing your joke is crucial .	1>2	implicit	organization-preparation	organization
 so there are no hard and fast rules .	Practicing your joke is crucial .	1<2	implicit	joint-other	conjunction
 Practicing your joke is crucial .	You do n’t need to have it completely memorized	1<2	implicit	elaboration-additional	elaboration
-— in fact , you " should n’t " memorize it —	but you need to be really comfortable with it ,	1>2	explicit	adversative-antithesis	contrast
+"— in fact , you "" should n’t "" memorize it —"	but you need to be really comfortable with it ,	1>2	explicit	adversative-antithesis	contrast
 You do n’t need to have it completely memorized	but you need to be really comfortable with it ,	1<2	explicit	adversative-contrast	contrast
 but you need to be really comfortable with it ,	so comfortable	1<2	implicit	elaboration-additional	elaboration
 so comfortable	that you can continue on with telling it	1<2	implicit	mode-manner	mode
@@ -3620,7 +3620,7 @@ your joke is n’t ready	and you need to practice more .	1<2	explicit	causal-res
 Try recording your joke on a tape player and playing it back to yourself .	[ 8 ]	1<2	implicit	explanation-evidence	explanation
 Practicing your joke is crucial .	You can also try practicing in front of a sympathetic friend or family member	1<2	explicit	joint-list	conjunction
 You can also try practicing in front of a sympathetic friend or family member	once you ’re ready for a “ real ” audience .	1<2	explicit	contingency-condition	condition
-How to Wash Overalls in a Washing Machine	Wash alone or with " like " clothing .	1>2	implicit	organization-heading	organization
+How to Wash Overalls in a Washing Machine	"Wash alone or with "" like "" clothing ."	1>2	implicit	organization-heading	organization
 Whether you are a working man or just a little cutie	those overalls are going to need washing sooner or later .	1>2	implicit	context-circumstance	temporal
 Whether you are a working man or just a little cutie	trying to stay cute ,	1<2	implicit	elaboration-attribute	elaboration
 those overalls are going to need washing sooner or later .	The straps on adults ’ overalls often get so twisted during the wash	1>2	implicit	context-background	frame
@@ -3631,20 +3631,20 @@ The straps on adults ’ overalls often get so twisted during the wash	she had j
 The straps on adults ’ overalls often get so twisted during the wash	Your appliances are also murder on the straps ,	1<2	explicit	elaboration-additional	elaboration
 Your appliances are also murder on the straps ,	which are almost always the first things to wear out on your overalls .	1<2	implicit	elaboration-attribute	elaboration
 This article will show you	how to save time	1>2	implicit	attribution-positive	attribution
-how to save time	Wash alone or with " like " clothing .	1>2	implicit	organization-preparation	organization
+how to save time	"Wash alone or with "" like "" clothing ."	1>2	implicit	organization-preparation	organization
 how to save time	and prevent wear ,	1<2	explicit	joint-list	conjunction
 how to save time	extending the life of your overalls	1<2	implicit	causal-result	causal
 how to save time	until they are so soft	1<2	implicit	causal-result	causal
 extending the life of your overalls	until they are so soft	1<2	explicit	joint-sequence	temporal
 until they are so soft	you could wear them to bed .	1<2	implicit	mode-manner	mode
-Steps	Wash alone or with " like " clothing .	1>2	implicit	organization-heading	organization
-Wash alone or with " like " clothing .	It ’s best to wash adults ’ overalls alone , especially men ’s .	1<2	implicit	elaboration-additional	elaboration
+Steps	"Wash alone or with "" like "" clothing ."	1>2	implicit	organization-heading	organization
+"Wash alone or with "" like "" clothing ."	It ’s best to wash adults ’ overalls alone , especially men ’s .	1<2	implicit	elaboration-additional	elaboration
 It ’s best to wash adults ’ overalls alone , especially men ’s .	However , it is okay to wash just a few items with them , like blue jeans .	1<2	explicit	adversative-concession	concession
 It ’s best to wash adults ’ overalls alone , especially men ’s .	What you do n’t want to wash with them is anything	1<2	implicit	adversative-antithesis	contrast
 What you do n’t want to wash with them is anything	that can get twisted up with the straps , like women ’s long sleeve shirts or kids ’ blankets .	1<2	implicit	elaboration-attribute	elaboration
 It ’s best to wash adults ’ overalls alone , especially men ’s .	Think similar clothing , minus the twisty-ness .	1<2	implicit	elaboration-additional	elaboration
 Think similar clothing , minus the twisty-ness .	Just do the denim and canvas stuff together .	1<2	implicit	elaboration-additional	elaboration
-Wash alone or with " like " clothing .	Fasten the straps to the bib .	1<2	implicit	joint-sequence	temporal
+"Wash alone or with "" like "" clothing ."	Fasten the straps to the bib .	1<2	implicit	joint-sequence	temporal
 If you did n’t know already ,	the bib is the top front part with the breast pockets .	1>2	implicit	organization-preparation	organization
 Fasten the straps to the bib .	the bib is the top front part with the breast pockets .	1<2	implicit	context-background	frame
 Fasten the straps to the bib .	Go ahead and fasten both straps	1<2	implicit	restatement-repetition	reformulation
@@ -3662,7 +3662,7 @@ Do n’t skip it .	it will undo those straps in a heartbeat	1<2	implicit	explana
 it will undo those straps in a heartbeat	and tie them in a sheet bend	1<2	explicit	joint-sequence	temporal
 it will undo those straps in a heartbeat	unless you prevent it .	1<2	explicit	contingency-condition	condition
 Do n’t skip it .	All it takes is two twist ties and a few seconds of patience .	1<2	implicit	explanation-motivation	explanation
-Wash alone or with " like " clothing .	Empty the pockets .	1<2	implicit	joint-sequence	temporal
+"Wash alone or with "" like "" clothing ."	Empty the pockets .	1<2	implicit	joint-sequence	temporal
 Empty the pockets .	Overalls have more pockets than pants .	1<2	implicit	context-background	frame
 Overalls have more pockets than pants .	The bib has a wallet pocket and a watch pocket .	1<2	implicit	elaboration-additional	elaboration
 Empty the pockets .	Kids put rocks , candy , and bugs in these .	1<2	implicit	explanation-motivation	explanation
@@ -3671,7 +3671,7 @@ Women defy the laws of purse - space ,	so <*> the sky is the limit .	1>2	implici
 Kids put rocks , candy , and bugs in these .	so <*> the sky is the limit .	1<2	implicit	joint-list	conjunction
 so <*> the sky is the limit .	when it comes to bib pockets ,	1<2	explicit	context-circumstance	temporal
 Empty the pockets .	Make sure all the pockets are empty .	1<2	implicit	restatement-repetition	reformulation
-Wash alone or with " like " clothing .	Move the strap adjusters around .	1<2	implicit	joint-sequence	temporal
+"Wash alone or with "" like "" clothing ."	Move the strap adjusters around .	1<2	implicit	joint-sequence	temporal
 You ’ve probably got them just the way you like them ,	but <*> the straps will last longer .	1>2	explicit	adversative-antithesis	contrast
 Move the strap adjusters around .	but <*> the straps will last longer .	1<2	implicit	explanation-motivation	explanation
 but <*> the straps will last longer .	if you move the adjusters up or down on the straps occasionally ,	1<2	explicit	contingency-condition	condition
@@ -3687,14 +3687,14 @@ This is the same idea as rotating tires .	about rotating your tires ,	1<2	implic
 about rotating your tires ,	do n't you ?	1<2	implicit	restatement-partial	reformulation
 Tips	use about half the detergent <*> and less water .	1>2	implicit	organization-heading	organization
 If you wash your overalls alone or in a light load ,	use about half the detergent <*> and less water .	1>2	explicit	contingency-condition	condition
-Wash alone or with " like " clothing .	use about half the detergent <*> and less water .	1<2	implicit	joint-other	conjunction
+"Wash alone or with "" like "" clothing ."	use about half the detergent <*> and less water .	1<2	implicit	joint-other	conjunction
 use about half the detergent <*> and less water .	called for	1<2	implicit	elaboration-attribute	elaboration
 use about half the detergent <*> and less water .	Leave the straps fastened and twist - tied to the bib	1<2	implicit	joint-other	conjunction
 Leave the straps fastened and twist - tied to the bib	when you throw them in the dryer .	1<2	explicit	context-circumstance	temporal
 Leave the straps fastened and twist - tied to the bib	This will cut down on some of the racket ,	1<2	implicit	explanation-motivation	explanation
 This will cut down on some of the racket ,	but you 're still going to hear them .	1<2	explicit	adversative-concession	concession
 Warnings	The paper - type twist ties will deteriorate a little ,	1>2	implicit	organization-heading	organization
-Wash alone or with " like " clothing .	The paper - type twist ties will deteriorate a little ,	1<2	implicit	joint-other	conjunction
+"Wash alone or with "" like "" clothing ."	The paper - type twist ties will deteriorate a little ,	1<2	implicit	joint-other	conjunction
 The paper - type twist ties will deteriorate a little ,	but the dryer filter screen will catch the fallout .	1<2	explicit	adversative-concession	concession
 The paper - type twist ties will deteriorate a little ,	Plastic - type twist ties will hold up in the wash ,	1<2	implicit	adversative-contrast	contrast
 Plastic - type twist ties will hold up in the wash ,	but may or may not melt in your dryer .	1<2	explicit	adversative-concession	concession

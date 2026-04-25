@@ -40,7 +40,7 @@ Cleaning:
 3. Collapse repeated whitespace into a single space.
 4. Normalize `contingency.cause` to `causal` during cleaning to keep a strict 17-label setup. This is done because `orig_label = contingency.cause.result` maps to `causal` almost everywhere in the data, while `contingency.cause` appears as a single inconsistent outlier.
 5. Skip rows with empty target fields, if any appear.
-6. Drop exact duplicates after cleaning.
+6. Remove duplicate rows within each source file after cleaning, based on the retained columns.
 
 ## Label Verification
 

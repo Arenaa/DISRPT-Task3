@@ -768,8 +768,8 @@ Clustering aspect-related phrases in terms of product's property is a precursor 
 Most of existing methods for addressing this problem are context-based models	In this paper , we explore a novel idea , sentiment distribution consistency ,	1>2	unknown	bg-compare	frame
 which assume	that domain synonymous phrases share similar co-occurrence contexts .	1>2	unknown	attribution	attribution
 Most of existing methods for addressing this problem are context-based models	that domain synonymous phrases share similar co-occurrence contexts .	1<2	unknown	elab-addition	elaboration
-which states	that different phrases ( e.g. "price" , "money" , "worth" , and "cost" ) of the same aspect tend to have consistent sentiment distribution .	1>2	unknown	attribution	attribution
-In this paper , we explore a novel idea , sentiment distribution consistency ,	that different phrases ( e.g. "price" , "money" , "worth" , and "cost" ) of the same aspect tend to have consistent sentiment distribution .	1<2	unknown	elab-addition	elaboration
+which states	"that different phrases ( e.g. ""price"" , ""money"" , ""worth"" , and ""cost"" ) of the same aspect tend to have consistent sentiment distribution ."	1>2	unknown	attribution	attribution
+In this paper , we explore a novel idea , sentiment distribution consistency ,	"that different phrases ( e.g. ""price"" , ""money"" , ""worth"" , and ""cost"" ) of the same aspect tend to have consistent sentiment distribution ."	1<2	unknown	elab-addition	elaboration
 Through formalizing sentiment distribution consistency as soft constraint ,	we propose a novel unsupervised model in the framework of Posterior Regularization ( PR )	1>2	unknown	manner-means	mode
 In this paper , we explore a novel idea , sentiment distribution consistency ,	we propose a novel unsupervised model in the framework of Posterior Regularization ( PR )	1<2	unknown	elab-addition	elaboration
 we propose a novel unsupervised model in the framework of Posterior Regularization ( PR )	to cluster aspect-related phrases .	1<2	unknown	enablement	purpose
@@ -1020,7 +1020,7 @@ Multi-label text categorization ( MTC ) is supervised learning ,	The proposed me
 Multi-label text categorization ( MTC ) is supervised learning ,	where a document may be assigned with multiple categories ( labels ) simultaneously .	1<2	unknown	elab-addition	elaboration
 Multi-label text categorization ( MTC ) is supervised learning ,	The labels in the MTC are correlated	1<2	unknown	elab-addition	elaboration
 The labels in the MTC are correlated	and the correlation results in some hidden components ,	1<2	unknown	progression	organization
-and the correlation results in some hidden components ,	which represent the "share" variance of correlated labels .	1<2	unknown	elab-addition	elaboration
+and the correlation results in some hidden components ,	"which represent the ""share"" variance of correlated labels ."	1<2	unknown	elab-addition	elaboration
 In this paper , we propose a method with hidden components for MTC .	The proposed method employs PCA to capture the hidden components ,	1<2	unknown	elab-addition	elaboration
 The proposed method employs PCA to capture the hidden components ,	and incorporates them into a joint learning framework	1<2	unknown	progression	organization
 and incorporates them into a joint learning framework	to improve the performance .	1<2	unknown	enablement	purpose
@@ -1178,7 +1178,7 @@ We demonstrate our approach	that this parser produces logical forms better than 
 A syntactic evaluation on CCGbank demonstrates	that the parser's dependency F-score is within 2.5 % of state-of-the-art .	1>2	unknown	attribution	attribution
 We demonstrate our approach	that the parser's dependency F-score is within 2.5 % of state-of-the-art .	1<2	unknown	elab-aspect	elaboration
 Semantic hierarchy construction aims to build structures of concepts	This paper proposes a novel and effective method for the construction of semantic hierarchies	1>2	unknown	bg-goal	frame
-Semantic hierarchy construction aims to build structures of concepts	linked by hypernym-hyponym ("is-a") relations .	1<2	unknown	elab-addition	elaboration
+Semantic hierarchy construction aims to build structures of concepts	"linked by hypernym-hyponym (""is-a"") relations ."	1<2	unknown	elab-addition	elaboration
 Semantic hierarchy construction aims to build structures of concepts	A major challenge for this task is the automatic discovery of such relations .	1<2	unknown	elab-addition	elaboration
 This paper proposes a novel and effective method for the construction of semantic hierarchies	based on word embeddings ,	1<2	unknown	bg-general	frame
 based on word embeddings ,	which can be used to measure the semantic relationship between words .	1<2	unknown	elab-addition	elaboration

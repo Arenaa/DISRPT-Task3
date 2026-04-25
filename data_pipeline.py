@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 from dataclasses import asdict, dataclass
@@ -14,6 +15,15 @@ KEEP_COLUMNS = [
     "rel_type",
     "orig_label",
     "label",
+]
+MALFORMED_COLUMNS = [
+    "file",
+    "dataset",
+    "split",
+    "line_no",
+    "num_columns",
+    "expected_columns",
+    "raw_row",
 ]
 
 WHITESPACE_RE = re.compile(r"\s+")
@@ -67,14 +77,24 @@ def iter_rels_files(input_dir: Path) -> list[Path]:
 
 
 def load_and_clean_rels(path: Path) -> tuple[list[dict[str, str]], FileSummary]:
-    return load_and_clean_rels_with_metadata(path, include_metadata=False)
+    rows, summary, _ = _load_and_clean_rels(path, include_metadata=False)
+    return rows, summary
 
 
 def load_and_clean_rels_with_metadata(
     path: Path,
     include_metadata: bool = True,
 ) -> tuple[list[dict[str, str]], FileSummary]:
+    rows, summary, _ = _load_and_clean_rels(path, include_metadata=include_metadata)
+    return rows, summary
+
+
+def _load_and_clean_rels(
+    path: Path,
+    include_metadata: bool,
+) -> tuple[list[dict[str, str]], FileSummary, list[dict[str, str]]]:
     cleaned_rows: list[dict[str, str]] = []
+    malformed_rows: list[dict[str, str]] = []
     seen: set[tuple[str, ...]] = set()
     raw_rows = 0
     dropped_malformed = 0
@@ -82,14 +102,25 @@ def load_and_clean_rels_with_metadata(
     dropped_duplicates = 0
 
     with path.open("r", encoding="utf-8", newline="") as handle:
-        header = handle.readline().rstrip("\n").split("\t")
+        reader = csv.reader(handle, delimiter="\t", quoting=csv.QUOTE_NONE)
+        header = next(reader, [])
         validate_required_columns(header, path)
 
-        for line_no, line in enumerate(handle, start=2):
+        for line_no, parts in enumerate(reader, start=2):
             raw_rows += 1
-            parts = line.rstrip("\n").split("\t")
             if len(parts) != len(header):
                 dropped_malformed += 1
+                malformed_rows.append(
+                    {
+                        "file": str(path),
+                        "dataset": path.parent.name,
+                        "split": infer_split(path),
+                        "line_no": str(line_no),
+                        "num_columns": str(len(parts)),
+                        "expected_columns": str(len(header)),
+                        "raw_row": "\t".join(parts),
+                    }
+                )
                 continue
 
             raw_row = dict(zip(header, parts))
@@ -128,25 +159,33 @@ def load_and_clean_rels_with_metadata(
         num_rows_with_empty_fields=dropped_missing,
         num_duplicate_rows_removed=dropped_duplicates,
     )
-    return cleaned_rows, summary
+    return cleaned_rows, summary, malformed_rows
 
 
 def write_tsv(path: Path, rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        handle.write("\t".join(KEEP_COLUMNS) + "\n")
-        for row in rows:
-            handle.write("\t".join(row[column] for column in KEEP_COLUMNS) + "\n")
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=KEEP_COLUMNS,
+            delimiter="\t",
+            lineterminator="\n",
+            quoting=csv.QUOTE_MINIMAL,
+        )
+        writer.writeheader()
+        writer.writerows({column: row[column] for column in KEEP_COLUMNS} for row in rows)
 
 
 def build_pipeline(input_dir: Path, output_dir: Path) -> dict[str, object]:
     rels_files = iter_rels_files(input_dir)
     combined_by_split: dict[str, list[dict[str, str]]] = {"train": [], "dev": [], "test": [], "unknown": []}
     file_summaries: list[FileSummary] = []
+    malformed_rows: list[dict[str, str]] = []
 
     for rels_file in rels_files:
-        rows, summary = load_and_clean_rels(rels_file)
+        rows, summary, file_malformed_rows = _load_and_clean_rels(rels_file, include_metadata=False)
         file_summaries.append(summary)
+        malformed_rows.extend(file_malformed_rows)
         combined_by_split.setdefault(summary.split, []).extend(rows)
 
         relative = rels_file.relative_to(input_dir)
@@ -180,6 +219,23 @@ def build_pipeline(input_dir: Path, output_dir: Path) -> dict[str, object]:
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    malformed_path = output_dir / "malformed_rows.tsv"
+    if malformed_rows:
+        with malformed_path.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(
+                handle,
+                fieldnames=MALFORMED_COLUMNS,
+                delimiter="\t",
+                lineterminator="\n",
+                quoting=csv.QUOTE_MINIMAL,
+            )
+            writer.writeheader()
+            writer.writerows(
+                {column: row[column] for column in MALFORMED_COLUMNS}
+                for row in malformed_rows
+            )
+    elif malformed_path.exists():
+        malformed_path.unlink()
     summary_path = output_dir / "pipeline_summary.json"
     summary_path.write_text(json.dumps(summary_payload, indent=2, ensure_ascii=False), encoding="utf-8")
 

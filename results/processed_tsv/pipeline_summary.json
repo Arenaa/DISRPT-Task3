@@ -1,6 +1,6 @@
 {
   "input_dir": "data_subset",
-  "output_dir": "processed_tsv",
+  "output_dir": "results\\processed_tsv",
   "keep_columns": [
     "unit1_txt",
     "unit2_txt",

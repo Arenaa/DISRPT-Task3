@@ -34,8 +34,8 @@ thanks	what else can I do during the turn?	1>2	unknown	Continuation	conjunction
 what else can I do during the turn?	(i am new to this)	1>2	unknown	Explanation	explanation
 what else can I do during the turn?	build,	1>2	unknown	Question_answer_pair	query
 build,	trade,	1>2	unknown	Narration	temporal
-trade,	"done"	1>2	unknown	Narration	temporal
-when we actually want to exchange...	we click "register a trade	1>2	unknown	Conditional	condition
+trade,	"""done"""	1>2	unknown	Narration	temporal
+when we actually want to exchange...	"we click ""register a trade"	1>2	unknown	Conditional	condition
 first we chat about it	okay,	1>2	unknown	Acknowledgement	query
 anyone want wood?	sorry clay	1>2	unknown	Correction	contrast
 anyone want wood?	no	1>2	unknown	Question_answer_pair	query
@@ -56,7 +56,7 @@ you need 10 victory points to win.	a settlement gives you 1 VP,	1>2	unknown	Cont
 a settlement gives you 1 VP,	a city gives you 2 VP	1>2	unknown	Continuation	conjunction
 if you have 1 wood, 1 clay,	okay, I see...	1>2	unknown	Acknowledgement	query
 you need 10 victory points to win.	okay, thanks	1>2	unknown	Acknowledgement	query
-where do i press?	at the bottom next to "road" etc.	1>2	unknown	Question_answer_pair	query
+where do i press?	"at the bottom next to ""road"" etc."	1>2	unknown	Question_answer_pair	query
 where do i press?	if you have 1 wood, 1 clay,	1>2	unknown	Question_answer_pair	query
 does someone have clay?	none	1>2	unknown	Question_answer_pair	query
 does someone have clay?	yes	1>2	unknown	Question_answer_pair	query
@@ -108,7 +108,7 @@ sorry	retry	1>2	unknown	Continuation	conjunction
 retry	couldn't see it	1>2	unknown	Explanation	explanation
 couldn't see it	if you move another window on top of the speech bubble	1>2	unknown	Comment	comment
 if you move another window on top of the speech bubble	you will see it	1>2	unknown	Conditional	condition
-if you move another window on top of the speech bubble	like "whiping" over it	1>2	unknown	Explanation	explanation
+if you move another window on top of the speech bubble	"like ""whiping"" over it"	1>2	unknown	Explanation	explanation
 if you move another window on top of the speech bubble	thanks	1>2	unknown	Acknowledgement	query
 so to move the robber	i need to roll the dice?	1>2	unknown	Conditional	condition
 i can offer ore for sheep or clay	or wheet for the same	1>2	unknown	Alternation	alternation
@@ -340,7 +340,7 @@ could do with some wheat though	i also need wheat :)	1>2	unknown	Parallel	conjun
 erm... how do accept a trade?	do you have wheat?	1>2	unknown	Q_Elab	query
 erm... how do accept a trade?	ehh i am not sure as well	1>2	unknown	Parallel	conjunction
 do you have wheat?	yeah, can do the trade	1>2	unknown	Question_answer_pair	query
-yeah, can do the trade	but can only see a "reject" button	1>2	unknown	Contrast	contrast
+yeah, can do the trade	"but can only see a ""reject"" button"	1>2	unknown	Contrast	contrast
 usually suggests one	you doesn't have what is offered	1>2	unknown	Continuation	conjunction
 technical error i think	i'll try and trade with you next turn. see if that works.	1>2	unknown	Result	causal
 i'll try and trade with you next turn. see if that works.	thank you	1>2	unknown	Acknowledgement	query

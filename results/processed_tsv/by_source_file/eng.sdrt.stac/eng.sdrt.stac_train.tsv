@@ -766,14 +766,14 @@ too late -	doh!	1>2	unknown	Comment	comment
 too late -	next time :)	1>2	unknown	Comment	comment
 mm -	nope	1>2	unknown	Question_answer_pair	query
 mm -	i got clay	1>2	unknown	Question_answer_pair	query
-So I get to say the legendary line.	"Anyone got wood for sheep?" :D	1>2	unknown	Elaboration	elaboration
-"Anyone got wood for sheep?" :D	lol	1>2	unknown	Comment	comment
-"Anyone got wood for sheep?" :D	oh boy	1>2	unknown	Comment	comment
-"Anyone got wood for sheep?" :D	lamentably I am sheepless	1>2	unknown	Question_answer_pair	query
-"Anyone got wood for sheep?" :D	same here	1>2	unknown	Question_answer_pair	query
-"Anyone got wood for sheep?" :D	Ah well.	1>2	unknown	Correction	contrast
-"Anyone got wood for sheep?" :D	can't	1>2	unknown	Question_answer_pair	query
-"Anyone got wood for sheep?" :D	Sheep for wood?	1>2	unknown	Correction	contrast
+So I get to say the legendary line.	"""Anyone got wood for sheep?"" :D"	1>2	unknown	Elaboration	elaboration
+"""Anyone got wood for sheep?"" :D"	lol	1>2	unknown	Comment	comment
+"""Anyone got wood for sheep?"" :D"	oh boy	1>2	unknown	Comment	comment
+"""Anyone got wood for sheep?"" :D"	lamentably I am sheepless	1>2	unknown	Question_answer_pair	query
+"""Anyone got wood for sheep?"" :D"	same here	1>2	unknown	Question_answer_pair	query
+"""Anyone got wood for sheep?"" :D"	Ah well.	1>2	unknown	Correction	contrast
+"""Anyone got wood for sheep?"" :D"	can't	1>2	unknown	Question_answer_pair	query
+"""Anyone got wood for sheep?"" :D"	Sheep for wood?	1>2	unknown	Correction	contrast
 oh boy	haha	1>2	unknown	Continuation	conjunction
 lamentably I am sheepless	same here	1>2	unknown	Parallel	conjunction
 can't	sorry	1>2	unknown	Comment	comment
@@ -1250,9 +1250,9 @@ no	ah wlel	1>2	unknown	Acknowledgement	query
 strange	the game is still youngish :D	1>2	unknown	Explanation	explanation
 well*	Ooh!	1>2	unknown	Comment	comment
 Ooh!	Clay :D	1>2	unknown	Explanation	explanation
-I like this "getting resources" business.	:(	1>2	unknown	Comment	comment
+"I like this ""getting resources"" business."	:(	1>2	unknown	Comment	comment
 Ooh!	that was an easy turn for me :D	1>2	unknown	Comment	comment
-Ooh!	I like this "getting resources" business.	1>2	unknown	Elaboration	elaboration
+Ooh!	"I like this ""getting resources"" business."	1>2	unknown	Elaboration	elaboration
 anyone have wheat	no,	1>2	unknown	Question_answer_pair	query
 anyone have wheat	the ore is mining at last	1>2	unknown	Comment	comment
 the ore is mining at last	you've hit a seam	1>2	unknown	Comment	comment
@@ -1459,9 +1459,9 @@ yup	done	1>2	unknown	Result	causal
 done	:)	1>2	unknown	Comment	comment
 done	Sorry,	1>2	unknown	Comment	comment
 Sorry,	the trade thing is really broken on here	1>2	unknown	Explanation	explanation
-not that	just no really clear thing to say "trade successful"	1>2	unknown	Elaboration	elaboration
-just no really clear thing to say "trade successful"	Oh right,	1>2	unknown	Acknowledgement	query
-just no really clear thing to say "trade successful"	what's nancy offering to trade?	1>2	unknown	Clarification_question	query
+not that	"just no really clear thing to say ""trade successful"""	1>2	unknown	Elaboration	elaboration
+"just no really clear thing to say ""trade successful"""	Oh right,	1>2	unknown	Acknowledgement	query
+"just no really clear thing to say ""trade successful"""	what's nancy offering to trade?	1>2	unknown	Clarification_question	query
 what's nancy offering to trade?	im trying th trade with the bank	1>2	unknown	Question_answer_pair	query
 Oh right,	ok	1>2	unknown	Continuation	conjunction
 im trying th trade with the bank	ah	1>2	unknown	Comment	comment
@@ -1487,7 +1487,7 @@ brillant	Oh	1>2	unknown	Acknowledgement	query
 :)	Oh	1>2	unknown	Acknowledgement	query
 I could do with a sheep,	if you are still offering?	1<2	unknown	Conditional	condition
 Sorry,	not that	1>2	unknown	Correction	contrast
-Oh right,	I traded after you said "do you still?"	1>2	unknown	Elaboration	elaboration
+Oh right,	"I traded after you said ""do you still?"""	1>2	unknown	Elaboration	elaboration
 (hence 3:1 and 2:1 on the colourde ports)	thanks	1>2	unknown	Acknowledgement	query
 (hence 3:1 and 2:1 on the colourde ports)	banks are such rip-offs :)	1>2	unknown	Comment	comment
 yeah	What do you need?	1>2	unknown	Q_Elab	query
@@ -1647,8 +1647,8 @@ That's... fairly broken?	yes	1>2	unknown	Question_answer_pair	query
 yes	if there is a required order for a go	1>2	unknown	Explanation	explanation
 if there is a required order for a go	then it should not be possible to accidentally click a button	1>2	unknown	Conditional	condition
 and I cant end my turn	Ah	1>2	unknown	Acknowledgement	query
-Ah	Can't click "Done"?	1>2	unknown	Clarification_question	query
-Can't click "Done"?	I think	1>2	unknown	Question_answer_pair	query
+Ah	"Can't click ""Done""?"	1>2	unknown	Clarification_question	query
+"Can't click ""Done""?"	I think	1>2	unknown	Question_answer_pair	query
 I think	it is broken	1>2	unknown	Elaboration	elaboration
 it is broken	now	1>2	unknown	Continuation	conjunction
 *you cant end your tuirn yet	oh wait	1>2	unknown	Correction	contrast
@@ -2524,7 +2524,7 @@ can i get an ore for a sheep?	fraid not	1>2	unknown	Question_answer_pair	query
 clay ore for trade anyone?	no	1>2	unknown	Question_answer_pair	query
 clay ore for trade anyone?	i need a clay	1>2	unknown	Question_answer_pair	query
 i need a clay	can offer an ore	1>2	unknown	Elaboration	elaboration
-if that's what you mean?	yes i missed "or" there	1>2	unknown	Acknowledgement	query
+if that's what you mean?	"yes i missed ""or"" there"	1>2	unknown	Acknowledgement	query
 ore for what then?	clay	1>2	unknown	Question_answer_pair	query
 clay	which you don't have?	1>2	unknown	Clarification_question	query
 which you don't have?	clay and ore :)	1>2	unknown	Question_answer_pair	query
@@ -2954,8 +2954,8 @@ i can improve :)	2 sheep for a clay?	1>2	unknown	Elaboration	elaboration
 I'll give you a free sheep in my turn :)	as you registered hastily :)	1>2	unknown	Explanation	explanation
 i dunno how to make trades work :(	i also forgot	1>2	unknown	Parallel	conjunction
 i dunno how to make trades work :(	ljay, once you agree your prices,	1>2	unknown	Explanation	explanation
-ljay, once you agree your prices,	click "register a trade".	1>2	unknown	Continuation	conjunction
-click "register a trade".	Plug in what you give and get,	1>2	unknown	Continuation	conjunction
+ljay, once you agree your prices,	"click ""register a trade""."	1>2	unknown	Continuation	conjunction
+"click ""register a trade""."	Plug in what you give and get,	1>2	unknown	Continuation	conjunction
 Plug in what you give and get,	check th	1>2	unknown	Continuation	conjunction
 gotwood did you take logic1 this year?	no i didn't ljay,	1>2	unknown	Question_answer_pair	query
 dammit it won't let me trade for nothing	no problem :D	1>2	unknown	Comment	comment
@@ -4649,8 +4649,8 @@ skinny, give me clay for ore?	I have no clay	1>2	unknown	Question_answer_pair	qu
 why would you throw four?	or roll..	1>2	unknown	Correction	contrast
 why would you throw four?	I need an ore...	1>2	unknown	Continuation	conjunction
 why would you throw four?	:P	1>2	unknown	Comment	comment
-why would you throw four?	:D I dont need four"	1>2	unknown	Correction	contrast
-:D I dont need four"	!!!	1>2	unknown	Comment	comment
+why would you throw four?	":D I dont need four"""	1>2	unknown	Correction	contrast
+":D I dont need four"""	!!!	1>2	unknown	Comment	comment
 !!!	:D	1>2	unknown	Elaboration	elaboration
 I need an ore...	Anyone got one for a sheep?	1>2	unknown	Elaboration	elaboration
 I need an ore...	what are you offfering?	1>2	unknown	Q_Elab	query
@@ -4694,7 +4694,7 @@ Congrats!	anyway, good game guys.	1>2	unknown	Background	frame
 anyway, good game guys.	I hve built the buildings really badly in the beginning	1>2	unknown	Background	frame
 anyway, good game guys.	What happens now? Do we play more?	1>2	unknown	Result	causal
 I hve built the buildings really badly in the beginning	so... a surprise here too..	1>2	unknown	Result	causal
-so... a surprise here too..	"D	1>2	unknown	Comment	comment
+so... a surprise here too..	"""D"	1>2	unknown	Comment	comment
 so... a surprise here too..	Right	1>2	unknown	Acknowledgement	query
 so... a surprise here too..	What happens now? Do we play more?	1>2	unknown	Clarification_question	query
 Right	What happens now? Do we play more?	1>2	unknown	Clarification_question	query
@@ -5233,7 +5233,7 @@ sabercat: Got wood?	only one tho	1>2	unknown	Question_answer_pair	query
 yer	only one tho	1>2	unknown	Contrast	contrast
 whats happening?	Oh, sorry	1>2	unknown	Question_answer_pair	query
 whats happening?	anyone got a sheep?	1>2	unknown	Q_Elab	query
-Oh, sorry	Thought I'd hit "Done"	1>2	unknown	Explanation	explanation
+Oh, sorry	"Thought I'd hit ""Done"""	1>2	unknown	Explanation	explanation
 anyone got a sheep?	nope	1>2	unknown	Question_answer_pair	query
 anyone got a sheep?	Nope	1>2	unknown	Question_answer_pair	query
 anyone got a sheep?	noone has sheep :D	1>2	unknown	Comment	comment
@@ -5245,10 +5245,10 @@ huh?	I rolled a 5 and a 6, apparently.	1>2	unknown	Question_answer_pair	query
 I rolled a 5 and a 6, apparently.	what?	1>2	unknown	Clarification_question	query
 what?	it gave you bad resources?	1>2	unknown	Elaboration	elaboration
 N	*No	1>2	unknown	Correction	contrast
-It normally says "rolled a 11"	oh, the numbers add up to eleven	1>2	unknown	Comment	comment
+"It normally says ""rolled a 11"""	oh, the numbers add up to eleven	1>2	unknown	Comment	comment
 oh, the numbers add up to eleven	it does for us... it said you rolled 11	1>2	unknown	Elaboration	elaboration
-It said "5 and a 6" for me	didyou notice there was no nine ever?	1>2	unknown	Clarification_question	query
-It said "5 and a 6" for me	oh you, citybuilders!	1>2	unknown	Comment	comment
+"It said ""5 and a 6"" for me"	didyou notice there was no nine ever?	1>2	unknown	Clarification_question	query
+"It said ""5 and a 6"" for me"	oh you, citybuilders!	1>2	unknown	Comment	comment
 didyou notice there was no nine ever?	theres your 9	1>2	unknown	Question_answer_pair	query
 didyou notice there was no nine ever?	and a whole round with no resource added	1>2	unknown	Continuation	conjunction
 theres your 9	yey!	1>2	unknown	Acknowledgement	query
@@ -5266,7 +5266,7 @@ not that! :D	Lol	1>2	unknown	Comment	comment
 not that! :D	I have a friend who has a house rule:	1>2	unknown	Explanation	explanation
 ore?	dont need that	1>2	unknown	Question_answer_pair	query
 dont need that	you want a sheep?	1>2	unknown	Q_Elab	query
-I have a friend who has a house rule:	"No sexual favours for in-game advantages"	1>2	unknown	Elaboration	elaboration
+I have a friend who has a house rule:	"""No sexual favours for in-game advantages"""	1>2	unknown	Elaboration	elaboration
 you want a sheep?	ah, forget it.	1>2	unknown	Question_answer_pair	query
 ah, forget it.	you have nothing to offer	1>2	unknown	Explanation	explanation
 well what do you want?	nothing.	1>2	unknown	Question_answer_pair	query
@@ -5281,8 +5281,8 @@ but i want a wood and a clay,	so if i get one	1>2	unknown	Result	causal
 so if i get one	ill trade for the other	1>2	unknown	Conditional	condition
 Wait what?	huh?	1>2	unknown	Clarification_question	query
 what?	N	1>2	unknown	Question_answer_pair	query
-N	It normally says "rolled a 11"	1>2	unknown	Elaboration	elaboration
-oh, the numbers add up to eleven	It said "5 and a 6" for me	1>2	unknown	Contrast	contrast
+N	"It normally says ""rolled a 11"""	1>2	unknown	Elaboration	elaboration
+oh, the numbers add up to eleven	"It said ""5 and a 6"" for me"	1>2	unknown	Contrast	contrast
 what are you offering?	UMM	1>2	unknown	Comment	comment
 what are you offering?	ore?	1>2	unknown	Q_Elab	query
 ah, forget it.	well what do you want?	1>2	unknown	Q_Elab	query
@@ -5856,11 +5856,11 @@ some people traded generously and to the wrong people ;)	ooops	1>2	unknown	Comme
 some people traded generously and to the wrong people ;)	I think we ended up reasonably even didn't we?	1>2	unknown	Comment	comment
 haha	how do you buy development cards?	1>2	unknown	Clarification_question	query
 how do you buy development cards?	at the bottom, acard	1>2	unknown	Question_answer_pair	query
-how do you buy development cards?	click the buy button next to "card"	1>2	unknown	Question_answer_pair	query
+how do you buy development cards?	"click the buy button next to ""card"""	1>2	unknown	Question_answer_pair	query
 I think we ended up reasonably even didn't we?	yeah	1>2	unknown	Question_answer_pair	query
-click the buy button next to "card"	that has changed,	1>2	unknown	Correction	contrast
-click the buy button next to "card"	you can only buy	1>2	unknown	Elaboration	elaboration
-click the buy button next to "card"	Ah, I see!	1>2	unknown	Acknowledgement	query
+"click the buy button next to ""card"""	that has changed,	1>2	unknown	Correction	contrast
+"click the buy button next to ""card"""	you can only buy	1>2	unknown	Elaboration	elaboration
+"click the buy button next to ""card"""	Ah, I see!	1>2	unknown	Acknowledgement	query
 that has changed,	it used to say development card	1>2	unknown	Elaboration	elaboration
 when text is black	which means you have enough resources	1>2	unknown	Elaboration	elaboration
 you can only buy	when text is black	1<2	unknown	Conditional	condition
@@ -6430,9 +6430,9 @@ how long do we wait?	we can try emailing him	1>2	unknown	Question_answer_pair	qu
 we can try emailing him	make it so :-)	1>2	unknown	Result	causal
 we can try emailing him	I'm having trouble locating the emails :S	1>2	unknown	Background	frame
 we can try emailing him	last time he joined pretty quick	1>2	unknown	Elaboration	elaboration
-I'm having trouble locating the emails :S	searching for "socl" works quite well for me	1>2	unknown	Comment	comment
-searching for "socl" works quite well for me	:)	1>2	unknown	Comment	comment
-searching for "socl" works quite well for me	yer, not working for me	1>2	unknown	Contrast	contrast
+I'm having trouble locating the emails :S	"searching for ""socl"" works quite well for me"	1>2	unknown	Comment	comment
+"searching for ""socl"" works quite well for me"	:)	1>2	unknown	Comment	comment
+"searching for ""socl"" works quite well for me"	yer, not working for me	1>2	unknown	Contrast	contrast
 yer, not working for me	I'm at about 85% of my gmail limit so I often find that it doesn;t find things so well	1>2	unknown	Elaboration	elaboration
 yer, not working for me	got it	1>2	unknown	Contrast	contrast
 I'm at about 85% of my gmail limit so I often find that it doesn;t find things so well	gmail has got pretty slow since they changed the interface	1>2	unknown	Elaboration	elaboration
@@ -7330,7 +7330,7 @@ whose turn is it?	you have to press done when done	1>2	unknown	Question_answer_p
 you have to press done when done	or i cant roll	1>2	unknown	Alternation	alternation
 wait it skipped me?	I figured if it were my turn	1>2	unknown	Elaboration	elaboration
 wait it skipped me?	it's been your turn the whole time	1>2	unknown	Correction	contrast
-I figured if it were my turn	the "roll" button would be enabled	1>2	unknown	Conditional	condition
+I figured if it were my turn	"the ""roll"" button would be enabled"	1>2	unknown	Conditional	condition
 it's been your turn the whole time	it auto rolls	1>2	unknown	Elaboration	elaboration
 i think it said catanstrophe rolled an 8	ok	1>2	unknown	Acknowledgement	query
 ok	sorry	1>2	unknown	Comment	comment
@@ -7594,10 +7594,10 @@ odds that people remember?	50/50	1>2	unknown	Elaboration	elaboration
 ?	what happens	1>2	unknown	Clarification_question	query
 what happens	if you disconnect?	1<2	unknown	Conditional	condition
 I dunno,	we probably all just wait for you to finish your turn	1>2	unknown	Elaboration	elaboration
-I.e., the game stays "in progress"	until you log-in again with the same credentials	1>2	unknown	Narration	temporal
+"I.e., the game stays ""in progress"""	until you log-in again with the same credentials	1>2	unknown	Narration	temporal
 what happens	not sure	1>2	unknown	Question_answer_pair	query
 what happens	I dunno,	1>2	unknown	Question_answer_pair	query
-I dunno,	I.e., the game stays "in progress"	1>2	unknown	Elaboration	elaboration
+I dunno,	"I.e., the game stays ""in progress"""	1>2	unknown	Elaboration	elaboration
 odds that people remember?	?	1>2	unknown	Continuation	conjunction
 odds that people remember?	hahah	1>2	unknown	Comment	comment
 ouch	brutal cutoff by blue	1>2	unknown	Elaboration	elaboration
@@ -7650,8 +7650,8 @@ i;ll take 2 ore,	and give one wood	1>2	unknown	Continuation	conjunction
 going...	anyone else	1>2	unknown	Contrast	contrast
 anyone else	no,	1>2	unknown	Question_answer_pair	query
 anyone else	?	1>2	unknown	Continuation	conjunction
-no,	I"ll pass.	1>2	unknown	Elaboration	elaboration
-I"ll pass.	tempting, though.	1>2	unknown	Contrast	contrast
+no,	"I""ll pass."	1>2	unknown	Elaboration	elaboration
+"I""ll pass."	tempting, though.	1>2	unknown	Contrast	contrast
 i;ll take 2 ore,	going...	1>2	unknown	Acknowledgement	query
 i;ll take 2 ore,	sold	1>2	unknown	Acknowledgement	query
 i;ll take 2 ore,	anyone else	1>2	unknown	Q_Elab	query
@@ -7904,7 +7904,7 @@ people trade too easily	yeah	1>2	unknown	Acknowledgement	query
 people trade too easily	shouldn't trade with me	1>2	unknown	Contrast	contrast
 yeah	i don't have the real life cues to stop me.	1>2	unknown	Explanation	explanation
 i don't have the real life cues to stop me.	zorburt's right:	1>2	unknown	Comment	comment
-zorburt's right:	the UI is making me lose the "feel" of this game	1>2	unknown	Elaboration	elaboration
+zorburt's right:	"the UI is making me lose the ""feel"" of this game"	1>2	unknown	Elaboration	elaboration
 zorburt's right:	ya,	1>2	unknown	Acknowledgement	query
 ya,	resulted in a lot of 1:1 trading	1>2	unknown	Elaboration	elaboration
 ya,	let's hope he didn't get a knight	1>2	unknown	Continuation	conjunction
@@ -7917,16 +7917,16 @@ well raef has picked up like 10 ore in the last go-around	gone	1>2	unknown	Narra
 gone	ooo, hello ore...	1>2	unknown	Continuation	conjunction
 ooo, hello ore...	argh!	1>2	unknown	Comment	comment
 probably shouldn't	yeah	1>2	unknown	Acknowledgement	query
-The mouse tips says my 6 points are "close to winning".	Yay!	1>2	unknown	Comment	comment
-The mouse tips says my 6 points are "close to winning".	lol	1>2	unknown	Comment	comment
-The mouse tips says my 6 points are "close to winning".	where are the mouse tips?	1>2	unknown	Clarification_question	query
-The mouse tips says my 6 points are "close to winning".	they all say close to winning	1>2	unknown	Contrast	contrast
+"The mouse tips says my 6 points are ""close to winning""."	Yay!	1>2	unknown	Comment	comment
+"The mouse tips says my 6 points are ""close to winning""."	lol	1>2	unknown	Comment	comment
+"The mouse tips says my 6 points are ""close to winning""."	where are the mouse tips?	1>2	unknown	Clarification_question	query
+"The mouse tips says my 6 points are ""close to winning""."	they all say close to winning	1>2	unknown	Contrast	contrast
 where are the mouse tips?	just mouse over your 9 points	1>2	unknown	Question_answer_pair	query
-just mouse over your 9 points	I guess you're "close" to winning, too!	1>2	unknown	Continuation	conjunction
-I guess you're "close" to winning, too!	they all say close to winning	1>2	unknown	Contrast	contrast
+just mouse over your 9 points	"I guess you're ""close"" to winning, too!"	1>2	unknown	Continuation	conjunction
+"I guess you're ""close"" to winning, too!"	they all say close to winning	1>2	unknown	Contrast	contrast
 they all say close to winning	don't bust my bubble	1>2	unknown	Contrast	contrast
 don't bust my bubble	it says I'm close,	1>2	unknown	Elaboration	elaboration
-it says I'm close,	then I"m close.	1>2	unknown	Result	causal
+it says I'm close,	"then I""m close."	1>2	unknown	Result	causal
 ummm, no.	really?	1>2	unknown	Clarification_question	query
 ummm, no.	did I just get robbered?	1>2	unknown	Clarification_question	query
 really?	I have time,	1>2	unknown	Question_answer_pair	query
@@ -8078,9 +8078,9 @@ sheep is pretty rare right now.	yeah and wheat	1>2	unknown	Continuation	conjunct
 yeah and wheat	what a board!	1>2	unknown	Continuation	conjunction
 what a board!	;)	1>2	unknown	Comment	comment
 what a board!	lol	1>2	unknown	Acknowledgement	query
-ok,	I"ll take wood in exchange for your brick	1>2	unknown	Elaboration	elaboration
-I"ll take wood in exchange for your brick	you want wood, and can give brick?	1>2	unknown	Clarification_question	query
-I"ll take wood in exchange for your brick	wait	1>2	unknown	Continuation	conjunction
+ok,	"I""ll take wood in exchange for your brick"	1>2	unknown	Elaboration	elaboration
+"I""ll take wood in exchange for your brick"	you want wood, and can give brick?	1>2	unknown	Clarification_question	query
+"I""ll take wood in exchange for your brick"	wait	1>2	unknown	Continuation	conjunction
 wait	you want wood, and can give brick?	1>2	unknown	Continuation	conjunction
 you want wood, and can give brick?	yep	1>2	unknown	Comment	comment
 you want wood, and can give brick?	yep	1>2	unknown	Acknowledgement	query
@@ -8143,8 +8143,8 @@ lol.	it would be aweome	1>2	unknown	Comment	comment
 the only place worth robbering gramos was 11	i know, i saw that	1>2	unknown	Acknowledgement	query
 i would to	lol.	1>2	unknown	Comment	comment
 it would be aweome	catanstrophe, didn't that happen to you last game, too?	1>2	unknown	Clarification_question	query
-ok,	now that I"m not the only one with 8 points,	1>2	unknown	Continuation	conjunction
-now that I"m not the only one with 8 points,	can anyone spare wood or ore?	1>2	unknown	Result	causal
+ok,	"now that I""m not the only one with 8 points,"	1>2	unknown	Continuation	conjunction
+"now that I""m not the only one with 8 points,"	can anyone spare wood or ore?	1>2	unknown	Result	causal
 can anyone spare wood or ore?	no	1>2	unknown	Question_answer_pair	query
 can anyone spare wood or ore?	nope	1>2	unknown	Question_answer_pair	query
 lol	no	1<2	unknown	Comment	comment
@@ -8164,7 +8164,7 @@ lol	you also have 8 points	1>2	unknown	Explanation	explanation
 you also have 8 points	DOn't have me	1>2	unknown	Correction	contrast
 DOn't have me	that was HATE, btw, not HAVE	1>2	unknown	Correction	contrast
 i think we are all pretty close	that's the truth, in fact	1>2	unknown	Acknowledgement	query
-that's the truth, in fact	I"ve hit hte Catan wall	1>2	unknown	Continuation	conjunction
+that's the truth, in fact	"I""ve hit hte Catan wall"	1>2	unknown	Continuation	conjunction
 haha yay!	ADDTIME	1>2	unknown	Continuation	conjunction
 haha yay!	i'm hte only one who did't have to discard.	1>2	unknown	Explanation	explanation
 i'm hte only one who did't have to discard.	sorry guys.	1>2	unknown	Comment	comment
@@ -8177,10 +8177,10 @@ damnit.	and catanstrophe i think has a vic point...	1>2	unknown	Continuation	con
 and catanstrophe i think has a vic point...	no i dont	1>2	unknown	Correction	contrast
 no i dont	soldier	1>2	unknown	Elaboration	elaboration
 soldier	sure you do	1>2	unknown	Comment	comment
-soldier	I"ve got wood	1>2	unknown	Continuation	conjunction
+soldier	"I""ve got wood"	1>2	unknown	Continuation	conjunction
 sure you do	*wink*	1>2	unknown	Comment	comment
 sure you do	makin good use of that port	1>2	unknown	Continuation	conjunction
-I"ve got wood	I'll trade to you	1>2	unknown	Continuation	conjunction
+"I""ve got wood"	I'll trade to you	1>2	unknown	Continuation	conjunction
 good game.	thanks, guys	1>2	unknown	Acknowledgement	query
 good game.	whoa,	1>2	unknown	Comment	comment
 good game.	good game everyone	1>2	unknown	Acknowledgement	query
@@ -8977,7 +8977,7 @@ dmm you're the top threat	you're a coupla roads and a soldier from victory :/	1>
 you're a coupla roads and a soldier from victory :/	ah yes	1>2	unknown	Acknowledgement	query
 http://www.catan.com/en/download/?SoC_rv_Rules_091907.pdf	page 9 LJ	1>2	unknown	Elaboration	elaboration
 ah yes	but i can hardly put the robber next to one of my own!	1>2	unknown	Contrast	contrast
-page 9 LJ	"you can break an opponent's road by building a settlement on an open intersection"	1>2	unknown	Elaboration	elaboration
+page 9 LJ	"""you can break an opponent's road by building a settlement on an open intersection"""	1>2	unknown	Elaboration	elaboration
 anyone have wheat or clay?	i got clay	1>2	unknown	Question_answer_pair	query
 anyone have wheat or clay?	neither here,	1>2	unknown	Question_answer_pair	query
 anyone have wheat or clay?	no wheat,	1>2	unknown	Question_answer_pair	query
@@ -9085,10 +9085,10 @@ you'll pop back up to 8 next turn	true	1>2	unknown	Acknowledgement	query
 ok lj	yay more sheep	1>2	unknown	Question_answer_pair	query
 yay more sheep	all?	1>2	unknown	Clarification_question	query
 i was hoping to build another road last time to protect it	you'll pop back up to 8 next turn	1>2	unknown	Contrast	contrast
-aha!	gg well played"	1>2	unknown	Comment	comment
+aha!	"gg well played"""	1>2	unknown	Comment	comment
 aha!	nice game guys	1>2	unknown	Comment	comment
 aha!	very well played, commanding victory	1>2	unknown	Comment	comment
-gg well played"	great work dmm	1>2	unknown	Elaboration	elaboration
+"gg well played"""	great work dmm	1>2	unknown	Elaboration	elaboration
 nice game guys	wd	1>2	unknown	Elaboration	elaboration
 very well played, commanding victory	good game guys	1>2	unknown	Continuation	conjunction
 this league's exciting	3 people on 1 in	1>2	unknown	Elaboration	elaboration
@@ -9107,9 +9107,9 @@ cheers, enjoyed our game stogethers	ok see you later :)	1>2	unknown	Acknowledgem
 cheers, enjoyed our game stogethers	yeah was good	1>2	unknown	Acknowledgement	query
 ok see you later :)	see you :)	1>2	unknown	Continuation	conjunction
 see you :)	bye!	1>2	unknown	Continuation	conjunction
-gg well played"	you had me worried when you took back the longest road!	1>2	unknown	Comment	comment
-gg well played"	good game everyone	1>2	unknown	Acknowledgement	query
-gg well played"	nice game guys	1>2	unknown	Acknowledgement	query
+"gg well played"""	you had me worried when you took back the longest road!	1>2	unknown	Comment	comment
+"gg well played"""	good game everyone	1>2	unknown	Acknowledgement	query
+"gg well played"""	nice game guys	1>2	unknown	Acknowledgement	query
 very well played, commanding victory	this league's exciting	1>2	unknown	Continuation	conjunction
 very well played, commanding victory	good game everyone	1>2	unknown	Acknowledgement	query
 this league's exciting	yup	1>2	unknown	Acknowledgement	query
@@ -9594,9 +9594,9 @@ Hmmm. Does anybody have wheat?	no	1>2	unknown	Question_answer_pair	query
 Hmmm. Does anybody have wheat?	not spare	1>2	unknown	Question_answer_pair	query
 Hmmm. Does anybody have wheat?	yes.	1>2	unknown	Question_answer_pair	query
 yes.	but not sharing	1>2	unknown	Contrast	contrast
-Just a tip people -	it's a mistake to say "yes,	1>2	unknown	Elaboration	elaboration
-it's a mistake to say "yes,	but you can't have it"	1>2	unknown	Continuation	conjunction
-it's a mistake to say "yes,	i just assume people keep track of what's been rolled anyway	1>2	unknown	Comment	comment
+Just a tip people -	"it's a mistake to say ""yes,"	1>2	unknown	Elaboration	elaboration
+"it's a mistake to say ""yes,"	"but you can't have it"""	1>2	unknown	Continuation	conjunction
+"it's a mistake to say ""yes,"	i just assume people keep track of what's been rolled anyway	1>2	unknown	Comment	comment
 yes.	Just a tip people -	1>2	unknown	Comment	comment
 now's your chance to be nice -	want to swap one of those wheat?	1>2	unknown	Elaboration	elaboration
 want to swap one of those wheat?	for?	1>2	unknown	Q_Elab	query

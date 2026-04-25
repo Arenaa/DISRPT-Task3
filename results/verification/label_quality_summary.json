@@ -1,6 +1,6 @@
 {
   "input_dir": "data_subset",
-  "output_dir": "verification",
+  "output_dir": "results\\verification",
   "totals": {
     "num_files": 27,
     "num_rows_before_cleaning": 81192,
