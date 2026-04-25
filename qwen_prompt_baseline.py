@@ -169,13 +169,28 @@ def sample_few_shot_rows(
     return rng.sample(rows, k)
 
 
+# def build_instruction(label_set: list[str]) -> str:
+#     labels = ", ".join(label_set)
+#     return (
+#         "You are a discourse relation classification system.\n"
+#         "Given two discourse units, predict the discourse relation label between them.\n"
+#         f"Choose exactly one label from this list:\n{labels}\n"
+#         "Return only one label and nothing else."
+#     )
+
 def build_instruction(label_set: list[str]) -> str:
     labels = ", ".join(label_set)
     return (
         "You are a discourse relation classification system.\n"
         "Given two discourse units, predict the discourse relation label between them.\n"
         f"Choose exactly one label from this list:\n{labels}\n"
-        "Return only one label and nothing else."
+        "Output exactly one label from the list.\n"
+        "Do not explain.\n"
+        "Do not give reasoning.\n"
+        "Do not output <think> or </think>.\n"
+        "Do not output a sentence.\n"
+        "Do not output punctuation.\n"
+        "Your entire response must be exactly one label."
     )
 
 
@@ -226,7 +241,8 @@ def build_prompt(
 
     user_parts.append("Now classify this example:")
     user_parts.append(format_instance(row, include_dir=include_dir, include_rel_type=include_rel_type))
-    user_parts.append("Answer:")
+    # user_parts.append("Answer:")
+    user_parts.append("Final answer (one label only, no explanation):")
     user_prompt = "\n\n".join(user_parts)
     return system_prompt, user_prompt
 
