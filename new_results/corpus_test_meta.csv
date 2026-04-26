@@ -1,0 +1,10 @@
+corpus,framework,language,test_support,num_gold_labels_in_corpus
+eng.dep.scidtb,dep,eng,1902,14
+eng.erst.gum,rst,eng,3558,17
+eng.pdtb.gum,pdtb,eng,1676,13
+eng.rst.sts,rst,eng,328,17
+eng.sdrt.stac,sdrt,eng,1114,11
+fas.rst.prstc,rst,fas,592,14
+fra.sdrt.annodis,sdrt,fra,621,12
+ita.pdtb.luna,pdtb,ita,374,11
+zho.dep.scidtb,dep,zho,215,14

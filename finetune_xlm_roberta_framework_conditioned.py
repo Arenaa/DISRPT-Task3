@@ -422,7 +422,17 @@ def main() -> None:
         id2label=id2label,
         label2id=label2id,
     )
-    model.resize_token_embeddings(len(tokenizer))
+    # Extra rows for FRAMEWORK_TOKENS. HF may log Hewitt et al. "vocab expansion" init for those rows
+    # (mean/cov from old embeddings). That is expected; not an error. Use mean_resizing=False for i.i.d. init.
+    try:
+        model.resize_token_embeddings(len(tokenizer), mean_resizing=True)
+    except TypeError:  # older transformers: no mean_resizing kwarg
+        model.resize_token_embeddings(len(tokenizer))
+    print(
+        "  Embeddings resized to match tokenizer (framework tokens). "
+        "Classifier head is new; pooler/lm_head keys in the load report are unused — same as plain XLM-R fine-tune.",
+        flush=True,
+    )
     model.to(device)
 
     mk_ds = lambda d: FrameworkPairDataset(d, label2id, tokenizer, args.max_length)
@@ -449,11 +459,19 @@ def main() -> None:
     best_state_dict: Optional[Dict[str, torch.Tensor]] = None
     history: List[Dict[str, Any]] = []
 
-    print(f"\nTraining for {args.epochs} epoch(s). Output masking: {apply_mask}\n")
+    steps_per_epoch = len(train_loader)
+    log_every = max(1, steps_per_epoch // 20)
+    n_train = len(train_data.labels)
+    print(
+        f"\nTraining for {args.epochs} epoch(s). Output masking: {apply_mask}\n"
+        f"  {n_train} train examples, {steps_per_epoch} steps/epoch, device={device}.\n"
+        f"  (Logs after the HF load/resize messages are normal; epoch 1 can be quiet until step 1 completes.)\n",
+        flush=True,
+    )
     for epoch in range(1, args.epochs + 1):
         model.train()
         epoch_loss = 0.0
-        for batch in train_loader:
+        for step, batch in enumerate(train_loader, start=1):
             batch = move_batch_to_device(batch, device)
             batch.pop("framework")
             outputs = model(**batch)
@@ -462,9 +480,16 @@ def main() -> None:
             optimizer.step()
             scheduler.step()
             optimizer.zero_grad(set_to_none=True)
-            epoch_loss += float(loss.item())
+            loss_f = float(loss.item())
+            epoch_loss += loss_f
+            if step == 1 or step % log_every == 0 or step == steps_per_epoch:
+                print(
+                    f"  epoch {epoch}/{args.epochs}  step {step}/{steps_per_epoch}  batch_loss={loss_f:.4f}",
+                    flush=True,
+                )
 
         avg_loss = epoch_loss / max(1, len(train_loader))
+        print(f"epoch {epoch}/{args.epochs} done — running dev eval …", flush=True)
         dev_pooled = evaluate_pooled(model, dev_loader, device, num_labels, logit_masks, apply_mask=apply_mask)
         history.append({
             "epoch": epoch,

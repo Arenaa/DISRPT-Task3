@@ -132,7 +132,11 @@ def eval_frozen(args) -> dict:
     head.load_state_dict(sd)
     head.eval()
 
-    print(f"\n[frozen] evaluating per-corpus {args.split} from {args.by_source_dir}")
+    tsv_features = bool(ckpt.get("tsv_features", False))
+    print(
+        f"\n[frozen] evaluating per-corpus {args.split} from {args.by_source_dir}"
+        + (" (TSV feature prefix on unit1)" if tsv_features else "")
+    )
     preds = frozen_predict_per_corpus(
         by_source_dir=Path(args.by_source_dir),
         encoder=encoder,
@@ -144,14 +148,17 @@ def eval_frozen(args) -> dict:
         emb_batch_size=args.batch_size,
         emb_num_workers=0,
         split=args.split,
+        load_split_fn=load_split_tsv_features if tsv_features else None,
     )
     agg = frozen_aggregate(preds, id2label)
     print_aggregate_summary(agg)
     return {
-        "model": "Frozen XLM-RoBERTa + linear head",
+        "model": "Frozen XLM-RoBERTa + linear head"
+        + (" (TSV features on unit1)" if tsv_features else ""),
         "model_name": model_name,
         "max_length": max_length,
         "label_set": label_set,
+        "tsv_features": tsv_features,
         **agg,
     }
 

@@ -1,0 +1,55 @@
+corpus,framework,language,model,support,num_gold_labels,accuracy,macro_f1,weighted_f1
+eng.dep.scidtb,dep,eng,Qwen3 finetune,1902,14,0.687171,0.416439,0.666713
+eng.dep.scidtb,dep,eng,XLMR finetune,1902,14,0.786015,0.593739,0.779792
+eng.dep.scidtb,dep,eng,XLMR framework,1902,14,0.772871,0.609642,0.762962
+eng.dep.scidtb,dep,eng,XLMR frozen linear,1902,14,0.423764,0.080232,0.277922
+eng.dep.scidtb,dep,eng,XLMR frozen + TSV feat,1902,14,0.611462,0.295983,0.558957
+eng.dep.scidtb,dep,eng,XLMR finetune + TSV feat,1902,14,0.999474,0.996738,0.999473
+eng.erst.gum,rst,eng,Qwen3 finetune,3558,17,0.474986,0.432438,0.456371
+eng.erst.gum,rst,eng,XLMR finetune,3558,17,0.596402,0.576601,0.590309
+eng.erst.gum,rst,eng,XLMR framework,3558,17,0.589938,0.567119,0.578364
+eng.erst.gum,rst,eng,XLMR frozen linear,3558,17,0.268690,0.127605,0.212776
+eng.erst.gum,rst,eng,XLMR frozen + TSV feat,3558,17,0.752951,0.675133,0.743205
+eng.erst.gum,rst,eng,XLMR finetune + TSV feat,3558,17,1.000000,1.000000,1.000000
+eng.pdtb.gum,pdtb,eng,Qwen3 finetune,1676,13,0.562053,0.396392,0.563750
+eng.pdtb.gum,pdtb,eng,XLMR finetune,1676,13,0.630668,0.461203,0.638785
+eng.pdtb.gum,pdtb,eng,XLMR framework,1676,13,0.636038,0.561043,0.641456
+eng.pdtb.gum,pdtb,eng,XLMR frozen linear,1676,13,0.285800,0.118802,0.256832
+eng.pdtb.gum,pdtb,eng,XLMR frozen + TSV feat,1676,13,0.699881,0.356625,0.668566
+eng.pdtb.gum,pdtb,eng,XLMR finetune + TSV feat,1676,13,0.999403,0.922916,0.999106
+eng.rst.sts,rst,eng,Qwen3 finetune,328,17,0.344512,0.227058,0.303957
+eng.rst.sts,rst,eng,XLMR finetune,328,17,0.378049,0.319922,0.362339
+eng.rst.sts,rst,eng,XLMR framework,328,17,0.423780,0.359360,0.398671
+eng.rst.sts,rst,eng,XLMR frozen linear,328,17,0.289634,0.063160,0.181203
+eng.rst.sts,rst,eng,XLMR frozen + TSV feat,328,17,0.332317,0.150615,0.319432
+eng.rst.sts,rst,eng,XLMR finetune + TSV feat,328,17,1.000000,1.000000,1.000000
+eng.sdrt.stac,sdrt,eng,Qwen3 finetune,1114,11,0.568223,0.259247,0.548037
+eng.sdrt.stac,sdrt,eng,XLMR finetune,1114,11,0.690305,0.391561,0.681331
+eng.sdrt.stac,sdrt,eng,XLMR framework,1114,11,0.681329,0.427182,0.668566
+eng.sdrt.stac,sdrt,eng,XLMR frozen linear,1114,11,0.527828,0.113905,0.430277
+eng.sdrt.stac,sdrt,eng,XLMR frozen + TSV feat,1114,11,0.777379,0.417361,0.749795
+eng.sdrt.stac,sdrt,eng,XLMR finetune + TSV feat,1114,11,1.000000,1.000000,1.000000
+fas.rst.prstc,rst,fas,Qwen3 finetune,592,14,0.415541,0.260442,0.372887
+fas.rst.prstc,rst,fas,XLMR finetune,592,14,0.532095,0.437762,0.521162
+fas.rst.prstc,rst,fas,XLMR framework,592,14,0.538851,0.404163,0.516517
+fas.rst.prstc,rst,fas,XLMR frozen linear,592,14,0.288851,0.064856,0.191528
+fas.rst.prstc,rst,fas,XLMR frozen + TSV feat,592,14,0.277027,0.108793,0.201943
+fas.rst.prstc,rst,fas,XLMR finetune + TSV feat,592,14,1.000000,1.000000,1.000000
+fra.sdrt.annodis,sdrt,fra,Qwen3 finetune,621,12,0.397746,0.214834,0.359825
+fra.sdrt.annodis,sdrt,fra,XLMR finetune,621,12,0.521739,0.347836,0.513752
+fra.sdrt.annodis,sdrt,fra,XLMR framework,621,12,0.545894,0.486351,0.530936
+fra.sdrt.annodis,sdrt,fra,XLMR frozen linear,621,12,0.339775,0.077362,0.246851
+fra.sdrt.annodis,sdrt,fra,XLMR frozen + TSV feat,621,12,0.388084,0.140475,0.326746
+fra.sdrt.annodis,sdrt,fra,XLMR finetune + TSV feat,621,12,1.000000,1.000000,1.000000
+ita.pdtb.luna,pdtb,ita,Qwen3 finetune,374,11,0.355615,0.154084,0.330768
+ita.pdtb.luna,pdtb,ita,XLMR finetune,374,11,0.625668,0.440110,0.615062
+ita.pdtb.luna,pdtb,ita,XLMR framework,374,11,0.622995,0.399095,0.614936
+ita.pdtb.luna,pdtb,ita,XLMR frozen linear,374,11,0.187166,0.076237,0.178400
+ita.pdtb.luna,pdtb,ita,XLMR frozen + TSV feat,374,11,0.465241,0.213572,0.399707
+ita.pdtb.luna,pdtb,ita,XLMR finetune + TSV feat,374,11,0.997326,0.896104,0.996180
+zho.dep.scidtb,dep,zho,Qwen3 finetune,215,14,0.520930,0.282312,0.511340
+zho.dep.scidtb,dep,zho,XLMR finetune,215,14,0.739535,0.617479,0.726759
+zho.dep.scidtb,dep,zho,XLMR framework,215,14,0.669767,0.469096,0.658757
+zho.dep.scidtb,dep,zho,XLMR frozen linear,215,14,0.353488,0.059883,0.212337
+zho.dep.scidtb,dep,zho,XLMR frozen + TSV feat,215,14,0.511628,0.172414,0.424148
+zho.dep.scidtb,dep,zho,XLMR finetune + TSV feat,215,14,1.000000,1.000000,1.000000

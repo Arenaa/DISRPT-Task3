@@ -7,7 +7,7 @@ import random
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 import torch
@@ -17,6 +17,7 @@ from torch.utils.data import DataLoader, Dataset, TensorDataset
 from transformers import AutoModel, AutoTokenizer
 
 from finetune_xlm_roberta import write_test_prediction_artifacts
+from finetune_xlm_roberta_tsv_features import load_split_tsv_features
 
 
 def set_seed(seed: int) -> None:
@@ -107,6 +108,7 @@ def compute_cls_pooled_embeddings(
     batch_size: int,
     max_length: int,
     num_workers: int,
+    progress_desc: str | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     """
     Baseline pooling: pooled embedding = last_hidden_state[:, 0, :] (first token, i.e., <s> in RoBERTa).
@@ -128,8 +130,10 @@ def compute_cls_pooled_embeddings(
 
     all_pooled: list[torch.Tensor] = []
     all_labels: list[torch.Tensor] = []
+    n_batches = len(loader)
+    log_every = max(1, n_batches // 20)
     with torch.no_grad():
-        for unit1_batch, unit2_batch, y_batch in loader:
+        for step, (unit1_batch, unit2_batch, y_batch) in enumerate(loader, start=1):
             encoded = tokenizer(
                 unit1_batch,
                 unit2_batch,
@@ -144,6 +148,11 @@ def compute_cls_pooled_embeddings(
             pooled = outputs.last_hidden_state[:, 0, :]  # (batch, hidden)
             all_pooled.append(pooled.cpu())
             all_labels.append(torch.tensor(y_batch, dtype=torch.long))
+            if progress_desc and (step == 1 or step % log_every == 0 or step == n_batches):
+                print(
+                    f"  [{progress_desc}] encoder batch {step}/{n_batches} (examples≈{step * batch_size})",
+                    flush=True,
+                )
 
     X = torch.cat(all_pooled, dim=0)
     y = torch.cat(all_labels, dim=0)
@@ -189,6 +198,7 @@ def train_linear_head(
     history: list[dict[str, object]] = []
 
     for epoch in range(1, epochs + 1):
+        print(f"  linear head epoch {epoch}/{epochs} (train) …", flush=True)
         head.train()
         for xb, yb in train_loader:
             xb = xb.to(device)
@@ -201,6 +211,7 @@ def train_linear_head(
             loss.backward()
             optimizer.step()
 
+        print(f"  linear head epoch {epoch}/{epochs} — dev eval …", flush=True)
         dev_metrics = evaluate_head(head, dev_ds, device=device)
         history.append({"epoch": epoch, **dev_metrics})
 
@@ -261,9 +272,11 @@ def predict_per_corpus(
     emb_batch_size: int,
     emb_num_workers: int,
     split: str = "test",
+    load_split_fn: Callable[[Path, int | None], SplitData] | None = None,
 ) -> dict[str, dict[str, object]]:
     """Run the frozen-encoder + linear-head on each `<corpus>_{split}.tsv`
     and return raw prediction arrays (plus string labels) keyed by corpus name."""
+    _load = load_split_fn or load_split
     head.eval()
     id2label_local = {i: lab for lab, i in label2id.items()}
     preds: dict[str, dict[str, object]] = {}
@@ -272,7 +285,7 @@ def predict_per_corpus(
         tsv_path = corpus_dir / f"{corpus}_{split}.tsv"
         if not tsv_path.exists():
             continue
-        split_data = load_split(tsv_path, None)
+        split_data = _load(tsv_path, None)
         if not split_data.labels:
             continue
 
@@ -297,6 +310,7 @@ def predict_per_corpus(
             batch_size=emb_batch_size,
             max_length=max_length,
             num_workers=emb_num_workers,
+            progress_desc=f"{corpus}/{split}",
         )
         with torch.no_grad():
             logits = head(X.to(device)).cpu().numpy()
@@ -500,18 +514,40 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="If set, do not write test_predictions/ with gold vs pred class per test example.",
     )
+    parser.add_argument(
+        "--tsv-features",
+        action="store_true",
+        help="Prepend dir, rel_type, orig_label to unit1 (same as finetune_xlm_roberta_tsv_features.py).",
+    )
     return parser.parse_args()
 
 
-def cache_path(cache_dir: Path, split: str, *, model_name: str, max_length: int, pooling: str) -> Path:
+def cache_path(
+    cache_dir: Path,
+    split: str,
+    *,
+    model_name: str,
+    max_length: int,
+    pooling: str,
+    tsv_features: bool,
+) -> Path:
     tag = sanitize_filename(model_name)
-    fname = f"{tag}__{split}__maxlen{max_length}__pool{pooling}.pt"
+    feat = "tsvfeat" if tsv_features else "plain"
+    fname = f"{tag}__{split}__maxlen{max_length}__pool{pooling}__{feat}.pt"
     return cache_dir / fname
 
 
 def main() -> None:
     args = parse_args()
+    if args.tsv_features:
+        if args.output_dir == "results/xlmr_frozen_linear_results":
+            args.output_dir = "results/xlmr_frozen_linear_tsv_features_results"
+        if args.cache_dir == "results/xlmr_frozen_linear_cache":
+            args.cache_dir = "results/xlmr_frozen_linear_tsv_features_cache"
+
     set_seed(args.seed)
+    tsv_features = args.tsv_features
+    load_fn: Callable[[Path, int | None], SplitData] = load_split_tsv_features if tsv_features else load_split
 
     data_dir = Path(args.data_dir)
     train_path = data_dir / args.train_file
@@ -523,9 +559,9 @@ def main() -> None:
 
     device = torch.device(args.device)
 
-    train_data = load_split(train_path, args.max_train_examples)
-    dev_data = load_split(dev_path, args.max_dev_examples)
-    test_data = load_split(test_path, args.max_test_examples)
+    train_data = load_fn(train_path, args.max_train_examples)
+    dev_data = load_fn(dev_path, args.max_dev_examples)
+    test_data = load_fn(test_path, args.max_test_examples)
 
     # If we limit examples (e.g., for a quick smoke test), dev/test might contain
     # labels that do not appear in the limited train subset. Use the union so
@@ -537,12 +573,19 @@ def main() -> None:
     label2id = {lab: i for i, lab in enumerate(label_set)}
     id2label = {i: lab for lab, i in label2id.items()}
 
+    print("Loading tokenizer …", flush=True)
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=True)
+    print(
+        "Loading encoder (HF may print UNEXPECTED lm_head — ignored for AutoModel) …",
+        flush=True,
+    )
     encoder = AutoModel.from_pretrained(args.model_name)
     for p in encoder.parameters():
         p.requires_grad = False
 
+    print(f"Moving encoder to {device} …", flush=True)
     encoder.to(device)
+    print("Encoder ready.", flush=True)
 
     cache_dir = Path(args.cache_dir)
     if not args.no_cache:
@@ -558,11 +601,28 @@ def main() -> None:
                 model_name=args.model_name,
                 max_length=args.max_length,
                 pooling=pooling,
+                tsv_features=tsv_features,
             )
             if p.exists():
-                payload = torch.load(p, map_location="cpu")
-                return payload["X"], payload["y"]
+                try:
+                    payload = torch.load(p, map_location="cpu", weights_only=False)
+                except TypeError:  # PyTorch < 2.0
+                    payload = torch.load(p, map_location="cpu")
+                cached_labels = payload.get("label_set")
+                cached_tsv = payload.get("tsv_features", False)
+                # Old caches had no label_set; y indices were tied to whatever label2id was used
+                # when the .pt was written. After TSV / pipeline changes, reusing them causes
+                # CrossEntropyLoss CUDA asserts (target >= n_classes).
+                if cached_labels == label_set and cached_tsv == tsv_features:
+                    print(f"  [{split_name}] loaded embeddings from cache (skip encoder pass).", flush=True)
+                    return payload["X"], payload["y"]
+                print(
+                    f"[info] Ignoring stale embedding cache for {split_name}: "
+                    f"label_set / tsv_features mismatch or legacy cache without label_set.",
+                    flush=True,
+                )
 
+        print(f"  [{split_name}] computing embeddings from scratch ({len(split_data.labels)} examples) …", flush=True)
         dataset = PairTextDataset(split_data, label2id=label2id)
         X, y = compute_cls_pooled_embeddings(
             encoder=encoder,
@@ -572,19 +632,28 @@ def main() -> None:
             batch_size=args.emb_batch_size,
             max_length=args.max_length,
             num_workers=args.emb_num_workers,
+            progress_desc=f"{split_name} split",
         )
 
         if not args.no_cache:
-            torch.save({"X": X, "y": y}, cache_path(
-                cache_dir,
-                split_name,
-                model_name=args.model_name,
-                max_length=args.max_length,
-                pooling=pooling,
-            ))
+            torch.save(
+                {"X": X, "y": y, "label_set": label_set, "tsv_features": tsv_features},
+                cache_path(
+                    cache_dir,
+                    split_name,
+                    model_name=args.model_name,
+                    max_length=args.max_length,
+                    pooling=pooling,
+                    tsv_features=tsv_features,
+                ),
+            )
         return X, y
 
-    print("Computing frozen encoder embeddings (this can take a while)...")
+    print(
+        "Computing frozen encoder embeddings (train → dev → test). "
+        "Under nohup, use `PYTHONUNBUFFERED=1 python ...` if logs appear late.\n",
+        flush=True,
+    )
     X_train, y_train = get_split_features("train", train_data)
     X_dev, y_dev = get_split_features("dev", dev_data)
     X_test, y_test = get_split_features("test", test_data)
@@ -592,7 +661,11 @@ def main() -> None:
     if X_train.shape[1] != X_dev.shape[1]:
         raise RuntimeError("Embedding dimension mismatch between splits.")
 
-    print(f"Training linear head on {len(y_train)} examples; #labels={len(label_set)}")
+    print(
+        f"Training linear head on {len(y_train)} examples; #labels={len(label_set)}; "
+        f"{args.epochs} epochs …",
+        flush=True,
+    )
     head, head_train_info = train_linear_head(
         X_train=X_train,
         y_train=y_train,
@@ -625,10 +698,21 @@ def main() -> None:
         device=device,
     )
 
+    input_format = (
+        "unit1 = dir, rel_type, orig_label (prefix) + unit1_txt; unit2 = unit2_txt; pooled from first token"
+        if tsv_features
+        else "tokenizer(text=unit1, text_pair=unit2) pooled from first token"
+    )
+    baseline_name = (
+        "Frozen XLM-RoBERTa + linear head (TSV features: dir, rel_type, orig_label on unit1)"
+        if tsv_features
+        else "Frozen XLM-RoBERTa (xlm-roberta-base) + linear head"
+    )
     payload = {
-        "baseline": "Frozen XLM-RoBERTa (xlm-roberta-base) + linear head",
+        "baseline": baseline_name,
+        "tsv_features": tsv_features,
         "pooling": pooling,
-        "input_format": "tokenizer(text=unit1, text_pair=unit2) pooled from first token",
+        "input_format": input_format,
         "model_name": args.model_name,
         "max_length": args.max_length,
         "num_labels": len(label_set),
@@ -658,6 +742,7 @@ def main() -> None:
             "model_name": args.model_name,
             "max_length": args.max_length,
             "pooling": pooling,
+            "tsv_features": tsv_features,
         },
         head_state_path,
     )
@@ -680,6 +765,7 @@ def main() -> None:
                 emb_batch_size=args.emb_batch_size,
                 emb_num_workers=args.emb_num_workers,
                 split="test",
+                load_split_fn=load_fn,
             )
             agg = aggregate_predictions(preds_by_corpus, id2label)
             print_aggregate_summary(agg)

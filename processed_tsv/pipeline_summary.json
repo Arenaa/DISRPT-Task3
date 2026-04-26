@@ -1,6 +1,6 @@
 {
   "input_dir": "data_subset",
-  "output_dir": "results/processed_tsv",
+  "output_dir": "processed_tsv",
   "keep_columns": [
     "unit1_txt",
     "unit2_txt",
@@ -24,7 +24,7 @@
   },
   "files": [
     {
-      "source_file": "data_subset/eng.dep.scidtb/eng.dep.scidtb_dev.rels",
+      "source_file": "data_subset\\eng.dep.scidtb\\eng.dep.scidtb_dev.rels",
       "dataset": "eng.dep.scidtb",
       "split": "dev",
       "num_rows_before_cleaning": 1933,
@@ -34,7 +34,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/eng.dep.scidtb/eng.dep.scidtb_test.rels",
+      "source_file": "data_subset\\eng.dep.scidtb\\eng.dep.scidtb_test.rels",
       "dataset": "eng.dep.scidtb",
       "split": "test",
       "num_rows_before_cleaning": 1910,
@@ -44,7 +44,7 @@
       "num_duplicate_rows_removed": 8
     },
     {
-      "source_file": "data_subset/eng.dep.scidtb/eng.dep.scidtb_train.rels",
+      "source_file": "data_subset\\eng.dep.scidtb\\eng.dep.scidtb_train.rels",
       "dataset": "eng.dep.scidtb",
       "split": "train",
       "num_rows_before_cleaning": 6060,
@@ -54,7 +54,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/eng.erst.gum/eng.erst.gum_dev.rels",
+      "source_file": "data_subset\\eng.erst.gum\\eng.erst.gum_dev.rels",
       "dataset": "eng.erst.gum",
       "split": "dev",
       "num_rows_before_cleaning": 3708,
@@ -64,7 +64,7 @@
       "num_duplicate_rows_removed": 8
     },
     {
-      "source_file": "data_subset/eng.erst.gum/eng.erst.gum_test.rels",
+      "source_file": "data_subset\\eng.erst.gum\\eng.erst.gum_test.rels",
       "dataset": "eng.erst.gum",
       "split": "test",
       "num_rows_before_cleaning": 3574,
@@ -74,7 +74,7 @@
       "num_duplicate_rows_removed": 16
     },
     {
-      "source_file": "data_subset/eng.erst.gum/eng.erst.gum_train.rels",
+      "source_file": "data_subset\\eng.erst.gum\\eng.erst.gum_train.rels",
       "dataset": "eng.erst.gum",
       "split": "train",
       "num_rows_before_cleaning": 23465,
@@ -84,7 +84,7 @@
       "num_duplicate_rows_removed": 49
     },
     {
-      "source_file": "data_subset/eng.pdtb.gum/eng.pdtb.gum_dev.rels",
+      "source_file": "data_subset\\eng.pdtb.gum\\eng.pdtb.gum_dev.rels",
       "dataset": "eng.pdtb.gum",
       "split": "dev",
       "num_rows_before_cleaning": 1682,
@@ -94,7 +94,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/eng.pdtb.gum/eng.pdtb.gum_test.rels",
+      "source_file": "data_subset\\eng.pdtb.gum\\eng.pdtb.gum_test.rels",
       "dataset": "eng.pdtb.gum",
       "split": "test",
       "num_rows_before_cleaning": 1678,
@@ -104,7 +104,7 @@
       "num_duplicate_rows_removed": 2
     },
     {
-      "source_file": "data_subset/eng.pdtb.gum/eng.pdtb.gum_train.rels",
+      "source_file": "data_subset\\eng.pdtb.gum\\eng.pdtb.gum_train.rels",
       "dataset": "eng.pdtb.gum",
       "split": "train",
       "num_rows_before_cleaning": 10519,
@@ -114,7 +114,7 @@
       "num_duplicate_rows_removed": 4
     },
     {
-      "source_file": "data_subset/eng.rst.sts/eng.rst.sts_dev.rels",
+      "source_file": "data_subset\\eng.rst.sts\\eng.rst.sts_dev.rels",
       "dataset": "eng.rst.sts",
       "split": "dev",
       "num_rows_before_cleaning": 284,
@@ -124,7 +124,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/eng.rst.sts/eng.rst.sts_test.rels",
+      "source_file": "data_subset\\eng.rst.sts\\eng.rst.sts_test.rels",
       "dataset": "eng.rst.sts",
       "split": "test",
       "num_rows_before_cleaning": 328,
@@ -134,7 +134,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/eng.rst.sts/eng.rst.sts_train.rels",
+      "source_file": "data_subset\\eng.rst.sts\\eng.rst.sts_train.rels",
       "dataset": "eng.rst.sts",
       "split": "train",
       "num_rows_before_cleaning": 2446,
@@ -144,7 +144,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/eng.sdrt.stac/eng.sdrt.stac_dev.rels",
+      "source_file": "data_subset\\eng.sdrt.stac\\eng.sdrt.stac_dev.rels",
       "dataset": "eng.sdrt.stac",
       "split": "dev",
       "num_rows_before_cleaning": 1231,
@@ -154,7 +154,7 @@
       "num_duplicate_rows_removed": 20
     },
     {
-      "source_file": "data_subset/eng.sdrt.stac/eng.sdrt.stac_test.rels",
+      "source_file": "data_subset\\eng.sdrt.stac\\eng.sdrt.stac_test.rels",
       "dataset": "eng.sdrt.stac",
       "split": "test",
       "num_rows_before_cleaning": 1128,
@@ -164,7 +164,7 @@
       "num_duplicate_rows_removed": 14
     },
     {
-      "source_file": "data_subset/eng.sdrt.stac/eng.sdrt.stac_train.rels",
+      "source_file": "data_subset\\eng.sdrt.stac\\eng.sdrt.stac_train.rels",
       "dataset": "eng.sdrt.stac",
       "split": "train",
       "num_rows_before_cleaning": 9912,
@@ -174,7 +174,7 @@
       "num_duplicate_rows_removed": 232
     },
     {
-      "source_file": "data_subset/fas.rst.prstc/fas.rst.prstc_dev.rels",
+      "source_file": "data_subset\\fas.rst.prstc\\fas.rst.prstc_dev.rels",
       "dataset": "fas.rst.prstc",
       "split": "dev",
       "num_rows_before_cleaning": 499,
@@ -184,7 +184,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/fas.rst.prstc/fas.rst.prstc_test.rels",
+      "source_file": "data_subset\\fas.rst.prstc\\fas.rst.prstc_test.rels",
       "dataset": "fas.rst.prstc",
       "split": "test",
       "num_rows_before_cleaning": 592,
@@ -194,7 +194,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/fas.rst.prstc/fas.rst.prstc_train.rels",
+      "source_file": "data_subset\\fas.rst.prstc\\fas.rst.prstc_train.rels",
       "dataset": "fas.rst.prstc",
       "split": "train",
       "num_rows_before_cleaning": 4100,
@@ -204,7 +204,7 @@
       "num_duplicate_rows_removed": 2
     },
     {
-      "source_file": "data_subset/fra.sdrt.annodis/fra.sdrt.annodis_dev.rels",
+      "source_file": "data_subset\\fra.sdrt.annodis\\fra.sdrt.annodis_dev.rels",
       "dataset": "fra.sdrt.annodis",
       "split": "dev",
       "num_rows_before_cleaning": 523,
@@ -214,7 +214,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/fra.sdrt.annodis/fra.sdrt.annodis_test.rels",
+      "source_file": "data_subset\\fra.sdrt.annodis\\fra.sdrt.annodis_test.rels",
       "dataset": "fra.sdrt.annodis",
       "split": "test",
       "num_rows_before_cleaning": 621,
@@ -224,7 +224,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/fra.sdrt.annodis/fra.sdrt.annodis_train.rels",
+      "source_file": "data_subset\\fra.sdrt.annodis\\fra.sdrt.annodis_train.rels",
       "dataset": "fra.sdrt.annodis",
       "split": "train",
       "num_rows_before_cleaning": 2177,
@@ -234,7 +234,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/ita.pdtb.luna/ita.pdtb.luna_dev.rels",
+      "source_file": "data_subset\\ita.pdtb.luna\\ita.pdtb.luna_dev.rels",
       "dataset": "ita.pdtb.luna",
       "split": "dev",
       "num_rows_before_cleaning": 206,
@@ -244,7 +244,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/ita.pdtb.luna/ita.pdtb.luna_test.rels",
+      "source_file": "data_subset\\ita.pdtb.luna\\ita.pdtb.luna_test.rels",
       "dataset": "ita.pdtb.luna",
       "split": "test",
       "num_rows_before_cleaning": 375,
@@ -254,7 +254,7 @@
       "num_duplicate_rows_removed": 1
     },
     {
-      "source_file": "data_subset/ita.pdtb.luna/ita.pdtb.luna_train.rels",
+      "source_file": "data_subset\\ita.pdtb.luna\\ita.pdtb.luna_train.rels",
       "dataset": "ita.pdtb.luna",
       "split": "train",
       "num_rows_before_cleaning": 944,
@@ -264,7 +264,7 @@
       "num_duplicate_rows_removed": 1
     },
     {
-      "source_file": "data_subset/zho.dep.scidtb/zho.dep.scidtb_dev.rels",
+      "source_file": "data_subset\\zho.dep.scidtb\\zho.dep.scidtb_dev.rels",
       "dataset": "zho.dep.scidtb",
       "split": "dev",
       "num_rows_before_cleaning": 281,
@@ -274,7 +274,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/zho.dep.scidtb/zho.dep.scidtb_test.rels",
+      "source_file": "data_subset\\zho.dep.scidtb\\zho.dep.scidtb_test.rels",
       "dataset": "zho.dep.scidtb",
       "split": "test",
       "num_rows_before_cleaning": 215,
@@ -284,7 +284,7 @@
       "num_duplicate_rows_removed": 0
     },
     {
-      "source_file": "data_subset/zho.dep.scidtb/zho.dep.scidtb_train.rels",
+      "source_file": "data_subset\\zho.dep.scidtb\\zho.dep.scidtb_train.rels",
       "dataset": "zho.dep.scidtb",
       "split": "train",
       "num_rows_before_cleaning": 801,

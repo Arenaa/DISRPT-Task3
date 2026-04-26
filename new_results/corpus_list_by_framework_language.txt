@@ -1,0 +1,26 @@
+GROUPED BY FRAMEWORK → LANGUAGE (test corpora)
+
+**dep** / **eng** — 1 corpus/corpora
+  - eng.dep.scidtb  (N=1902, #labels=14)
+
+**dep** / **zho** — 1 corpus/corpora
+  - zho.dep.scidtb  (N=215, #labels=14)
+
+**pdtb** / **eng** — 1 corpus/corpora
+  - eng.pdtb.gum  (N=1676, #labels=13)
+
+**pdtb** / **ita** — 1 corpus/corpora
+  - ita.pdtb.luna  (N=374, #labels=11)
+
+**rst** / **eng** — 2 corpus/corpora
+  - eng.erst.gum  (N=3558, #labels=17)
+  - eng.rst.sts  (N=328, #labels=17)
+
+**rst** / **fas** — 1 corpus/corpora
+  - fas.rst.prstc  (N=592, #labels=14)
+
+**sdrt** / **eng** — 1 corpus/corpora
+  - eng.sdrt.stac  (N=1114, #labels=11)
+
+**sdrt** / **fra** — 1 corpus/corpora
+  - fra.sdrt.annodis  (N=621, #labels=12)

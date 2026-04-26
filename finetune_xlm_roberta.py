@@ -351,6 +351,38 @@ def print_aggregate_summary(agg: Dict[str, Any]) -> None:
     print(_row("ALL", agg["pooled"]))
 
 
+def resolve_split_data_dir(
+    data_dir: str | Path,
+    train_file: str,
+    dev_file: str,
+    test_file: str,
+) -> Path:
+    """Base directory for pooled train/dev/test TSVs when using relative file names."""
+    _ = dev_file, test_file  # same root as train
+    train_path = Path(train_file)
+    if train_path.is_absolute():
+        return train_path.parent.resolve()
+    return Path(data_dir).expanduser().resolve()
+
+
+def resolve_by_source_data_dir(by_source_dir: str | Path) -> Path:
+    """Root directory with per-corpus `<corpus>/<corpus>_{train,dev,test}.tsv`."""
+    return Path(by_source_dir).expanduser().resolve()
+
+
+def error_missing_split_tsv(
+    train_path: Path,
+    train_file: str,
+    dev_file: str,
+    test_file: str,
+) -> str:
+    return (
+        f"Missing train split TSV: {train_path}\n"
+        f"  Check --data-dir and filenames ({train_file!r}, {dev_file!r}, {test_file!r}). "
+        f"Generate TSVs with: python data_pipeline.py"
+    )
+
+
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Fine-tune xlm-roberta-base on DISRPT pair classification.")
 
@@ -490,6 +522,16 @@ def run_finetune(
     best_state_dict: Dict[str, torch.Tensor] | None = None
     history: List[Dict[str, Any]] = []
 
+    steps_per_epoch = len(train_loader)
+    log_every = max(1, steps_per_epoch // 20)
+    print(
+        f"Starting training: {len(train_ds)} train examples, {steps_per_epoch} steps/epoch, "
+        f"{args.epochs} epochs, device={device}.\n"
+        f"(After the HF load report there is no output until the first log line below — "
+        f"epoch 1 can take several minutes on GPU.)\n",
+        flush=True,
+    )
+
     for epoch in range(1, args.epochs + 1):
         model.train()
         epoch_loss = 0.0
@@ -503,9 +545,16 @@ def run_finetune(
             scheduler.step()
             optimizer.zero_grad(set_to_none=True)
 
-            epoch_loss += float(loss.item())
+            loss_f = float(loss.item())
+            epoch_loss += loss_f
+            if step == 1 or step % log_every == 0 or step == steps_per_epoch:
+                print(
+                    f"  epoch {epoch}/{args.epochs}  step {step}/{steps_per_epoch}  batch_loss={loss_f:.4f}",
+                    flush=True,
+                )
 
         avg_loss = epoch_loss / max(1, len(train_loader))
+        print(f"epoch {epoch}/{args.epochs} done — running dev eval …", flush=True)
         dev_metrics = evaluate(model, dev_loader, device=device, num_labels=num_labels)
         history.append(
             {
