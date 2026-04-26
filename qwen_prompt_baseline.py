@@ -1,34 +1,38 @@
-"""Prompt-based Qwen baseline for DISRPT Task 3.
+"""Supervised fine-tuning of Qwen/Qwen3-4B for DISRPT Task 3.
 
-Loads Qwen/Qwen3-4B, prompts it on the cleaned DISRPT TSV data,
-and evaluates the predicted discourse relation labels.
+This script repurposes the earlier prompt-only baseline into a decoder-only
+training pipeline inspired by the DeDisCo system from DISRPT 2025. The core
+idea is to cast relation classification as instruction-following generation:
+the model sees a verbose prompt with discourse units plus metadata and learns
+to generate exactly one label from the fixed 17-label inventory.
 
-The script supports:
+Implemented here:
 
-    * zero-shot prompting
-    * few-shot prompting from train.tsv examples
-    * optional metadata in the prompt (`dir`, `rel_type`)
+    * full-parameter supervised fine-tuning of `Qwen/Qwen3-4B`
+    * verbose instruction-style prompts with:
+        - language / corpus / framework (LCF)
+        - direction
+        - relation type
+        - only the fields preserved in the cleaned processed TSV files
+    * greedy decoding on dev/test
+    * pooled and per-dataset evaluation artifacts
 
-The per-dataset JSON follows the same general structure as the existing
-`results/per_dataset_eval/*.json` files and includes:
+Not reproduced exactly from the paper:
 
-    * pooled metrics
-    * per corpus
-    * per framework
-    * per language
-    * per-label global metrics
-
-This script does **not** fine-tune the model; it uses prompting only.
+    * model pruning to stay under a shared-task parameter cap
+    * translation-based data augmentation
+    * richer raw-document features that are no longer available after TSV export,
+      such as same-speaker annotations, sentence context windows, and exact
+      token-distance features
 
 Examples:
-    1. zero-shot
-    python qwen_prompt_baseline.py --split test
-    or (Small-scale debugging)
-    python qwen_prompt_baseline.py --split test --max-examples 100 --log-freq 50
-    2. few-shot (3-shot)
-    python qwen_prompt_baseline.py --split test --few-shot-k 3
-    3. few-shot (3-shot) + metadata
-    python qwen_prompt_baseline.py --split test --few-shot-k 3 --include-dir --include-rel-type
+
+    python qwen_prompt_baseline.py
+
+    python qwen_prompt_baseline.py --max-train-examples 2000 --max-dev-examples 200
+
+    python qwen_prompt_baseline.py --epochs 1 --train-batch-size 1 \
+        --gradient-accumulation-steps 16 --eval-max-new-tokens 16
 """
 
 from __future__ import annotations
@@ -36,16 +40,22 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import random
 import re
 import sys
 import time
-from collections import defaultdict, deque
+from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import torch
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
+from torch.nn.utils.rnn import pad_sequence
+from torch.optim import AdamW
+from torch.utils.data import DataLoader, Dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, PreTrainedModel, PreTrainedTokenizerBase
 
 LABEL_SET = [
@@ -67,26 +77,181 @@ LABEL_SET = [
     "reformulation",
     "temporal",
 ]
-INVALID_LABEL = "__invalid__"
-CORPUS_FRAMEWORK_OVERRIDES = {
-    "eng.erst.gum": "rst",
+LABEL_GLOSSES = {
+    "alternation": "alternating options or choices",
+    "attribution": "reported speech, thought, or attributed content",
+    "causal": "cause, result, or reason relation",
+    "comment": "speaker or writer comment on content",
+    "concession": "unexpected outcome despite expectation",
+    "condition": "conditional relation",
+    "conjunction": "joint or additive relation",
+    "contrast": "contrast or opposition",
+    "elaboration": "additional detail, expansion, or specification",
+    "explanation": "explanatory justification or clarification",
+    "frame": "background or framing information",
+    "mode": "manner or way of doing something",
+    "organization": "text-organizing or structural relation",
+    "purpose": "goal or intended outcome",
+    "query": "question-answer or request relation",
+    "reformulation": "restatement, paraphrase, or reformulation",
+    "temporal": "temporal sequence or timing relation",
 }
-DEFAULT_DATA_DIR = Path("results/processed_tsv/by_split")
-DEFAULT_BY_SOURCE_DIR = Path("results/processed_tsv/by_source_file")
-DEFAULT_PER_DATASET_OUT_DIR = Path("results/per_dataset_eval")
-DEFAULT_MODEL_NAME = "Qwen/Qwen3-4B"
-DEFAULT_OUTPUT_DIR = Path("results/qwen_prompt_results")
-DEFAULT_SEED = 42
-DEFAULT_DTYPE = "auto"
+INVALID_LABEL = "__invalid__"
+CORPUS_FRAMEWORK_OVERRIDES = {"eng.erst.gum": "rst"}
 THINK_BLOCK_RE = re.compile(r"<think>.*?</think>", re.IGNORECASE | re.DOTALL)
 THINK_TAG_RE = re.compile(r"</?think>", re.IGNORECASE)
-ROW_KEY_COLUMNS = ["unit1_txt", "unit2_txt", "dir", "rel_type", "orig_label", "label"]
+
+DEFAULT_INPUT_DIR = Path("results/processed_tsv/by_source_file")
+DEFAULT_OUTPUT_DIR = Path("results/qwen_sft_results")
+DEFAULT_PER_DATASET_OUT_DIR = Path("results/per_dataset_eval")
+DEFAULT_MODEL_NAME = "Qwen/Qwen3-4B"
+REQUIRED_TSV_COLUMNS = ["unit1_txt", "unit2_txt", "dir", "rel_type", "orig_label", "label"]
+
+
+@dataclass(frozen=True)
+class Example:
+    split: str
+    corpus_id: str
+    language: str
+    corpus: str
+    framework_prompt: str
+    framework_group: str
+    unit1_txt: str
+    unit2_txt: str
+    direction: str
+    rel_type: str
+    label: str
+
+
+class InstructionSFTDataset(Dataset):
+    def __init__(
+            self,
+            examples: list[Example],
+            tokenizer: PreTrainedTokenizerBase,
+            max_length: int,
+    ) -> None:
+        self.examples = examples
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+        self.eos_token_id = tokenizer.eos_token_id
+        if self.eos_token_id is None:
+            raise ValueError("Tokenizer must define eos_token_id for causal LM fine-tuning.")
+
+    def __len__(self) -> int:
+        return len(self.examples)
+
+    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
+        example = self.examples[idx]
+        prompt = build_prompt(example)
+        target = example.label
+
+        target_ids = self.tokenizer(target, add_special_tokens=False).input_ids + [self.eos_token_id]
+        max_prompt_tokens = max(1, self.max_length - len(target_ids))
+        prompt_ids = self.tokenizer(
+            prompt,
+            add_special_tokens=False,
+            truncation=True,
+            max_length=max_prompt_tokens,
+        ).input_ids
+
+        input_ids = prompt_ids + target_ids
+        attention_mask = [1] * len(input_ids)
+        labels = [-100] * len(prompt_ids) + target_ids
+
+        return {
+            "input_ids": torch.tensor(input_ids, dtype=torch.long),
+            "attention_mask": torch.tensor(attention_mask, dtype=torch.long),
+            "labels": torch.tensor(labels, dtype=torch.long),
+        }
 
 
 def set_seed(seed: int) -> None:
     random.seed(seed)
+    np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+
+
+def corpus_framework(corpus_id: str) -> str:
+    if corpus_id in CORPUS_FRAMEWORK_OVERRIDES:
+        return CORPUS_FRAMEWORK_OVERRIDES[corpus_id]
+    parts = corpus_id.split(".")
+    return parts[1] if len(parts) >= 2 else "unknown"
+
+
+def corpus_language(corpus_id: str) -> str:
+    parts = corpus_id.split(".")
+    return parts[0] if parts else "unknown"
+
+
+def corpus_name(corpus_id: str) -> str:
+    parts = corpus_id.split(".")
+    return parts[-1] if parts else corpus_id
+
+
+def prompt_framework(corpus_id: str) -> str:
+    parts = corpus_id.split(".")
+    return parts[1] if len(parts) >= 2 else "unknown"
+
+
+def validate_required_columns(header: list[str], path: Path) -> None:
+    missing = [column for column in REQUIRED_TSV_COLUMNS if column not in header]
+    if missing:
+        raise ValueError(f"Missing required columns in {path}: {missing}")
+
+
+def direction_text(raw_dir: str) -> str:
+    if raw_dir == "1>2":
+        return "From Unit1 to Unit2."
+    if raw_dir == "1<2":
+        return "From Unit2 to Unit1."
+    return raw_dir or "Unknown."
+
+
+def build_prompt(example: Example) -> str:
+    labels = ", ".join(LABEL_SET)
+    prompt = (
+        "## Role and Goal:\n"
+        "You are an expert in discourse analysis, tasked with identifying the discourse relation "
+        "between two sentence units based on the provided label. Your goal is to accurately "
+        "determine the relationship between these two units.\n"
+        "## Guidelines:\n"
+        "1. You will receive Unit1 and Unit2. Unit1 appears before Unit2 in the original text.\n"
+        "2. You will also be informed about the language of these units.\n"
+        "3. You will also be informed of the corpus from which the data is drawn, which may help "
+        "guide your analysis.\n"
+        "4. The framework for analysis will be provided, outlining the structure used for discourse analysis.\n"
+        "5. The direction of the relationship between these two units will be given.\n"
+        "6. The relation type metadata will also be provided.\n"
+        "7. You will be provided with a set of labels representing possible discourse relations. "
+        "Choose one label that best fits the relationship between Unit1 and Unit2, and output only the chosen label.\n"
+        "8. Do not explain your answer.\n"
+        "9. Output exactly one label and nothing else.\n"
+        "## Labels:\n"
+        f"{labels}\n"
+        "## Label Hints:\n"
+        f"{format_label_hints()}\n"
+        "## Language:\n"
+        f"{example.language}\n"
+        "## Corpus:\n"
+        f"{example.corpus}\n"
+        "## Framework:\n"
+        f"{example.framework_prompt}\n"
+        "## Direction:\n"
+        f"{direction_text(example.direction)}\n"
+        "## Relation Type:\n"
+        f"{example.rel_type or 'Unknown'}\n"
+        "## Unit1:\n"
+        f"{example.unit1_txt}\n"
+        "## Unit2:\n"
+        f"{example.unit2_txt}\n"
+        "## Answer:\n"
+    )
+    return prompt
+
+
+def format_label_hints() -> str:
+    return "\n".join(f"- {label}: {LABEL_GLOSSES[label]}" for label in LABEL_SET)
 
 
 def read_tsv(path: Path) -> list[dict[str, str]]:
@@ -94,161 +259,161 @@ def read_tsv(path: Path) -> list[dict[str, str]]:
         csv.field_size_limit(sys.maxsize)
     except OverflowError:
         csv.field_size_limit(10 ** 9)
-
     with path.open("r", encoding="utf-8", newline="") as handle:
-        reader = csv.DictReader(handle, delimiter="\t", restval="")
-        return list(reader)
+        return list(csv.DictReader(handle, delimiter="\t", restval=""))
 
 
-def load_rows(path: Path, max_examples: int | None = None) -> list[dict[str, str]]:
-    rows = read_tsv(path)
-    clean_rows = []
-    for row in rows:
-        if not row.get("unit1_txt") or not row.get("unit2_txt") or not row.get("label"):
-            continue
-        clean_rows.append(row)
-    if max_examples is not None:
-        clean_rows = clean_rows[:max_examples]
-    return clean_rows
+def read_examples_from_processed_tsv(
+        by_source_dir: Path,
+        max_examples_by_split: dict[str, int | None] | None = None,
+) -> dict[str, list[Example]]:
+    max_examples_by_split = max_examples_by_split or {}
+    examples_by_split: dict[str, list[Example]] = {"train": [], "dev": [], "test": []}
+
+    for corpus_dir in sorted(path for path in by_source_dir.iterdir() if path.is_dir()):
+        corpus_id = corpus_dir.name
+        lang = corpus_language(corpus_id)
+        corp = corpus_name(corpus_id)
+        framework_prompt_name = prompt_framework(corpus_id)
+        framework_group = corpus_framework(corpus_id)
+
+        for split in ("train", "dev", "test"):
+            split_path = corpus_dir / f"{corpus_id}_{split}.tsv"
+            if not split_path.exists():
+                continue
+            rows = read_tsv(split_path)
+            if rows:
+                validate_required_columns(list(rows[0].keys()), split_path)
+
+            for row in rows:
+                if any(not (row.get(column) or "").strip() for column in ("unit1_txt", "unit2_txt", "label")):
+                    continue
+                examples_by_split[split].append(
+                    Example(
+                        split=split,
+                        corpus_id=corpus_id,
+                        language=lang,
+                        corpus=corp,
+                        framework_prompt=framework_prompt_name,
+                        framework_group=framework_group,
+                        unit1_txt=(row.get("unit1_txt") or "").strip(),
+                        unit2_txt=(row.get("unit2_txt") or "").strip(),
+                        direction=(row.get("dir") or "").strip(),
+                        rel_type=(row.get("rel_type") or "").strip(),
+                        label=(row.get("label") or "").strip(),
+                    )
+                )
+
+            limit = max_examples_by_split.get(split)
+            if limit is not None and len(examples_by_split[split]) >= limit:
+                examples_by_split[split] = examples_by_split[split][:limit]
+
+    for split, limit in max_examples_by_split.items():
+        if limit is not None:
+            examples_by_split[split] = examples_by_split[split][:limit]
+
+    return examples_by_split
 
 
-def corpus_framework(corpus: str) -> str:
-    if corpus in CORPUS_FRAMEWORK_OVERRIDES:
-        return CORPUS_FRAMEWORK_OVERRIDES[corpus]
-    parts = corpus.split(".")
-    return parts[1] if len(parts) >= 2 else "unknown"
+def build_arg_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--input-dir", default=str(DEFAULT_INPUT_DIR))
+    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
+    parser.add_argument("--per-dataset-out-dir", default=str(DEFAULT_PER_DATASET_OUT_DIR))
+    parser.add_argument("--model-name", default=DEFAULT_MODEL_NAME)
+    parser.add_argument("--max-length", type=int, default=1024)
+    parser.add_argument("--train-batch-size", type=int, default=1)
+    parser.add_argument("--eval-batch-size", type=int, default=1)
+    parser.add_argument("--gradient-accumulation-steps", type=int, default=16)
+    parser.add_argument("--epochs", type=int, default=1)
+    parser.add_argument("--lr", type=float, default=1e-5)
+    parser.add_argument("--weight-decay", type=float, default=0.01)
+    parser.add_argument("--warmup-ratio", type=float, default=0.03)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
+    parser.add_argument("--dtype", default="float16", choices=["float16", "bfloat16", "float32"])
+    parser.add_argument("--eval-max-new-tokens", type=int, default=16)
+    parser.add_argument("--max-train-examples", type=int, default=None)
+    parser.add_argument("--max-dev-examples", type=int, default=None)
+    parser.add_argument("--max-test-examples", type=int, default=None)
+    parser.add_argument("--log-every", type=int, default=100)
+    parser.add_argument("--skip-per-dataset", action="store_true")
+    parser.add_argument("--no-save-best", dest="save_best", action="store_false")
+    parser.add_argument("--gradient-checkpointing", action="store_true", default=True)
+    parser.add_argument("--no-gradient-checkpointing", dest="gradient_checkpointing", action="store_false")
+    return parser
 
 
-def corpus_language(corpus: str) -> str:
-    parts = corpus.split(".")
-    return parts[0] if parts else "unknown"
+def parse_args() -> argparse.Namespace:
+    return build_arg_parser().parse_args()
 
 
-def row_key(row: dict[str, str]) -> tuple[str, ...]:
-    return tuple((row.get(column) or "").strip() for column in ROW_KEY_COLUMNS)
+def pad_batch(
+        batch: list[dict[str, torch.Tensor]],
+        *,
+        pad_token_id: int,
+) -> dict[str, torch.Tensor]:
+    input_ids = pad_sequence([item["input_ids"] for item in batch], batch_first=True, padding_value=pad_token_id)
+    attention_mask = pad_sequence([item["attention_mask"] for item in batch], batch_first=True, padding_value=0)
+    labels = pad_sequence([item["labels"] for item in batch], batch_first=True, padding_value=-100)
+    return {
+        "input_ids": input_ids,
+        "attention_mask": attention_mask,
+        "labels": labels,
+    }
 
 
-def build_corpus_lookup(split: str) -> dict[tuple[str, ...], deque[str]]:
-    lookup: dict[tuple[str, ...], deque[str]] = defaultdict(deque)
-    if not DEFAULT_BY_SOURCE_DIR.exists():
-        return lookup
-
-    for corpus_dir in sorted(path for path in DEFAULT_BY_SOURCE_DIR.iterdir() if path.is_dir()):
-        corpus = corpus_dir.name
-        split_path = corpus_dir / f"{corpus}_{split}.tsv"
-        if not split_path.exists():
-            continue
-        for row in load_rows(split_path):
-            lookup[row_key(row)].append(corpus)
-    return lookup
+def move_batch_to_device(batch: dict[str, torch.Tensor], device: torch.device) -> dict[str, torch.Tensor]:
+    return {key: value.to(device) for key, value in batch.items()}
 
 
-def attach_corpus_labels(rows: list[dict[str, str]], split: str) -> int:
-    lookup = build_corpus_lookup(split)
-    missing = 0
-    for row in rows:
-        queue = lookup.get(row_key(row))
-        if queue:
-            row["corpus"] = queue.popleft()
-        else:
-            row["corpus"] = "unknown"
-            missing += 1
-    return missing
+def resolve_dtype(dtype_name: str) -> torch.dtype:
+    mapping = {
+        "float16": torch.float16,
+        "bfloat16": torch.bfloat16,
+        "float32": torch.float32,
+    }
+    return mapping[dtype_name]
 
 
-def sample_few_shot_rows(
-        rows: list[dict[str, str]],
-        k: int,
-        seed: int,
-) -> list[dict[str, str]]:
-    if k <= 0 or not rows:
-        return []
-    rng = random.Random(seed)
-    if k >= len(rows):
-        return list(rows)
-    return rng.sample(rows, k)
+def load_model_and_tokenizer(
+        model_name: str,
+        dtype_name: str,
+        device: torch.device,
+        gradient_checkpointing: bool,
+) -> tuple[PreTrainedTokenizerBase, PreTrainedModel]:
+    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=False)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token or tokenizer.unk_token
+    if tokenizer.pad_token is None:
+        raise ValueError("Tokenizer must define either pad_token, eos_token, or unk_token.")
 
-
-def build_instruction(label_set: list[str]) -> str:
-    labels = ", ".join(label_set)
-    return (
-        "You are a discourse relation classification system.\n"
-        "Given two discourse units, predict the discourse relation label between them.\n"
-        f"Choose exactly one label from this list:\n{labels}\n"
-        "Return only one label and nothing else."
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        trust_remote_code=False,
+        torch_dtype=resolve_dtype(dtype_name),
     )
+    if gradient_checkpointing:
+        model.gradient_checkpointing_enable()
+        model.config.use_cache = False
+    model.to(device)
+    return tokenizer, model
 
 
-def format_instance(
-        row: dict[str, str],
-        *,
-        include_dir: bool,
-        include_rel_type: bool,
-) -> str:
-    parts = [
-        f"Unit 1: {row['unit1_txt']}",
-        f"Unit 2: {row['unit2_txt']}",
-    ]
-    if include_dir:
-        parts.append(f"Direction: {row.get('dir', '').strip()}")
-    if include_rel_type:
-        parts.append(f"Relation type: {row.get('rel_type', '').strip()}")
-    return "\n".join(parts)
+def build_loaders(
+        examples_by_split: dict[str, list[Example]],
+        tokenizer: PreTrainedTokenizerBase,
+        args: argparse.Namespace,
+) -> tuple[DataLoader, DataLoader, DataLoader]:
+    train_dataset = InstructionSFTDataset(examples_by_split["train"], tokenizer, args.max_length)
+    dev_dataset = InstructionSFTDataset(examples_by_split["dev"], tokenizer, args.max_length)
+    test_dataset = InstructionSFTDataset(examples_by_split["test"], tokenizer, args.max_length)
 
-
-def format_few_shot_example(
-        row: dict[str, str],
-        *,
-        include_dir: bool,
-        include_rel_type: bool,
-) -> str:
-    return (
-        f"{format_instance(row, include_dir=include_dir, include_rel_type=include_rel_type)}\n"
-        f"Answer: {row['label']}"
-    )
-
-
-def build_prompt(
-        row: dict[str, str],
-        *,
-        few_shot_rows: list[dict[str, str]],
-        include_dir: bool,
-        include_rel_type: bool,
-) -> tuple[str, str]:
-    system_prompt = build_instruction(LABEL_SET)
-    user_parts: list[str] = []
-
-    if few_shot_rows:
-        user_parts.append("Examples:")
-        for idx, ex in enumerate(few_shot_rows, start=1):
-            user_parts.append(
-                f"Example {idx}:\n{format_few_shot_example(ex, include_dir=include_dir, include_rel_type=include_rel_type)}")
-
-    user_parts.append("Now classify this example:")
-    user_parts.append(format_instance(row, include_dir=include_dir, include_rel_type=include_rel_type))
-    user_parts.append("Answer:")
-    user_prompt = "\n\n".join(user_parts)
-    return system_prompt, user_prompt
-
-
-def render_prompt(
-        tokenizer: AutoTokenizer,
-        system_prompt: str,
-        user_prompt: str,
-) -> str:
-    if hasattr(tokenizer, "apply_chat_template"):
-        try:
-            return tokenizer.apply_chat_template(
-                [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt},
-                ],
-                tokenize=False,
-                add_generation_prompt=True,
-            )
-        except Exception:
-            pass
-    return f"{system_prompt}\n\n{user_prompt}"
+    collate = lambda batch: pad_batch(batch, pad_token_id=tokenizer.pad_token_id)
+    train_loader = DataLoader(train_dataset, batch_size=args.train_batch_size, shuffle=True, collate_fn=collate)
+    dev_loader = DataLoader(dev_dataset, batch_size=args.eval_batch_size, shuffle=False, collate_fn=collate)
+    test_loader = DataLoader(test_dataset, batch_size=args.eval_batch_size, shuffle=False, collate_fn=collate)
+    return train_loader, dev_loader, test_loader
 
 
 def normalize_prediction(text: str) -> str:
@@ -291,61 +456,64 @@ def normalize_prediction(text: str) -> str:
     return INVALID_LABEL
 
 
-def load_model_and_tokenizer() -> tuple[PreTrainedTokenizerBase, PreTrainedModel, torch.device]:
-    tokenizer = AutoTokenizer.from_pretrained(DEFAULT_MODEL_NAME, trust_remote_code=False)
-    if tokenizer.pad_token is None and tokenizer.eos_token is not None:
-        tokenizer.pad_token = tokenizer.eos_token
-
-    model_kwargs: dict[str, Any] = {"trust_remote_code": False}
-    if DEFAULT_DTYPE != "auto":
-        dtype_map = {
-            "float16": torch.float16,
-            "bfloat16": torch.bfloat16,
-            "float32": torch.float32,
-        }
-        model_kwargs["torch_dtype"] = dtype_map[DEFAULT_DTYPE]
-
-    if torch.cuda.is_available():
-        model_kwargs["device_map"] = "auto"
-        model = AutoModelForCausalLM.from_pretrained(DEFAULT_MODEL_NAME, **model_kwargs)
-        model_device = next(model.parameters()).device
-    else:
-        model = AutoModelForCausalLM.from_pretrained(DEFAULT_MODEL_NAME, **model_kwargs)
-        model_device = torch.device("cpu")
-        model.to(model_device)
-
-    model.eval()
-    return tokenizer, model, model_device
-
-
-def generate_label(
-        *,
+def generate_predictions(
         model: PreTrainedModel,
         tokenizer: PreTrainedTokenizerBase,
-        model_device: torch.device,
-        prompt: str,
-        max_new_tokens: int,
-) -> str:
-    inputs = tokenizer(prompt, return_tensors="pt")
-    inputs = {k: v.to(model_device) for k, v in inputs.items()}
+        examples: list[Example],
+        device: torch.device,
+        max_length: int,
+        eval_max_new_tokens: int,
+        log_every: int,
+) -> tuple[list[dict[str, Any]], list[str], list[str]]:
+    predictions: list[dict[str, Any]] = []
+    gold: list[str] = []
+    pred: list[str] = []
 
-    gen_kwargs: dict[str, Any] = {
-        "max_new_tokens": max_new_tokens,
-        "pad_token_id": tokenizer.pad_token_id,
-        "do_sample": False,
-    }
-
+    started = time.time()
+    model.eval()
     with torch.no_grad():
-        outputs = model.generate(**inputs, **gen_kwargs)
+        for idx, example in enumerate(examples):
+            prompt = build_prompt(example)
+            encoded = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_length)
+            encoded = {key: value.to(device) for key, value in encoded.items()}
 
-    generated = outputs[0, inputs["input_ids"].shape[1]:]
-    return tokenizer.decode(generated, skip_special_tokens=True).strip()
+            outputs = model.generate(
+                **encoded,
+                max_new_tokens=eval_max_new_tokens,
+                do_sample=False,
+                pad_token_id=tokenizer.pad_token_id,
+                eos_token_id=tokenizer.eos_token_id,
+            )
+            generated = outputs[0, encoded["input_ids"].shape[1]:]
+            raw = tokenizer.decode(generated, skip_special_tokens=True).strip()
+            label = normalize_prediction(raw)
+
+            gold.append(example.label)
+            pred.append(label)
+            predictions.append(
+                {
+                    "index": idx,
+                    "corpus": example.corpus_id,
+                    "gold_label": example.label,
+                    "pred_label": label,
+                    "is_valid_prediction": label != INVALID_LABEL,
+                    "raw_generation": raw,
+                    "unit1_txt": example.unit1_txt,
+                    "unit2_txt": example.unit2_txt,
+                    "dir": example.direction,
+                    "rel_type": example.rel_type,
+                }
+            )
+
+            if (idx + 1) % log_every == 0:
+                elapsed = time.time() - started
+                invalid = sum(item == INVALID_LABEL for item in pred)
+                print(f"[{idx + 1}/{len(examples)}] elapsed={elapsed:.1f}s invalid={invalid}")
+
+    return predictions, gold, pred
 
 
-def evaluate_predictions(
-        y_true: list[str],
-        y_pred: list[str],
-) -> dict[str, Any]:
+def evaluate_predictions(y_true: list[str], y_pred: list[str]) -> dict[str, Any]:
     accuracy = float(accuracy_score(y_true, y_pred))
     macro_f1 = float(f1_score(y_true, y_pred, labels=LABEL_SET, average="macro", zero_division=0))
     weighted_f1 = float(f1_score(y_true, y_pred, labels=LABEL_SET, average="weighted", zero_division=0))
@@ -417,33 +585,33 @@ def aggregate_predictions_by_corpus(preds_by_corpus: dict[str, dict[str, list[st
     for corpus, payload in preds_by_corpus.items():
         gold = payload["gold_label"]
         pred = payload["pred_label"]
-        fw = corpus_framework(corpus)
-        lg = corpus_language(corpus)
+        framework = corpus_framework(corpus)
+        language = corpus_language(corpus)
         per_corpus[corpus] = {
-            "framework": fw,
-            "language": lg,
+            "framework": framework,
+            "language": language,
             **slice_report_str_labels(gold, pred),
         }
-        by_framework[fw]["gold"].extend(gold)
-        by_framework[fw]["pred"].extend(pred)
-        by_language[lg]["gold"].extend(gold)
-        by_language[lg]["pred"].extend(pred)
+        by_framework[framework]["gold"].extend(gold)
+        by_framework[framework]["pred"].extend(pred)
+        by_language[language]["gold"].extend(gold)
+        by_language[language]["pred"].extend(pred)
         all_gold.extend(gold)
         all_pred.extend(pred)
 
     per_framework = {
-        fw: {
-            "corpora": sorted(c for c in preds_by_corpus if corpus_framework(c) == fw),
+        framework: {
+            "corpora": sorted(c for c in preds_by_corpus if corpus_framework(c) == framework),
             **slice_report_str_labels(payload["gold"], payload["pred"]),
         }
-        for fw, payload in sorted(by_framework.items())
+        for framework, payload in sorted(by_framework.items())
     }
     per_language = {
-        lg: {
-            "corpora": sorted(c for c in preds_by_corpus if corpus_language(c) == lg),
+        language: {
+            "corpora": sorted(c for c in preds_by_corpus if corpus_language(c) == language),
             **slice_report_str_labels(payload["gold"], payload["pred"]),
         }
-        for lg, payload in sorted(by_language.items())
+        for language, payload in sorted(by_language.items())
     }
     pooled = slice_report_str_labels(all_gold, all_pred)
     return {
@@ -455,10 +623,7 @@ def aggregate_predictions_by_corpus(preds_by_corpus: dict[str, dict[str, list[st
     }
 
 
-def write_predictions(
-        path: Path,
-        rows: list[dict[str, Any]],
-) -> None:
+def write_predictions(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     columns = [
         "index",
@@ -480,171 +645,227 @@ def write_predictions(
             writer.writerow({column: row.get(column, "") for column in columns})
 
 
-def predict_rows(
-    rows: list[dict[str, str]],
-    *,
-    model: PreTrainedModel,
-    tokenizer: PreTrainedTokenizerBase,
-    model_device: torch.device,
-    few_shot_rows: list[dict[str, str]],
-    include_dir: bool,
-    include_rel_type: bool,
-    max_new_tokens: int,
-    log_every: int,
-) -> tuple[list[dict[str, Any]], list[str], list[str]]:
-    predictions: list[dict[str, Any]] = []
-    y_true: list[str] = []
-    y_pred: list[str] = []
-    started = time.time()
-
-    for idx, row in enumerate(rows):
-        system_prompt, user_prompt = build_prompt(
-            row,
-            few_shot_rows=few_shot_rows,
-            include_dir=include_dir,
-            include_rel_type=include_rel_type,
-        )
-        prompt = render_prompt(tokenizer, system_prompt, user_prompt)
-        raw_generation = generate_label(
-            model=model,
-            tokenizer=tokenizer,
-            model_device=model_device,
-            prompt=prompt,
-            max_new_tokens=max_new_tokens,
-        )
-        pred_label = normalize_prediction(raw_generation)
-
-        y_true.append(row["label"])
-        y_pred.append(pred_label)
-        predictions.append(
-            {
-                "index": idx,
-                "corpus": row.get("corpus", ""),
-                "gold_label": row["label"],
-                "pred_label": pred_label,
-                "is_valid_prediction": pred_label != INVALID_LABEL,
-                "raw_generation": raw_generation,
-                "unit1_txt": row["unit1_txt"],
-                "unit2_txt": row["unit2_txt"],
-                "dir": row.get("dir", ""),
-                "rel_type": row.get("rel_type", ""),
-            }
-        )
-
-        if (idx + 1) % log_every == 0:
-            elapsed = time.time() - started
-            print(f"[{idx + 1}/{len(rows)}] elapsed={elapsed:.1f}s invalid={sum(p == INVALID_LABEL for p in y_pred)}")
-
-    return predictions, y_true, y_pred
+def evaluate_split(
+        model: PreTrainedModel,
+        tokenizer: PreTrainedTokenizerBase,
+        examples: list[Example],
+        args: argparse.Namespace,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    predictions, y_true, y_pred = generate_predictions(
+        model=model,
+        tokenizer=tokenizer,
+        examples=examples,
+        device=torch.device(args.device),
+        max_length=args.max_length,
+        eval_max_new_tokens=args.eval_max_new_tokens,
+        log_every=args.log_every,
+    )
+    return predictions, evaluate_predictions(y_true, y_pred)
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Prompt Qwen3-4B on DISRPT TSV data.")
-    parser.add_argument("--split", default="test", choices=["dev", "test"], help="Which split to evaluate.")
-    parser.add_argument("--max-examples", type=int, default=None, help="Optional cap on evaluated examples.")
-    parser.add_argument("--few-shot-k", type=int, default=0, help="Number of few-shot examples to prepend.")
-    parser.add_argument("--include-dir", action="store_true", help="Include dir in the prompt.")
-    parser.add_argument("--include-rel-type", action="store_true", help="Include rel_type in the prompt.")
-    parser.add_argument("--max-new-tokens", type=int, default=64)
-    parser.add_argument("--log-freq", dest="log_every", type=int, default=200, help="Print progress every N examples.")
-    return parser.parse_args()
+def train_one_epoch(
+        model: PreTrainedModel,
+        loader: DataLoader,
+        optimizer: AdamW,
+        scheduler: torch.optim.lr_scheduler.LRScheduler,
+        device: torch.device,
+        args: argparse.Namespace,
+) -> float:
+    model.train()
+    total_loss = 0.0
+    optimizer.zero_grad(set_to_none=True)
+
+    autocast_dtype = resolve_dtype(args.dtype)
+    autocast_enabled = device.type == "cuda" and autocast_dtype in {torch.float16, torch.bfloat16}
+    scaler = torch.cuda.amp.GradScaler(enabled=device.type == "cuda" and autocast_dtype == torch.float16)
+
+    for step, batch in enumerate(loader, start=1):
+        batch = move_batch_to_device(batch, device)
+        with torch.autocast(device_type=device.type, dtype=autocast_dtype, enabled=autocast_enabled):
+            outputs = model(**batch)
+            loss = outputs.loss / args.gradient_accumulation_steps
+
+        if scaler.is_enabled():
+            scaler.scale(loss).backward()
+        else:
+            loss.backward()
+
+        total_loss += float(loss.item()) * args.gradient_accumulation_steps
+        if step % args.gradient_accumulation_steps == 0 or step == len(loader):
+            if scaler.is_enabled():
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                optimizer.step()
+            scheduler.step()
+            optimizer.zero_grad(set_to_none=True)
+
+    return total_loss / max(1, len(loader))
 
 
 def main() -> None:
     args = parse_args()
-    set_seed(DEFAULT_SEED)
+    set_seed(args.seed)
 
-    data_dir = DEFAULT_DATA_DIR
-    eval_path = data_dir / f"{args.split}.tsv"
-    if not eval_path.exists():
-        raise FileNotFoundError(f"Missing split TSV: {eval_path}")
+    input_dir = Path(args.input_dir)
+    output_dir = Path(args.output_dir)
+    per_dataset_out_dir = Path(args.per_dataset_out_dir)
+    if not input_dir.exists():
+        raise FileNotFoundError(f"Missing input dir: {input_dir}")
 
-    few_shot_path = data_dir / "train.tsv"
-    if args.few_shot_k > 0 and not few_shot_path.exists():
-        raise FileNotFoundError(f"Missing few-shot TSV: {few_shot_path}")
+    examples_by_split = read_examples_from_processed_tsv(
+        input_dir,
+        max_examples_by_split={
+            "train": args.max_train_examples,
+            "dev": args.max_dev_examples,
+            "test": args.max_test_examples,
+        },
+    )
+    if not examples_by_split["train"]:
+        raise ValueError("No training examples were loaded.")
 
-    eval_rows = load_rows(eval_path, max_examples=args.max_examples)
-    unmatched_corpus_rows = attach_corpus_labels(eval_rows, args.split)
-    few_shot_source = load_rows(few_shot_path) if args.few_shot_k > 0 else []
-    few_shot_rows = sample_few_shot_rows(few_shot_source, args.few_shot_k, DEFAULT_SEED)
+    device = torch.device(args.device)
+    tokenizer, model = load_model_and_tokenizer(
+        args.model_name,
+        args.dtype,
+        device,
+        args.gradient_checkpointing,
+    )
+    train_loader, _, _ = build_loaders(examples_by_split, tokenizer, args)
 
-    tokenizer, model, model_device = load_model_and_tokenizer()
-    predictions, y_true, y_pred = predict_rows(
-        eval_rows,
-        model=model,
-        tokenizer=tokenizer,
-        model_device=model_device,
-        few_shot_rows=few_shot_rows,
-        include_dir=args.include_dir,
-        include_rel_type=args.include_rel_type,
-        max_new_tokens=args.max_new_tokens,
-        log_every=args.log_every,
+    optimizer = AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    total_update_steps = max(1, math.ceil(len(train_loader) / args.gradient_accumulation_steps) * args.epochs)
+    warmup_steps = int(args.warmup_ratio * total_update_steps)
+    scheduler = torch.optim.lr_scheduler.SequentialLR(
+        optimizer,
+        schedulers=[
+            torch.optim.lr_scheduler.LinearLR(optimizer, start_factor=0.1, total_iters=max(1, warmup_steps)),
+            torch.optim.lr_scheduler.LinearLR(
+                optimizer,
+                start_factor=1.0,
+                end_factor=0.0,
+                total_iters=max(1, total_update_steps - warmup_steps),
+            ),
+        ],
+        milestones=[max(1, warmup_steps)],
+    ) if warmup_steps < total_update_steps else torch.optim.lr_scheduler.LinearLR(
+        optimizer,
+        start_factor=0.1,
+        end_factor=0.0,
+        total_iters=max(1, total_update_steps),
     )
 
-    metrics = evaluate_predictions(y_true, y_pred)
-    summary = {
-        "model": "Qwen Prompt Baseline",
-        "model_name": DEFAULT_MODEL_NAME,
-        "split": args.split,
-        "num_examples": len(eval_rows),
-        "label_set": LABEL_SET,
-        "few_shot_k": args.few_shot_k,
-        "include_dir": args.include_dir,
-        "include_rel_type": args.include_rel_type,
-        "input": "prompt(unit1_txt, unit2_txt, optional dir/rel_type)",
-        "max_new_tokens": args.max_new_tokens,
-        "decoding": "greedy",
-        "seed": DEFAULT_SEED,
-        "dtype": DEFAULT_DTYPE,
-        "data_dir": str(data_dir),
-        "num_unmatched_corpus_rows": unmatched_corpus_rows,
-        **metrics,
-    }
+    history: list[dict[str, Any]] = []
+    best_dev_macro_f1 = -1.0
+    best_state_dict: dict[str, torch.Tensor] | None = None
 
-    output_dir = DEFAULT_OUTPUT_DIR
+    for epoch in range(1, args.epochs + 1):
+        avg_loss = train_one_epoch(model, train_loader, optimizer, scheduler, device, args)
+        _, dev_metrics = evaluate_split(model, tokenizer, examples_by_split["dev"], args)
+        history.append(
+            {
+                "epoch": epoch,
+                "train_loss": avg_loss,
+                "dev_accuracy": dev_metrics["accuracy"],
+                "dev_macro_f1": dev_metrics["macro_f1"],
+                "dev_weighted_f1": dev_metrics["weighted_f1"],
+                "dev_invalid_predictions": dev_metrics["invalid_predictions"],
+            }
+        )
+        print(
+            f"Epoch {epoch}/{args.epochs}  "
+            f"loss={avg_loss:.4f}  "
+            f"dev_acc={dev_metrics['accuracy']:.4f}  "
+            f"dev_macro_f1={dev_metrics['macro_f1']:.4f}  "
+            f"dev_invalid={dev_metrics['invalid_predictions']}"
+        )
+
+        if dev_metrics["macro_f1"] > best_dev_macro_f1:
+            best_dev_macro_f1 = dev_metrics["macro_f1"]
+            best_state_dict = {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+
+    if best_state_dict is not None:
+        model.load_state_dict({key: value.to(device) for key, value in best_state_dict.items()})
+
+    _, dev_metrics = evaluate_split(model, tokenizer, examples_by_split["dev"], args)
+    test_predictions, test_metrics = evaluate_split(model, tokenizer, examples_by_split["test"], args)
+
     output_dir.mkdir(parents=True, exist_ok=True)
-    (output_dir / "metrics.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
-    write_predictions(output_dir / f"{args.split}_predictions.tsv", predictions)
+    metrics_payload = {
+        "setup": {
+            "model_name": args.model_name,
+            "max_length": args.max_length,
+            "train_batch_size": args.train_batch_size,
+            "eval_batch_size": args.eval_batch_size,
+            "gradient_accumulation_steps": args.gradient_accumulation_steps,
+            "epochs": args.epochs,
+            "lr": args.lr,
+            "weight_decay": args.weight_decay,
+            "warmup_ratio": args.warmup_ratio,
+            "seed": args.seed,
+            "dtype": args.dtype,
+            "input_dir": str(input_dir),
+            "train_examples": len(examples_by_split["train"]),
+            "dev_examples": len(examples_by_split["dev"]),
+            "test_examples": len(examples_by_split["test"]),
+            "label_set": LABEL_SET,
+            "training_style": "supervised_finetuning_with_instruction_prompts",
+            "decoder_features": [
+                "language",
+                "corpus",
+                "framework",
+                "direction",
+                "rel_type",
+            ],
+            "data_source": "results/processed_tsv/by_source_file",
+        },
+        "dev_metrics": dev_metrics,
+        "test_metrics": test_metrics,
+        "training_history": history,
+    }
+    (output_dir / "metrics.json").write_text(json.dumps(metrics_payload, indent=2, ensure_ascii=False),
+                                             encoding="utf-8")
+    write_predictions(output_dir / "test_predictions.tsv", test_predictions)
 
-    preds_by_corpus: dict[str, dict[str, list[str]]] = defaultdict(lambda: {"gold_label": [], "pred_label": []})
-    for prediction in predictions:
-        corpus = prediction.get("corpus") or "unknown"
-        preds_by_corpus[corpus]["gold_label"].append(prediction["gold_label"])
-        preds_by_corpus[corpus]["pred_label"].append(prediction["pred_label"])
+    if args.save_best and best_state_dict is not None:
+        best_dir = output_dir / "best_model"
+        best_dir.mkdir(parents=True, exist_ok=True)
+        model.save_pretrained(best_dir)
+        tokenizer.save_pretrained(best_dir)
 
-    if preds_by_corpus:
+    if not args.skip_per_dataset:
+        preds_by_corpus: dict[str, dict[str, list[str]]] = defaultdict(lambda: {"gold_label": [], "pred_label": []})
+        for row in test_predictions:
+            corpus = row.get("corpus") or "unknown"
+            preds_by_corpus[corpus]["gold_label"].append(row["gold_label"])
+            preds_by_corpus[corpus]["pred_label"].append(row["pred_label"])
         agg = aggregate_predictions_by_corpus(preds_by_corpus)
         per_dataset_payload = {
-            "model": "Qwen Prompt Baseline",
-            "model_name": DEFAULT_MODEL_NAME,
-            "max_length": None,
+            "model": "Qwen3-4B SFT with Instruction Prompts",
+            "model_name": args.model_name,
+            "max_length": args.max_length,
             "label_set": LABEL_SET,
-            "few_shot_k": args.few_shot_k,
-            "include_dir": args.include_dir,
-            "include_rel_type": args.include_rel_type,
-            "input": "prompt(unit1_txt, unit2_txt, optional dir/rel_type)",
-            "seed": DEFAULT_SEED,
-            "dtype": DEFAULT_DTYPE,
             **agg,
         }
-        per_dataset_out_dir = DEFAULT_PER_DATASET_OUT_DIR
         per_dataset_out_dir.mkdir(parents=True, exist_ok=True)
-        (per_dataset_out_dir / f"qwen_prompt_{args.split}.json").write_text(
+        (per_dataset_out_dir / "qwen_sft_test.json").write_text(
             json.dumps(per_dataset_payload, indent=2, ensure_ascii=False),
             encoding="utf-8",
         )
 
-    print(json.dumps(
-        {
-            "accuracy": summary["accuracy"],
-            "macro_f1": summary["macro_f1"],
-            "weighted_f1": summary["weighted_f1"],
-            "invalid_predictions": summary["invalid_predictions"],
-            "num_examples": summary["num_examples"],
-        },
-        indent=2,
-        ensure_ascii=False,
-    ))
+    print(
+        json.dumps(
+            {
+                "dev_accuracy": dev_metrics["accuracy"],
+                "dev_macro_f1": dev_metrics["macro_f1"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_macro_f1": test_metrics["macro_f1"],
+                "test_invalid_predictions": test_metrics["invalid_predictions"],
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
 
 
 if __name__ == "__main__":
