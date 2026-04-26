@@ -528,7 +528,7 @@ def parse_args() -> argparse.Namespace:
                    help="Overrides the checkpoint-saved max_length when needed.")
     p.add_argument("--finetune-use-tsv-features", action="store_true",
                    help="Match training from finetune_xlm_roberta_tsv_features.py: prepend "
-                        "dir / rel_type / orig_label to unit1 (plain finetune = omit this).")
+                        "dir / rel_type to unit1 (no orig_label; plain finetune = omit this).")
     p.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     return p.parse_args()
 

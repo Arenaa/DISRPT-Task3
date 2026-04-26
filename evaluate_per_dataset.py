@@ -229,10 +229,10 @@ def eval_finetune_tsv(args) -> dict:
     agg = ft_aggregate(preds, id2label)
     print_aggregate_summary(agg)
     return {
-        "model": "Fine-tuned XLM-RoBERTa + TSV features (dir, rel_type, orig_label)",
+        "model": "Fine-tuned XLM-RoBERTa + TSV features (dir, rel_type)",
         "model_name": str(model_dir),
         "max_length": max_length,
-        "input": "dir/rel_type/orig_label prefix + unit1_txt; unit2_txt",
+        "input": "dir/rel_type prefix + unit1_txt; unit2_txt (orig_label not in prefix)",
         "label_set": sorted(label2id, key=lambda k: label2id[k]),
         **agg,
     }

@@ -517,10 +517,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--tsv-features",
         action="store_true",
-        help="Prepend dir, rel_type, orig_label to unit1 (same as finetune_xlm_roberta_tsv_features.py).",
+        help="Prepend dir, rel_type to unit1 (same as finetune_xlm_roberta_tsv_features.py; no orig_label).",
     )
     return parser.parse_args()
 
+
+# TSV input prefix = dir + rel_type only (no orig_label). Bump to invalidate old caches.
+TSV_FEAT_CACHE_TAG = "tsvfeat_dir_rel"
 
 def cache_path(
     cache_dir: Path,
@@ -532,7 +535,7 @@ def cache_path(
     tsv_features: bool,
 ) -> Path:
     tag = sanitize_filename(model_name)
-    feat = "tsvfeat" if tsv_features else "plain"
+    feat = TSV_FEAT_CACHE_TAG if tsv_features else "plain"
     fname = f"{tag}__{split}__maxlen{max_length}__pool{pooling}__{feat}.pt"
     return cache_dir / fname
 
@@ -610,15 +613,17 @@ def main() -> None:
                     payload = torch.load(p, map_location="cpu")
                 cached_labels = payload.get("label_set")
                 cached_tsv = payload.get("tsv_features", False)
+                cached_tsv_tag = payload.get("tsv_feat_cache_tag")
                 # Old caches had no label_set; y indices were tied to whatever label2id was used
                 # when the .pt was written. After TSV / pipeline changes, reusing them causes
                 # CrossEntropyLoss CUDA asserts (target >= n_classes).
-                if cached_labels == label_set and cached_tsv == tsv_features:
+                tag_ok = (not tsv_features) or (cached_tsv_tag == TSV_FEAT_CACHE_TAG)
+                if cached_labels == label_set and cached_tsv == tsv_features and tag_ok:
                     print(f"  [{split_name}] loaded embeddings from cache (skip encoder pass).", flush=True)
                     return payload["X"], payload["y"]
                 print(
                     f"[info] Ignoring stale embedding cache for {split_name}: "
-                    f"label_set / tsv_features mismatch or legacy cache without label_set.",
+                    f"label_set / tsv_features / tsv prefix version mismatch or legacy cache without label_set.",
                     flush=True,
                 )
 
@@ -637,7 +642,13 @@ def main() -> None:
 
         if not args.no_cache:
             torch.save(
-                {"X": X, "y": y, "label_set": label_set, "tsv_features": tsv_features},
+                {
+                    "X": X,
+                    "y": y,
+                    "label_set": label_set,
+                    "tsv_features": tsv_features,
+                    "tsv_feat_cache_tag": TSV_FEAT_CACHE_TAG if tsv_features else None,
+                },
                 cache_path(
                     cache_dir,
                     split_name,
@@ -699,12 +710,12 @@ def main() -> None:
     )
 
     input_format = (
-        "unit1 = dir, rel_type, orig_label (prefix) + unit1_txt; unit2 = unit2_txt; pooled from first token"
+        "unit1 = dir, rel_type (prefix) + unit1_txt; unit2 = unit2_txt; pooled from first token"
         if tsv_features
         else "tokenizer(text=unit1, text_pair=unit2) pooled from first token"
     )
     baseline_name = (
-        "Frozen XLM-RoBERTa + linear head (TSV features: dir, rel_type, orig_label on unit1)"
+        "Frozen XLM-RoBERTa + linear head (TSV features: dir, rel_type on unit1)"
         if tsv_features
         else "Frozen XLM-RoBERTa (xlm-roberta-base) + linear head"
     )

@@ -1,4 +1,4 @@
-"""Fine-tune XLM-RoBERTa on DISRPT with `dir`, `rel_type`, and `orig_label` prepended to unit1.
+"""Fine-tune XLM-RoBERTa on DISRPT with `dir` and `rel_type` prepended to unit1 (not `orig_label`).
 
 Same training loop as `finetune_xlm_roberta.py`, but the first sequence to the encoder is
 `[metadata line] + unit1_txt` so the model sees the extra TSV fields. Plain fine-tuning
@@ -54,9 +54,9 @@ def main() -> None:
         args,
         load_split_fn=load_split_tsv_features,
         setup_extras={
-            "input": "unit1 = dir, rel_type, orig_label (prefix) + unit1_txt; unit2 = unit2_txt",
+            "input": "unit1 = dir, rel_type (prefix) + unit1_txt; unit2 = unit2_txt",
         },
-        per_dataset_model_label="Fine-tuned XLM-RoBERTa + TSV features (dir, rel_type, orig_label)",
+        per_dataset_model_label="Fine-tuned XLM-RoBERTa + TSV features (dir, rel_type)",
     )
 
 
