@@ -1,0 +1,2022 @@
+{
+  "model": "Fine-tuned XLM-RoBERTa (framework-conditioned, mask=True)",
+  "model_name": "FacebookAI/xlm-roberta-base",
+  "max_length": 256,
+  "label_set": [
+    "alternation",
+    "attribution",
+    "causal",
+    "comment",
+    "concession",
+    "condition",
+    "conjunction",
+    "contrast",
+    "elaboration",
+    "explanation",
+    "frame",
+    "mode",
+    "organization",
+    "purpose",
+    "query",
+    "reformulation",
+    "temporal"
+  ],
+  "framework_tokens": [
+    "[RST]",
+    "[PDTB]",
+    "[SDRT]",
+    "[DEP]"
+  ],
+  "output_masking": true,
+  "pooled": {
+    "support": 10380,
+    "num_gold_labels": 17,
+    "accuracy": 0.6327552986512525,
+    "macro_f1": 0.6224723956081258,
+    "weighted_f1": 0.6296327401673286,
+    "per_label": {
+      "alternation": {
+        "precision": 0.7875,
+        "recall": 0.6702127659574468,
+        "f1": 0.7241379310344828,
+        "support": 94
+      },
+      "attribution": {
+        "precision": 0.8183908045977012,
+        "recall": 0.8416075650118203,
+        "f1": 0.8298368298368298,
+        "support": 423
+      },
+      "causal": {
+        "precision": 0.4779299847792998,
+        "recall": 0.49139280125195617,
+        "f1": 0.4845679012345679,
+        "support": 639
+      },
+      "comment": {
+        "precision": 0.5284280936454849,
+        "recall": 0.58195211786372,
+        "f1": 0.5539000876424189,
+        "support": 543
+      },
+      "concession": {
+        "precision": 0.5184210526315789,
+        "recall": 0.6416938110749185,
+        "f1": 0.5735080058224163,
+        "support": 307
+      },
+      "condition": {
+        "precision": 0.7576923076923077,
+        "recall": 0.7242647058823529,
+        "f1": 0.7406015037593985,
+        "support": 272
+      },
+      "conjunction": {
+        "precision": 0.5578193832599119,
+        "recall": 0.6113458056729029,
+        "f1": 0.5833573279585373,
+        "support": 1657
+      },
+      "contrast": {
+        "precision": 0.5903307888040712,
+        "recall": 0.44106463878326996,
+        "f1": 0.5048966267682263,
+        "support": 526
+      },
+      "elaboration": {
+        "precision": 0.6671761559037065,
+        "recall": 0.7250830564784053,
+        "f1": 0.6949253731343283,
+        "support": 2408
+      },
+      "explanation": {
+        "precision": 0.33766233766233766,
+        "recall": 0.2613065326633166,
+        "f1": 0.29461756373937675,
+        "support": 398
+      },
+      "frame": {
+        "precision": 0.710801393728223,
+        "recall": 0.40718562874251496,
+        "f1": 0.5177664974619289,
+        "support": 501
+      },
+      "mode": {
+        "precision": 0.7686274509803922,
+        "recall": 0.7127272727272728,
+        "f1": 0.7396226415094339,
+        "support": 275
+      },
+      "organization": {
+        "precision": 0.6723404255319149,
+        "recall": 0.4968553459119497,
+        "f1": 0.5714285714285714,
+        "support": 318
+      },
+      "purpose": {
+        "precision": 0.8248847926267281,
+        "recall": 0.8229885057471265,
+        "f1": 0.8239355581127733,
+        "support": 435
+      },
+      "query": {
+        "precision": 0.8157503714710252,
+        "recall": 0.8169642857142857,
+        "f1": 0.8163568773234201,
+        "support": 672
+      },
+      "reformulation": {
+        "precision": 0.4602272727272727,
+        "recall": 0.5472972972972973,
+        "f1": 0.5,
+        "support": 148
+      },
+      "temporal": {
+        "precision": 0.6237113402061856,
+        "recall": 0.6335078534031413,
+        "f1": 0.6285714285714286,
+        "support": 764
+      }
+    }
+  },
+  "per_corpus": {
+    "eng.dep.scidtb": {
+      "framework": "dep",
+      "language": "eng",
+      "support": 1902,
+      "num_gold_labels": 14,
+      "accuracy": 0.7728706624605678,
+      "macro_f1": 0.6096418475979952,
+      "weighted_f1": 0.7629624786358544,
+      "per_label": {
+        "attribution": {
+          "precision": 0.9148936170212766,
+          "recall": 0.9923076923076923,
+          "f1": 0.9520295202952029,
+          "support": 130
+        },
+        "causal": {
+          "precision": 0.29411764705882354,
+          "recall": 0.36585365853658536,
+          "f1": 0.32608695652173914,
+          "support": 41
+        },
+        "comment": {
+          "precision": 0.6910994764397905,
+          "recall": 0.7457627118644068,
+          "f1": 0.717391304347826,
+          "support": 177
+        },
+        "concession": {
+          "precision": 0.26666666666666666,
+          "recall": 0.5714285714285714,
+          "f1": 0.36363636363636365,
+          "support": 21
+        },
+        "condition": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "support": 33
+        },
+        "conjunction": {
+          "precision": 0.7647058823529411,
+          "recall": 0.8387096774193549,
+          "f1": 0.8,
+          "support": 155
+        },
+        "contrast": {
+          "precision": 0.6785714285714286,
+          "recall": 0.5352112676056338,
+          "f1": 0.5984251968503937,
+          "support": 71
+        },
+        "elaboration": {
+          "precision": 0.8392156862745098,
+          "recall": 0.8126582278481013,
+          "f1": 0.8257234726688103,
+          "support": 790
+        },
+        "explanation": {
+          "precision": 0.7142857142857143,
+          "recall": 0.18518518518518517,
+          "f1": 0.29411764705882354,
+          "support": 27
+        },
+        "frame": {
+          "precision": 0.8211920529801324,
+          "recall": 0.8920863309352518,
+          "f1": 0.8551724137931035,
+          "support": 139
+        },
+        "mode": {
+          "precision": 0.8333333333333334,
+          "recall": 0.8264462809917356,
+          "f1": 0.8298755186721992,
+          "support": 121
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 48
+        },
+        "purpose": {
+          "precision": 0.7482993197278912,
+          "recall": 0.873015873015873,
+          "f1": 0.8058608058608059,
+          "support": 126
+        },
+        "temporal": {
+          "precision": 0.5116279069767442,
+          "recall": 0.9565217391304348,
+          "f1": 0.6666666666666666,
+          "support": 23
+        }
+      }
+    },
+    "eng.erst.gum": {
+      "framework": "rst",
+      "language": "eng",
+      "support": 3558,
+      "num_gold_labels": 17,
+      "accuracy": 0.589938167509837,
+      "macro_f1": 0.5671193553026771,
+      "weighted_f1": 0.5783641942963609,
+      "per_label": {
+        "alternation": {
+          "precision": 0.76,
+          "recall": 0.5588235294117647,
+          "f1": 0.6440677966101694,
+          "support": 34
+        },
+        "attribution": {
+          "precision": 0.7876106194690266,
+          "recall": 0.7876106194690266,
+          "f1": 0.7876106194690266,
+          "support": 226
+        },
+        "causal": {
+          "precision": 0.3613861386138614,
+          "recall": 0.48344370860927155,
+          "f1": 0.41359773371104813,
+          "support": 151
+        },
+        "comment": {
+          "precision": 0.37349397590361444,
+          "recall": 0.22627737226277372,
+          "f1": 0.2818181818181818,
+          "support": 137
+        },
+        "concession": {
+          "precision": 0.4768211920529801,
+          "recall": 0.6101694915254238,
+          "f1": 0.5353159851301115,
+          "support": 118
+        },
+        "condition": {
+          "precision": 0.735632183908046,
+          "recall": 0.8,
+          "f1": 0.7664670658682635,
+          "support": 80
+        },
+        "conjunction": {
+          "precision": 0.47774480712166173,
+          "recall": 0.5974025974025974,
+          "f1": 0.5309150865622424,
+          "support": 539
+        },
+        "contrast": {
+          "precision": 0.6262626262626263,
+          "recall": 0.4,
+          "f1": 0.4881889763779528,
+          "support": 155
+        },
+        "elaboration": {
+          "precision": 0.6142857142857143,
+          "recall": 0.7525,
+          "f1": 0.6764044943820224,
+          "support": 800
+        },
+        "explanation": {
+          "precision": 0.4129032258064516,
+          "recall": 0.2689075630252101,
+          "f1": 0.3256997455470738,
+          "support": 238
+        },
+        "frame": {
+          "precision": 0.375,
+          "recall": 0.12,
+          "f1": 0.18181818181818182,
+          "support": 175
+        },
+        "mode": {
+          "precision": 0.7868852459016393,
+          "recall": 0.6075949367088608,
+          "f1": 0.6857142857142857,
+          "support": 79
+        },
+        "organization": {
+          "precision": 0.7203791469194313,
+          "recall": 0.6551724137931034,
+          "f1": 0.6862302483069977,
+          "support": 232
+        },
+        "purpose": {
+          "precision": 0.8854961832061069,
+          "recall": 0.8529411764705882,
+          "f1": 0.8689138576779026,
+          "support": 136
+        },
+        "query": {
+          "precision": 0.7608695652173914,
+          "recall": 0.5555555555555556,
+          "f1": 0.6422018348623854,
+          "support": 63
+        },
+        "reformulation": {
+          "precision": 0.4583333333333333,
+          "recall": 0.4647887323943662,
+          "f1": 0.46153846153846156,
+          "support": 71
+        },
+        "temporal": {
+          "precision": 0.6923076923076923,
+          "recall": 0.6388888888888888,
+          "f1": 0.6645264847512039,
+          "support": 324
+        }
+      }
+    },
+    "eng.pdtb.gum": {
+      "framework": "pdtb",
+      "language": "eng",
+      "support": 1676,
+      "num_gold_labels": 13,
+      "accuracy": 0.636038186157518,
+      "macro_f1": 0.5610428641034656,
+      "weighted_f1": 0.6414560167629401,
+      "per_label": {
+        "alternation": {
+          "precision": 0.7777777777777778,
+          "recall": 0.7777777777777778,
+          "f1": 0.7777777777777778,
+          "support": 27
+        },
+        "causal": {
+          "precision": 0.6019417475728155,
+          "recall": 0.5188284518828452,
+          "f1": 0.5573033707865168,
+          "support": 239
+        },
+        "concession": {
+          "precision": 0.673469387755102,
+          "recall": 0.66,
+          "f1": 0.6666666666666666,
+          "support": 100
+        },
+        "condition": {
+          "precision": 0.8904109589041096,
+          "recall": 0.8333333333333334,
+          "f1": 0.8609271523178808,
+          "support": 78
+        },
+        "conjunction": {
+          "precision": 0.6064030131826742,
+          "recall": 0.6836518046709129,
+          "f1": 0.6427145708582834,
+          "support": 471
+        },
+        "contrast": {
+          "precision": 0.6233766233766234,
+          "recall": 0.45714285714285713,
+          "f1": 0.5274725274725275,
+          "support": 105
+        },
+        "elaboration": {
+          "precision": 0.4925373134328358,
+          "recall": 0.49748743718592964,
+          "f1": 0.495,
+          "support": 199
+        },
+        "explanation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "mode": {
+          "precision": 0.6615384615384615,
+          "recall": 0.7049180327868853,
+          "f1": 0.6825396825396826,
+          "support": 61
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "purpose": {
+          "precision": 0.9558823529411765,
+          "recall": 0.7386363636363636,
+          "f1": 0.8333333333333334,
+          "support": 88
+        },
+        "query": {
+          "precision": 0.9534883720930233,
+          "recall": 0.803921568627451,
+          "f1": 0.8723404255319149,
+          "support": 51
+        },
+        "reformulation": {
+          "precision": 0.2,
+          "recall": 0.3333333333333333,
+          "f1": 0.25,
+          "support": 12
+        },
+        "temporal": {
+          "precision": 0.6885245901639344,
+          "recall": 0.6885245901639344,
+          "f1": 0.6885245901639344,
+          "support": 244
+        }
+      }
+    },
+    "eng.rst.sts": {
+      "framework": "rst",
+      "language": "eng",
+      "support": 328,
+      "num_gold_labels": 17,
+      "accuracy": 0.42378048780487804,
+      "macro_f1": 0.3593598546998067,
+      "weighted_f1": 0.39867138687151094,
+      "per_label": {
+        "alternation": {
+          "precision": 0.2,
+          "recall": 0.5,
+          "f1": 0.2857142857142857,
+          "support": 2
+        },
+        "attribution": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "causal": {
+          "precision": 0.4482758620689655,
+          "recall": 0.6190476190476191,
+          "f1": 0.52,
+          "support": 21
+        },
+        "comment": {
+          "precision": 0.25,
+          "recall": 0.2,
+          "f1": 0.2222222222222222,
+          "support": 10
+        },
+        "concession": {
+          "precision": 0.5227272727272727,
+          "recall": 0.7931034482758621,
+          "f1": 0.6301369863013698,
+          "support": 29
+        },
+        "condition": {
+          "precision": 0.375,
+          "recall": 0.75,
+          "f1": 0.5,
+          "support": 8
+        },
+        "conjunction": {
+          "precision": 0.2972972972972973,
+          "recall": 0.4583333333333333,
+          "f1": 0.36065573770491804,
+          "support": 24
+        },
+        "contrast": {
+          "precision": 0.43478260869565216,
+          "recall": 0.3448275862068966,
+          "f1": 0.38461538461538464,
+          "support": 29
+        },
+        "elaboration": {
+          "precision": 0.5252525252525253,
+          "recall": 0.5098039215686274,
+          "f1": 0.5174129353233831,
+          "support": 102
+        },
+        "explanation": {
+          "precision": 0.14814814814814814,
+          "recall": 0.16,
+          "f1": 0.15384615384615385,
+          "support": 25
+        },
+        "frame": {
+          "precision": 0.3333333333333333,
+          "recall": 0.029411764705882353,
+          "f1": 0.05405405405405406,
+          "support": 34
+        },
+        "mode": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "organization": {
+          "precision": 0.42857142857142855,
+          "recall": 0.4,
+          "f1": 0.41379310344827586,
+          "support": 15
+        },
+        "purpose": {
+          "precision": 0.6666666666666666,
+          "recall": 0.4,
+          "f1": 0.5,
+          "support": 5
+        },
+        "query": {
+          "precision": 0.4,
+          "recall": 0.6666666666666666,
+          "f1": 0.5,
+          "support": 6
+        },
+        "reformulation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "temporal": {
+          "precision": 0.6666666666666666,
+          "recall": 0.16666666666666666,
+          "f1": 0.26666666666666666,
+          "support": 12
+        }
+      }
+    },
+    "eng.sdrt.stac": {
+      "framework": "sdrt",
+      "language": "eng",
+      "support": 1114,
+      "num_gold_labels": 11,
+      "accuracy": 0.6813285457809695,
+      "macro_f1": 0.4271824749123229,
+      "weighted_f1": 0.668565887506024,
+      "per_label": {
+        "alternation": {
+          "precision": 1.0,
+          "recall": 0.7894736842105263,
+          "f1": 0.8823529411764706,
+          "support": 19
+        },
+        "causal": {
+          "precision": 0.46153846153846156,
+          "recall": 0.20689655172413793,
+          "f1": 0.2857142857142857,
+          "support": 29
+        },
+        "comment": {
+          "precision": 0.5163934426229508,
+          "recall": 0.802547770700637,
+          "f1": 0.628428927680798,
+          "support": 157
+        },
+        "condition": {
+          "precision": 0.625,
+          "recall": 0.5555555555555556,
+          "f1": 0.5882352941176471,
+          "support": 18
+        },
+        "conjunction": {
+          "precision": 0.6119402985074627,
+          "recall": 0.3203125,
+          "f1": 0.4205128205128205,
+          "support": 128
+        },
+        "contrast": {
+          "precision": 0.6486486486486487,
+          "recall": 0.36923076923076925,
+          "f1": 0.47058823529411764,
+          "support": 65
+        },
+        "elaboration": {
+          "precision": 0.4954954954954955,
+          "recall": 0.5445544554455446,
+          "f1": 0.5188679245283019,
+          "support": 101
+        },
+        "explanation": {
+          "precision": 0.34285714285714286,
+          "recall": 0.3870967741935484,
+          "f1": 0.36363636363636365,
+          "support": 31
+        },
+        "frame": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "purpose": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "query": {
+          "precision": 0.8199300699300699,
+          "recall": 0.8496376811594203,
+          "f1": 0.8345195729537367,
+          "support": 552
+        },
+        "temporal": {
+          "precision": 0.5,
+          "recall": 0.07692307692307693,
+          "f1": 0.13333333333333333,
+          "support": 13
+        }
+      }
+    },
+    "fas.rst.prstc": {
+      "framework": "rst",
+      "language": "fas",
+      "support": 592,
+      "num_gold_labels": 14,
+      "accuracy": 0.5388513513513513,
+      "macro_f1": 0.4041630720128418,
+      "weighted_f1": 0.5165170056211896,
+      "per_label": {
+        "alternation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "attribution": {
+          "precision": 0.6923076923076923,
+          "recall": 0.6923076923076923,
+          "f1": 0.6923076923076923,
+          "support": 39
+        },
+        "causal": {
+          "precision": 0.36363636363636365,
+          "recall": 0.34285714285714286,
+          "f1": 0.35294117647058826,
+          "support": 35
+        },
+        "comment": {
+          "precision": 0.28888888888888886,
+          "recall": 0.3611111111111111,
+          "f1": 0.32098765432098764,
+          "support": 36
+        },
+        "concession": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        },
+        "condition": {
+          "precision": 0.6875,
+          "recall": 0.7333333333333333,
+          "f1": 0.7096774193548387,
+          "support": 15
+        },
+        "conjunction": {
+          "precision": 0.5862068965517241,
+          "recall": 0.68,
+          "f1": 0.6296296296296297,
+          "support": 125
+        },
+        "contrast": {
+          "precision": 0.5306122448979592,
+          "recall": 0.48148148148148145,
+          "f1": 0.5048543689320388,
+          "support": 54
+        },
+        "elaboration": {
+          "precision": 0.6264367816091954,
+          "recall": 0.7124183006535948,
+          "f1": 0.6666666666666666,
+          "support": 153
+        },
+        "explanation": {
+          "precision": 0.32142857142857145,
+          "recall": 0.4,
+          "f1": 0.3564356435643564,
+          "support": 45
+        },
+        "frame": {
+          "precision": 0.16666666666666666,
+          "recall": 0.03225806451612903,
+          "f1": 0.05405405405405406,
+          "support": 31
+        },
+        "mode": {
+          "precision": 1.0,
+          "recall": 0.5714285714285714,
+          "f1": 0.7272727272727273,
+          "support": 7
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 16
+        },
+        "purpose": {
+          "precision": 0.7692307692307693,
+          "recall": 0.9090909090909091,
+          "f1": 0.8333333333333334,
+          "support": 11
+        },
+        "temporal": {
+          "precision": 0.375,
+          "recall": 0.15,
+          "f1": 0.21428571428571427,
+          "support": 20
+        }
+      }
+    },
+    "fra.sdrt.annodis": {
+      "framework": "sdrt",
+      "language": "fra",
+      "support": 621,
+      "num_gold_labels": 12,
+      "accuracy": 0.5458937198067633,
+      "macro_f1": 0.4863510747672416,
+      "weighted_f1": 0.5309364163369776,
+      "per_label": {
+        "alternation": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.8888888888888888,
+          "support": 5
+        },
+        "attribution": {
+          "precision": 0.6153846153846154,
+          "recall": 0.5714285714285714,
+          "f1": 0.5925925925925926,
+          "support": 14
+        },
+        "causal": {
+          "precision": 0.24242424242424243,
+          "recall": 0.25,
+          "f1": 0.24615384615384617,
+          "support": 32
+        },
+        "comment": {
+          "precision": 0.3333333333333333,
+          "recall": 0.07692307692307693,
+          "f1": 0.125,
+          "support": 13
+        },
+        "condition": {
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1": 0.8333333333333334,
+          "support": 6
+        },
+        "conjunction": {
+          "precision": 0.456,
+          "recall": 0.4596774193548387,
+          "f1": 0.4578313253012048,
+          "support": 124
+        },
+        "contrast": {
+          "precision": 0.5454545454545454,
+          "recall": 0.6206896551724138,
+          "f1": 0.5806451612903226,
+          "support": 29
+        },
+        "elaboration": {
+          "precision": 0.6339285714285714,
+          "recall": 0.7717391304347826,
+          "f1": 0.696078431372549,
+          "support": 184
+        },
+        "explanation": {
+          "precision": 0.1111111111111111,
+          "recall": 0.03333333333333333,
+          "f1": 0.05128205128205128,
+          "support": 30
+        },
+        "frame": {
+          "precision": 0.8461538461538461,
+          "recall": 0.36666666666666664,
+          "f1": 0.5116279069767442,
+          "support": 90
+        },
+        "purpose": {
+          "precision": 0.85,
+          "recall": 0.85,
+          "f1": 0.85,
+          "support": 20
+        },
+        "query": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "temporal": {
+          "precision": 0.4090909090909091,
+          "recall": 0.6081081081081081,
+          "f1": 0.4891304347826087,
+          "support": 74
+        }
+      }
+    },
+    "ita.pdtb.luna": {
+      "framework": "pdtb",
+      "language": "ita",
+      "support": 374,
+      "num_gold_labels": 11,
+      "accuracy": 0.6229946524064172,
+      "macro_f1": 0.3990948103682458,
+      "weighted_f1": 0.6149358488338438,
+      "per_label": {
+        "alternation": {
+          "precision": 1.0,
+          "recall": 0.42857142857142855,
+          "f1": 0.6,
+          "support": 7
+        },
+        "causal": {
+          "precision": 0.7011494252873564,
+          "recall": 0.7176470588235294,
+          "f1": 0.7093023255813954,
+          "support": 85
+        },
+        "concession": {
+          "precision": 0.5945945945945946,
+          "recall": 0.6875,
+          "f1": 0.6376811594202898,
+          "support": 32
+        },
+        "condition": {
+          "precision": 0.7142857142857143,
+          "recall": 0.7575757575757576,
+          "f1": 0.7352941176470589,
+          "support": 33
+        },
+        "conjunction": {
+          "precision": 0.7096774193548387,
+          "recall": 0.3728813559322034,
+          "f1": 0.4888888888888889,
+          "support": 59
+        },
+        "contrast": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "elaboration": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "explanation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "mode": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "purpose": {
+          "precision": 0.8333333333333334,
+          "recall": 0.7692307692307693,
+          "f1": 0.8,
+          "support": 26
+        },
+        "reformulation": {
+          "precision": 0.5432098765432098,
+          "recall": 0.6875,
+          "f1": 0.6068965517241379,
+          "support": 64
+        },
+        "temporal": {
+          "precision": 0.5538461538461539,
+          "recall": 0.6792452830188679,
+          "f1": 0.6101694915254238,
+          "support": 53
+        }
+      }
+    },
+    "zho.dep.scidtb": {
+      "framework": "dep",
+      "language": "zho",
+      "support": 215,
+      "num_gold_labels": 14,
+      "accuracy": 0.6697674418604651,
+      "macro_f1": 0.46909616871201504,
+      "weighted_f1": 0.658757409186176,
+      "per_label": {
+        "attribution": {
+          "precision": 0.9230769230769231,
+          "recall": 1.0,
+          "f1": 0.96,
+          "support": 12
+        },
+        "causal": {
+          "precision": 0.6666666666666666,
+          "recall": 0.3333333333333333,
+          "f1": 0.4444444444444444,
+          "support": 6
+        },
+        "comment": {
+          "precision": 0.4583333333333333,
+          "recall": 0.8461538461538461,
+          "f1": 0.5945945945945946,
+          "support": 13
+        },
+        "concession": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "condition": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "conjunction": {
+          "precision": 0.6388888888888888,
+          "recall": 0.71875,
+          "f1": 0.6764705882352942,
+          "support": 32
+        },
+        "contrast": {
+          "precision": 0.5454545454545454,
+          "recall": 0.8571428571428571,
+          "f1": 0.6666666666666666,
+          "support": 7
+        },
+        "elaboration": {
+          "precision": 0.7258064516129032,
+          "recall": 0.5769230769230769,
+          "f1": 0.6428571428571429,
+          "support": 78
+        },
+        "explanation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "frame": {
+          "precision": 0.75,
+          "recall": 0.7741935483870968,
+          "f1": 0.7619047619047619,
+          "support": 31
+        },
+        "mode": {
+          "precision": 0.3333333333333333,
+          "recall": 0.25,
+          "f1": 0.2857142857142857,
+          "support": 4
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "purpose": {
+          "precision": 0.6923076923076923,
+          "recall": 0.782608695652174,
+          "f1": 0.7346938775510204,
+          "support": 23
+        },
+        "temporal": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      }
+    }
+  },
+  "per_framework": {
+    "dep": {
+      "corpora": [
+        "eng.dep.scidtb",
+        "zho.dep.scidtb"
+      ],
+      "support": 2117,
+      "num_gold_labels": 14,
+      "accuracy": 0.7623996221067548,
+      "macro_f1": 0.6033125577746512,
+      "weighted_f1": 0.7527906472203035,
+      "per_label": {
+        "attribution": {
+          "precision": 0.9155844155844156,
+          "recall": 0.9929577464788732,
+          "f1": 0.9527027027027027,
+          "support": 142
+        },
+        "causal": {
+          "precision": 0.3148148148148148,
+          "recall": 0.3617021276595745,
+          "f1": 0.33663366336633666,
+          "support": 47
+        },
+        "comment": {
+          "precision": 0.6651162790697674,
+          "recall": 0.7526315789473684,
+          "f1": 0.7061728395061728,
+          "support": 190
+        },
+        "concession": {
+          "precision": 0.2916666666666667,
+          "recall": 0.6086956521739131,
+          "f1": 0.39436619718309857,
+          "support": 23
+        },
+        "condition": {
+          "precision": 1.0,
+          "recall": 0.3235294117647059,
+          "f1": 0.4888888888888889,
+          "support": 34
+        },
+        "conjunction": {
+          "precision": 0.7427184466019418,
+          "recall": 0.8181818181818182,
+          "f1": 0.7786259541984732,
+          "support": 187
+        },
+        "contrast": {
+          "precision": 0.6567164179104478,
+          "recall": 0.5641025641025641,
+          "f1": 0.6068965517241379,
+          "support": 78
+        },
+        "elaboration": {
+          "precision": 0.8307134220072552,
+          "recall": 0.7914746543778802,
+          "f1": 0.8106194690265487,
+          "support": 868
+        },
+        "explanation": {
+          "precision": 0.7142857142857143,
+          "recall": 0.17857142857142858,
+          "f1": 0.2857142857142857,
+          "support": 28
+        },
+        "frame": {
+          "precision": 0.8087431693989071,
+          "recall": 0.8705882352941177,
+          "f1": 0.8385269121813032,
+          "support": 170
+        },
+        "mode": {
+          "precision": 0.8211382113821138,
+          "recall": 0.808,
+          "f1": 0.8145161290322581,
+          "support": 125
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 52
+        },
+        "purpose": {
+          "precision": 0.7398843930635838,
+          "recall": 0.8590604026845637,
+          "f1": 0.7950310559006211,
+          "support": 149
+        },
+        "temporal": {
+          "precision": 0.4888888888888889,
+          "recall": 0.9166666666666666,
+          "f1": 0.6376811594202898,
+          "support": 24
+        }
+      }
+    },
+    "pdtb": {
+      "corpora": [
+        "eng.pdtb.gum",
+        "ita.pdtb.luna"
+      ],
+      "support": 2050,
+      "num_gold_labels": 14,
+      "accuracy": 0.6336585365853659,
+      "macro_f1": 0.5729531628027814,
+      "weighted_f1": 0.6375238064774039,
+      "per_label": {
+        "alternation": {
+          "precision": 0.8,
+          "recall": 0.7058823529411765,
+          "f1": 0.75,
+          "support": 34
+        },
+        "causal": {
+          "precision": 0.6313993174061433,
+          "recall": 0.5709876543209876,
+          "f1": 0.5996758508914101,
+          "support": 324
+        },
+        "concession": {
+          "precision": 0.6518518518518519,
+          "recall": 0.6666666666666666,
+          "f1": 0.6591760299625468,
+          "support": 132
+        },
+        "condition": {
+          "precision": 0.8333333333333334,
+          "recall": 0.8108108108108109,
+          "f1": 0.821917808219178,
+          "support": 111
+        },
+        "conjunction": {
+          "precision": 0.6120996441281139,
+          "recall": 0.6490566037735849,
+          "f1": 0.63003663003663,
+          "support": 530
+        },
+        "contrast": {
+          "precision": 0.5647058823529412,
+          "recall": 0.41379310344827586,
+          "f1": 0.47761194029850745,
+          "support": 116
+        },
+        "elaboration": {
+          "precision": 0.4900990099009901,
+          "recall": 0.495,
+          "f1": 0.4925373134328358,
+          "support": 200
+        },
+        "explanation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "mode": {
+          "precision": 0.6515151515151515,
+          "recall": 0.7049180327868853,
+          "f1": 0.6771653543307087,
+          "support": 61
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "purpose": {
+          "precision": 0.9239130434782609,
+          "recall": 0.7456140350877193,
+          "f1": 0.8252427184466019,
+          "support": 114
+        },
+        "query": {
+          "precision": 0.9534883720930233,
+          "recall": 0.803921568627451,
+          "f1": 0.8723404255319149,
+          "support": 51
+        },
+        "reformulation": {
+          "precision": 0.4752475247524752,
+          "recall": 0.631578947368421,
+          "f1": 0.5423728813559322,
+          "support": 76
+        },
+        "temporal": {
+          "precision": 0.6601941747572816,
+          "recall": 0.6868686868686869,
+          "f1": 0.6732673267326733,
+          "support": 297
+        }
+      }
+    },
+    "rst": {
+      "corpora": [
+        "eng.erst.gum",
+        "eng.rst.sts",
+        "fas.rst.prstc"
+      ],
+      "support": 4478,
+      "num_gold_labels": 17,
+      "accuracy": 0.5710138454667262,
+      "macro_f1": 0.5517764165509808,
+      "weighted_f1": 0.5592028699988346,
+      "per_label": {
+        "alternation": {
+          "precision": 0.6451612903225806,
+          "recall": 0.5555555555555556,
+          "f1": 0.5970149253731343,
+          "support": 36
+        },
+        "attribution": {
+          "precision": 0.7723880597014925,
+          "recall": 0.7752808988764045,
+          "f1": 0.7738317757009345,
+          "support": 267
+        },
+        "causal": {
+          "precision": 0.3712121212121212,
+          "recall": 0.47342995169082125,
+          "f1": 0.416135881104034,
+          "support": 207
+        },
+        "comment": {
+          "precision": 0.3382352941176471,
+          "recall": 0.25136612021857924,
+          "f1": 0.2884012539184953,
+          "support": 183
+        },
+        "concession": {
+          "precision": 0.48223350253807107,
+          "recall": 0.625,
+          "f1": 0.5444126074498568,
+          "support": 152
+        },
+        "condition": {
+          "precision": 0.680672268907563,
+          "recall": 0.7864077669902912,
+          "f1": 0.7297297297297297,
+          "support": 103
+        },
+        "conjunction": {
+          "precision": 0.4883177570093458,
+          "recall": 0.6075581395348837,
+          "f1": 0.5414507772020726,
+          "support": 688
+        },
+        "contrast": {
+          "precision": 0.5730994152046783,
+          "recall": 0.4117647058823529,
+          "f1": 0.4792176039119804,
+          "support": 238
+        },
+        "elaboration": {
+          "precision": 0.6089385474860335,
+          "recall": 0.7232227488151659,
+          "f1": 0.6611785095320624,
+          "support": 1055
+        },
+        "explanation": {
+          "precision": 0.36134453781512604,
+          "recall": 0.2792207792207792,
+          "f1": 0.315018315018315,
+          "support": 308
+        },
+        "frame": {
+          "precision": 0.35384615384615387,
+          "recall": 0.09583333333333334,
+          "f1": 0.15081967213114755,
+          "support": 240
+        },
+        "mode": {
+          "precision": 0.7878787878787878,
+          "recall": 0.5842696629213483,
+          "f1": 0.6709677419354839,
+          "support": 89
+        },
+        "organization": {
+          "precision": 0.6991150442477876,
+          "recall": 0.6007604562737643,
+          "f1": 0.6462167689161554,
+          "support": 263
+        },
+        "purpose": {
+          "precision": 0.8707482993197279,
+          "recall": 0.8421052631578947,
+          "f1": 0.8561872909698997,
+          "support": 152
+        },
+        "query": {
+          "precision": 0.6964285714285714,
+          "recall": 0.5652173913043478,
+          "f1": 0.624,
+          "support": 69
+        },
+        "reformulation": {
+          "precision": 0.44,
+          "recall": 0.4583333333333333,
+          "f1": 0.4489795918367347,
+          "support": 72
+        },
+        "temporal": {
+          "precision": 0.6838709677419355,
+          "recall": 0.5955056179775281,
+          "f1": 0.6366366366366366,
+          "support": 356
+        }
+      }
+    },
+    "sdrt": {
+      "corpora": [
+        "eng.sdrt.stac",
+        "fra.sdrt.annodis"
+      ],
+      "support": 1735,
+      "num_gold_labels": 13,
+      "accuracy": 0.6328530259365994,
+      "macro_f1": 0.5729682189118115,
+      "weighted_f1": 0.624048974802421,
+      "per_label": {
+        "alternation": {
+          "precision": 1.0,
+          "recall": 0.7916666666666666,
+          "f1": 0.8837209302325582,
+          "support": 24
+        },
+        "attribution": {
+          "precision": 0.6153846153846154,
+          "recall": 0.5714285714285714,
+          "f1": 0.5925925925925926,
+          "support": 14
+        },
+        "causal": {
+          "precision": 0.30434782608695654,
+          "recall": 0.22950819672131148,
+          "f1": 0.2616822429906542,
+          "support": 61
+        },
+        "comment": {
+          "precision": 0.5141700404858299,
+          "recall": 0.7470588235294118,
+          "f1": 0.6091127098321343,
+          "support": 170
+        },
+        "condition": {
+          "precision": 0.6818181818181818,
+          "recall": 0.625,
+          "f1": 0.6521739130434783,
+          "support": 24
+        },
+        "conjunction": {
+          "precision": 0.5104166666666666,
+          "recall": 0.3888888888888889,
+          "f1": 0.44144144144144143,
+          "support": 252
+        },
+        "contrast": {
+          "precision": 0.6,
+          "recall": 0.44680851063829785,
+          "f1": 0.5121951219512195,
+          "support": 94
+        },
+        "elaboration": {
+          "precision": 0.5880597014925373,
+          "recall": 0.6912280701754386,
+          "f1": 0.635483870967742,
+          "support": 285
+        },
+        "explanation": {
+          "precision": 0.29545454545454547,
+          "recall": 0.21311475409836064,
+          "f1": 0.24761904761904763,
+          "support": 61
+        },
+        "frame": {
+          "precision": 0.8461538461538461,
+          "recall": 0.3626373626373626,
+          "f1": 0.5076923076923077,
+          "support": 91
+        },
+        "purpose": {
+          "precision": 0.7727272727272727,
+          "recall": 0.85,
+          "f1": 0.8095238095238095,
+          "support": 20
+        },
+        "query": {
+          "precision": 0.8170731707317073,
+          "recall": 0.8496376811594203,
+          "f1": 0.8330373001776199,
+          "support": 552
+        },
+        "temporal": {
+          "precision": 0.4107142857142857,
+          "recall": 0.5287356321839081,
+          "f1": 0.4623115577889447,
+          "support": 87
+        }
+      }
+    }
+  },
+  "per_language": {
+    "eng": {
+      "corpora": [
+        "eng.dep.scidtb",
+        "eng.erst.gum",
+        "eng.pdtb.gum",
+        "eng.rst.sts",
+        "eng.sdrt.stac"
+      ],
+      "support": 8578,
+      "num_gold_labels": 17,
+      "accuracy": 0.6450221496852413,
+      "macro_f1": 0.6252090608381544,
+      "weighted_f1": 0.6421821120012212,
+      "per_label": {
+        "alternation": {
+          "precision": 0.7777777777777778,
+          "recall": 0.6829268292682927,
+          "f1": 0.7272727272727273,
+          "support": 82
+        },
+        "attribution": {
+          "precision": 0.8351351351351352,
+          "recall": 0.8631284916201117,
+          "f1": 0.8489010989010989,
+          "support": 358
+        },
+        "causal": {
+          "precision": 0.46107784431137727,
+          "recall": 0.4802494802494803,
+          "f1": 0.47046843177189407,
+          "support": 481
+        },
+        "comment": {
+          "precision": 0.5532319391634981,
+          "recall": 0.604989604989605,
+          "f1": 0.5779543197616683,
+          "support": 481
+        },
+        "concession": {
+          "precision": 0.5118343195266272,
+          "recall": 0.6455223880597015,
+          "f1": 0.570957095709571,
+          "support": 268
+        },
+        "condition": {
+          "precision": 0.7684729064039408,
+          "recall": 0.7188940092165899,
+          "f1": 0.7428571428571429,
+          "support": 217
+        },
+        "conjunction": {
+          "precision": 0.5584854631507775,
+          "recall": 0.6271829916476841,
+          "f1": 0.5908440629470673,
+          "support": 1317
+        },
+        "contrast": {
+          "precision": 0.6232876712328768,
+          "recall": 0.42823529411764705,
+          "f1": 0.5076708507670851,
+          "support": 425
+        },
+        "elaboration": {
+          "precision": 0.6725417439703154,
+          "recall": 0.7279116465863453,
+          "f1": 0.6991321118611379,
+          "support": 1992
+        },
+        "explanation": {
+          "precision": 0.3512396694214876,
+          "recall": 0.2639751552795031,
+          "f1": 0.30141843971631205,
+          "support": 322
+        },
+        "frame": {
+          "precision": 0.6952380952380952,
+          "recall": 0.4183381088825215,
+          "f1": 0.5223613595706619,
+          "support": 349
+        },
+        "mode": {
+          "precision": 0.7732793522267206,
+          "recall": 0.7234848484848485,
+          "f1": 0.7475538160469667,
+          "support": 264
+        },
+        "organization": {
+          "precision": 0.6752136752136753,
+          "recall": 0.535593220338983,
+          "f1": 0.5973534971644613,
+          "support": 295
+        },
+        "purpose": {
+          "precision": 0.8347578347578347,
+          "recall": 0.8253521126760563,
+          "f1": 0.830028328611898,
+          "support": 355
+        },
+        "query": {
+          "precision": 0.8181818181818182,
+          "recall": 0.8169642857142857,
+          "f1": 0.8175725986597171,
+          "support": 672
+        },
+        "reformulation": {
+          "precision": 0.3894736842105263,
+          "recall": 0.44047619047619047,
+          "f1": 0.4134078212290503,
+          "support": 84
+        },
+        "temporal": {
+          "precision": 0.676818950930626,
+          "recall": 0.6493506493506493,
+          "f1": 0.6628003314001657,
+          "support": 616
+        }
+      }
+    },
+    "fas": {
+      "corpora": [
+        "fas.rst.prstc"
+      ],
+      "support": 592,
+      "num_gold_labels": 14,
+      "accuracy": 0.5388513513513513,
+      "macro_f1": 0.4041630720128418,
+      "weighted_f1": 0.5165170056211896,
+      "per_label": {
+        "alternation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "attribution": {
+          "precision": 0.6923076923076923,
+          "recall": 0.6923076923076923,
+          "f1": 0.6923076923076923,
+          "support": 39
+        },
+        "causal": {
+          "precision": 0.36363636363636365,
+          "recall": 0.34285714285714286,
+          "f1": 0.35294117647058826,
+          "support": 35
+        },
+        "comment": {
+          "precision": 0.28888888888888886,
+          "recall": 0.3611111111111111,
+          "f1": 0.32098765432098764,
+          "support": 36
+        },
+        "concession": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        },
+        "condition": {
+          "precision": 0.6875,
+          "recall": 0.7333333333333333,
+          "f1": 0.7096774193548387,
+          "support": 15
+        },
+        "conjunction": {
+          "precision": 0.5862068965517241,
+          "recall": 0.68,
+          "f1": 0.6296296296296297,
+          "support": 125
+        },
+        "contrast": {
+          "precision": 0.5306122448979592,
+          "recall": 0.48148148148148145,
+          "f1": 0.5048543689320388,
+          "support": 54
+        },
+        "elaboration": {
+          "precision": 0.6264367816091954,
+          "recall": 0.7124183006535948,
+          "f1": 0.6666666666666666,
+          "support": 153
+        },
+        "explanation": {
+          "precision": 0.32142857142857145,
+          "recall": 0.4,
+          "f1": 0.3564356435643564,
+          "support": 45
+        },
+        "frame": {
+          "precision": 0.16666666666666666,
+          "recall": 0.03225806451612903,
+          "f1": 0.05405405405405406,
+          "support": 31
+        },
+        "mode": {
+          "precision": 1.0,
+          "recall": 0.5714285714285714,
+          "f1": 0.7272727272727273,
+          "support": 7
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 16
+        },
+        "purpose": {
+          "precision": 0.7692307692307693,
+          "recall": 0.9090909090909091,
+          "f1": 0.8333333333333334,
+          "support": 11
+        },
+        "temporal": {
+          "precision": 0.375,
+          "recall": 0.15,
+          "f1": 0.21428571428571427,
+          "support": 20
+        }
+      }
+    },
+    "fra": {
+      "corpora": [
+        "fra.sdrt.annodis"
+      ],
+      "support": 621,
+      "num_gold_labels": 12,
+      "accuracy": 0.5458937198067633,
+      "macro_f1": 0.4863510747672416,
+      "weighted_f1": 0.5309364163369776,
+      "per_label": {
+        "alternation": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.8888888888888888,
+          "support": 5
+        },
+        "attribution": {
+          "precision": 0.6153846153846154,
+          "recall": 0.5714285714285714,
+          "f1": 0.5925925925925926,
+          "support": 14
+        },
+        "causal": {
+          "precision": 0.24242424242424243,
+          "recall": 0.25,
+          "f1": 0.24615384615384617,
+          "support": 32
+        },
+        "comment": {
+          "precision": 0.3333333333333333,
+          "recall": 0.07692307692307693,
+          "f1": 0.125,
+          "support": 13
+        },
+        "condition": {
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1": 0.8333333333333334,
+          "support": 6
+        },
+        "conjunction": {
+          "precision": 0.456,
+          "recall": 0.4596774193548387,
+          "f1": 0.4578313253012048,
+          "support": 124
+        },
+        "contrast": {
+          "precision": 0.5454545454545454,
+          "recall": 0.6206896551724138,
+          "f1": 0.5806451612903226,
+          "support": 29
+        },
+        "elaboration": {
+          "precision": 0.6339285714285714,
+          "recall": 0.7717391304347826,
+          "f1": 0.696078431372549,
+          "support": 184
+        },
+        "explanation": {
+          "precision": 0.1111111111111111,
+          "recall": 0.03333333333333333,
+          "f1": 0.05128205128205128,
+          "support": 30
+        },
+        "frame": {
+          "precision": 0.8461538461538461,
+          "recall": 0.36666666666666664,
+          "f1": 0.5116279069767442,
+          "support": 90
+        },
+        "purpose": {
+          "precision": 0.85,
+          "recall": 0.85,
+          "f1": 0.85,
+          "support": 20
+        },
+        "query": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "temporal": {
+          "precision": 0.4090909090909091,
+          "recall": 0.6081081081081081,
+          "f1": 0.4891304347826087,
+          "support": 74
+        }
+      }
+    },
+    "ita": {
+      "corpora": [
+        "ita.pdtb.luna"
+      ],
+      "support": 374,
+      "num_gold_labels": 11,
+      "accuracy": 0.6229946524064172,
+      "macro_f1": 0.3990948103682458,
+      "weighted_f1": 0.6149358488338438,
+      "per_label": {
+        "alternation": {
+          "precision": 1.0,
+          "recall": 0.42857142857142855,
+          "f1": 0.6,
+          "support": 7
+        },
+        "causal": {
+          "precision": 0.7011494252873564,
+          "recall": 0.7176470588235294,
+          "f1": 0.7093023255813954,
+          "support": 85
+        },
+        "concession": {
+          "precision": 0.5945945945945946,
+          "recall": 0.6875,
+          "f1": 0.6376811594202898,
+          "support": 32
+        },
+        "condition": {
+          "precision": 0.7142857142857143,
+          "recall": 0.7575757575757576,
+          "f1": 0.7352941176470589,
+          "support": 33
+        },
+        "conjunction": {
+          "precision": 0.7096774193548387,
+          "recall": 0.3728813559322034,
+          "f1": 0.4888888888888889,
+          "support": 59
+        },
+        "contrast": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "elaboration": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "explanation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "mode": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "purpose": {
+          "precision": 0.8333333333333334,
+          "recall": 0.7692307692307693,
+          "f1": 0.8,
+          "support": 26
+        },
+        "reformulation": {
+          "precision": 0.5432098765432098,
+          "recall": 0.6875,
+          "f1": 0.6068965517241379,
+          "support": 64
+        },
+        "temporal": {
+          "precision": 0.5538461538461539,
+          "recall": 0.6792452830188679,
+          "f1": 0.6101694915254238,
+          "support": 53
+        }
+      }
+    },
+    "zho": {
+      "corpora": [
+        "zho.dep.scidtb"
+      ],
+      "support": 215,
+      "num_gold_labels": 14,
+      "accuracy": 0.6697674418604651,
+      "macro_f1": 0.46909616871201504,
+      "weighted_f1": 0.658757409186176,
+      "per_label": {
+        "attribution": {
+          "precision": 0.9230769230769231,
+          "recall": 1.0,
+          "f1": 0.96,
+          "support": 12
+        },
+        "causal": {
+          "precision": 0.6666666666666666,
+          "recall": 0.3333333333333333,
+          "f1": 0.4444444444444444,
+          "support": 6
+        },
+        "comment": {
+          "precision": 0.4583333333333333,
+          "recall": 0.8461538461538461,
+          "f1": 0.5945945945945946,
+          "support": 13
+        },
+        "concession": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8,
+          "support": 2
+        },
+        "condition": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "conjunction": {
+          "precision": 0.6388888888888888,
+          "recall": 0.71875,
+          "f1": 0.6764705882352942,
+          "support": 32
+        },
+        "contrast": {
+          "precision": 0.5454545454545454,
+          "recall": 0.8571428571428571,
+          "f1": 0.6666666666666666,
+          "support": 7
+        },
+        "elaboration": {
+          "precision": 0.7258064516129032,
+          "recall": 0.5769230769230769,
+          "f1": 0.6428571428571429,
+          "support": 78
+        },
+        "explanation": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "frame": {
+          "precision": 0.75,
+          "recall": 0.7741935483870968,
+          "f1": 0.7619047619047619,
+          "support": 31
+        },
+        "mode": {
+          "precision": 0.3333333333333333,
+          "recall": 0.25,
+          "f1": 0.2857142857142857,
+          "support": 4
+        },
+        "organization": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "purpose": {
+          "precision": 0.6923076923076923,
+          "recall": 0.782608695652174,
+          "f1": 0.7346938775510204,
+          "support": 23
+        },
+        "temporal": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      }
+    }
+  },
+  "per_label_global": {
+    "alternation": {
+      "precision": 0.7875,
+      "recall": 0.6702127659574468,
+      "f1": 0.7241379310344828,
+      "support": 94
+    },
+    "attribution": {
+      "precision": 0.8183908045977012,
+      "recall": 0.8416075650118203,
+      "f1": 0.8298368298368298,
+      "support": 423
+    },
+    "causal": {
+      "precision": 0.4779299847792998,
+      "recall": 0.49139280125195617,
+      "f1": 0.4845679012345679,
+      "support": 639
+    },
+    "comment": {
+      "precision": 0.5284280936454849,
+      "recall": 0.58195211786372,
+      "f1": 0.5539000876424189,
+      "support": 543
+    },
+    "concession": {
+      "precision": 0.5184210526315789,
+      "recall": 0.6416938110749185,
+      "f1": 0.5735080058224163,
+      "support": 307
+    },
+    "condition": {
+      "precision": 0.7576923076923077,
+      "recall": 0.7242647058823529,
+      "f1": 0.7406015037593985,
+      "support": 272
+    },
+    "conjunction": {
+      "precision": 0.5578193832599119,
+      "recall": 0.6113458056729029,
+      "f1": 0.5833573279585373,
+      "support": 1657
+    },
+    "contrast": {
+      "precision": 0.5903307888040712,
+      "recall": 0.44106463878326996,
+      "f1": 0.5048966267682263,
+      "support": 526
+    },
+    "elaboration": {
+      "precision": 0.6671761559037065,
+      "recall": 0.7250830564784053,
+      "f1": 0.6949253731343283,
+      "support": 2408
+    },
+    "explanation": {
+      "precision": 0.33766233766233766,
+      "recall": 0.2613065326633166,
+      "f1": 0.29461756373937675,
+      "support": 398
+    },
+    "frame": {
+      "precision": 0.710801393728223,
+      "recall": 0.40718562874251496,
+      "f1": 0.5177664974619289,
+      "support": 501
+    },
+    "mode": {
+      "precision": 0.7686274509803922,
+      "recall": 0.7127272727272728,
+      "f1": 0.7396226415094339,
+      "support": 275
+    },
+    "organization": {
+      "precision": 0.6723404255319149,
+      "recall": 0.4968553459119497,
+      "f1": 0.5714285714285714,
+      "support": 318
+    },
+    "purpose": {
+      "precision": 0.8248847926267281,
+      "recall": 0.8229885057471265,
+      "f1": 0.8239355581127733,
+      "support": 435
+    },
+    "query": {
+      "precision": 0.8157503714710252,
+      "recall": 0.8169642857142857,
+      "f1": 0.8163568773234201,
+      "support": 672
+    },
+    "reformulation": {
+      "precision": 0.4602272727272727,
+      "recall": 0.5472972972972973,
+      "f1": 0.5,
+      "support": 148
+    },
+    "temporal": {
+      "precision": 0.6237113402061856,
+      "recall": 0.6335078534031413,
+      "f1": 0.6285714285714286,
+      "support": 764
+    }
+  }
+}
