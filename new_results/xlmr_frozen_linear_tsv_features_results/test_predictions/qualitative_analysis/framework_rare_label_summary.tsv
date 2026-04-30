@@ -1,0 +1,14 @@
+framework	label	support	precision	recall	f1
+dep	concession	23	0.0	0.0	0.0
+dep	temporal	24	0.0	0.0	0.0
+dep	explanation	28	0.0	0.0	0.0
+dep	condition	34	0.0	0.0	0.0
+dep	causal	47	0.0	0.0	0.0
+pdtb	explanation	1	0.0	0.0	0.0
+pdtb	organization	3	0.0	0.0	0.0
+pdtb	alternation	34	0.0	0.0	0.0
+rst	alternation	36	0.0	0.0	0.0
+sdrt	attribution	14	0.0	0.0	0.0
+sdrt	purpose	20	0.0	0.0	0.0
+sdrt	alternation	24	0.0	0.0	0.0
+sdrt	condition	24	0.0	0.0	0.0
