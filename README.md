@@ -1,11 +1,91 @@
 # DISRPT 2025
 
-This repository provides:
+Tools for supervised multi-class discourse-relation classification over a unified 17-label inventory: paired EDU-level units go through a data pipeline (`.rels` → cleaned TSV), then encoder-based classifiers (frozen linear head, full fine-tuning, framework-conditioned, metadata-prefixed variants) or decoder-only instruction tuning (Qwen). Outputs land under `results/` by default.
 
-- a `results/` directory as the default root for pipeline outputs, model checkpoints, metrics, and plots (overridable via each script’s CLI)
-- a data pipeline for converting DISRPT `.rels` files into cleaned TSV files
-- a label verification script for checking train coverage, label mapping consistency, and rare labels
-- a plot-based class distribution EDA script for generating label distribution figures
+## Getting started
+
+### Requirements
+
+- **Python 3.10+** (code uses modern typing and standard library patterns from 3.10 onward).
+- **GPU strongly recommended** for XLM-R fine-tuning and Qwen runs; CPU is possible but slow. Scripts default to CUDA when `torch.cuda.is_available()`.
+- **Hugging Face Hub access** for downloading pretrained checkpoints (`FacebookAI/xlm-roberta-base`, Qwen variants, etc.).
+- **DISRPT `.rels` data** under `data_subset/` before running the pipeline (layout follows the repo’s expected nested corpus paths).
+V
+### Installation
+
+From the repository root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install --upgrade pip
+```
+
+Install **PyTorch** for your platform (pick the CUDA build if you use a GPU): [PyTorch Get Started](https://pytorch.org/get-started/locally/).
+
+Then install Python dependencies used by the scripts:
+
+```bash
+pip install transformers scikit-learn numpy matplotlib tqdm
+```
+
+Optional:
+
+- **`peft`** — only if you use Qwen instruction SFT with `--lora` in `scripts/finetune_qwen_instruction_sft.py`.
+
+### Run location
+
+Always run commands from the **repository root** so defaults like `data_subset/`, `results/processed_tsv/`, and `results/…_results/` resolve correctly.
+
+## User interface
+
+This repository is **command-line only**. There is no web app, notebook server, or graphical UI bundled here; plots are written to PNG files under `results/`.
+
+Every runnable script uses Python’s **`argparse`** CLI. To see flags and defaults:
+
+```bash
+python scripts/<script_name>.py --help
+```
+
+Training and evaluation print progress and metrics to **stdout**; metrics and artifacts are saved as **JSON**, **TSV**, and **PNG** files under `results/` (override paths with each script’s CLI).
+
+## Typical workflow
+
+1. **Prepare data**: place corpus `.rels` files under `data_subset/`.
+2. **Build processed TSVs**: `python scripts/data_pipeline.py` (optional: `--input-dir`, `--output-dir`).
+3. **Verify labels**: `python scripts/label_verification.py`.
+4. **EDA plots** (optional): `python scripts/class_distribution_plots.py`.
+5. **Train** one or more models (see table below); each writes to its `--output-dir`.
+6. **Evaluate or compare**: `evaluate_per_dataset.py`, `evaluate_with_official_script.py`, `export_model_comparison_tables.py`, visualization scripts, or `compare_all_models.py` to regenerate comparison bundles.
+
+## Script reference
+
+| Script | Role |
+| --- | --- |
+| `data_pipeline.py` | Convert DISRPT `.rels` → cleaned TSV (`by_split/`, `by_source_file/`). |
+| `label_verification.py` | Train/dev/test label coverage and consistency reports. |
+| `class_distribution_plots.py` | Label distribution and heatmap figures. |
+| `benchmark_frozen_xlm_roberta_linear.py` | Frozen XLM-R encoder + trainable linear head on pooled TSV splits. |
+| `finetune_xlm_roberta.py` | Full fine-tuning of sequence classification head + encoder (shared CLI defaults for data paths). |
+| `finetune_xlm_roberta_framework_conditioned.py` | Framework-conditioned encoder variant. |
+| `finetune_xlm_roberta_tsv_features.py` | Encoder inputs prefixed with lightweight `dir` / `rel_type` features from TSV rows. |
+| `finetune_qwen_instruction_sft.py` | Qwen causal LM instruction SFT (`--qwen3`, `--qwen3-4b`, optional `--lora`). |
+| `qwen_prompt_baseline.py` | Alternative Qwen training / prompt baseline pipeline with its own CLI. |
+| `evaluate_per_dataset.py` | Load saved checkpoints; per-corpus / framework / language / label breakdown (no training). |
+| `evaluate_with_official_script.py` | Bridge to bundled official DISRPT eval scripts + mapped `.rels` outputs. |
+| `analyze_qualitative_angles.py` | Qualitative analysis from `test_gold_vs_pred.tsv`. |
+| `export_model_comparison_tables.py` | Aggregate metrics into comparison CSVs under `results/comparison/`. |
+| `visualize_per_dataset.py`, `visualize_f1_language_framework.py`, `visualize_xlmr_frozen_vs_finetune.py` | Figures from saved metrics JSON. |
+| `compare_all_models.py` | Runs export + visualization scripts in sequence (no CLI beyond invoking the file). |
+
+Shared **data-location flags** for XLM-R and Qwen trainers include `--data-dir`, `--train-file`, `--dev-file`, `--test-file`, `--by-source-dir`, and `--output-dir` (see `python scripts/finetune_xlm_roberta.py --help`).
+
+**Qwen instruction SFT example** (after processed TSVs exist):
+
+```bash
+python scripts/finetune_qwen_instruction_sft.py --qwen3-4b --max-length 1024 \
+  --train-batch-size 1 --gradient-accumulation-steps 16 --epochs 1
+```
 
 ## Repository layout
 
@@ -16,16 +96,10 @@ results/
   comparison/                  # pooled/per-corpus comparison CSVs + qualitative summary tables (corpus_*.csv, corpus_test_tables.*)
   *_results/                   # each training run (metrics, best_model/, test_predictions/, qualitative_analysis/ …)
   per_dataset_plots/, eda_plots/, per_dataset_eval/, verification/, …
-scripts/                     # Python training, eval, pipeline, and shell launch helpers
+scripts/                     # Python training, eval, pipeline, and analysis entrypoints
 ```
 
-All Python entrypoints live under **`scripts/`**. Run them from the **repository root** so paths like `data_subset/` and `results/` resolve correctly.
-
-Run Qwen3-4B instruction SFT with:
-
-```bash
-./scripts/run_finetune_qwen3_4b.sh
-```
+All Python entrypoints live under **`scripts/`**.
 
 ## Data Pipeline
 
