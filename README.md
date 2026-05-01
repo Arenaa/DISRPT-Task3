@@ -7,12 +7,32 @@ This repository provides:
 - a label verification script for checking train coverage, label mapping consistency, and rare labels
 - a plot-based class distribution EDA script for generating label distribution figures
 
+## Repository layout
+
+```text
+data_subset/                 # input .rels (subset) for the data pipeline
+results/
+  processed_tsv/             # default output of data_pipeline.py (by_split, by_source_file)
+  comparison/                  # pooled/per-corpus comparison CSVs + qualitative summary tables (corpus_*.csv, corpus_test_tables.*)
+  *_results/                   # each training run (metrics, best_model/, test_predictions/, qualitative_analysis/ …)
+  per_dataset_plots/, eda_plots/, per_dataset_eval/, verification/, …
+scripts/                     # Python training, eval, pipeline, and shell launch helpers
+```
+
+All Python entrypoints live under **`scripts/`**. Run them from the **repository root** so paths like `data_subset/` and `results/` resolve correctly.
+
+Run Qwen3-4B instruction SFT with:
+
+```bash
+./scripts/run_finetune_qwen3_4b.sh
+```
+
 ## Data Pipeline
 
 Run:
 
 ```bash
-python data_pipeline.py
+python scripts/data_pipeline.py
 ```
 
 Input:
@@ -47,7 +67,7 @@ Cleaning:
 Run:
 
 ```bash
-python label_verification.py
+python scripts/label_verification.py
 ```
 
 Output (default):
@@ -65,7 +85,7 @@ Important files:
 Run:
 
 ```bash
-python class_distribution_plots.py
+python scripts/class_distribution_plots.py
 ```
 
 Output (default):

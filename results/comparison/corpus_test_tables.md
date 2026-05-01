@@ -1,4 +1,4 @@
-# new_results: test metrics by corpus
+# comparison: qualitative test metrics by corpus (tables + CSV)
 
 ## Pooled (all test)
 
@@ -25,4 +25,4 @@ Corpus | Qwen3 N; Acc; M-F1; W-F1 | XLMR-FT N; Acc; M-F1; W-F1 | XLMR-FW N; Acc;
 | ita.pdtb.luna | 374; 35.56; 15.41; 33.08 | 374; 62.57; 44.01; 61.51 | 374; 62.30; 39.91; 61.49 | 374; 18.72; 7.62; 17.84 | 374; 46.52; 21.36; 39.97 | 374; 99.73; 89.61; 99.62 |
 | zho.dep.scidtb | 215; 52.09; 28.23; 51.13 | 215; 73.95; 61.75; 72.68 | 215; 66.98; 46.91; 65.88 | 215; 35.35; 5.99; 21.23 | 215; 51.16; 17.24; 42.41 | 215; 100.00; 100.00; 100.00 |
 
-*Full long-format table (with exact floats): `new_results/corpus_test_tables.csv`*
+*Full long-format table (with exact floats): `corpus_test_tables.csv`*

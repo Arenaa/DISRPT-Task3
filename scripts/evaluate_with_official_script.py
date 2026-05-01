@@ -25,13 +25,13 @@ per-language, and pooled-global metrics (all in the 17-label space) and writes
 Usage
 -----
 
-    python evaluate_with_official_script.py --mode frozen \
+    python scripts/evaluate_with_official_script.py --mode frozen \
         --frozen-dir results/xlmr_frozen_linear_results
 
-    python evaluate_with_official_script.py --mode finetune \
+    python scripts/evaluate_with_official_script.py --mode finetune \
         --finetune-dir results/xlmr_finetune_results/best_model
 
-    python evaluate_with_official_script.py --mode both
+    python scripts/evaluate_with_official_script.py --mode both
 """
 
 from __future__ import annotations

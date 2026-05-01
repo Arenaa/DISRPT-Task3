@@ -379,7 +379,7 @@ def error_missing_split_tsv(
     return (
         f"Missing train split TSV: {train_path}\n"
         f"  Check --data-dir and filenames ({train_file!r}, {dev_file!r}, {test_file!r}). "
-        f"Generate TSVs with: python data_pipeline.py"
+        f"Generate TSVs with: python scripts/data_pipeline.py"
     )
 
 

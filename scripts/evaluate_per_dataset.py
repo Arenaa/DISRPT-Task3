@@ -17,13 +17,13 @@ Artifacts expected:
 
 Examples:
 
-    python evaluate_per_dataset.py --mode frozen \
+    python scripts/evaluate_per_dataset.py --mode frozen \
         --frozen-dir results/xlmr_frozen_linear_results
 
-    python evaluate_per_dataset.py --mode finetune \
+    python scripts/evaluate_per_dataset.py --mode finetune \
         --finetune-dir results/xlmr_finetune_results/best_model
 
-    python evaluate_per_dataset.py --mode both \
+    python scripts/evaluate_per_dataset.py --mode both \
         --frozen-dir results/xlmr_frozen_linear_results \
         --finetune-dir results/xlmr_finetune_results/best_model
 """

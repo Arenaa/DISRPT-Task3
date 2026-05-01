@@ -27,11 +27,11 @@ Not reproduced exactly from the paper:
 
 Examples:
 
-    python qwen_prompt_baseline.py
+    python scripts/qwen_prompt_baseline.py
 
-    python qwen_prompt_baseline.py --max-train-examples 2000 --max-dev-examples 200
+    python scripts/qwen_prompt_baseline.py --max-train-examples 2000 --max-dev-examples 200
 
-    python qwen_prompt_baseline.py --epochs 1 --train-batch-size 1 \
+    python scripts/qwen_prompt_baseline.py --epochs 1 --train-batch-size 1 \
         --gradient-accumulation-steps 16 --eval-max-new-tokens 16
 """
 

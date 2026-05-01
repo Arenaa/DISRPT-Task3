@@ -44,8 +44,8 @@ def main() -> None:
     p.add_argument(
         "--root",
         type=Path,
-        default=Path(__file__).resolve().parent,
-        help="Project root (default: this repo).",
+        default=Path(__file__).resolve().parent.parent,
+        help="Project root (parent of scripts/).",
     )
     p.add_argument(
         "--out-dir",

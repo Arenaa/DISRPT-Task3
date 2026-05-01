@@ -2,7 +2,7 @@
 
 Reads each model's per_dataset_test_metrics.json (test split, per-language / per-framework pools).
 
-Default inputs live under new_results/; override with --models name=path (repeat) or a single --glob."""
+Default inputs live under ``results/<run_name>/``; override with --models name=path (repeat) or a single --glob."""
 
 from __future__ import annotations
 
@@ -28,8 +28,8 @@ def load_per_dataset(path: Path) -> dict:
 
 
 def default_models(root: Path) -> list[tuple[str, Path]]:
-    """(short label, path) for known new_results eval bundles."""
-    base = root / "new_results"
+    """(short label, path) for known eval bundles under results/<run>/."""
+    base = root / "results"
     pairs = [
         ("Qwen3", "qwen3_finetune_results/per_dataset_test_metrics.json"),
         ("XLMR-FT", "xlmr_finetune_results/per_dataset_test_metrics.json"),
@@ -118,12 +118,17 @@ def parse_models_arg(specs: list[str], root: Path) -> list[tuple[str, Path]]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parent, help="Project root")
+    ap.add_argument(
+        "--root",
+        type=Path,
+        default=Path(__file__).resolve().parent.parent,
+        help="Project root (parent of scripts/).",
+    )
     ap.add_argument(
         "--out-dir",
         type=Path,
         default=None,
-        help="PNG output directory (default: <root>/new_results/plots)",
+        help="PNG output directory (default: <root>/results/per_dataset_plots)",
     )
     ap.add_argument(
         "--f1",
@@ -137,11 +142,11 @@ def main() -> None:
         default=[],
         metavar="NAME=PATH",
         help="Repeat for each model, relative to --root unless absolute. "
-        "If none given, all existing default new_results/* paths are used.",
+        "If none given, all existing default results/<run>/ paths are used.",
     )
     args = ap.parse_args()
     root = args.root
-    out_dir = args.out_dir or (root / "new_results" / "plots")
+    out_dir = args.out_dir or (root / "results" / "per_dataset_plots")
     f1_key = "macro_f1" if args.f1 == "macro" else "weighted_f1"
     f1_label = "Macro-F1" if args.f1 == "macro" else "Weighted F1"
 
@@ -151,7 +156,7 @@ def main() -> None:
         models = default_models(root)
     if not models:
         raise SystemExit(
-            f"No per_dataset_test_metrics.json found under {root / 'new_results'}. "
+            f"No per_dataset_test_metrics.json found under {root / 'results'} for the default model paths. "
             "Run evaluation or pass --models name=path."
         )
 
