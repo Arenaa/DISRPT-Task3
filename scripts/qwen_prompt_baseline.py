@@ -1,20 +1,21 @@
-"""Supervised fine-tuning of Qwen/Qwen3-4B for DISRPT Task 3.
+"""Supervised instruction fine-tuning (SFT) of Qwen causal LMs for DISRPT Task 3.
 
-This script repurposes the earlier prompt-only baseline into a decoder-only
-training pipeline inspired by the DeDisCo system from DISRPT 2025. The core
-idea is to cast relation classification as instruction-following generation:
-the model sees a verbose prompt with discourse units plus metadata and learns
-to generate exactly one label from the fixed 17-label inventory.
+Training matches standard instruction tuning: user content is built from
+``build_prompt`` (minus the trailing ``## Answer:`` cue), optional system
+message, and the tokenizer's ``chat_template`` when present (Qwen2 / Qwen3);
+loss is computed only on the assistant turn (the gold label + EOS). When no
+``chat_template`` exists, tokenization falls back to the same masked-target
+layout as before (prompt tokens ignored in the loss).
 
 Implemented here:
 
-    * full-parameter supervised fine-tuning of `Qwen/Qwen3-4B`
-    * verbose instruction-style prompts with:
+    * full-parameter (or checkpointed) supervised instruction SFT
+    * verbose instruction-style user content with:
         - language / corpus / framework (LCF)
         - direction
         - relation type
         - only the fields preserved in the cleaned processed TSV files
-    * greedy decoding on dev/test
+    * greedy chat-template decoding on dev/test when supported
     * pooled and per-dataset evaluation artifacts
 
 Not reproduced exactly from the paper:
@@ -39,6 +40,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import inspect
 import json
 import math
 import random
@@ -57,6 +59,16 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.optim import AdamW
 from torch.utils.data import DataLoader, Dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer, PreTrainedModel, PreTrainedTokenizerBase
+
+try:
+    from tqdm.auto import tqdm as _tqdm
+except ImportError:
+    _tqdm = None
+
+DEFAULT_INSTRUCTION_SYSTEM = (
+    "You solve discourse relation classification. Reply with exactly one lowercase "
+    "label from the task label set and no other text."
+)
 
 LABEL_SET = [
     "alternation",
@@ -121,48 +133,6 @@ class Example:
     direction: str
     rel_type: str
     label: str
-
-
-class InstructionSFTDataset(Dataset):
-    def __init__(
-            self,
-            examples: list[Example],
-            tokenizer: PreTrainedTokenizerBase,
-            max_length: int,
-    ) -> None:
-        self.examples = examples
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-        self.eos_token_id = tokenizer.eos_token_id
-        if self.eos_token_id is None:
-            raise ValueError("Tokenizer must define eos_token_id for causal LM fine-tuning.")
-
-    def __len__(self) -> int:
-        return len(self.examples)
-
-    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
-        example = self.examples[idx]
-        prompt = build_prompt(example)
-        target = example.label
-
-        target_ids = self.tokenizer(target, add_special_tokens=False).input_ids + [self.eos_token_id]
-        max_prompt_tokens = max(1, self.max_length - len(target_ids))
-        prompt_ids = self.tokenizer(
-            prompt,
-            add_special_tokens=False,
-            truncation=True,
-            max_length=max_prompt_tokens,
-        ).input_ids
-
-        input_ids = prompt_ids + target_ids
-        attention_mask = [1] * len(input_ids)
-        labels = [-100] * len(prompt_ids) + target_ids
-
-        return {
-            "input_ids": torch.tensor(input_ids, dtype=torch.long),
-            "attention_mask": torch.tensor(attention_mask, dtype=torch.long),
-            "labels": torch.tensor(labels, dtype=torch.long),
-        }
 
 
 def set_seed(seed: int) -> None:
@@ -250,6 +220,144 @@ def build_prompt(example: Example) -> str:
     return prompt
 
 
+def chat_template_extra_kwargs(tokenizer: PreTrainedTokenizerBase) -> dict[str, Any]:
+    kwargs: dict[str, Any] = {}
+    try:
+        sig = inspect.signature(tokenizer.apply_chat_template)
+        if "enable_thinking" in sig.parameters:
+            kwargs["enable_thinking"] = False
+    except (TypeError, ValueError):
+        pass
+    return kwargs
+
+
+def as_token_id_list(ids: Any) -> list[int]:
+    """Normalize ``apply_chat_template(..., tokenize=True)`` output."""
+    if ids is None:
+        raise ValueError("apply_chat_template returned no token ids")
+    if hasattr(ids, "input_ids"):
+        return as_token_id_list(ids["input_ids"])
+    if isinstance(ids, dict) and "input_ids" in ids:
+        return as_token_id_list(ids["input_ids"])
+    if isinstance(ids, list):
+        return [int(t) for t in ids]
+    if isinstance(ids, torch.Tensor):
+        flat = ids.detach().cpu().squeeze()
+        if flat.ndim != 1:
+            raise ValueError(f"Expected 1d token ids, got shape {tuple(flat.shape)}")
+        return [int(x) for x in flat.tolist()]
+    try:
+        if isinstance(ids, np.ndarray):
+            flat = np.squeeze(ids)
+            return [int(x) for x in flat.reshape(-1).tolist()]
+    except (ImportError, AttributeError):
+        pass
+    raise TypeError(f"Unexpected chat template tokenize output type: {type(ids)}")
+
+
+def user_block_for_chat(example: Example) -> str:
+    """Strip trailing ``## Answer:`` so the assistant turn carries only the label."""
+    text = build_prompt(example)
+    suffix = "## Answer:\n"
+    if text.endswith(suffix):
+        text = text[: -len(suffix)].rstrip()
+    return text + "\n\nRespond with exactly one lowercase label from the label list and nothing else."
+
+
+def tokenize_chat_supervised(
+    tokenizer: PreTrainedTokenizerBase,
+    example: Example,
+    max_length: int,
+    *,
+    system: str | None,
+    chat_kw: dict[str, Any],
+) -> dict[str, torch.Tensor]:
+    user_content = user_block_for_chat(example)
+    messages: list[dict[str, str]] = []
+    if system:
+        messages.append({"role": "system", "content": system})
+    messages.append({"role": "user", "content": user_content})
+    messages.append({"role": "assistant", "content": example.label})
+
+    if getattr(tokenizer, "chat_template", None):
+        prompt_messages = messages[:-1]
+        prompt_ids = tokenizer.apply_chat_template(
+            prompt_messages,
+            tokenize=True,
+            add_generation_prompt=True,
+            return_tensors=None,
+            **chat_kw,
+        )
+        full_ids = tokenizer.apply_chat_template(
+            messages,
+            tokenize=True,
+            add_generation_prompt=False,
+            return_tensors=None,
+            **chat_kw,
+        )
+        prompt_ids = as_token_id_list(prompt_ids)
+        full_ids = as_token_id_list(full_ids)
+        plen = len(prompt_ids)
+        if full_ids[:plen] != prompt_ids:
+            plen = min(plen, len(full_ids))
+        labels_list = [-100] * plen + list(full_ids[plen:])
+        input_ids = full_ids[:max_length]
+        labels = labels_list[:max_length]
+        if len(input_ids) < len(full_ids):
+            labels = labels[: len(input_ids)]
+    else:
+        target_ids = tokenizer(example.label, add_special_tokens=False).input_ids
+        eos_id = tokenizer.eos_token_id
+        if eos_id is not None:
+            target_ids = target_ids + [int(eos_id)]
+        prompt_ids = tokenizer(
+            user_content,
+            add_special_tokens=True,
+            truncation=True,
+            max_length=max(1, max_length - len(target_ids)),
+        ).input_ids
+        input_ids = (prompt_ids + target_ids)[:max_length]
+        labels = ([-100] * len(prompt_ids) + target_ids)[:max_length]
+
+    attention_mask = [1] * len(input_ids)
+    pad_id = tokenizer.pad_token_id
+    if pad_id is None:
+        raise ValueError("Tokenizer needs pad_token_id for batching.")
+    return {
+        "input_ids": torch.tensor(input_ids, dtype=torch.long),
+        "attention_mask": torch.tensor(attention_mask, dtype=torch.long),
+        "labels": torch.tensor(labels, dtype=torch.long),
+    }
+
+
+class ChatInstructionSFTDataset(Dataset):
+    def __init__(
+        self,
+        examples: list[Example],
+        tokenizer: PreTrainedTokenizerBase,
+        max_length: int,
+        *,
+        system_prompt: str | None,
+    ) -> None:
+        self.examples = examples
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+        self.system_prompt = system_prompt
+        self._chat_kw = chat_template_extra_kwargs(tokenizer)
+
+    def __len__(self) -> int:
+        return len(self.examples)
+
+    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
+        return tokenize_chat_supervised(
+            self.tokenizer,
+            self.examples[idx],
+            self.max_length,
+            system=self.system_prompt,
+            chat_kw=self._chat_kw,
+        )
+
+
 def format_label_hints() -> str:
     return "\n".join(f"- {label}: {LABEL_GLOSSES[label]}" for label in LABEL_SET)
 
@@ -333,6 +441,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--dtype", default="float16", choices=["float16", "bfloat16", "float32"])
     parser.add_argument("--eval-max-new-tokens", type=int, default=16)
+    parser.add_argument(
+        "--system-prompt",
+        default=DEFAULT_INSTRUCTION_SYSTEM,
+        help="System message for chat-template instruction tuning; empty string disables.",
+    )
     parser.add_argument("--max-train-examples", type=int, default=None)
     parser.add_argument("--max-dev-examples", type=int, default=None)
     parser.add_argument("--max-test-examples", type=int, default=None)
@@ -405,9 +518,16 @@ def build_loaders(
         tokenizer: PreTrainedTokenizerBase,
         args: argparse.Namespace,
 ) -> tuple[DataLoader, DataLoader, DataLoader]:
-    train_dataset = InstructionSFTDataset(examples_by_split["train"], tokenizer, args.max_length)
-    dev_dataset = InstructionSFTDataset(examples_by_split["dev"], tokenizer, args.max_length)
-    test_dataset = InstructionSFTDataset(examples_by_split["test"], tokenizer, args.max_length)
+    system_prompt = (getattr(args, "system_prompt", None) or "").strip() or None
+    train_dataset = ChatInstructionSFTDataset(
+        examples_by_split["train"], tokenizer, args.max_length, system_prompt=system_prompt
+    )
+    dev_dataset = ChatInstructionSFTDataset(
+        examples_by_split["dev"], tokenizer, args.max_length, system_prompt=system_prompt
+    )
+    test_dataset = ChatInstructionSFTDataset(
+        examples_by_split["test"], tokenizer, args.max_length, system_prompt=system_prompt
+    )
 
     collate = lambda batch: pad_batch(batch, pad_token_id=tokenizer.pad_token_id)
     train_loader = DataLoader(train_dataset, batch_size=args.train_batch_size, shuffle=True, collate_fn=collate)
@@ -456,61 +576,86 @@ def normalize_prediction(text: str) -> str:
     return INVALID_LABEL
 
 
-def generate_predictions(
-        model: PreTrainedModel,
-        tokenizer: PreTrainedTokenizerBase,
-        examples: list[Example],
-        device: torch.device,
-        max_length: int,
-        eval_max_new_tokens: int,
-        log_every: int,
+def encode_prompt_for_generation(
+    tokenizer: PreTrainedTokenizerBase,
+    example: Example,
+    *,
+    system: str | None,
+    chat_kw: dict[str, Any],
+) -> torch.Tensor:
+    user_content = user_block_for_chat(example)
+    messages: list[dict[str, str]] = []
+    if system:
+        messages.append({"role": "system", "content": system})
+    messages.append({"role": "user", "content": user_content})
+    if getattr(tokenizer, "chat_template", None):
+        raw = tokenizer.apply_chat_template(
+            messages,
+            tokenize=True,
+            add_generation_prompt=True,
+            return_tensors=None,
+            **chat_kw,
+        )
+        flat = as_token_id_list(raw)
+        return torch.tensor([flat], dtype=torch.long)
+    return tokenizer(user_content, return_tensors="pt", truncation=True).input_ids
+
+
+def generate_predictions_chat(
+    model: PreTrainedModel,
+    tokenizer: PreTrainedTokenizerBase,
+    examples: list[Example],
+    device: torch.device,
+    *,
+    max_new_tokens: int,
+    system: str | None,
+    log_every: int,
 ) -> tuple[list[dict[str, Any]], list[str], list[str]]:
-    predictions: list[dict[str, Any]] = []
+    chat_kw = chat_template_extra_kwargs(tokenizer)
+    preds_out: list[dict[str, Any]] = []
     gold: list[str] = []
     pred: list[str] = []
-
     started = time.time()
     model.eval()
+    pad_id = tokenizer.pad_token_id
     with torch.no_grad():
-        for idx, example in enumerate(examples):
-            prompt = build_prompt(example)
-            encoded = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_length)
-            encoded = {key: value.to(device) for key, value in encoded.items()}
-
-            outputs = model.generate(
-                **encoded,
-                max_new_tokens=eval_max_new_tokens,
+        it = examples
+        if _tqdm is not None:
+            it = _tqdm(examples, desc="eval_generate")
+        for idx, ex in enumerate(it):
+            input_ids = encode_prompt_for_generation(tokenizer, ex, system=system, chat_kw=chat_kw).to(device)
+            out = model.generate(
+                input_ids,
+                max_new_tokens=max_new_tokens,
                 do_sample=False,
-                pad_token_id=tokenizer.pad_token_id,
+                pad_token_id=pad_id,
                 eos_token_id=tokenizer.eos_token_id,
             )
-            generated = outputs[0, encoded["input_ids"].shape[1]:]
-            raw = tokenizer.decode(generated, skip_special_tokens=True).strip()
-            label = normalize_prediction(raw)
-
-            gold.append(example.label)
-            pred.append(label)
-            predictions.append(
+            gen_ids = out[0, input_ids.shape[1] :]
+            raw = tokenizer.decode(gen_ids, skip_special_tokens=True).strip()
+            lab = normalize_prediction(raw)
+            gold.append(ex.label)
+            pred.append(lab)
+            preds_out.append(
                 {
                     "index": idx,
-                    "corpus": example.corpus_id,
-                    "gold_label": example.label,
-                    "pred_label": label,
-                    "is_valid_prediction": label != INVALID_LABEL,
+                    "corpus": ex.corpus_id,
+                    "gold_label": ex.label,
+                    "pred_label": lab,
+                    "is_valid_prediction": lab != INVALID_LABEL,
                     "raw_generation": raw,
-                    "unit1_txt": example.unit1_txt,
-                    "unit2_txt": example.unit2_txt,
-                    "dir": example.direction,
-                    "rel_type": example.rel_type,
+                    "unit1_txt": ex.unit1_txt,
+                    "unit2_txt": ex.unit2_txt,
+                    "dir": ex.direction,
+                    "rel_type": ex.rel_type,
                 }
             )
-
-            if (idx + 1) % log_every == 0:
+            if log_every > 0 and ((idx + 1) % log_every == 0 or idx + 1 == len(examples)):
                 elapsed = time.time() - started
                 invalid = sum(item == INVALID_LABEL for item in pred)
                 print(f"[{idx + 1}/{len(examples)}] elapsed={elapsed:.1f}s invalid={invalid}")
 
-    return predictions, gold, pred
+    return preds_out, gold, pred
 
 
 def evaluate_predictions(y_true: list[str], y_pred: list[str]) -> dict[str, Any]:
@@ -651,13 +796,14 @@ def evaluate_split(
         examples: list[Example],
         args: argparse.Namespace,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    predictions, y_true, y_pred = generate_predictions(
+    system_prompt = (getattr(args, "system_prompt", None) or "").strip() or None
+    predictions, y_true, y_pred = generate_predictions_chat(
         model=model,
         tokenizer=tokenizer,
         examples=examples,
         device=torch.device(args.device),
-        max_length=args.max_length,
-        eval_max_new_tokens=args.eval_max_new_tokens,
+        max_new_tokens=args.eval_max_new_tokens,
+        system=system_prompt,
         log_every=args.log_every,
     )
     return predictions, evaluate_predictions(y_true, y_pred)
@@ -809,7 +955,9 @@ def main() -> None:
             "dev_examples": len(examples_by_split["dev"]),
             "test_examples": len(examples_by_split["test"]),
             "label_set": LABEL_SET,
-            "training_style": "supervised_finetuning_with_instruction_prompts",
+            "training_style": "instruction_sft_causal_lm",
+            "chat_template": bool(getattr(tokenizer, "chat_template", None)),
+            "system_prompt": (args.system_prompt or "").strip() or None,
             "decoder_features": [
                 "language",
                 "corpus",
@@ -841,7 +989,7 @@ def main() -> None:
             preds_by_corpus[corpus]["pred_label"].append(row["pred_label"])
         agg = aggregate_predictions_by_corpus(preds_by_corpus)
         per_dataset_payload = {
-            "model": "Qwen3-4B SFT with Instruction Prompts",
+            "model": "Qwen instruction SFT (chat template when available)",
             "model_name": args.model_name,
             "max_length": args.max_length,
             "label_set": LABEL_SET,

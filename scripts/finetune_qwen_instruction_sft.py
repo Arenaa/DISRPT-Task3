@@ -21,7 +21,6 @@ Example::
 """
 from __future__ import annotations
 
-import inspect
 import json
 import math
 import sys
@@ -29,9 +28,8 @@ from pathlib import Path
 from typing import Any
 
 import torch
-from torch.nn.utils.rnn import pad_sequence
 from torch.optim import AdamW
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 from transformers import AutoModelForCausalLM, AutoTokenizer, PreTrainedModel, PreTrainedTokenizerBase
 from transformers import get_linear_schedule_with_warmup
 
@@ -47,41 +45,23 @@ from qwen_finetune_args import (  # noqa: E402
 )
 from finetune_xlm_roberta import read_tsv, set_seed
 from qwen_prompt_baseline import (  # noqa: E402
+    ChatInstructionSFTDataset,
+    DEFAULT_INSTRUCTION_SYSTEM,
     Example,
-    INVALID_LABEL,
     LABEL_SET,
     aggregate_predictions_by_corpus,
-    build_prompt,
     corpus_framework,
     corpus_language,
     corpus_name,
     evaluate_predictions,
-    normalize_prediction,
+    generate_predictions_chat,
+    move_batch_to_device,
+    pad_batch,
     prompt_framework,
     read_examples_from_processed_tsv,
 )
 
-try:
-    from tqdm.auto import tqdm as _tqdm
-except ImportError:
-    _tqdm = None
-
-DEFAULT_SYSTEM = (
-    "You solve discourse relation classification. Reply with exactly one lowercase "
-    "label from the task label set and no other text."
-)
 SYNTHETIC_POOL_CORPUS_ID = "unk.mixed.pooled"
-
-
-def _chat_template_extra_kwargs(tokenizer: PreTrainedTokenizerBase) -> dict[str, Any]:
-    kwargs: dict[str, Any] = {}
-    try:
-        sig = inspect.signature(tokenizer.apply_chat_template)
-        if "enable_thinking" in sig.parameters:
-            kwargs["enable_thinking"] = False
-    except (TypeError, ValueError):
-        pass
-    return kwargs
 
 
 def pooled_rows_to_examples(rows: list[dict[str, str]], *, split: str) -> list[Example]:
@@ -169,6 +149,7 @@ def per_corpus_test_string_preds(
             device,
             max_new_tokens=max_new_tokens,
             system=system,
+            log_every=0,
         )
         bundle[corpus] = {"gold_label": gold, "pred_label": pred}
     return bundle
@@ -193,152 +174,6 @@ def load_pooled_examples(
     if max_test is not None:
         test_ex = test_ex[:max_test]
     return train_ex, dev_ex, test_ex
-
-
-def _as_token_id_list(ids: Any) -> list[int]:
-    """Normalize ``apply_chat_template(..., tokenize=True)`` output.
-
-    Newer ``transformers`` returns ``BatchEncoding`` or dict-like objects with
-    ``input_ids``; older builds return flat lists or tensors.
-    """
-    if ids is None:
-        raise ValueError("apply_chat_template returned no token ids")
-    if hasattr(ids, "input_ids"):
-        return _as_token_id_list(ids["input_ids"])
-    if isinstance(ids, dict) and "input_ids" in ids:
-        return _as_token_id_list(ids["input_ids"])
-    if isinstance(ids, list):
-        return [int(t) for t in ids]
-    if isinstance(ids, torch.Tensor):
-        flat = ids.detach().cpu().squeeze()
-        if flat.ndim != 1:
-            raise ValueError(f"Expected 1d token ids, got shape {tuple(flat.shape)}")
-        return [int(x) for x in flat.tolist()]
-    try:
-        import numpy as np
-
-        if isinstance(ids, np.ndarray):
-            flat = np.squeeze(ids)
-            return [int(x) for x in flat.reshape(-1).tolist()]
-    except ImportError:
-        pass
-    raise TypeError(f"Unexpected chat template tokenize output type: {type(ids)}")
-
-
-def user_block_for_chat(example: Example) -> str:
-    """Strip trailing ``## Answer:`` so the assistant turn carries only the label."""
-    text = build_prompt(example)
-    suffix = "## Answer:\n"
-    if text.endswith(suffix):
-        text = text[: -len(suffix)].rstrip()
-    return text + "\n\nRespond with exactly one lowercase label from the label list and nothing else."
-
-
-def tokenize_chat_supervised(
-    tokenizer: PreTrainedTokenizerBase,
-    example: Example,
-    max_length: int,
-    *,
-    system: str | None,
-    chat_kw: dict[str, Any],
-) -> dict[str, torch.Tensor]:
-    user_content = user_block_for_chat(example)
-    messages: list[dict[str, str]] = []
-    if system:
-        messages.append({"role": "system", "content": system})
-    messages.append({"role": "user", "content": user_content})
-    messages.append({"role": "assistant", "content": example.label})
-
-    if getattr(tokenizer, "chat_template", None):
-        prompt_messages = messages[:-1]
-        prompt_ids = tokenizer.apply_chat_template(
-            prompt_messages,
-            tokenize=True,
-            add_generation_prompt=True,
-            return_tensors=None,
-            **chat_kw,
-        )
-        full_ids = tokenizer.apply_chat_template(
-            messages,
-            tokenize=True,
-            add_generation_prompt=False,
-            return_tensors=None,
-            **chat_kw,
-        )
-        prompt_ids = _as_token_id_list(prompt_ids)
-        full_ids = _as_token_id_list(full_ids)
-        plen = len(prompt_ids)
-        if full_ids[:plen] != prompt_ids:
-            # Rare tokenizer quirks: fall back to masking by length only
-            plen = min(plen, len(full_ids))
-        labels_list = [-100] * plen + list(full_ids[plen:])
-        input_ids = full_ids[:max_length]
-        labels = labels_list[:max_length]
-        if len(input_ids) < len(full_ids):
-            labels = labels[: len(input_ids)]
-    else:
-        # Raw concatenation (no chat template)
-        target_ids = tokenizer(example.label, add_special_tokens=False).input_ids
-        eos_id = tokenizer.eos_token_id
-        if eos_id is not None:
-            target_ids = target_ids + [int(eos_id)]
-        prompt_ids = tokenizer(
-            user_content,
-            add_special_tokens=True,
-            truncation=True,
-            max_length=max(1, max_length - len(target_ids)),
-        ).input_ids
-        input_ids = (prompt_ids + target_ids)[:max_length]
-        labels = ([-100] * len(prompt_ids) + target_ids)[:max_length]
-
-    attention_mask = [1] * len(input_ids)
-    pad_id = tokenizer.pad_token_id
-    if pad_id is None:
-        raise ValueError("Tokenizer needs pad_token_id for batching.")
-    return {
-        "input_ids": torch.tensor(input_ids, dtype=torch.long),
-        "attention_mask": torch.tensor(attention_mask, dtype=torch.long),
-        "labels": torch.tensor(labels, dtype=torch.long),
-    }
-
-
-class ChatInstructionSFTDataset(Dataset):
-    def __init__(
-        self,
-        examples: list[Example],
-        tokenizer: PreTrainedTokenizerBase,
-        max_length: int,
-        *,
-        system_prompt: str | None,
-    ) -> None:
-        self.examples = examples
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-        self.system_prompt = system_prompt
-        self._chat_kw = _chat_template_extra_kwargs(tokenizer)
-
-    def __len__(self) -> int:
-        return len(self.examples)
-
-    def __getitem__(self, idx: int) -> dict[str, torch.Tensor]:
-        return tokenize_chat_supervised(
-            self.tokenizer,
-            self.examples[idx],
-            self.max_length,
-            system=self.system_prompt,
-            chat_kw=self._chat_kw,
-        )
-
-
-def pad_batch(batch: list[dict[str, torch.Tensor]], *, pad_token_id: int) -> dict[str, torch.Tensor]:
-    input_ids = pad_sequence([b["input_ids"] for b in batch], batch_first=True, padding_value=pad_token_id)
-    attention_mask = pad_sequence([b["attention_mask"] for b in batch], batch_first=True, padding_value=0)
-    labels = pad_sequence([b["labels"] for b in batch], batch_first=True, padding_value=-100)
-    return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
-
-
-def move_batch_to_device(batch: dict[str, torch.Tensor], device: torch.device) -> dict[str, torch.Tensor]:
-    return {k: v.to(device) for k, v in batch.items()}
 
 
 def resolve_torch_dtype(name: str) -> torch.dtype:
@@ -386,81 +221,6 @@ def load_causal_model(
         )
         model = get_peft_model(model, config)
     return model
-
-
-def encode_prompt_for_generation(
-    tokenizer: PreTrainedTokenizerBase,
-    example: Example,
-    *,
-    system: str | None,
-    chat_kw: dict[str, Any],
-) -> torch.Tensor:
-    user_content = user_block_for_chat(example)
-    messages: list[dict[str, str]] = []
-    if system:
-        messages.append({"role": "system", "content": system})
-    messages.append({"role": "user", "content": user_content})
-    if getattr(tokenizer, "chat_template", None):
-        raw = tokenizer.apply_chat_template(
-            messages,
-            tokenize=True,
-            add_generation_prompt=True,
-            return_tensors=None,
-            **chat_kw,
-        )
-        flat = _as_token_id_list(raw)
-        return torch.tensor([flat], dtype=torch.long)
-    return tokenizer(user_content, return_tensors="pt", truncation=True).input_ids
-
-
-def generate_predictions_chat(
-    model: PreTrainedModel,
-    tokenizer: PreTrainedTokenizerBase,
-    examples: list[Example],
-    device: torch.device,
-    *,
-    max_new_tokens: int,
-    system: str | None,
-) -> tuple[list[dict[str, Any]], list[str], list[str]]:
-    chat_kw = _chat_template_extra_kwargs(tokenizer)
-    preds_out: list[dict[str, Any]] = []
-    gold: list[str] = []
-    pred: list[str] = []
-    model.eval()
-    pad_id = tokenizer.pad_token_id
-    with torch.no_grad():
-        it = examples
-        if _tqdm is not None:
-            it = _tqdm(examples, desc="eval_generate")
-        for idx, ex in enumerate(it):
-            input_ids = encode_prompt_for_generation(tokenizer, ex, system=system, chat_kw=chat_kw).to(device)
-            out = model.generate(
-                input_ids,
-                max_new_tokens=max_new_tokens,
-                do_sample=False,
-                pad_token_id=pad_id,
-                eos_token_id=tokenizer.eos_token_id,
-            )
-            gen_ids = out[0, input_ids.shape[1] :]
-            raw = tokenizer.decode(gen_ids, skip_special_tokens=True).strip()
-            lab = normalize_prediction(raw)
-            gold.append(ex.label)
-            pred.append(lab)
-            preds_out.append(
-                {
-                    "index": idx,
-                    "corpus": ex.corpus_id,
-                    "gold_label": ex.label,
-                    "pred_label": lab,
-                    "is_valid_prediction": lab != INVALID_LABEL,
-                    "raw_generation": raw,
-                    "unit1_txt": ex.unit1_txt,
-                    "unit2_txt": ex.unit2_txt,
-                    "dir": ex.direction,
-                    "rel_type": ex.rel_type,
-                }
-            )
-    return preds_out, gold, pred
 
 
 def train_one_epoch(
@@ -532,7 +292,7 @@ def extend_parser() -> Any:
     )
     p.add_argument(
         "--system-prompt",
-        default=DEFAULT_SYSTEM,
+        default=DEFAULT_INSTRUCTION_SYSTEM,
         help="System message for chat template; empty string disables.",
     )
     p.add_argument("--lora", action="store_true", help="Train LoRA adapters (requires peft).")
@@ -682,6 +442,7 @@ def run_instruction_sft(args: argparse.Namespace) -> Path | None:
             device,
             max_new_tokens=args.eval_max_new_tokens,
             system=system_prompt,
+            log_every=0,
         )
         dev_metrics = evaluate_predictions([e.label for e in dev_ex], dev_pred)
         history.append(
@@ -713,6 +474,7 @@ def run_instruction_sft(args: argparse.Namespace) -> Path | None:
         device,
         max_new_tokens=args.eval_max_new_tokens,
         system=system_prompt,
+        log_every=0,
     )
     dev_metrics = evaluate_predictions([e.label for e in dev_ex], dev_pred)
 
@@ -723,6 +485,7 @@ def run_instruction_sft(args: argparse.Namespace) -> Path | None:
         device,
         max_new_tokens=args.eval_max_new_tokens,
         system=system_prompt,
+        log_every=0,
     )
     test_metrics = evaluate_predictions([e.label for e in test_ex], test_pred)
 

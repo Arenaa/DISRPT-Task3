@@ -45,7 +45,7 @@ def resolve_by_source_data_dir(by_source_dir: str | Path) -> Path:
 
 def build_qwen_arg_parser() -> argparse.ArgumentParser:
     p = xlm_build_arg_parser()
-    p.description = "Qwen fine-tuning CLI (shared data/model arguments)."
+    p.description = "Qwen instruction SFT CLI (chat-template supervised tuning; shared data/model arguments)."
     p.set_defaults(
         model_name=QWEN25_DEFAULT_MODEL,
         max_length=512,

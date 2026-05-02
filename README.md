@@ -70,7 +70,7 @@ Training and evaluation print progress and metrics to **stdout**; metrics and ar
 | `finetune_xlm_roberta_framework_conditioned.py` | Framework-conditioned encoder variant. |
 | `finetune_xlm_roberta_tsv_features.py` | Encoder inputs prefixed with lightweight `dir` / `rel_type` features from TSV rows. |
 | `finetune_qwen_instruction_sft.py` | Qwen causal LM instruction SFT (`--qwen3`, `--qwen3-4b`, optional `--lora`). |
-| `qwen_prompt_baseline.py` | Alternative Qwen training / prompt baseline pipeline with its own CLI. |
+| `qwen_prompt_baseline.py` | Same instruction-tuning objective as above, but reads train/dev/test only from `--input-dir` (typically `results/processed_tsv/by_source_file/`); use when you want the legacy entrypoint without pooled TSV flags. |
 | `evaluate_per_dataset.py` | Load saved checkpoints; per-corpus / framework / language / label breakdown (no training). |
 | `evaluate_with_official_script.py` | Bridge to bundled official DISRPT eval scripts + mapped `.rels` outputs. |
 | `analyze_qualitative_angles.py` | Qualitative analysis from `test_gold_vs_pred.tsv`. |
