@@ -1,7 +1,12 @@
 # DISRPT 2025
 
-Tools for supervised multi-class discourse-relation classification over a unified 17-label inventory: paired EDU-level units go through a data pipeline (`.rels` → cleaned TSV), then encoder-based classifiers (frozen linear head, full fine-tuning, framework-conditioned, metadata-prefixed variants) or decoder-only instruction tuning (Qwen). Outputs land under `results/` by default.
-
+Multilingual cross-formalism discourse relation classification 
+for DISRPT 2025 Task 3. Paired EDU-level units are processed 
+through a data pipeline (`.rels` → cleaned TSV) and classified 
+into a unified 17-label inventory using encoder-based models 
+(XLM-RoBERTa: frozen, fine-tuned, framework-conditioned, and 
+metadata-augmented variants) or decoder-only instruction tuning 
+(Qwen3). Results are saved under `results/` by default.
 ## Getting started
 
 ### Requirements
@@ -17,7 +22,7 @@ From the repository root:
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+source .venv/bin/activate          
 pip install --upgrade pip
 ```
 
